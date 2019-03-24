@@ -101,20 +101,20 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">
-                        <i class="nav-icon fa fa-th-large text-gray"></i> República
+                    <a class="nav-link" href="{{ route('painel.republic.index') }}">
+                        <i class="nav-icon fas fa-home text-gray"></i> República
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">
-                        <i class="nav-icon fa fa-th-large text-gray"></i> Móveis
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">
-                        <i class="nav-icon fa fa-th-large text-gray"></i> Tarefas
-                    </a>
-                </li>
+                {{--<li class="nav-item">--}}
+                {{--<a class="nav-link" href="{{ route('home') }}">--}}
+                {{--<i class="nav-icon fa fa-th-large text-gray"></i> Móveis--}}
+                {{--</a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-item">--}}
+                {{--<a class="nav-link" href="{{ route('home') }}">--}}
+                {{--<i class="nav-icon fa fa-th-large text-gray"></i> Tarefas--}}
+                {{--</a>--}}
+                {{--</li>--}}
                 <li class="nav-item">
                     <hr></li>
                 <li class="nav-item dropdown">

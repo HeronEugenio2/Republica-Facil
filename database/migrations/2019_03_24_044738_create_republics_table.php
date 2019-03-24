@@ -1,9 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
+/**
+ * Class CreateRepublicsTable
+ * @author Heron Eugenio
+ */
 class CreateRepublicsTable extends Migration
 {
     /**
@@ -14,7 +18,14 @@ class CreateRepublicsTable extends Migration
     public function up()
     {
         Schema::create('republics', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedInteger('id', true);
+            $table->string('name');
+            $table->string('email');
+            $table->string('description')->nullable();
+            $table->integer('member');
+            $table->integer('vacancy');
+            $table->unsignedInteger('type_id')->index();
+            $table->unsignedInteger('address_id')->index();
             $table->timestamps();
         });
     }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Republic;
+use App\Type;
 use Illuminate\Http\Request;
 
-class RepublicController extends Controller
+class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class RepublicController extends Controller
      */
     public function index()
     {
-        $republics = [];
-        return view('Painel.Republic.Republic', compact('republics'));
+        //
     }
 
     /**
@@ -25,13 +24,13 @@ class RepublicController extends Controller
      */
     public function create()
     {
-        return view('Painel.Republic.RepublicCreate');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,10 +41,10 @@ class RepublicController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Republic  $republic
+     * @param  \App\Type $type
      * @return \Illuminate\Http\Response
      */
-    public function show(Republic $republic)
+    public function show(Type $type)
     {
         //
     }
@@ -53,10 +52,10 @@ class RepublicController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Republic  $republic
+     * @param  \App\Type $type
      * @return \Illuminate\Http\Response
      */
-    public function edit(Republic $republic)
+    public function edit(Type $type)
     {
         //
     }
@@ -64,11 +63,11 @@ class RepublicController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Republic  $republic
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Type $type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Republic $republic)
+    public function update(Request $request, Type $type)
     {
         //
     }
@@ -76,10 +75,10 @@ class RepublicController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Republic  $republic
+     * @param  \App\Type $type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Republic $republic)
+    public function destroy(Type $type)
     {
         //
     }

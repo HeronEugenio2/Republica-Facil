@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <title>Perfect Support</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -8,18 +9,15 @@
     <meta name="keyword" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
-    <title>Perfect Support</title>
-    {{--    <link rel="stylesheet" href="{{ asset('/css/app_perfect.css') }}">--}}
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/argon.css') }}">
-    {{--<link href="{{ asset('/css/select2.min.css') }}" rel="stylesheet">--}}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    {{--<link rel="stylesheet" href="{{ asset('/css/app_perfect.css') }}">--}}
+    {{--<link href="{{ asset('/css/select2.min.css') }}" rel="stylesheet">--}}
     {{--<link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">--}}
     @stack('css')
-    <script>
-        window.Laravel = '{!!json_encode(['csrfToken' => csrf_token()])!!}';
-    </script>
+
 </head>
 <body class="vsc-initialized">
     @include('layouts.Painel.Menu')
@@ -118,29 +116,6 @@
         {{--</ol>--}}
         <div class="container-fluid">
             @yield('content')
-            {{--<footer class="footer">--}}
-                {{--<div class="row align-items-center justify-content-xl-between">--}}
-                    {{--<div class="col-6">--}}
-                        {{--<div class="copyright text-center text-xl-left text-muted">--}}
-                            {{--© 2019--}}
-                            {{--<a href="https://www.perfectpay.com.br" target='_blank'>PerfectSupport</a>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="col-6">--}}
-                        {{--<ul class="nav nav-footer justify-content-center justify-content-xl-end">--}}
-                            {{--<li class="nav-item">--}}
-                                {{--<a href="#" class="nav-link" target="_blank">Suporte</a>--}}
-                            {{--</li>--}}
-                            {{--<li class="nav-item">--}}
-                                {{--<a href="#" class="nav-link" target="_blank">Sobre nós</a>--}}
-                            {{--</li>--}}
-                            {{--<li class="nav-item">--}}
-                                {{--<a href="#" class="nav-link" target="_blank">Blog</a>--}}
-                            {{--</li>--}}
-                        {{--</ul>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</footer>--}}
         </div>
     </div>
     <!-- Scripts -->
@@ -148,6 +123,7 @@
     <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+    <script> window.Laravel = '{!!json_encode(['csrfToken' => csrf_token()])!!}';</script>
     @stack('scripts')
 </body>
 </html>

@@ -3,6 +3,10 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Class UsersTableSeeder
+ * @author Heron Eugenio
+ */
 class UsersTableSeeder extends Seeder
 {
     /**

@@ -22,8 +22,8 @@ class CreateRepublicsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('description')->nullable();
-            $table->integer('member');
-            $table->integer('vacancy');
+            $table->integer('qtdMembers');
+            $table->integer('qtdVacancies');
             $table->unsignedInteger('type_id')->index();
             $table->unsignedInteger('address_id')->index();
             $table->timestamps();

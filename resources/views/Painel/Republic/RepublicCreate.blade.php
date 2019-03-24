@@ -61,8 +61,7 @@
                     <textarea id="inputDescription" name='description' type="text" class="form-control"
                               placeholder="Ex: Nossa república possui 4 quartos, sendo 3 ocupados e um com dispoibilidade para até no máximo duas pessoas, 1 banheiro, 1 cozinha com duas geladeiras, um fogão e área de serviço com máquina de lavar."
                               rows='7' style='width: 100%'></textarea>
-                    <small id="descriptionHelp" class="form-text text-muted">Coloque aqui informações importantes que
-                        você deseja que as pessoas saibam.
+                    <small id="descriptionHelp" class="form-text text-muted">Coloque aqui informações importantes que você deseja que as pessoas saibam.
                     </small>
                 </div>
                 <div class='row'>
@@ -72,8 +71,7 @@
                             <input id="inputEmail" name='email' type="email" class="form-control"
                                    aria-describedby="emailHelp" placeholder="Ex: powerG@gmail.com" style='width: 100%'
                                    required>
-                            <small id="emailHelp" class="form-text text-muted">Coloque aqui o e-mail para contato com a
-                                república.
+                            <small id="emailHelp" class="form-text text-muted">Coloque aqui o e-mail para contato com a república.
                             </small>
                         </div>
                     </div>
@@ -82,8 +80,7 @@
                             <label for="inputMember">Membros</label>
                             <input id="inputMember" name='member' type="number" class="form-control"
                                    aria-describedby="memberHelp" placeholder="Ex: 5" style='width: 100%' required>
-                            <small id="memberHelp" class="form-text text-muted">Quantidade de membros residentes hoje na
-                                república.
+                            <small id="memberHelp" class="form-text text-muted">Quantidade de membros residentes hoje na república.
                             </small>
                         </div>
                     </div>
@@ -92,8 +89,7 @@
                             <label for="inputVacancy">Vagas</label>
                             <input id="inputVacancy" name='vacancy' type="number" class="form-control"
                                    aria-describedby="vacancyHelp" placeholder="Ex: 1" style='width: 100%' required>
-                            <small id="vacancyHelp" class="form-text text-muted">Quantidade de vagas disponíveis hoje na
-                                sua república
+                            <small id="vacancyHelp" class="form-text text-muted">Quantidade de vagas disponíveis hoje na sua república
                             </small>
                         </div>
                     </div>

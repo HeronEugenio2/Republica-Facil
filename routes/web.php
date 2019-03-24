@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function() {
     return view('Portal.testeIndex');
 })->name('portal');
 
@@ -40,7 +40,6 @@ Route::group(
     function() {
         //REPUBLIC
         Route::resource('/republica', 'RepublicController')->names('republic');
-
     }
 );
 //Route::group(

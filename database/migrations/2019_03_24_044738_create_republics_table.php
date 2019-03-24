@@ -28,6 +28,12 @@ class CreateRepublicsTable extends Migration
             $table->unsignedInteger('address_id')->index();
             $table->timestamps();
         });
+        Schema::table('republics', function (Blueprint $table) {
+            $table->foreign('type_id')->references('id')->on('types');
+        });
+        Schema::table('republics', function (Blueprint $table) {
+            $table->foreign('address_id')->references('id')->on('adresses');
+        });
     }
 
     /**

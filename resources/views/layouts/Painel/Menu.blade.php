@@ -69,8 +69,8 @@
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
                     <div class="col-6">
-                        <a href="./">
-                            <img src="{{ asset('/img/brand/logo_perfectpay_h30.png') }}" alt='PerfectPay'>
+                        <a href="..">
+                            <img src="#" alt='República Fácil'>
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -99,18 +99,35 @@
                     <a class="nav-link" href="{{ route('home') }}">
                         <i class="nav-icon fa fa-th-large text-gray"></i> Painel
                     </a>
-                    {{--<a class="nav-link" href="{{ route('painel.questions') }}">--}}
-                        {{--<i class="fas fa-question-circle text-gray"></i> FAQ--}}
-                    {{--</a>--}}
-                    {{--<a class="nav-link" href="{{ route('painel.category.index') }}">--}}
-                        {{--<i class="fas fa-book text-gray"></i> Categorias--}}
-                    {{--</a>--}}
-                    {{--<a class="nav-link" href="{{ route('painel.system.index') }}">--}}
-                        {{--<i class="fas fa-book text-gray"></i> Sistemas--}}
-                    {{--</a>--}}
-                    {{--<a class="nav-link" href="{{ route('painel.type.index') }}">--}}
-                        {{--<i class="fas fa-book text-gray"></i> Tipos de conteúdo--}}
-                    {{--</a>--}}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home') }}">
+                        <i class="nav-icon fa fa-th-large text-gray"></i> República
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home') }}">
+                        <i class="nav-icon fa fa-th-large text-gray"></i> Móveis
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home') }}">
+                        <i class="nav-icon fa fa-th-large text-gray"></i> Tarefas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <hr></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-shield"></i> Administração
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {{--<a class="dropdown-item" href="#">Action</a>--}}
+                        {{--<div class="dropdown-divider"></div>--}}
+                        <a class="dropdown-item" href="{{route('painel.republic.index')}}">Repúblicas</a>
+                        <a class="dropdown-item" href="{{route('painel.republic.index')}}">Casas</a>
+                        <a class="dropdown-item" href="{{route('painel.republic.index')}}">Comércio</a>
+                    </div>
                 </li>
             </ul>
         </div>

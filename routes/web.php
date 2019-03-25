@@ -11,6 +11,44 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function() {
+    return view('Portal.testeIndex');
+})->name('portal');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(
+    [
+        'prefix'     => 'administrative',
+        'as'         => 'administrative.',
+        'middleware' => ['auth'],
+    ],
+    function() {
+        //REPUBLIC
+        Route::resource('/republicas', 'Administrative\RepublicAdmController')->names('republics');
+    }
+);
+Route::group(
+    [
+        'prefix'     => 'painel',
+        'as'         => 'painel.',
+        'middleware' => ['auth'],
+    ],
+    function() {
+        //REPUBLIC
+        Route::resource('/republica', 'RepublicController')->names('republic');
+    }
+);
+//Route::group(
+//    [
+//        'prefix'     => 'portal',
+//        'as'         => 'portal.',
+//    ],
+//    function() {
+//        //REPUBLIC
+//        Route::resource('/republicas', 'RepublicController')->names('republic');
+//
+//    }
+//);

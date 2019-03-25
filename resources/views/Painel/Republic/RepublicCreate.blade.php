@@ -16,6 +16,7 @@
             <form id="logout-form" action="{{ route('painel.republic.store') }}" method="POST">
                 {{--<form id="logout-form" method="POST">--}}
                 @csrf
+                <input name='user_id' value='{{ Auth::user()->id }}' type='hidden'>
                 <div class="form-group">
                     <label for="inputName">Nome</label>
                     <input name='name' type="text" class="form-control" id="inputName" aria-describedby="nameHelp"

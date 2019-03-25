@@ -19,18 +19,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::group(
-//    [
-//        'prefix'     => 'administrative',
-//        'as'         => 'administrative.',
-//        'middleware' => ['auth'],
-//    ],
-//    function() {
-//        //REPUBLIC
-//        Route::resource('/republicas', 'RepublicController')->names('republic');
-//
-//    }
-//);
+Route::group(
+    [
+        'prefix'     => 'administrative',
+        'as'         => 'administrative.',
+        'middleware' => ['auth'],
+    ],
+    function() {
+        //REPUBLIC
+        Route::resource('/republicas', 'Administrative\RepublicAdmController')->names('republics');
+    }
+);
 Route::group(
     [
         'prefix'     => 'painel',

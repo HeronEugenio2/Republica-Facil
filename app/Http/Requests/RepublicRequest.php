@@ -9,7 +9,7 @@ use Illuminate\Foundation\Http\FormRequest;
  * @package App\Http\Requests
  * @author  Heron Eugenio
  */
-class SlugRequest extends FormRequest
+class RepublicRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,12 +29,13 @@ class SlugRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
-            'member' => 'required|integer|max:255',
-            'vacancy' => 'required|integer|max:255',
-            'type_id' => 'required|integer|max:255',
-            'address_id' => 'required|integer|max:255',
+            'name'         => 'required|string|max:255',
+            'email'        => 'required|string|max:255',
+            'description'  => 'required|string|max:255',
+            'qtdMembers'   => 'required|integer|max:255',
+            'qtdVacancies' => 'required|integer|max:255',
+            'type_id'      => 'required|integer|max:255',
+            'address_id'   => 'required|integer|max:255',
         ];
     }
 

@@ -124,7 +124,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {{--<a class="dropdown-item" href="#">Action</a>--}}
                         {{--<div class="dropdown-divider"></div>--}}
-                        <a class="dropdown-item" href="{{route('painel.republic.index')}}">Repúblicas</a>
+                        <a class="dropdown-item" href="{{route('administrative.republics.index')}}">Repúblicas</a>
                         <a class="dropdown-item" href="{{route('painel.republic.index')}}">Casas</a>
                         <a class="dropdown-item" href="{{route('painel.republic.index')}}">Comércio</a>
                     </div>

@@ -21,11 +21,12 @@ class CreateRepublicsTable extends Migration
             $table->unsignedInteger('id', true);
             $table->string('name');
             $table->string('email');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->integer('qtdMembers');
             $table->integer('qtdVacancies');
             $table->unsignedInteger('type_id')->index();
             $table->unsignedInteger('address_id')->index();
+            $table->unsignedInteger('user_id')->index();
             $table->timestamps();
         });
         Schema::table('republics', function (Blueprint $table) {
@@ -33,6 +34,9 @@ class CreateRepublicsTable extends Migration
         });
         Schema::table('republics', function (Blueprint $table) {
             $table->foreign('address_id')->references('id')->on('adresses');
+        });
+        Schema::table('republics', function(Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

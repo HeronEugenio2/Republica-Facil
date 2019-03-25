@@ -16,8 +16,21 @@ class Republic extends Model
         'address_id',
     ];
 
+    //   Relacionamento 1 pra N
     public function type()
     {
         return $this->belongsTo(Type::class, 'type_id', 'id');
+    }
+
+    //   Relacionamento 1 pra N
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    //   Relacionamento 1 pra N
+    public function address()
+    {
+        return $this->belongsTo(Adress::class, 'address_id', 'id');
     }
 }

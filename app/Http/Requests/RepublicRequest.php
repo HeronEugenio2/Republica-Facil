@@ -33,26 +33,26 @@ class RepublicRequest extends FormRequest
             'email'        => 'required|string|max:255',
             'qtdMembers'   => 'required|string|max:255',
             'qtdVacancies' => 'required|string|max:255',
-            'type_id'      => 'required|string|max:255',
+            'type_id'      => 'required|numeric',
             'description'  => 'string|nullable',
             'street'       => 'string|nullable',
             'neighborhood' => 'string|nullable',
             'cep'          => 'string|nullable',
             'city'         => 'string|nullable',
             'state'        => 'string|nullable',
-            'number'       => 'string|nullable',
+            'number'       => 'numeric|nullable',
             'user_id'      => 'string|nullable',
         ];
     }
 
-    /**
-     * @return array
-     * @author Heron Eugenio
-     */
-    public function messages()
-    {
-        return [
-            'required' => 'O campo :attribute tem que ser preenchido',
-        ];
-    }
+//    /**
+//     * @return array
+//     * @author Heron Eugenio
+//     */
+//    public function messages()
+//    {
+//        return [
+//            'required' => '- :attribute tem que ser preenchido',
+//        ];
+//    }
 }

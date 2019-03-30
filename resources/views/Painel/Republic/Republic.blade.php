@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header">Sua República</div>
             <div class="card-body">
-                <div class='row justify-content-center'>
+                <div class='row '>
                     <div class='mb-3 col-sm-12 col-md-6 col-lg-6'>
                         <h1>{{$republic->name}}</h1>
                         <div class='row'>
@@ -40,7 +40,12 @@
                             <br>
                         </div>
                     </div>
-                    <a href="{{route('painel.republic.show', ['id'=>$republic->id])}}" class="btn btn-primary col-sm-12 col-md-4 col-lg-2">Editar</a>
+                    <a href="{{route('painel.republic.edit', ['id'=>$republic->id])}}" class="btn btn-primary col-sm-12 col-md-4 col-lg-2">Editar</a>
+                    <form action="{{ route('painel.republic.destroy', ['id'=>$republic->id]) }}" method="post">
+                        <input class="btn btn-danger" type="submit" value="Excluir República"/>
+                        {!! method_field('delete') !!}
+                        {!! csrf_field() !!}
+                    </form>
                 </div>
             </div>
         </div>

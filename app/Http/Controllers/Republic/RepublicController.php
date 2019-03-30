@@ -21,7 +21,7 @@ class RepublicController extends Controller
     public function index()
     {
 
-        $republic = Republic::with('User', 'type', 'address')->where('user_id', auth()->user()->id)->get()->first();
+        $republic = Republic::with('User', 'type')->where('user_id', auth()->user()->id)->get()->first();
 
         //                        dd($republic);
         return view('Painel.Republic.Republic', compact('republic'));
@@ -37,63 +37,40 @@ class RepublicController extends Controller
     }
 
     /**
-     * @param RepublicRequest $republic
+     * @param RepublicRequest $republicRequest
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(RepublicRequest $republicRequest)
     {
-        //        dd($request);
-        //        try {
-        //            $newRepublic = $this->republic->create(
-        //                [
-        //                    'user_id'      => auth()->user()->id,
-        //                    'name'         => 'name',
-        //                    'email'        => 'email',
-        //                    'description'  => 'description',
-        //                    'qtdMembers'   => 'member',
-        //                    'qtdVacancies' => 'vacancy',
-        //                    'type_id'      => 'type_id',
-        //                    'address_id'   => 1,
-        //                ]);
-        //            if ($newRepublic) {
-        //                return redirect()->route('products.show', [$newRepublic->code])
-        //                                 ->with('success', __('definitions.message.save.success'));
-        //            } else {
-        //                //erro ao cadastrar
-        //                return redirect()->route('products.store')->with('error', __('definitions.message.save.error'))
-        //                                 ->withInput();
-        //            }
-        //        } catch (Exception $e) {
-        //            //algum outro problema, analisar com cuidado
-        //            report($e);
-        //
-        //            return redirect()->back()->with('error', __('definitions.message.save.error'));
-        //        }
+        try {
+            $data              = [
+                'name'         => $republicRequest->input('name'),
+                'email'        => $republicRequest->input('email'),
+                'qtdMembers'   => $republicRequest->input('qtdMembers'),
+                'qtdVacancies' => $republicRequest->input('qtdVacancies'),
+                'type_id'      => $republicRequest->input('type_id'),
+                'description'  => $republicRequest->input('description') ?? null,
+                'street'       => $republicRequest->input('street') ?? null,
+                'neighborhood' => $republicRequest->input('neighborhood') ?? null,
+                'cep'          => $republicRequest->input('cep') ?? null,
+                'city'         => $republicRequest->input('city') ?? null,
+                'state'        => $republicRequest->input('state') ?? null,
+                'number'       => $republicRequest->input('number') ?? null,
+                'user_id'      => $republicRequest->input('user_id') ?? null,
+            ];
+            $dataSavedCategory = Republic::create($data);
 
-        //                try {
-        //                    $data = [
-        //                        'name'         => $republicRequest->input('name'),
-        //                        'email'        => $republicRequest->input('name'),
-        //                        'description'  => $republicRequest->input('name'),
-        //                        'qtdMembers'   => $republicRequest->input('name'),
-        //                        'qtdVacancies' => $republicRequest->input('name'),
-        //                        'type_id'      => $republicRequest->input('name'),
-        //        //                'address_id'   => $republicRequest->input('name'),
-        //                    ];
-        //
-        //                    $dataSavedCategory = Republic::create($data);
-        //
-        //                    if ($dataSavedCategory) {
-        //                        return redirect()->route('painel.republic.index')->with('success', 'Republica salva com sucesso!');
-        //                    } else {
-        //                        return redirect()->back()->with('error', 'Ocorreu um erro ao tentar salvar a República!');
-        //                    }
-        //                } catch (Exception $e) {
-        //                    report($e);
-        //                    Log::error($e->getMessage());
-        //
-        //                    return redirect()->back()->with('error', $e->getMessage());
-        //                }
+            if ($dataSavedCategory) {
+                return redirect()->route('painel.republic.index')->with('success', 'Republica salva com sucesso!');
+            } else {
+                return redirect()->back()->with('error', 'Ocorreu um erro ao tentar salvar a República!');
+            }
+        } catch (Exception $e) {
+            report($e);
+            Log::error($e->getMessage());
+
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     /**

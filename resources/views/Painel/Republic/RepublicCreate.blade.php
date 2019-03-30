@@ -14,7 +14,6 @@
                 </div>
             @endif
             <form id="logout-form" action="{{ route('painel.republic.store') }}" method="POST">
-                {{--<form id="logout-form" method="POST">--}}
                 @csrf
                 <input name='user_id' value='{{ Auth::user()->id }}' type='hidden'>
                 <div class="form-group">
@@ -28,32 +27,32 @@
                     <div class="form-group col-md-4 col-lg-4 col-sm-12">
                         <label>Rua</label>
                         <input id="street" name='street' type="text" class="form-control"
-                               placeholder="Ex: Av. General Affonseca" style='width: 100%' required>
+                               placeholder="Ex: Av. General Affonseca" style='width: 100%'>
                     </div>
                     <div class="form-group col-md-1 col-lg-1 col-sm-6">
                         <label>Número</label>
                         <input id="number" name='number' type="number" class="form-control" placeholder="Ex: 251"
-                               style='width: 100%' required>
+                               style='width: 100%'>
                     </div>
                     <div class="form-group col-md-4 col-lg-4 col-sm-12">
                         <label>Bairro</label>
                         <input id="neighborhood" name='neighborhood' type="text" class="form-control"
-                               placeholder="Ex: Manejo" style='width: 100%' required>
+                               placeholder="Ex: Manejo" style='width: 100%'>
                     </div>
                     <div class="form-group col-md-3 col-lg-3 col-sm-12">
                         <label>Cep</label>
                         <input id="cep" name='cep' type="text" class="form-control"
-                               placeholder="Ex: Av. General Affonseca" style='width: 100%' required>
+                               placeholder="Ex: Av. General Affonseca" style='width: 100%'>
                     </div>
                     <div class="form-group col-md-8 col-lg-8 col-sm-12">
                         <label>Cidade</label>
                         <input id="city" name='city' type="text" class="form-control" placeholder="Ex: Resende"
-                               style='width: 100%' required>
+                               style='width: 100%'>
                     </div>
                     <div class="form-group col-md-4 col-lg-4 col-sm-12">
                         <label>Estado</label>
                         <input id="state" name='state' type="text" class="form-control" placeholder="Ex: Rio de Janeiro"
-                               style='width: 100%' required>
+                               style='width: 100%'>
                         <small class="form-text text-muted"></small>
                     </div>
                 </div>
@@ -79,7 +78,7 @@
                     <div id='member' class="form-group col-md-2 col-lg-2 col-sm-12">
                         <div class="form-group">
                             <label for="inputMember">Membros</label>
-                            <input id="inputMember" name='member' type="number" class="form-control"
+                            <input id="inputMember" name='qtdMembers' type="number" class="form-control"
                                    aria-describedby="memberHelp" placeholder="Ex: 5" style='width: 100%' required>
                             <small id="memberHelp" class="form-text text-muted">Quantidade de membros residentes hoje na república.
                             </small>
@@ -88,7 +87,7 @@
                     <div id='vacancy' class="form-group col-md-2 col-lg-2 col-sm-12">
                         <div class="form-group">
                             <label for="inputVacancy">Vagas</label>
-                            <input id="inputVacancy" name='vacancy' type="number" class="form-control"
+                            <input id="inputVacancy" name='qtdVacancies' type="number" class="form-control"
                                    aria-describedby="vacancyHelp" placeholder="Ex: 1" style='width: 100%' required>
                             <small id="vacancyHelp" class="form-text text-muted">Quantidade de vagas disponíveis hoje na sua república
                             </small>
@@ -96,8 +95,8 @@
                     </div>
                     <div id='type' class="form-group col-md-4 col-lg-4 col-sm-12">
                         <label for="inputType">Tipo:</label>
-                        <select id="inputType" class='form-control col' required>
-                            <option>Escolha</option>
+                        <select id="inputType" name="type_id" class='form-control col' required>
+                            <option value=''>Escolha</option>
                             <option value="1">Masculina</option>
                             <option value="2">Feminina</option>
                             <option value="3">Mista</option>

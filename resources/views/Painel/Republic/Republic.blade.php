@@ -26,17 +26,17 @@
                         <h1>Endereço</h1>
                         <div class='row'>
                             <div class='col-md-6 col-lg-3 col-sm-12'><strong>Rua:</strong></div>
-                            <div class='col-md-6 col-lg-8 col-sm-12'>{{$republic->address->street}}</div>
+                            <div class='col-md-6 col-lg-8 col-sm-12'>{{$republic->street}}</div>
                             <div class='col-md-6 col-lg-3 col-sm-12'><strong>Número:</strong></div>
-                            <div class='col-md-6 col-lg-8 col-sm-12'>{{$republic->address->number}}</div>
+                            <div class='col-md-6 col-lg-8 col-sm-12'>{{$republic->number}}</div>
                             <div class='col-md-6 col-lg-3 col-sm-12'><strong>Bairro:</strong></div>
-                            <div class='col-md-6 col-lg-8 col-sm-12'>{{$republic->address->neighborhood}}</div>
+                            <div class='col-md-6 col-lg-8 col-sm-12'>{{$republic->neighborhood}}</div>
                             <div class='col-md-6 col-lg-3 col-sm-12'><strong>Cidade:</strong></div>
-                            <div class='col-md-6 col-lg-8 col-sm-12'>{{$republic->address->city}}</div>
+                            <div class='col-md-6 col-lg-8 col-sm-12'>{{$republic->city}}</div>
                             <div class='col-md-6 col-lg-3 col-sm-12'><strong>Estado:</strong></div>
-                            <div class='col-md-6 col-lg-8 col-sm-12'>{{$republic->address->state}}</div>
+                            <div class='col-md-6 col-lg-8 col-sm-12'>{{$republic->state}}</div>
                             <div class='col-md-6 col-lg-3 col-sm-12'><strong>Cep:</strong></div>
-                            <div class='col-md-6 col-lg-8 col-sm-12'>{{$republic->address->cep}}</div>
+                            <div class='col-md-6 col-lg-8 col-sm-12'>{{$republic->cep}}</div>
                             <br>
                         </div>
                     </div>

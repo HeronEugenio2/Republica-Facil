@@ -31,11 +31,17 @@ class RepublicRequest extends FormRequest
         return [
             'name'         => 'required|string|max:255',
             'email'        => 'required|string|max:255',
-            'description'  => 'required|string|max:255',
-            'qtdMembers'   => 'required|integer|max:255',
-            'qtdVacancies' => 'required|integer|max:255',
-            'type_id'      => 'required|integer|max:255',
-            'address_id'   => 'required|integer|max:255',
+            'qtdMembers'   => 'required|string|max:255',
+            'qtdVacancies' => 'required|string|max:255',
+            'type_id'      => 'required|string|max:255',
+            'description'  => 'string|nullable',
+            'street'       => 'string|nullable',
+            'neighborhood' => 'string|nullable',
+            'cep'          => 'string|nullable',
+            'city'         => 'string|nullable',
+            'state'        => 'string|nullable',
+            'number'       => 'string|nullable',
+            'user_id'      => 'string|nullable',
         ];
     }
 

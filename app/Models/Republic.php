@@ -13,7 +13,13 @@ class Republic extends Model
         'qtdMembers',
         'qtdVacancies',
         'type_id',
-        'address_id',
+        'street',
+        'neighborhood',
+        'cep',
+        'city',
+        'state',
+        'number',
+        'user_id',
     ];
 
     //   Relacionamento 1 pra N
@@ -28,9 +34,5 @@ class Republic extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    //   Relacionamento 1 pra N
-    public function address()
-    {
-        return $this->belongsTo(Adress::class, 'address_id', 'id');
-    }
+
 }

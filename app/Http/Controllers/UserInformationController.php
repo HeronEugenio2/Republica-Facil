@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\UserUserInformation;
+use App\UserInformation;
 use Illuminate\Http\Request;
 
-class UserUserInformationController extends Controller
+class UserInformationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -40,45 +40,41 @@ class UserUserInformationController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\UserUserInformation  $userUserInformation
+     * @param  \App\UserInformation $userInformation
      * @return \Illuminate\Http\Response
      */
-    public function show(UserUserInformation $userUserInformation)
+    public function show(UserInformation $userInformation)
     {
         //
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\UserUserInformation  $userUserInformation
+     * @param  \App\UserInformation $userInformation
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserUserInformation $userUserInformation)
+    public function edit(UserInformation $userInformation)
     {
         //
     }
 
     /**
      * Update the specified resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserUserInformation  $userUserInformation
+     * @param  \App\UserInformation $userInformation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserUserInformation $userUserInformation)
+    public function update(Request $request, UserInformation $userInformation)
     {
         //
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\UserUserInformation  $userUserInformation
+     * @param  \App\UserInformation $userInformation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserUserInformation $userUserInformation)
+    public function destroy(UserInformation $userInformation)
     {
         //
     }

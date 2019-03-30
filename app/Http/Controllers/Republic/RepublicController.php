@@ -75,13 +75,13 @@ class RepublicController extends Controller
 
     /**
      * Display the specified resource.
-     * @param  \App\Republic $republic
+     * @param  \App\Republic $id
      * @return \Illuminate\Http\Response
      */
     public
-    function show(Republic $republic)
+    function show($id)
     {
-        //
+//        dd($id);
     }
 
     /**
@@ -104,7 +104,7 @@ class RepublicController extends Controller
     public
     function update(Request $request, Republic $republic)
     {
-        //
+        dd('veio heron');
     }
 
     /**

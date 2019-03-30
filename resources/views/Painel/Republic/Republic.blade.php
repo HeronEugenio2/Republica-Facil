@@ -40,7 +40,7 @@
                             <br>
                         </div>
                     </div>
-                    <a href="{{route('painel.republic.create')}}" class="btn btn-primary col-sm-12 col-md-4 col-lg-2">Editar</a>
+                    <a href="{{route('painel.republic.show', ['id'=>$republic->id])}}" class="btn btn-primary col-sm-12 col-md-4 col-lg-2">Editar</a>
                 </div>
             </div>
         </div>

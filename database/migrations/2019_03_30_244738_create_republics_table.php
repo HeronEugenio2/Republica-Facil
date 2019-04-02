@@ -39,6 +39,9 @@ class CreateRepublicsTable extends Migration
         Schema::table('republics', function(Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
+        Schema::table('users', function(Blueprint $table) {
+            $table->foreign('republic_id')->references('id')->on('republics');
+        });
     }
 
     /**

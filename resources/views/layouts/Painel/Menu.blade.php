@@ -25,7 +25,7 @@
         <!-- Brand -->
         <a class="navbar-brand p-0" href="{{ route('home') }}">
             {{--<img src="{{ asset('/img/brand/logo_perfectpay_h30.png') }}" alt='PerfectPay'>--}}
-            Perfect Support
+            República Fácil
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
@@ -103,6 +103,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('painel.republic.index') }}">
                         <i class="nav-icon fas fa-home text-gray"></i> República
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('painel.spent.index') }}">
+                        <i class="fas fa-file-invoice-dollar text-gray"></i> Gastos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('painel.assignment.index') }}">
+                        <i class="fas fa-book text-gray"></i> Tarefas
                     </a>
                 </li>
                 {{--<li class="nav-item">--}}

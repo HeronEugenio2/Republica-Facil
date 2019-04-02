@@ -39,6 +39,10 @@ Route::group(
     function() {
         //REPUBLIC
         Route::resource('/republica', 'RepublicController')->names('republic');
+        //SPENT
+        Route::resource('/gastos', 'SpentController')->names('spent');
+        //Assignment
+        Route::resource('/tarefas', 'AssignmentController')->names('assignment');
     }
 );
 //Route::group(

@@ -14,7 +14,11 @@ class CreateSpentsTable extends Migration
     public function up()
     {
         Schema::create('spents', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedInteger('id', true);
+            $table->string('description');
+            $table->date('dateSpent');
+            $table->float('value');
+            $table->unsignedInteger('member')->nullable();
             $table->timestamps();
         });
     }

@@ -20,5 +20,11 @@ class Spent extends Model
         'dateSpent',
         'value',
         'member',
+        'republic_id',
     ];
+
+    public function republic()
+    {
+        return $this->belongsTo(Republic::class, 'republic_id', 'id');
+    }
 }

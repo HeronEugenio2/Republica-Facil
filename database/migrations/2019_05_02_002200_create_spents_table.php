@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateSpentsTable extends Migration
 {
@@ -16,10 +16,14 @@ class CreateSpentsTable extends Migration
         Schema::create('spents', function (Blueprint $table) {
             $table->unsignedInteger('id', true);
             $table->string('description');
-            $table->date('dateSpent');
+            $table->date('dateSpent')->nullable();
             $table->float('value');
+            $table->unsignedInteger('republic_id');
             $table->unsignedInteger('member')->nullable();
             $table->timestamps();
+        });
+        Schema::table('spents', function(Blueprint $table) {
+            $table->foreign('republic_id')->references('id')->on('republics');
         });
     }
 

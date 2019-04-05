@@ -2,34 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Adress;
+use App\Address;
 use Illuminate\Http\Request;
 
-class AdressController extends Controller
+class AddressController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        //        return view('');
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
+     * Display the specified resource.
+     * @param  \App\Address $adress
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function show(Address $adress)
     {
         //
     }
 
     /**
      * Store a newly created resource in storage.
-     *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
@@ -39,46 +37,41 @@ class AdressController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Adress $adress
+     * Show the form for editing the specified resource.
+     * @param  \App\Address $adress
      * @return \Illuminate\Http\Response
      */
-    public function show(Adress $adress)
+    public function edit(Address $adress)
     {
         //
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Adress $adress
+     * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function edit(Adress $adress)
+    public function create()
     {
-        //
+        return view('Painel.Address.AddressCreate');
     }
 
     /**
      * Update the specified resource in storage.
-     *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Adress $adress
+     * @param  \App\Address $adress
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Adress $adress)
+    public function update(Request $request, Address $adress)
     {
         //
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Adress $adress
+     * @param  \App\Address $adress
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Adress $adress)
+    public function destroy(Address $adress)
     {
         //
     }

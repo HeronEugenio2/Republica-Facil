@@ -106,7 +106,7 @@
             <h2><i class="fas fa-exclamation-triangle"></i> Olá {{ Auth::user()->name }} !</h2>
             Para cadastrar sua primeira república clique no botão abaixo.
             <hr>
-            <a href="{{route('painel.republic.create')}}" class="btn btn-primary">Cadastrar República</a>
+            <a href="{{route('painel.spent.create')}}" class="btn btn-primary">Cadastrar República</a>
         </div>
     @endif
 @endsection

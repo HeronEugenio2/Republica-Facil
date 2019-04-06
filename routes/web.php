@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function() {
-    return view('Portal.testeIndex');
-})->name('portal');
+//Route::get('/', function() {
+//    return view('Portal.Template.index');
+//})->name('portal');
+Route::resource('/', 'PortalController')->names('portal');
 
 Auth::routes();
 

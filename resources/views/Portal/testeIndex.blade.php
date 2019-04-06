@@ -7,35 +7,28 @@
         <div class="card">
             <div class="card-header">Repúblicas</div>
             <div class="card-body">
-                <div class="table table-responsive mb-0">
-                    <table class="table mb-0 table-bordered table-hover table-striped text-center">
+                <div class='table-responsive'>
+                    <table class="table table-bordered table-hover table-striped text-center">
                         <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                        </tr>
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Vagas</th>
+                                <th scope="col">Membros</th>
+                                <th scope="col">Tipo</th>
+                            </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        </tbody>
+                        {{--<tbody>--}}
+                        {{--@foreach($republics as $republic)--}}
+                        {{--<tr class='text-center'>--}}
+                        {{--<td>{{$republic->name}}</td>--}}
+                        {{--<td>{{$republic->email}}</td>--}}
+                        {{--<td>{{$republic->qtdVacancies}}</td>--}}
+                        {{--<td>{{$republic->qtdMembers}}</td>--}}
+                        {{--<td>{{$republic->type->title}}</td>--}}
+                        {{--</tr>--}}
+                        {{--@endforeach--}}
+                        {{--</tbody>--}}
                     </table>
                 </div>
             </div>

@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/argon.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+    {{--<link rel="stylesheet" href="{{ asset('/css/style.css') }}">--}}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     {{--<link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">--}}
@@ -21,12 +21,12 @@
 <body class="vsc-initialized">
 @include('layouts.Painel.Menu')
 <div class='main-content'>
-    <nav class="mb-4 navbar navbar-top navbar-expand-md  bg-gradient-secondary p-md-3 p-1 " id="navbar-main">
+    <nav class="mb-4 navbar navbar-top navbar-expand-md p-md-3 p-1 bg-nav" id="navbar-main">
         <div class="container-fluid">
             <!-- Brand -->
             {{--<a class="h4 mb-0 text-white d-none d-lg-inline-block" href="{{ route('home') }}">Painel</a>--}}
             {{--<a class="nav-link text-white" href="{{ route('index') }}">Portal</a>--}}
-            <a class="nav-link " href="{{ route('portal') }}">Portal</a>
+            <a class="nav-link text-white" href="{{ route('portal.index') }}">Portal</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
@@ -35,7 +35,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-bell"></i>
+                            <i class="fa fa-bell text-white"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
                             <a class="dropdown-item" href="#">Action</a>
@@ -82,7 +82,7 @@
                     @else
 
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                                 <span class="caret"></span>
@@ -93,7 +93,7 @@
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
-                                    <i class="fa fa-lock"></i>{{ __('Logout') }}
+                                    <i class="fa fa-lock bg-white"></i>{{ __('Logout') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                       style="display: none;">

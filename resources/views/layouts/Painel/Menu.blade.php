@@ -15,11 +15,20 @@
     ::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
+    .bg-nav {
+        background: #4267b2 !important;
+    }
+    .bg-bdcolor {
+        background-color: #e9ebee;
+    }
+    body {
+        background-color: #e9ebee;
+    }
 </style>
-<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-gradient-neutral" id="sidenav-main">
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-bdcolor" id="sidenav-main">
     <div class="container-fluid">
         <!-- Toggler -->
-        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler bg-primary collapsed" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->

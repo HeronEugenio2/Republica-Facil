@@ -14,13 +14,15 @@ class CreateUserInformationsTable extends Migration
     {
         Schema::create('user_informations', function(Blueprint $table) {
             $table->unsignedInteger('id', true);
-            $table->string('name');
-            $table->string('cpf');
-            $table->string('email');
+            $table->string('name')->nullable();;
+            $table->string('cpf')->nullable();;
             $table->date('birth')->nullable();
             $table->boolean('active')->default(0);
             $table->unsignedInteger('user_id')->index();
             $table->timestamps();
+        });
+        Schema::table('user_informations', function(Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

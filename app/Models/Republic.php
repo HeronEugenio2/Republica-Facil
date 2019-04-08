@@ -49,6 +49,10 @@ class Republic extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @author Heron Eugenio
+     */
     public function spents()
     {
         return $this->hasMany(Spent::class, 'republic_id', 'id');

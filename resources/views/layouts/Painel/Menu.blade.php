@@ -124,6 +124,11 @@
                         <i class="fas fa-book text-gray"></i> Tarefas
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('painel.assignment.index') }}">
+                        <i class="fas fa-cart-plus text-gray"></i> Anúncios
+                    </a>
+                </li>
                 {{--<li class="nav-item">--}}
                 {{--<a class="nav-link" href="{{ route('home') }}">--}}
                 {{--<i class="nav-icon fa fa-th-large text-gray"></i> Móveis--}}

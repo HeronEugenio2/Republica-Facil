@@ -11,15 +11,11 @@
 |
 */
 
-//Route::get('/', function() {
-//    return view('Portal.Template.index');
-//})->name('portal');
 Route::resource('/', 'PortalController')->names('portal');
+Route::resource('/mercado', 'AdvertisementController')->names('advertisement');
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::group(
     [
         'prefix'     => 'administrative',

@@ -16,7 +16,7 @@
 <body class="is-preload">
 <!-- Header -->
 <header id="header">
-    <a class="logo" href="{{route('painel.republic.create')}}">Painel</a>
+    <a class="logo" href="{{route('painel.republic.index')}}">Painel</a>
     <nav>
         <a href="#menu">Menu</a>
     </nav>
@@ -63,7 +63,7 @@
                         <h3>Feugiat consequat</h3>
                     </header>
                     <p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-                    <a href="#" class="button primary fit small">Contato</a>
+                    <a href="{{route('advertisement.index')}}" class="button primary fit small">Vizualizar</a>
                 </div>
             </section>
             <section>

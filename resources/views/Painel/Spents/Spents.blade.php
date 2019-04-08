@@ -2,8 +2,8 @@
 
 @section('content')
     <div id='spentFix' class='card'>
-        <div class='card-header'>Gastos Fixos</div>
-        <div class='card-body'>
+        <div id='headerFix' class='card-header'>Gastos Fixos</div>
+        <div id='bodyFix' class='card-body collapse'>
             @if($republic != null)
                 <form id="logout-form" method="POST" action="{{ route('painel.spent.store', ['republic'=>$republic->id]) }}">
                     @csrf
@@ -73,8 +73,8 @@
         </div>
     </div>
     <div id='spentVariable' class='card'>
-        <div class='card-header'>Gastos</div>
-        <div class='card-body'>
+        <div id='headerVariable' class='card-header'>Gastos</div>
+        <div id='bodyVariable' class='card-body collapse'>
             @if($republic != null)
                 <form id="logout-form" method="POST" action="{{ route('painel.spent.store', ['republic'=>$republic->id]) }}">
                     @csrf
@@ -143,3 +143,15 @@
         </div>
     </div>
 @endsection
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#headerFix").click(function () {
+            $("#bodyFix").toggle();
+        });
+        $("#headerVariable").click(function () {
+            $("#bodyVariable").toggle();
+        });
+    });
+</script>

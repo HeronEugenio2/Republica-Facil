@@ -143,8 +143,8 @@
         </div>
     </div>
 @endsection
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--}}
+@push('scripts')
 <script>
     $(document).ready(function () {
         $("#headerFix").click(function () {
@@ -155,3 +155,4 @@
         });
     });
 </script>
+@endpush

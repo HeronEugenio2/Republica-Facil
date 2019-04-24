@@ -4,7 +4,7 @@
 @section('content')
     @if(isset($republic))
         <div class="card">
-            <div class="card-header">Sua República</div>
+            <div class="card-header bg-nav text-white">Sua República</div>
             <div class="card-body">
                 <div class='row '>
                     <div class='mb-3 col-sm-12 col-md-6 col-lg-6'>
@@ -51,7 +51,7 @@
         </div>
         <div class='card-deck'>
             <div class='card'>
-                <div class='card-header'>Membros
+                <div class='card-header bg-nav text-white'>Membros
                 </div>
                 <div class='card-body'>
                     <div id='email' class="form-group col-12 p-0">
@@ -72,32 +72,6 @@
                             Sua república ainda não possui membros !
                         </div>
                     @endif
-                </div>
-            </div>
-            <div class='card '>
-                <div class='card-header'>Gastos</div>
-                <div class='card-body'>
-                    <div id='spent' class="form-group col-12 p-0">
-                        <label for="inputSpent">Descrição</label>
-                        <input id="inputSpent" name='spent' type="text" class="form-control"
-                               aria-describedby="spentHelp" placeholder="Ex: member@gmail.com" style='width: 100%'
-                               required>
-                        <small id="spentHelp" class="form-text text-muted">Insira descrição do gasto.
-                        </small>
-                    </div>
-                    <div class='row'>
-                        <div id='spentData' class="form-group col-6">
-                            <label for="inputSpent">Data</label>
-                            <input id="inputSpent" name='spentData' type="data" class="form-control" aria-describedby="spentHelp" placeholder="12/05/2019" style='width: 100%' required>
-                            <small id="spentHelp" class="form-text text-muted">Data do débito.
-                            </small>
-                        </div>
-                        <div id='spentValue' class="form-group col-6">
-                            <label for="inputValue">Valor</label>
-                            <input id="inputValue" name='spentValue' type="float" class="form-control" aria-describedby="spentHelp" placeholder="" style='width: 100%' required>
-                        </div>
-                    </div>
-                    <a href="#" class="btn btn-primary">Novo Gasto</a>
                 </div>
             </div>
         </div>

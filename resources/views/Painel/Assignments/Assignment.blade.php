@@ -2,9 +2,11 @@
 
 @section('content')
     <div class='card'>
-        <div class='card-header'>Tarefas</div>
+        <div class='card-header bg-nav text-white'>Tarefas</div>
         <div class='card-body'>
-
+            <a href="{{route('painel.assignment.create')}}" class="btn btn-success mb-2">
+                <i class="fas fa-plus-circle"></i> Nova Tarefa
+            </a>
             <hr>
             @if(isset($Spents))
 
@@ -15,4 +17,5 @@
             @endif
         </div>
     </div>
+
 @endsection

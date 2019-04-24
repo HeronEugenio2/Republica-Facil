@@ -15,14 +15,15 @@ class SpentController extends Controller
      */
     public function index()
     {
+        $republic    = Republic::with('spents')->where('user_id', auth()->user()->id)->get()->first();
+        $spents      = Spent::all();
+        $spentsTotal = 0;
+        foreach ($spents as $spent) {
+            $spentsTotal += $spent->value;
+        }
 
-        $republic = Republic::with('spents')->where('user_id', auth()->user()->id)->get()->first();
-        //        $republic = Republic::all();
-        //        dd($republic);
-        $spents = Spent::all();
-
-        //                dd($republic);
-        return view('Painel.Spents.Spents', compact('spents', 'republic'));
+        //        dd($spentsTotal);
+        return view('Painel.Spents.Index', compact('spents', 'republic', 'spentsTotal'));
     }
 
     /**
@@ -31,7 +32,10 @@ class SpentController extends Controller
      */
     public function create()
     {
-        //
+        $republic = Republic::with('spents')->where('user_id', auth()->user()->id)->get()->first();
+        $spents   = Spent::all();
+
+        return view('Painel.Spents.Create', compact('spents', 'republic'));
     }
 
     /**

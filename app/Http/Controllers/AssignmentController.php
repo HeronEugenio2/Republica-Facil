@@ -24,7 +24,7 @@ class AssignmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('Painel.Assignments.Create');
     }
 
     /**

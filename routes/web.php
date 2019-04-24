@@ -40,6 +40,8 @@ Route::group(
         Route::resource('/gastos', 'SpentController')->names('spent');
         //Assignment
         Route::resource('/tarefas', 'AssignmentController')->names('assignment');
+        //Advertisement
+        Route::resource('/anuncios', 'Painel\AdvertisementController')->names('advertisement');
     }
 );
 //Route::group(

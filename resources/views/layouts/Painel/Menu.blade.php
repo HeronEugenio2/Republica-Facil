@@ -125,7 +125,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('painel.assignment.index') }}">
+                    <a class="nav-link" href="{{ route('painel.advertisement.index') }}">
                         <i class="fas fa-cart-plus text-gray"></i> Anúncios
                     </a>
                 </li>

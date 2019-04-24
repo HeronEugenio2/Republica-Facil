@@ -4,7 +4,7 @@
     <div id='spentFull' class='card'>
         <div id='headerFull' class='card-header bg-nav text-white c-'>Gastos</div>
         <div id='bodyFull' class='card-body '>
-            <a href="<?php echo e(route('painel.spent.create')); ?>" class="btn btn-success mb-2">
+            <a href="{{route('painel.spent.create')}}" class="btn btn-success mb-2">
                 <i class="fas fa-plus-circle"></i> Novo Gasto
             </a>
             @if($republic != null)
@@ -54,6 +54,9 @@
                     Você ainda não participa de nenhuma República!
                 </div>
             @endif
+            <a href="#" class="btn btn-primary mt-2">
+                <i class="far fa-check-circle"></i> Fechar Mês
+            </a>
         </div>
     </div>
 @endsection

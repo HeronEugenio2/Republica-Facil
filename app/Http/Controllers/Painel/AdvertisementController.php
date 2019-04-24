@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Painel;
 
+use App\Advertisement;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,9 @@ class AdvertisementController extends Controller
      */
     public function index()
     {
-        //        $adverts = Advertisement::where('republic_id', )
-        return view('Painel.Advertisement.index');
+        $adverts = Advertisement::with('image')->where('republic_id', 1)->get();
+
+        return view('Painel.Advertisement.index', compact('adverts'));
     }
 
     /**
@@ -24,7 +26,9 @@ class AdvertisementController extends Controller
      */
     public function show($id)
     {
-        return view('Painel.Advertisement.show');
+        $advert = Advertisement::find($id);
+
+        return view('Painel.Advertisement.Show', compact('advert'));
     }
 
     /**

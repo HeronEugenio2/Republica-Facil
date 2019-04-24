@@ -12,6 +12,7 @@ class Advertisement extends Model
         'value',
         'republic_id',
         'user_id',
+        'image_id',
         'active',
     ];
     /**
@@ -29,6 +30,11 @@ class Advertisement extends Model
     public function republic()
     {
         return $this->belongsTo(Republic::class, 'republic_id', 'id');
+    }
+
+    public function image()
+    {
+        return $this->belongsTo(AdvertisementImage::class, 'image_id', 'id');
     }
 
 }

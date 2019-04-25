@@ -22,6 +22,25 @@ class RepublicRequest extends FormRequest
     }
 
     /**
+     * The attributes that are mass assignable.
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'qtdMembers',
+        'qtdVacancies',
+        'type_id',
+        'description',
+        'street',
+        'neighborhood',
+        'cep',
+        'city',
+        'state',
+        'number',
+    ];
+
+    /**
      * Get the validation rules that apply to the request.
      * @return array
      * @author Heron Eugenio
@@ -41,18 +60,17 @@ class RepublicRequest extends FormRequest
             'city'         => 'string|nullable',
             'state'        => 'string|nullable',
             'number'       => 'numeric|nullable',
-            'user_id'      => 'string|nullable',
         ];
     }
 
-//    /**
-//     * @return array
-//     * @author Heron Eugenio
-//     */
-//    public function messages()
-//    {
-//        return [
-//            'required' => '- :attribute tem que ser preenchido',
-//        ];
-//    }
+    //    /**
+    //     * @return array
+    //     * @author Heron Eugenio
+    //     */
+    //    public function messages()
+    //    {
+    //        return [
+    //            'required' => '- :attribute tem que ser preenchido',
+    //        ];
+    //    }
 }

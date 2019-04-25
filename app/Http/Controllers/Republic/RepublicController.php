@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RepublicRequest;
 use App\Republic;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Type;
-use Symfony\Component\Console\Input\Input;
+use App\User;
 
 class RepublicController extends Controller
 {
@@ -24,9 +22,10 @@ class RepublicController extends Controller
      */
     public function index()
     {
-        $republic = Republic::with('User', 'type')->where('user_id', auth()->user()->id)->get()->first();
+        $user     = User::with('republic', 'republic.type')->first();
+        $republic = $user->republic;
 
-        return view('Painel.Republic.Republic', compact('republic'));
+        return view('Painel.Republic.Index', compact('republic', 'user'));
     }
 
     /**
@@ -38,7 +37,7 @@ class RepublicController extends Controller
     {
         $types = Type::all();
 
-        return view('Painel.Republic.RepublicCreate', compact('types'));
+        return view('Painel.Republic.Create', compact('types'));
     }
 
     /**
@@ -62,12 +61,15 @@ class RepublicController extends Controller
                                               'city'         => $republicRequest->input('city') ?? null,
                                               'state'        => $republicRequest->input('state') ?? null,
                                               'number'       => $republicRequest->input('number') ?? null,
-                                              'user_id'      => $republicRequest->input('user_id') ?? null,
-
                                           ]);
             $savedRepublic = Republic::create($data);
 
+            //            dd($savedRepublic->id);
             if ($savedRepublic) {
+                $user              = auth()->user();
+                $user->republic_id = $savedRepublic->id;
+                $user->save();
+
                 return redirect()->route('painel.republic.index', ['id' => auth()->user('id')])
                                  ->with('success', 'Republica salva com sucesso!');
             } else {
@@ -103,7 +105,7 @@ class RepublicController extends Controller
         $republic = Republic::find($id);
         $types    = Type::all();
 
-        return view('Painel.Republic.RepublicCreate', compact('republic', 'types'));
+        return view('Painel.Republic.Create', compact('republic', 'types'));
     }
 
     /**
@@ -151,7 +153,10 @@ class RepublicController extends Controller
         //        dd($input);
         $updatedRepublic = $republic->save();
         if ($updatedRepublic) {
-            return view('Painel.Republic.Republic', compact('republic'));
+            $user     = User::with('republic', 'republic.type')->first();
+            $republic = $user->republic;
+
+            return view('Painel.Republic.Index', compact('republic', 'user'));
         }
     }
 

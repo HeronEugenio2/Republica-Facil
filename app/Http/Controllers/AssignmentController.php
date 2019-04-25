@@ -3,23 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Assignment;
+use App\User;
 use Illuminate\Http\Request;
 
 class AssignmentController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('Painel.Assignments.Assignment');
+        $user = User::with('republic', 'republic.assignmets', 'assignmets')->first();
+        //        dd($user);
+        $republic           = $user->republic;
+        $republicAssignmets = $republic->assignmets;
+
+        return view('Painel.Assignments.Assignment', compact('republic', 'republicAssignmets'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -29,8 +33,7 @@ class AssignmentController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -40,8 +43,7 @@ class AssignmentController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Assignment  $assignment
+     * @param  \App\Assignment $assignment
      * @return \Illuminate\Http\Response
      */
     public function show(Assignment $assignment)
@@ -51,8 +53,7 @@ class AssignmentController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Assignment  $assignment
+     * @param  \App\Assignment $assignment
      * @return \Illuminate\Http\Response
      */
     public function edit(Assignment $assignment)
@@ -62,9 +63,8 @@ class AssignmentController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Assignment  $assignment
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Assignment $assignment
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Assignment $assignment)
@@ -74,8 +74,7 @@ class AssignmentController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Assignment  $assignment
+     * @param  \App\Assignment $assignment
      * @return \Illuminate\Http\Response
      */
     public function destroy(Assignment $assignment)

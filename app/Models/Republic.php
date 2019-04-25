@@ -28,25 +28,33 @@ class Republic extends Model
         'city',
         'state',
         'number',
-        'user_id',
     ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      * @author Heron Eugenio
      */
-    //   Relacionamento n pra 1
     public function type()
     {
         return $this->belongsTo(Type::class, 'type_id', 'id');
     }
+
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|\Illuminate\Database\Eloquent\Relations\HasMany
      * @author Heron Eugenio
      */
-    //   Relacionamento n pra 1
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->hasMany(User::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @author Heron Eugenio
+     */
+    public function assignmets()
+    {
+        return $this->hasMany(Assignment::class, 'id', 'assignment_id');
     }
 
     /**

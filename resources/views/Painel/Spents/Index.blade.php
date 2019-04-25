@@ -7,8 +7,9 @@
             <a href="{{route('painel.spent.create')}}" class="btn btn-success mb-2">
                 <i class="fas fa-plus-circle"></i> Novo Gasto
             </a>
+            <hr>
             @if($republic != null)
-                @if(isset($spents))
+                @if(count($spents)>0)
                     <div class='table-responsive'>
                         <table class="table table-bordered table-hover table-striped text-center">
                             <thead>
@@ -44,6 +45,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <a href="#" class="btn btn-primary mt-2">
+                        <i class="far fa-check-circle"></i> Fechar Mês
+                    </a>
                 @else
                     <div class='alert alert-primary'>
                         Não possui gastos!
@@ -54,9 +58,6 @@
                     Você ainda não participa de nenhuma República!
                 </div>
             @endif
-            <a href="#" class="btn btn-primary mt-2">
-                <i class="far fa-check-circle"></i> Fechar Mês
-            </a>
         </div>
     </div>
 @endsection

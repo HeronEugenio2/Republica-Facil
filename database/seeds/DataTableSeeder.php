@@ -1,6 +1,5 @@
 <?php
 
-use App\Republic;
 use App\Type;
 use Illuminate\Database\Seeder;
 
@@ -24,20 +23,5 @@ class DataTableSeeder extends Seeder
         Type::create([
                          'title' => 'Mista',
                      ]);
-        Republic::create([
-                             'name'         => 'The Power',
-                             'email'        => 'republicafacil2k@gmail.com',
-                             'description'  => 'Nao temos',
-                             'qtdMembers'   => '6',
-                             'qtdVacancies' => '0',
-                             'type_id'      => '1',
-                             'street'       => 'Av. General Affonseca',
-                             'neighborhood' => 'Villa Julieta',
-                             'cep'          => '37350000',
-                             'city'         => 'Resende',
-                             'state'        => 'Rio de Janeiro',
-                             'number'       => '993',
-                             'user_id'      => '1',
-                         ]);
     }
 }

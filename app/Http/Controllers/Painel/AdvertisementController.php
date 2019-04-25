@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Painel;
 
 use App\Advertisement;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
 class AdvertisementController extends Controller
@@ -14,9 +15,12 @@ class AdvertisementController extends Controller
      */
     public function index()
     {
-        $adverts = Advertisement::with('image')->where('republic_id', 1)->get();
+        $user = User::with('republic', 'republic.spents')->first();
+        //                dd($user);
+        $republic = $user->republic;
+        $spents   = $republic->spents;
 
-        return view('Painel.Advertisement.index', compact('adverts'));
+        return view('Painel.Advertisement.index', compact('adverts', 'republic', 'spents'));
     }
 
     /**
@@ -57,7 +61,7 @@ class AdvertisementController extends Controller
      */
     public function create()
     {
-        //        return view('Painel.Advertisement.Create');
+        return view('Painel.Advertisement.Create');
     }
 
     /**

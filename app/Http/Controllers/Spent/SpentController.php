@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SpentRequest;
-use App\Republic;
 use App\Spent;
+use App\User;
 use Illuminate\Http\Request;
 
 class SpentController extends Controller
@@ -15,14 +15,14 @@ class SpentController extends Controller
      */
     public function index()
     {
-        $republic    = Republic::with('spents')->where('user_id', auth()->user()->id)->get()->first();
-        $spents      = Spent::all();
+        $user        = User::with('republic', 'republic.spents')->first();
+        $republic    = $user->republic;
+        $spents      = $republic->spents;
         $spentsTotal = 0;
         foreach ($spents as $spent) {
             $spentsTotal += $spent->value;
         }
 
-        //        dd($spentsTotal);
         return view('Painel.Spents.Index', compact('spents', 'republic', 'spentsTotal'));
     }
 
@@ -32,8 +32,9 @@ class SpentController extends Controller
      */
     public function create()
     {
-        $republic = Republic::with('spents')->where('user_id', auth()->user()->id)->get()->first();
-        $spents   = Spent::all();
+        $user     = User::with('republic', 'republic.spents')->first();
+        $republic = $user->republic;
+        $spents   = $republic->spents;
 
         return view('Painel.Spents.Create', compact('spents', 'republic'));
     }

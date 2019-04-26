@@ -114,6 +114,7 @@
                         <i class="nav-icon fas fa-home text-gray"></i> República
                     </a>
                 </li>
+                @if(isset($republic))
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('painel.spent.index') }}">
                         <i class="fas fa-file-invoice-dollar text-gray"></i> Gastos
@@ -129,6 +130,7 @@
                         <i class="fas fa-cart-plus text-gray"></i> Anúncios
                     </a>
                 </li>
+                @endif
                 {{--<li class="nav-item">--}}
                 {{--<a class="nav-link" href="{{ route('home') }}">--}}
                 {{--<i class="nav-icon fa fa-th-large text-gray"></i> Móveis--}}

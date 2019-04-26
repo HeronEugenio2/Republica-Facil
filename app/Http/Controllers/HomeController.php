@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user     = User::with('republic', 'republic.type')->first();
+        $republic = $user->republic;
+        return view('home', compact('republic'));
     }
 }

@@ -7,18 +7,17 @@
             <div class="card">
                 <div class="card-header bg-nav text-white">Sua República</div>
                 <div class="card-body">
-                    {{$republic->name}}<br>
-                    {{$republic->email}}<br>
-                    {{$republic->description}}<br>
-                    {{$republic->qtdMembers}}<br>
-                    {{$republic->qtdVacancies}}<br>
-                    {{$republic->street}}<br>
-                    {{$republic->neighborhood}}<br>
-                    {{$republic->cep}}<br>
-                    {{$republic->city}}<br>
-                    {{$republic->state}}<br>
-                    {{$republic->number}}<br>
-                    {{$republic->type->title}}<br>
+                    <strong>Nome: </strong> {{$republic->name}}<br>
+                    <strong>Email:</strong> {{$republic->email}}<br>
+                    <strong>Descrição:</strong> {{$republic->description}}<br>
+                    <strong>Quantidade Membros:</strong> {{$republic->qtdMembers}}<br>
+                    <strong>Quantidade de Vagas:</strong> {{$republic->qtdVacancies}}<br>
+                    <strong>Endereço:</strong> {{$republic->street}}, {{$republic->number}}<br>
+                    <strong>Bairro:</strong> {{$republic->neighborhood}}<br>
+                    <strong>Cep:</strong> {{$republic->cep}}<br>
+                    <strong>Cidade:</strong> {{$republic->city}}<br>
+                    <strong>Estado: </strong>{{$republic->state}}<br>
+                    <strong>Gênero:</strong> {{$republic->type->title}}<br>
                     <div class='mt-4'>
                         <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-primary">Editar</a>
                     </div>

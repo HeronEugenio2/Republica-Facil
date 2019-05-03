@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/elements', function() {
+    return View::make('Portal.Template.elements');
+})->name('el');
 
 Route::resource('/', 'PortalController')->names('portal');
 Route::resource('/mercado', 'AdvertisementController')->names('advertisement');

@@ -18,6 +18,10 @@ Route::resource('/', 'PortalController')->names('portal');
 Route::resource('/mercado', 'AdvertisementController')->names('advertisement');
 
 Auth::routes();
+
+Route::get('login/{provider}', 'Auth\SocialAccountController@redirectToProvider');
+Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(
     [

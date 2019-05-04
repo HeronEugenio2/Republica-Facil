@@ -1,6 +1,7 @@
 <?php
 
-namespace App;
+namespace App\Models;
+
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -13,7 +14,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','provider', 'provider_id'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -30,10 +31,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     * @author Heron Eugenio
-     */
+    public function accounts(){
+        return $this->hasMany(LinkedSocialAccount::class);
+    }
     public function republic()
     {
         return $this->belongsTo(Republic::class);

@@ -29,6 +29,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    /**
+     * @var array
+     */
+    protected $with = ['republic.type'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

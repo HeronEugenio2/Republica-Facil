@@ -25,6 +25,9 @@ class CreateSpentsTable extends Migration
         Schema::table('spents', function(Blueprint $table) {
             $table->foreign('republic_id')->references('id')->on('republics');
         });
+        Schema::table('users', function(Blueprint $table) {
+            $table->foreign('spent_id')->references('id')->on('spents');
+        });
     }
 
     /**

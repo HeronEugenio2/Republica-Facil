@@ -1,6 +1,13 @@
 @extends('layouts.Painel.LayoutFull')
 
 @section('content')
+    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+            <h5 class="card-title">Primary card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>
     <div id='spentFull' class='card'>
         <div id='headerFull' class='card-header bg-nav text-white c-'>Gastos</div>
         <div id='bodyFull' class='card-body '>
@@ -35,8 +42,12 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <button class='btn btn-danger'>Excluir</button>
-                                            <button class='btn btn-primary'>Editar</button>
+                                            <form method="POST" action="{{route('painel.spent.destroy',$spent->id) }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button class='btn btn-danger' type="submit">Excluir</button>
+                                                <button class='btn btn-primary'>Editar</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -59,6 +70,7 @@
                 </div>
             @endif
         </div>
+
     </div>
 @endsection
 @push('scripts')

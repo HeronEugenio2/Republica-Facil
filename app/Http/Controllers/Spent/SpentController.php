@@ -15,13 +15,16 @@ class SpentController extends Controller
      */
     public function index()
     {
-        $user        = User::with('republic', 'republic.spents')->first();
-        $republic    = $user->republic;
+        $user     = auth()->user();
+        $republic = $user->republic;
+
         $spents      = $republic->spents;
         $spentsTotal = 0;
         foreach ($spents as $spent) {
             $spentsTotal += $spent->value;
         }
+
+//        dd($spents);
 
         return view('Painel.Spents.Index', compact('spents', 'republic', 'spentsTotal'));
     }
@@ -107,8 +110,11 @@ class SpentController extends Controller
      * @param  \App\Spent $spent
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Spent $spent)
+    public function destroy($id)
     {
-        //
+        $spent = Spent::find($id);
+        $spent->delete();
+
+        return redirect()->route('painel.spent.index');
     }
 }

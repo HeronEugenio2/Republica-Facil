@@ -69,11 +69,16 @@
                             <label for="inputValue">Valor</label>
                             <input id="inputValue" name='value' type="number" class="form-control" aria-describedby="spentHelp" placeholder="" style='width: 100%'>
                         </div>
-                        <div id='spentMember' class="form-group col-md-4 col-lg-4 col-sm-12">
-                            <label for="inputMember">Membro</label>
-                            <input id="inputMember" name='member' type="text" class="form-control" aria-describedby="spentHelp" placeholder="" style='width: 100%'>
-                            <small id="spentHelp" class="form-text text-muted">Membro que fez a compra.</small>
-                        </div>
+                        @if($republic != null)
+                            <div class="form-group col-md-4 col-lg-4 col-sm-12">
+                                <label>Membro</label>
+                                <select class="form-control" style='width: 100%' name='member'>
+                                    @foreach($republic->user as $user)
+                                        <option value='{{$user->id}}'>{{$user->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endif
                     </div>
                     <button type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Salvar</button>
                 </form>

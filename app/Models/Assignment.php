@@ -1,30 +1,28 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Spent
- * @package App
- * @author Heron Eugenio
- */
-class Spent extends Model
+class Assignment extends Model
 {
     /**
      * @var array
      * @author Heron Eugenio
      */
     protected $fillable = [
-        'description',
-        'dateSpent',
-        'value',
-        'member',
-        'republic_id',
+        'start',
+        'end',
+        'situation',
     ];
 
     public function republic()
     {
         return $this->belongsTo(Republic::class, 'republic_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

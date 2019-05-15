@@ -33,7 +33,7 @@ class User extends Authenticatable
     /**
      * @var array
      */
-    protected $with = ['republic.type'];
+    protected $with = ['republic.type', 'republic.assignmets', 'republic.spents'];
 
     public function accounts(){
         return $this->hasMany(LinkedSocialAccount::class);

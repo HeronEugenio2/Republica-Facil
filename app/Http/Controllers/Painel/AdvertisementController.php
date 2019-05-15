@@ -15,8 +15,7 @@ class AdvertisementController extends Controller
      */
     public function index()
     {
-        $user = User::with('republic', 'republic.spents')->first();
-        //                dd($user);
+        $user     = auth()->user();
         $republic = $user->republic;
         $spents   = $republic->spents;
 

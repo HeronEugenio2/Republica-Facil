@@ -5,7 +5,7 @@
         <div class="card-header">Header</div>
         <div class="card-body">
             <h5 class="card-title">Gerenciador de gastos</h5>
-            <p class="card-text text-dark">ST = SR + SR <br> SI = ST -</p>
+            <p class="card-text text-dark">ST = SR <br> SI = (ST / QM) - SUser</p>
         </div>
     </div>
     <div id='spentFull' class='card'>

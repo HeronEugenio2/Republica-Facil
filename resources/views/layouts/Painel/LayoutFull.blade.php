@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="keyword" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('/images/favicon.png') }}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/argon.css') }}">
     {{--<link rel="stylesheet" href="{{ asset('/css/style.css') }}">--}}

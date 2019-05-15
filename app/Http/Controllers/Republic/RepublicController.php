@@ -6,6 +6,7 @@ use App\Http\Requests\RepublicRequest;
 use App\Republic;
 use App\Type;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class RepublicController extends Controller
 {
@@ -14,7 +15,6 @@ class RepublicController extends Controller
     //    {
     //        $this->republic = $republic;
     //    }
-
     /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
@@ -22,9 +22,9 @@ class RepublicController extends Controller
      */
     public function index()
     {
-        $user     = User::with('republic', 'republic.type')->first();
+        $user     = auth()->user();
         $republic = $user->republic;
-
+//dd($republic);
         return view('Painel.Republic.Index', compact('republic', 'user'));
     }
 
@@ -48,22 +48,23 @@ class RepublicController extends Controller
     public function store(RepublicRequest $republicRequest)
     {
         try {
-            $data          = array_filter([
-                                              'name'         => $republicRequest->input('name'),
-                                              'email'        => $republicRequest->input('email'),
-                                              'qtdMembers'   => $republicRequest->input('qtdMembers'),
-                                              'qtdVacancies' => $republicRequest->input('qtdVacancies'),
-                                              'type_id'      => $republicRequest->input('type_id'),
-                                              'description'  => $republicRequest->input('description') ?? null,
-                                              'street'       => $republicRequest->input('street') ?? null,
-                                              'neighborhood' => $republicRequest->input('neighborhood') ?? null,
-                                              'cep'          => $republicRequest->input('cep') ?? null,
-                                              'city'         => $republicRequest->input('city') ?? null,
-                                              'state'        => $republicRequest->input('state') ?? null,
-                                              'number'       => $republicRequest->input('number') ?? null,
-                                          ]);
+            $data          = array_filter(
+                [
+                    'name'         => $republicRequest->input('name'),
+                    'email'        => $republicRequest->input('email'),
+                    'qtdMembers'   => $republicRequest->input('qtdMembers'),
+                    'qtdVacancies' => $republicRequest->input('qtdVacancies'),
+                    'type_id'      => $republicRequest->input('type_id'),
+                    'description'  => $republicRequest->input('description') ?? null,
+                    'street'       => $republicRequest->input('street') ?? null,
+                    'neighborhood' => $republicRequest->input('neighborhood') ?? null,
+                    'cep'          => $republicRequest->input('cep') ?? null,
+                    'city'         => $republicRequest->input('city') ?? null,
+                    'state'        => $republicRequest->input('state') ?? null,
+                    'number'       => $republicRequest->input('number') ?? null,
+                ]
+            );
             $savedRepublic = Republic::create($data);
-
             //            dd($savedRepublic->id);
             if ($savedRepublic) {
                 $user              = auth()->user();
@@ -171,7 +172,6 @@ class RepublicController extends Controller
         // delete
         $republic = Republic::find($id);
         $republic->delete();
-
         // redirect
         $republic = Republic::with('User', 'type')->where('user_id', auth()->user()->id)->get()->first();
 

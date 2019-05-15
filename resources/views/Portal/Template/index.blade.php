@@ -6,7 +6,8 @@
 -->
 <html>
 <head>
-    <title>Industrious by TEMPLATED</title>
+    <title>República Fácil</title>
+    <link rel="icon" type="image/png" href="{{ asset('/images/favicon.png') }}">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <meta name="description" content=""/>
@@ -28,16 +29,20 @@
             <a href="#">Home</a>
         </li>
         <li>
-            <a href="#">Elements</a>
+            <a href="{{route('el')}}">Elements</a>
         </li>
         <li>
             <a href="#">Generic</a>
+        </li>
+        <li>
+            <a href="#">Mercado</a>
         </li>
     </ul>
 </nav>
 <!-- Banner -->
 <section id="banner">
     <div class="inner">
+        <img src='{{ asset('/images/favicon.png') }}' alt='' style='width: 100px'>
         <h1>República Fácil</h1>
         <p>Busca e
             <a href="https://templated.co/">Gerenciamento</a>

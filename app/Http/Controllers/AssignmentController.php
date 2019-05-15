@@ -14,9 +14,11 @@ class AssignmentController extends Controller
      */
     public function index()
     {
-        $user = User::with('republic', 'republic.assignmets', 'assignmets')->first();
-        //        dd($user);
-        $republic           = $user->republic;
+        $user     = auth()->user();
+        $republic = $user->republic;
+//        $user = User::with('republic', 'republic.assignmets', 'assignmets')->first();
+//        //        dd($user);
+//        $republic           = $user->republic;
         $republicAssignmets = $republic->assignmets;
 
         return view('Painel.Assignments.Assignment', compact('republic', 'republicAssignmets'));

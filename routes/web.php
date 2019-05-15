@@ -10,11 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/elements', function() {
+    return View::make('Portal.Template.elements');
+})->name('el');
 
 Route::resource('/', 'PortalController')->names('portal');
 Route::resource('/mercado', 'AdvertisementController')->names('advertisement');
 
 Auth::routes();
+
+Route::get('login/{provider}', 'Auth\SocialAccountController@redirectToProvider');
+Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(
     [

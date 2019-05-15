@@ -1,6 +1,13 @@
 @extends('layouts.Painel.LayoutFull')
 
 @section('content')
+    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+            <h5 class="card-title">Gerenciador de gastos</h5>
+            <p class="card-text text-dark">ST = SR <br> SI = (ST / QM) - SUser</p>
+        </div>
+    </div>
     <div id='spentFull' class='card'>
         <div id='headerFull' class='card-header bg-nav text-white c-'>Gastos</div>
         <div id='bodyFull' class='card-body '>
@@ -11,7 +18,7 @@
             @if($republic != null)
                 @if(count($spents)>0)
                     <div class='table-responsive'>
-                        <table class="table table-bordered table-hover table-striped text-center">
+                        <table class="table table-bordered table-hover table-sm table-striped text-center">
                             <thead>
                                 <tr>
                                     <th scope="col">Data</th>
@@ -35,8 +42,15 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <button class='btn btn-danger'>Excluir</button>
-                                            <button class='btn btn-primary'>Editar</button>
+                                            <form method="POST" action="{{route('painel.spent.destroy',$spent->id) }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <div class="btn-group-horizontal">
+                                                    <button class='btn btn-danger btn-sm' type="submit">Excluir</button>
+                                                    <button class='btn btn-primary btn-sm'>Editar</button>
+                                                </div>
+
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -59,6 +73,7 @@
                 </div>
             @endif
         </div>
+
     </div>
 @endsection
 @push('scripts')

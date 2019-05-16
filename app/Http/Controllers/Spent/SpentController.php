@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SpentRequest;
-use App\Spent;
-use App\User;
+use App\Models\Spent;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SpentController extends Controller
@@ -15,18 +15,21 @@ class SpentController extends Controller
      */
     public function index()
     {
-        $user     = auth()->user();
-        $republic = $user->republic;
-
-        $spents      = $republic->spents;
-        $spentsTotal = 0;
+        $user = auth()->user();
+        $republic         = $user->republic;
+        $spents           = $republic->spents;
+        $spentsTotal      = 0;
+        $spentsIndividual = 0;
         foreach ($spents as $spent) {
             $spentsTotal += $spent->value;
         }
-
-//        dd($spents);
-
-        return view('Painel.Spents.Index', compact('spents', 'republic', 'spentsTotal'));
+        foreach ($user->spents as $spent) {
+            $spentsIndividual += $spent->value;
+        }
+        $media = $spentsTotal / $republic->qtdMembers;
+        $result = -$media+$spentsIndividual;
+        //dd($user);
+        return view('Painel.Spents.Index', compact('spents', 'republic', 'spentsTotal', 'media', 'spentsIndividual', 'result'));
     }
 
     /**
@@ -49,15 +52,15 @@ class SpentController extends Controller
      */
     public function store(SpentRequest $spentRequest)
     {
-
         try {
             $data      = array_filter([
                                           'description' => $spentRequest->input('description') ?? null,
                                           'dateSpent'   => $spentRequest->input('dateSpent') ?? null,
                                           'value'       => $spentRequest->input('value'),
-                                          'member'      => $spentRequest->input('member') ?? null,
                                           'republic_id' => $spentRequest->input('republic_id'),
+                                          'user_id'     => $spentRequest->input('user_id')
                                       ]);
+//            dd($data);
             $saveSpent = Spent::create($data);
 
             if ($saveSpent) {

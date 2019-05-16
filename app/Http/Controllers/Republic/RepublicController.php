@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RepublicRequest;
-use App\Republic;
-use App\Type;
-use App\User;
+
+use App\Models\Republic;
+use App\Models\Type;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class RepublicController extends Controller
@@ -86,7 +87,7 @@ class RepublicController extends Controller
 
     /**
      * Display the specified resource.
-     * @param  \App\Republic $id
+     * @param  \App\Models\Republic $id
      * @return \Illuminate\Http\Response
      */
     public
@@ -163,7 +164,7 @@ class RepublicController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * @param  \App\Republic $republic
+     * @param  \App\Models\Republic $republic
      * @return \Illuminate\Http\Response
      */
     public

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Administrative;
 
 use App\Http\Controllers\Controller;
-use App\Republic;
+use App\Models\Republic;
 use Illuminate\Http\Request;
 
 class RepublicAdmController extends Controller

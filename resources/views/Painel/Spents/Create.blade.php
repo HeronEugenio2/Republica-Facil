@@ -72,7 +72,7 @@
                         @if($republic != null)
                             <div class="form-group col-md-4 col-lg-4 col-sm-12">
                                 <label>Membro</label>
-                                <select class="form-control" style='width: 100%' name='member'>
+                                <select class="form-control" style='width: 100%' name='user_id'>
                                     @foreach($republic->user as $user)
                                         <option value='{{$user->id}}'>{{$user->name}}</option>
                                     @endforeach
@@ -86,7 +86,7 @@
                 <div class='alert alert-primary'>
                     Você ainda não participa de nenhuma República!
                 </div>
-            @endif
+            @endifi
         </div>
     </div>
 @endsection

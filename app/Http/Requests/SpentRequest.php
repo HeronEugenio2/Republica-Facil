@@ -24,9 +24,9 @@ class SpentRequest extends FormRequest
         return [
             'description' => 'required|string|max:255',
             'dateSpent'   => 'nullable|string|max:255',
-            //            'value'       => 'required|string|max:255',
-            'member'      => 'nullable|string|max:255',
+            'value'       => 'required|string|max:255',
             'republic_id' => 'required|integer|max:255',
+            'user_id'     => 'integer',
         ];
     }
 

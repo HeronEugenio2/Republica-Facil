@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +16,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $userHeron = \App\User::where('email', 'hrs.eugenio@gmail.com')->first();
+        $userHeron = User::where('email', 'hrs.eugenio@gmail.com')->first();
 
         if (!$userHeron) {
             DB::table('users')->insert([

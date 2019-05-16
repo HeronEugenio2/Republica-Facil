@@ -1,11 +1,22 @@
 @extends('layouts.Painel.LayoutFull')
 
 @section('content')
-    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
+    <div class="card text-dark bg-primary mb-3" style="max-width: 18rem;">
+        <div class="card-header bg-nav text-white c-">Gerenciador de gastos</div>
         <div class="card-body">
-            <h5 class="card-title">Gerenciador de gastos</h5>
-            <p class="card-text text-dark">ST = SR <br> SI = (ST / QM) - SUser</p>
+            <h4 class="card-text text-center">ST = (ST/QT)-SI</h4>
+            Débito República =
+            <strong class='float-right text-danger'>R${{number_format($spentsTotal, 2, ',', ' ')}}</strong>
+            <br> Crédito Individual =
+            <strong class='float-right text-success'>R${{number_format($spentsIndividual, 2, ',', ' ')}}</strong>
+            <br> $media  = <strong class='float-right '>R${{number_format($media, 2, ',', ' ')}}</strong>
+        </div>
+        <div class='card-footer text-center'>
+            @if($result>0)
+                <h2 class='text-success display-4'>CRÉDITO R${{number_format($result, 2, ',', ' ')}}</h2>
+            @else
+                <h2 class='text-danger display-4'>DÉBITO R${{number_format($result, 2, ',', ' ')}}</h2>
+            @endif
         </div>
     </div>
     <div id='spentFull' class='card'>
@@ -35,8 +46,8 @@
                                         <td>{{$spent->description}}</td>
                                         <td>R$ {{number_format($spent->value,2,',', '.')}}</td>
                                         <td>
-                                            @if($spent->member!=null)
-                                                {{$spent->member}}
+                                            @if($spent->user_id!=null)
+                                                {{$spent->user_id}}
                                             @else
                                                 Todos
                                             @endif
@@ -49,7 +60,6 @@
                                                     <button class='btn btn-danger btn-sm' type="submit">Excluir</button>
                                                     <button class='btn btn-primary btn-sm'>Editar</button>
                                                 </div>
-
                                             </form>
                                         </td>
                                     </tr>
@@ -73,7 +83,6 @@
                 </div>
             @endif
         </div>
-
     </div>
 @endsection
 @push('scripts')

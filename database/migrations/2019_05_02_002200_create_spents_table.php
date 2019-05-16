@@ -19,14 +19,14 @@ class CreateSpentsTable extends Migration
             $table->date('dateSpent')->nullable();
             $table->float('value');
             $table->unsignedInteger('republic_id');
-            $table->unsignedInteger('member')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
             $table->timestamps();
         });
         Schema::table('spents', function(Blueprint $table) {
             $table->foreign('republic_id')->references('id')->on('republics');
         });
-        Schema::table('users', function(Blueprint $table) {
-            $table->foreign('spent_id')->references('id')->on('spents');
+        Schema::table('spents', function(Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

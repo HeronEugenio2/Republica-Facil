@@ -3,7 +3,7 @@
 
 @section('content')
     @if(isset($user->republic))
-        <div class='card-deck'>
+        <div class='card-columns'>
             <div class="card">
                 <div class="card-header bg-nav text-white">Sua República</div>
                 <div class="card-body">
@@ -24,8 +24,7 @@
                 </div>
             </div>
             <div class='card'>
-                <div class='card-header bg-nav text-white'>Membros
-                </div>
+                <div class='card-header bg-nav text-white'>Membros</div>
                 <div class='card-body'>
                     <div id='email' class="form-group col-12 p-0">
                         <div class="form-group">
@@ -38,12 +37,7 @@
                         </div>
                     </div>
                     <a href="#" class="btn btn-primary">Enviar Convite</a>
-                </div>
-            </div>
-            <div class='card'>
-                <div class='card-header bg-nav text-white'>Membros
-                </div>
-                <div class='card-body'>
+                    <hr>
                     <div class='table-responsive'>
                         <table class="table table-bordered table-hover table-striped text-center">
                             <thead>
@@ -62,6 +56,7 @@
                             </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>

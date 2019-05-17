@@ -50,7 +50,7 @@ class Republic extends Model
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     * @author Heron Eugenio
+     * @auathor Heron Eugenio
      */
     public function assignmets()
     {

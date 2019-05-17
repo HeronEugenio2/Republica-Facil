@@ -14,7 +14,7 @@
                         <table class="table table-bordered table-hover table-striped text-center">
                             <thead>
                                 <tr>
-                                    <th scope="col" class='bg-nav text-white' width='10%'>Imagem</th>
+                                    {{--<th scope="col" class='bg-nav text-white' width='10%'>Imagem</th>--}}
                                     <th scope="col" class='bg-nav text-white'>Título</th>
                                     <th scope="col" class='bg-nav text-white'>Descrição</th>
                                     <th scope="col" class='bg-nav text-white'>Valor</th>
@@ -25,9 +25,9 @@
                             <tbody>
                                 @foreach($adverts as $advert)
                                     <tr class='text-center'>
-                                        <td class='align-middle'>
-                                            <img src="{{$advert->image->url}}" height="42" width="42">
-                                        </td>
+                                        {{--<td class='align-middle'>--}}
+                                            {{--<img src="{{$advert->image->url}}" height="42" width="42">--}}
+                                        {{--</td>--}}
                                         <td class='align-middle'>{{$advert->title}}</td>
                                         <td class='align-middle'>{{$advert->description}}</td>
                                         <td class='align-middle'>R$ {{number_format($advert->value,2,',', '.')}}</td>

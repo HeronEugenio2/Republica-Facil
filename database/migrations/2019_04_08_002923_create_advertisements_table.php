@@ -22,9 +22,9 @@ class CreateAdvertisementsTable extends Migration
             $table->float('value');
             $table->unsignedInteger('republic_id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('category_id');
-            $table->unsignedInteger('image_id');
-            $table->tinyInteger('active_enum');
+            $table->unsignedInteger('category_id')->nullable();
+            $table->unsignedInteger('image_id')->nullable();
+            $table->tinyInteger('active_enum')->nullable()->default(0);
             $table->timestamps();
         });
         Schema::table('advertisements', function(Blueprint $table) {

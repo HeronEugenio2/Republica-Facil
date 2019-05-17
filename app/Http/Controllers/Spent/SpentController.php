@@ -15,19 +15,25 @@ class SpentController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
+        $user             = auth()->user();
         $republic         = $user->republic;
         $spents           = $republic->spents;
         $spentsTotal      = 0;
         $spentsIndividual = 0;
+
         foreach ($spents as $spent) {
             $spentsTotal += $spent->value;
         }
         foreach ($user->spents as $spent) {
             $spentsIndividual += $spent->value;
         }
-        $media = $spentsTotal / $republic->qtdMembers;
-        $result = -$media+$spentsIndividual;
+        if ($republic->qtdMembers == 0) {
+            $media = $spentsTotal;
+        } else {
+            $media = $spentsTotal / $republic->qtdMembers;
+        }
+        $result = -$media + $spentsIndividual;
+
         //dd($user);
         return view('Painel.Spents.Index', compact('spents', 'republic', 'spentsTotal', 'media', 'spentsIndividual', 'result'));
     }
@@ -53,14 +59,14 @@ class SpentController extends Controller
     public function store(SpentRequest $spentRequest)
     {
         try {
-            $data      = array_filter([
-                                          'description' => $spentRequest->input('description') ?? null,
-                                          'dateSpent'   => $spentRequest->input('dateSpent') ?? null,
-                                          'value'       => $spentRequest->input('value'),
-                                          'republic_id' => $spentRequest->input('republic_id'),
-                                          'user_id'     => $spentRequest->input('user_id')
-                                      ]);
-//            dd($data);
+            $data = array_filter([
+                                     'description' => $spentRequest->input('description') ?? null,
+                                     'dateSpent'   => $spentRequest->input('dateSpent') ?? null,
+                                     'value'       => $spentRequest->input('value'),
+                                     'republic_id' => $spentRequest->input('republic_id'),
+                                     'user_id'     => $spentRequest->input('user_id'),
+                                 ]);
+            //            dd($data);
             $saveSpent = Spent::create($data);
 
             if ($saveSpent) {

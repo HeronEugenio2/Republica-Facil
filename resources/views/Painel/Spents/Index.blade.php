@@ -47,7 +47,7 @@
                                         <td>R$ {{number_format($spent->value,2,',', '.')}}</td>
                                         <td>
                                             @if($spent->user_id!=null)
-                                                {{$spent->user_id}}
+                                                {{$spent->user->name}}
                                             @else
                                                 Todos
                                             @endif

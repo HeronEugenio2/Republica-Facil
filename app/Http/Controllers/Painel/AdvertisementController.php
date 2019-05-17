@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Painel;
 
-use App\Advertisement;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\Advertisement;
+use App\Models\AdvertisementCategory;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdvertisementController extends Controller
@@ -60,7 +61,11 @@ class AdvertisementController extends Controller
      */
     public function create()
     {
-        return view('Painel.Advertisement.Create');
+        $user     = auth()->user();
+        $republic = $user->republic;
+        $advCategories = AdvertisementCategory::all();
+//        dd($advCategories);
+        return view('Painel.Advertisement.Create', compact('republic', 'user', 'advCategories'));
     }
 
     /**

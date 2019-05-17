@@ -17,6 +17,7 @@ class CreateAdvertisementsTable extends Migration
         Schema::create('advertisements', function (Blueprint $table) {
             $table->unsignedInteger('id', true);
             $table->string('description');
+            $table->string('image')->nullable();
             $table->string('title');
             $table->float('value');
             $table->unsignedInteger('republic_id');

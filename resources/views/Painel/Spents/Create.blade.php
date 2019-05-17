@@ -86,7 +86,7 @@
                 <div class='alert alert-primary'>
                     Você ainda não participa de nenhuma República!
                 </div>
-            @endifi
+            @endif
         </div>
     </div>
 @endsection

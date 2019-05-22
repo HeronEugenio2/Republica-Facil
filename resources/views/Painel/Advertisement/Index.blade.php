@@ -39,9 +39,17 @@
                                             @endif
                                         </td>
                                         <td class='align-middle'>
-                                            <a href="{{route('painel.advertisement.show',$advert->id )}}" class="btn btn-sm btn-primary mb-2 p-0 px-1">
-                                                <i class="fas fa-eye fa-2x"></i>
-                                            </a>
+                                            <div class='btn-group'>
+                                                <a href="{{route('painel.advertisement.show',$advert->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
+                                                    <i class="fas fa-eye fa-2x"></i>
+                                                </a>
+                                                <a href="{{route('painel.advertisement.show',$advert->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
+                                                    <i class="fas fa-eye fa-2x"></i>
+                                                </a>
+                                                <a href="{{route('painel.advertisement.show',$advert->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
+                                                    <i class="fas fa-eye fa-2x"></i>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

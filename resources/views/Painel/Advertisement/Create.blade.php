@@ -8,6 +8,14 @@
                 @csrf
                 <input type='hidden' name='republic_id' value='{{$republic->id}}'>
                 <input type='hidden' name='user_id' value='{{$user->id}}'>
+
+                {{--<img id='preview' style="width:200px; height:200px;"/>--}}
+                {{--<input type="file" id='file' class='my-2'>--}}
+                <div>
+                    <input name='image' id='inputFile' type='file'/>
+                    <img id='preview' style="width:200px; height:200px;"/>
+                </div>
+
                 <div id='spent' class="form-group col-12 p-0">
                     <label >Título</label>
                     <input id="inputTitle" name='title' type="text" class="form-control"
@@ -45,3 +53,22 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script type='text/javascript'>
+        var $preview = document.getElementById('preview');
+        document.querySelector('#inputFile').addEventListener('change', function(){
+            var reader = new FileReader(),
+                file = this.files[0];
+
+            if(file)
+                reader.readAsDataURL(file);
+            else
+                $preview.src = '';
+
+            reader.onloadend = function(){
+                $preview.src = reader.result;
+            };
+        });
+    </script>
+@endpush

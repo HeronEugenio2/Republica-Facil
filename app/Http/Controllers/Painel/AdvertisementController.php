@@ -32,7 +32,8 @@ class AdvertisementController extends Controller
      */
     public function show($id)
     {
-        $advert = Advertisement::find($id);
+        $advert = Advertisement::find($id)->with('user')->get()->first();
+//        dd($advert);
 
         return view('Painel.Advertisement.Show', compact('advert'));
     }

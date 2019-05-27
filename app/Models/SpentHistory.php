@@ -11,7 +11,8 @@ class SpentHistory extends Model
      * @author Heron Eugenio
      */
     protected $fillable = [
-        'spent_month_enum',
+        'month',
+        'value',
         'spent_id',
         'user_id',
         'republic_id',

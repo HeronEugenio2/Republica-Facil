@@ -6,6 +6,7 @@ use App\Http\Requests\SpentRequest;
 use App\Models\Spent;
 use App\Models\User;
 use App\Models\SpentHistory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +21,7 @@ class SpentController extends Controller
         $user      = auth()->user();
         $republic  = $user->republic;
         $spents    = $republic->spents;
-        $histories = SpentHistory::where('user_id', $user->id)->where('republic_id', $user->id)->orderBy('month')->get();
+        $histories = SpentHistory::where('user_id', $user->id)->orWhere('republic_id', $user->id)->orderBy('month')->get();
 
         //GRAFICO
         if (isset($histories)) {
@@ -136,17 +137,28 @@ class SpentController extends Controller
     public function store(SpentRequest $spentRequest)
     {
         try {
-            $data = array_filter([
-                                     'description' => $spentRequest->input('description') ?? null,
-                                     'dateSpent'   => $spentRequest->input('dateSpent') ?? null,
-                                     'value'       => $spentRequest->input('value'),
-                                     'republic_id' => $spentRequest->input('republic_id'),
-                                     'user_id'     => $spentRequest->input('user_id'),
-                                 ]);
-            //            dd($data);
+            $data      = array_filter([
+                                          'description' => $spentRequest->input('description') ?? null,
+                                          'dateSpent'   => $spentRequest->input('dateSpent') ?? null,
+                                          'value'       => $spentRequest->input('value'),
+                                          'republic_id' => $spentRequest->input('republic_id'),
+                                          'user_id'     => $spentRequest->input('user_id'),
+                                      ]);
             $saveSpent = Spent::create($data);
+            $now       = new Carbon();
+            $month     = date('m' );
 
             if ($saveSpent) {
+                //IF SAVED SPENT, SAVE HISTORY SPENT
+                $data = array_filter([
+                                         'month'       => $month ?? null,
+                                         'value'       => $saveSpent->value,
+                                         'republic_id' => $saveSpent->republic_id ?? null,
+                                         'user_id'     => $saveSpent->user_id ?? null,
+                                         'spent_id'    => $saveSpent->id,
+                                     ]);
+                $saveHistorySpent = SpentHistory::create($data);
+
                 return redirect()->route('painel.spent.index', ['id' => auth()->user('id')])
                                  ->with('success', 'Gasto salvo com sucesso!');
             } else {

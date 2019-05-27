@@ -23,7 +23,23 @@ class SpentController extends Controller
         $spents    = $republic->spents;
         $histories = SpentHistory::where('user_id', $user->id)->orWhere('republic_id', $user->id)->orderBy('month')
                                  ->get();
-
+        //CALC GASTOS
+        if ($spents) {
+            $spentsTotal      = 0;
+            $spentsIndividual = 0;
+            foreach ($spents as $spent) {
+                $spentsTotal += $spent->value;
+            }
+            foreach ($user->spents as $spent) {
+                $spentsIndividual += $spent->value;
+            }
+            if ($republic->qtdMembers == 0) {
+                $media = $spentsTotal;
+            } else {
+                $media = $spentsTotal / $republic->qtdMembers;
+            }
+            $result = -$media + $spentsIndividual;
+        }
         //GRAFICO
         if (isset($histories)) {
             $value1  = 0;
@@ -41,72 +57,67 @@ class SpentController extends Controller
             foreach ($histories as $key => $history) {
                 switch ($history->month) {
                     case 1:
-                        $mes    = 'janeiro';
-                        $value1 += $history->value;
+                        $mes = 'janeiro';
+                        //                        $value1 += $history->value;
+                        $value1 = $media;
                         break;
                     case 2:
-                        $mes    = 'fevereiro';
-                        $value2 += $history->value;
+                        $mes = 'fevereiro';
+                        //                        $value2 += $history->value;
+                        $value2 = $media;
                         break;
                     case 3:
-                        $mes    = 'março';
-                        $value3 += $history->value;
+                        $mes = 'março';
+                        //                        $value3 += $history->value;
+                        $value3 = $media;
                         break;
                     case 4:
-                        $mes    = 'abril';
-                        $value4 += $history->value;
+                        $mes = 'abril';
+                        //                        $value4 += $history->value;
+                        $value4 = $media;
                         break;
                     case 5:
-                        $mes    = 'maio';
-                        $value5 += $history->value;
+                        $mes = 'maio';
+                        //                        $value5 = $media;
+                        $value5 = $media;
                         break;
                     case 6:
-                        $mes    = 'junho';
-                        $value6 += $history->value;
+                        $mes = 'junho';
+                        //                        $value6 += $history->value;
+                        $value6 = $media;
                         break;
                     case 7:
-                        $mes    = 'julho';
-                        $value7 += $history->value;
+                        $mes = 'julho';
+                        //                        $value7 += $history->value;
+                        $value7 = $media;
                         break;
                     case 8:
-                        $mes    = 'agosto';
-                        $value8 += $history->value;
+                        $mes = 'agosto';
+                        //                        $value8 += $history->value;
+                        $value8 = $media;
                         break;
                     case 9:
-                        $mes    = 'setembro';
-                        $value9 += $history->value;
+                        $mes = 'setembro';
+                        //                        $value9 += $history->value;
+                        $value9 = $media;
                         break;
                     case 10:
-                        $mes     = 'outubro';
-                        $value10 += $history->value;
+                        $mes = 'outubro';
+                        //                        $value10 += $history->value;
+                        $value10 = $media;
                         break;
                     case 11:
-                        $mes     = 'novembro';
-                        $value11 += $history->value;
+                        $mes = 'novembro';
+                        //                        $value11 += $history->value;
+                        $value11 = $media;
                         break;
                     case 12:
-                        $mes     = 'dezembro';
-                        $value12 += $history->value;
+                        $mes = 'dezembro';
+                        //                        $value12 += $history->value;
+                        $value12 = $media;
                         break;
                 }
             }
-        }
-        //CALC GASTOS
-        if ($spents) {
-            $spentsTotal      = 0;
-            $spentsIndividual = 0;
-            foreach ($spents as $spent) {
-                $spentsTotal += $spent->value;
-            }
-            foreach ($user->spents as $spent) {
-                $spentsIndividual += $spent->value;
-            }
-            if ($republic->qtdMembers == 0) {
-                $media = $spentsTotal;
-            } else {
-                $media = $spentsTotal / $republic->qtdMembers;
-            }
-            $result = -$media + $spentsIndividual;
         }
 
         return view('Painel.Spents.Index',

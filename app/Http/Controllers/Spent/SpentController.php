@@ -157,8 +157,10 @@ class SpentController extends Controller
                                           'user_id'     => $spentRequest->input('user_id'),
                                       ]);
             $saveSpent = Spent::create($data);
-            $now       = new Carbon();
-            $month     = date('m');
+//            $now       = new Carbon();
+//            $month     = date('m');
+
+            $month = Carbon::parse($saveSpent['created_at'])->format('m');
 
             if ($saveSpent) {
                 //IF SAVED SPENT, SAVE HISTORY SPENT

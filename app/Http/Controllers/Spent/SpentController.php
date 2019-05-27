@@ -21,7 +21,8 @@ class SpentController extends Controller
         $user      = auth()->user();
         $republic  = $user->republic;
         $spents    = $republic->spents;
-        $histories = SpentHistory::where('user_id', $user->id)->orWhere('republic_id', $user->id)->orderBy('month')->get();
+        $histories = SpentHistory::where('user_id', $user->id)->orWhere('republic_id', $user->id)->orderBy('month')
+                                 ->get();
 
         //GRAFICO
         if (isset($histories)) {
@@ -146,17 +147,17 @@ class SpentController extends Controller
                                       ]);
             $saveSpent = Spent::create($data);
             $now       = new Carbon();
-            $month     = date('m' );
+            $month     = date('m');
 
             if ($saveSpent) {
                 //IF SAVED SPENT, SAVE HISTORY SPENT
-                $data = array_filter([
-                                         'month'       => $month ?? null,
-                                         'value'       => $saveSpent->value,
-                                         'republic_id' => $saveSpent->republic_id ?? null,
-                                         'user_id'     => $saveSpent->user_id ?? null,
-                                         'spent_id'    => $saveSpent->id,
-                                     ]);
+                $data             = array_filter([
+                                                     'month'       => $month ?? null,
+                                                     'value'       => $saveSpent->value,
+                                                     'republic_id' => $saveSpent->republic_id ?? null,
+                                                     'user_id'     => $saveSpent->user_id ?? null,
+                                                     'spent_id'    => $saveSpent->id,
+                                                 ]);
                 $saveHistorySpent = SpentHistory::create($data);
 
                 return redirect()->route('painel.spent.index', ['id' => auth()->user('id')])
@@ -210,8 +211,12 @@ class SpentController extends Controller
      */
     public function destroy($id)
     {
-        $spent = Spent::find($id);
-        $spent->delete();
+        $spent   = Spent::find($id);
+        $deleted = $spent->delete();
+        if ($deleted) {
+            $spentHistory = SpentHistory::where('spent_id', $id)->first();
+            $spentHistory->delete();
+        }
 
         return redirect()->route('painel.spent.index');
     }

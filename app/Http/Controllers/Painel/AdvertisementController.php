@@ -22,7 +22,7 @@ class AdvertisementController extends Controller
         $spents   = $republic->spents;
         $adverts = Advertisement::all();
 //        dd($adverts);
-        return view('Painel.Advertisement.index', compact('adverts', 'republic', 'spents'));
+        return view('Painel.Advertisement.Index', compact('adverts', 'republic', 'spents'));
     }
 
     /**

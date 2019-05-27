@@ -32,7 +32,7 @@ class User extends Authenticatable
     /**
      * @var array
      */
-    protected $with = [ 'republic.type', 'republic.assignmets', 'republic.spents'];
+    protected $with = [ 'republic.type', 'republic.assignmets', 'republic.spents', 'historySpents'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -55,5 +55,10 @@ class User extends Authenticatable
     public function spents()
     {
         return $this->hasMany(Spent::class, 'user_id', 'id');
+    }
+
+    public function historySpents()
+    {
+        return $this->hasMany(SpentHistory::class);
     }
 }

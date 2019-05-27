@@ -1,22 +1,34 @@
 @extends('layouts.Painel.LayoutFull')
 
 @section('content')
-    <div class="card text-dark bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-header bg-nav text-white c-">Gerenciador de gastos</div>
-        <div class="card-body">
-            <h4 class="card-text text-center">ST = (ST/QT)-SI</h4>
-            Débito República =
-            <strong class='float-right text-danger'>R${{number_format($spentsTotal, 2, ',', ' ')}}</strong>
-            <br> Crédito Individual =
-            <strong class='float-right text-success'>R${{number_format($spentsIndividual, 2, ',', ' ')}}</strong>
-            <br> $media  = <strong class='float-right '>R${{number_format($media, 2, ',', ' ')}}</strong>
+    <div class='row'>
+        <div class='col-sm-12 col-md-4 col-lg-4'>
+            <div class="card text-dark bg-primary mb-3" style="height: 300px;">
+                <div class="card-header bg-nav text-white c-">Gerenciador de gastos</div>
+                <div class="card-body">
+                    <h4 class="card-text text-center">ST = (ST/QT)-SI</h4>
+                    Débito República =
+                    <strong class='float-right text-danger'>R${{number_format($spentsTotal, 2, ',', ' ')}}</strong>
+                    <br> Crédito Individual =
+                    <strong class='float-right text-success'>R${{number_format($spentsIndividual, 2, ',', ' ')}}</strong>
+                    <br> $media = <strong class='float-right '>R${{number_format($media, 2, ',', ' ')}}</strong>
+                </div>
+                <div class='card-footer text-center'>
+                    @if($result>0)
+                        <h2 class='text-success display-4'>CRÉDITO R${{number_format($result, 2, ',', ' ')}}</h2>
+                    @else
+                        <h2 class='text-danger display-4'>DÉBITO R${{number_format($result, 2, ',', ' ')}}</h2>
+                    @endif
+                </div>
+            </div>
         </div>
-        <div class='card-footer text-center'>
-            @if($result>0)
-                <h2 class='text-success display-4'>CRÉDITO R${{number_format($result, 2, ',', ' ')}}</h2>
-            @else
-                <h2 class='text-danger display-4'>DÉBITO R${{number_format($result, 2, ',', ' ')}}</h2>
-            @endif
+        <div class='col-sm-12 col-md-8 col-lg-8'>
+            <div class='card'>
+                <div class='card-body'>
+                    {{--<div id="chart_div" style="width: 100%; height: 300px;"></div>--}}
+                    <canvas id="myChart" width="100%" height='31px'></canvas>
+                </div>
+            </div>
         </div>
     </div>
     <div id='spentFull' class='card'>
@@ -84,13 +96,130 @@
             @endif
         </div>
     </div>
+
 @endsection
 @push('scripts')
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js'></script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                datasets: [{
+                    label: 'Gastos (R$)',
+                    data: [
+                        {{$value1}},
+                        {{$value2}},
+                        {{$value3}},
+                        {{$value4}},
+                        {{$value5}},
+                        {{$value6}},
+                        {{$value7}},
+                        {{$value8}},
+                        {{$value9}},
+                        {{$value10}},
+                        {{$value11}},
+                        {{$value12}},
+                    ],
+                    backgroundColor: [
+                        'rgba(20, 86, 193, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(20, 86, 193, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
     <script>
         $(document).ready(function () {
             $("#headerFull").click(function () {
                 $("#bodyFull").toggle();
             });
         });
+
+        {{--google.charts.load('current', {'packages': ['corechart']});--}}
+        {{--google.charts.setOnLoadCallback(drawChart);--}}
+
+        {{--function drawChart() {--}}
+        {{--var data = google.visualization.arrayToDataTable([--}}
+        {{--['Mês', 'Valor'],--}}
+        {{--@foreach($histories as $history)--}}
+        {{--@if($history->month)--}}
+        {{--[ {{$history->month}}, {{$history->value}} ],--}}
+        {{--@endforeach--}}
+        {{--]);--}}
+
+        {{--var options = {--}}
+        {{--title: 'Histórico de contas',--}}
+        {{--hAxis: {title: 'Mês', titleTextStyle: {color: '#333'}},--}}
+        {{--vAxis: {minValue: 0}--}}
+        {{--};--}}
+
+        {{--var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));--}}
+        {{--chart.draw(data, options);--}}
+        {{--}--}}
+
+        // var ctx = document.getElementById('myChart').getContext('2d');
+        // var myChart = new Chart(ctx, {
+        //     type: 'bar',
+        //     data: {
+        //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        //         datasets: [{
+        //             label: '# of Votes',
+        //             data: [12, 19, 3, 5, 2, 3],
+        //             backgroundColor: [
+        //                 'rgba(255, 99, 132, 0.2)',
+        //                 'rgba(54, 162, 235, 0.2)',
+        //                 'rgba(255, 206, 86, 0.2)',
+        //                 'rgba(75, 192, 192, 0.2)',
+        //                 'rgba(153, 102, 255, 0.2)',
+        //                 'rgba(255, 159, 64, 0.2)'
+        //             ],
+        //             borderColor: [
+        //                 'rgba(255, 99, 132, 1)',
+        //                 'rgba(54, 162, 235, 1)',
+        //                 'rgba(255, 206, 86, 1)',
+        //                 'rgba(75, 192, 192, 1)',
+        //                 'rgba(153, 102, 255, 1)',
+        //                 'rgba(255, 159, 64, 1)'
+        //             ],
+        //             borderWidth: 1
+        //         }]
+        //     },
+        //     options: {
+        //         scales: {
+        //             yAxes: [{
+        //                 ticks: {
+        //                     beginAtZero: true
+        //                 }
+        //             }]
+        //         }
+        //     }
+        // });
     </script>
 @endpush

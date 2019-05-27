@@ -19,6 +19,7 @@ class CreateSpentHistoriesTable extends Migration
             $table->string('value');
             $table->unsignedInteger('republic_id')->nullable();
             $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('spent_id')->nullable();
             $table->boolean('buy')->default(0);
             $table->timestamps();
         });

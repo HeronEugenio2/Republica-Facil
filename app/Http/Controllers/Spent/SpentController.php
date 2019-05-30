@@ -23,6 +23,11 @@ class SpentController extends Controller
         $spents    = $republic->spents;
         $histories = SpentHistory::where('user_id', $user->id)->orWhere('republic_id', $user->id)->orderBy('month')
                                  ->get();
+
+        $now      = Carbon::now();
+        $nowMonth = $now->month;
+
+
         //CALC GASTOS
         if ($spents) {
             $spentsTotal      = 0;
@@ -157,8 +162,8 @@ class SpentController extends Controller
                                           'user_id'     => $spentRequest->input('user_id'),
                                       ]);
             $saveSpent = Spent::create($data);
-//            $now       = new Carbon();
-//            $month     = date('m');
+            //            $now       = new Carbon();
+            //            $month     = date('m');
 
             $month = Carbon::parse($saveSpent['created_at'])->format('m');
 

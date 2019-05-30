@@ -51,14 +51,15 @@ Route::group(
         Route::resource('/anuncios', 'Painel\AdvertisementController')->names('advertisement');
     }
 );
-//Route::group(
-//    [
-//        'prefix'     => 'portal',
-//        'as'         => 'portal.',
-//    ],
-//    function() {
-//        //REPUBLIC
-//        Route::resource('/republicas', 'RepublicController')->names('republic');
-//
-//    }
-//);
+Route::group(
+    [
+        'prefix'     => 'portal',
+        'as'         => 'portal.',
+    ],
+    function() {
+        //REPUBLIC
+        Route::resource('/republicas', 'PortalController')->names('republics');
+
+
+    }
+);

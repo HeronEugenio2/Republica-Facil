@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Republic;
 use Illuminate\Http\Request;
 
 /**
@@ -19,7 +20,8 @@ class PortalController extends Controller
      */
     public function index()
     {
-        return view('Portal.Template.index');
+        $republics = Republic::all();
+        return view('Portal.Template.index', compact('republics'));
 
     }
 

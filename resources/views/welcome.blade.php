@@ -1,12 +1,12 @@
 @extends('TemplateLaravel')
 @section('content')
-    <div class="jumbotron jumbotron-fluid m-0">
-        <div class="container">
+    <div class="jumbotron jumbotron-fluid m-0 bg-dark">
+        <div class="container text-white">
             <div class='row justify-content-md-center'>
                 <div class='col-12 text-center'>
                     <img src='{{ asset('/images/favicon.png') }}' style='width: 70px'>
                     <h1>Repúblicas para dividir em todo o Brasil !</h1>
-                    <p class='text-secondary'>Encontre quartos para alugar em repúblicas ou cadastre a sua.</p>
+                    <p>Encontre quartos para alugar em repúblicas ou cadastre a sua.</p>
                 </div>
                 <div class='col-4 text-center align-content-center'>
                     <div class='form-group'>
@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    <div class="jumbotron jumbotron-fluid bg-white m-0">
+    <div class="jumbotron jumbotron-fluid bg-light m-0">
         <div class="container">
             <div class='row justify-content-md-center m-4'>
                 <div class='col-12 text-center'>
@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    <div class="jumbotron jumbotron-fluid mb-0">
+    <div class="jumbotron jumbotron-fluid bg-light mb-0">
         <div class="container">
             <div class='row justify-content-md-center'>
                 <div class='col-12 text-center'>
@@ -63,6 +63,7 @@
             </div>
         </div>
     </div>
+
     <div class="album py-5 bg-light">
         <div class="container">
             <h1 class='text-center mb-2'>Anúncios em Destaque</h1>
@@ -116,10 +117,12 @@
         </div>
     </div>
 
-    <div class="jumbotron jumbotron-fluid bg-dark">
+    <div class="jumbotron jumbotron-fluid bg-dark mb-0">
         <div class="container">
             <div class='row justify-content-md-center'>
-
+                <a href='#' class='text-white mx-1'><i class="fas fa-id-badge"></i> Contato</a>
+                <a href='#' class='text-white mx-1'><i class="fab fa-github-alt"></i> GitHub</a>
+                <a href='#' class='text-white mx-1'><i class="fab fa-instagram"></i> Instagram</a>
             </div>
         </div>
     </div>

@@ -13,6 +13,7 @@
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
     <link rel="stylesheet" href="templated-industrious/assets/css/main.css"/>
+
 </head>
 <body class="is-preload">
 <!-- Navbar -->

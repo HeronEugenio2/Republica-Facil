@@ -114,7 +114,7 @@
                         <i class="nav-icon fas fa-home text-gray"></i> República
                     </a>
                 </li>
-                @if(isset($republic))
+                @if(auth()->user()->republic_id != null)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('painel.spent.index') }}">
                         <i class="fas fa-file-invoice-dollar text-gray"></i> Gastos
@@ -131,30 +131,21 @@
                     </a>
                 </li>
                 @endif
-                {{--<li class="nav-item">--}}
-                {{--<a class="nav-link" href="{{ route('home') }}">--}}
-                {{--<i class="nav-icon fa fa-th-large text-gray"></i> Móveis--}}
-                {{--</a>--}}
-                {{--</li>--}}
-                {{--<li class="nav-item">--}}
-                {{--<a class="nav-link" href="{{ route('home') }}">--}}
-                {{--<i class="nav-icon fa fa-th-large text-gray"></i> Tarefas--}}
-                {{--</a>--}}
-                {{--</li>--}}
-                <li class="nav-item">
-                    <hr></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user-shield"></i> Administração
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {{--<a class="dropdown-item" href="#">Action</a>--}}
-                        {{--<div class="dropdown-divider"></div>--}}
-                        <a class="dropdown-item" href="{{route('administrative.republics.index')}}">Repúblicas</a>
-                        <a class="dropdown-item" href="{{route('painel.republic.index')}}">Casas</a>
-                        <a class="dropdown-item" href="{{route('painel.republic.index')}}">Comércio</a>
-                    </div>
-                </li>
+                @if(auth()->user()->email == 'hrs.eugenio@gmail.com')
+                    <li class="nav-item">
+                        <hr>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user-shield"></i> Administração
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{route('administrative.republics.index')}}">Repúblicas</a>
+                            <a class="dropdown-item" href="{{route('painel.republic.index')}}">Casas</a>
+                            <a class="dropdown-item" href="{{route('painel.republic.index')}}">Comércio</a>
+                        </div>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>

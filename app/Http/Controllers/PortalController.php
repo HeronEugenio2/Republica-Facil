@@ -21,7 +21,7 @@ class PortalController extends Controller
     public function index()
     {
         $republics = Republic::all();
-        return view('Portal.Template.index', compact('republics'));
+        return view('welcome', compact('republics'));
 
     }
 

@@ -8,7 +8,7 @@
                     <h1>Encontre Repúblicas em todo Brasil !</h1>
                     <p>Encontre quartos para alugar em repúblicas ou cadastre a sua.</p>
                 </div>
-                <div class='col-4 text-center align-content-center'>
+                <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center'>
                     <div class='form-group'>
                         <div class="input-group mb-3">
                             <input class='form-control' type='text' name='search' placeholder='Preencha o nome da cidade'>
@@ -32,66 +32,81 @@
                         Anuncie gratuitamente agora. Iremos encontrar pessoas confiáveis que estejam interessadas em alugar seu quarto para morar com você.
                     </p>
                 </div>
-                <div class='col-4 text-center align-content-center'>
+                <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center'>
                     <div class='form-group text-center'>
-                            <button type='submit' class='btn btn-danger'>Anunciar</button>
+                        <button type='submit' class='btn btn-danger px-5'>Anunciar Agora</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="jumbotron jumbotron-fluid bg-light mb-0">
+    <div class="jumbotron jumbotron-fluid text-white bg-dark mb-0">
         <div class="container">
             <div class='row justify-content-md-center'>
                 <div class='col-12 text-center'>
-                    <h1 class='mb-2'>Como Funciona</h1>
+                    {{--<h1>Como Funciona</h1>--}}
+                    {{--<hr class='bg-danger'>--}}
                     <div class="row">
                         <div class="col-md-4">
-                            <h5 class='text-dark'>Título</h5>
-                            <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Donec id elit non mi porta gravida at eget metus. </font><font style="vertical-align: inherit;">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. </font><font style="vertical-align: inherit;">Etiam porta sem machosuada magna mollis euismod. </font><font style="vertical-align: inherit;">Donec sed odio dui.</font></font></p>
+                            <i class="text-danger fas fa-search-location fa-3x mb-2"></i>
+                            <h5 class='text-danger'>Encontre lugares para morar</h5>
+                            <p class='text-muted' >
+                                Use nossa busca para encontrar excelentes apartamentos para dividir aluguel e quartos para alugar em todas as regiões do Brasil
+                            </p>
                         </div>
                         <div class="col-md-4">
-                            <h5 class='text-dark'><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Título</font></font></h5>
-                            <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Donec id elit non mi porta gravida at eget metus. </font><font style="vertical-align: inherit;">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. </font><font style="vertical-align: inherit;">Etiam porta sem machosuada magna mollis euismod. </font><font style="vertical-align: inherit;">Donec sed odio dui.</font></font></p>
+                            <i class="text-danger fas fa-mobile-alt fa-3x mb-2"></i>
+                            <h5 class='text-danger'>
+                                Negocie diretamente com o anunciante
+                            </h5>
+                                <p class='text-muted'>
+                                    Utilize nossa plataforma para trocar mensagens e conhecer melhor a pessoa que irá dividir moradia com você.
+                                </p>
                         </div>
                         <div class="col-md-4">
-                            <h5 class='text-dark'><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Título</font></font></h5>
-                            <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Donec sed odio dui. </font><font style="vertical-align: inherit;">Cras justo odio, dapibus ac facilisis, egestas eget quam. </font><font style="vertical-align: inherit;">Vestíbulo id ligula porta felis euismod sempre. </font><font style="vertical-align: inherit;">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</font></font></p>
+                            <i class="text-danger fas fa-key fa-3x mb-2"></i>
+                            <h5 class='text-danger'>
+                                Mude-se para um novo lar
+                            </h5>
+                            <p class='text-muted'>
+                                Faça sua mudança com a tranquilidade de ter escolhido um bom lugar para morar, dividindo o aluguel com pessoas que combinam com você.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="album py-5 bg-light">
         <div class="container">
             <h1 class='text-center mb-2'>Anúncios em Destaque</h1>
             <div class="row">
                 @foreach($republics as $republic)
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Miniatura [100% x225]" style="height: 225px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22208%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20208%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_16b13abfbbb%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A11pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_16b13abfbbb%22%3E%3Crect%20width%3D%22208%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2266.9375%22%20y%3D%22117.45%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
-                        <div class="card-body">
-                            <p class="card-text">
-                                <h4>{{$republic->name}}</h4>
-                                Este é um cartão mais amplo com o texto de suporte abaixo como uma introdução natural ao conteúdo adicional.
-                                Este conteúdo é um pouco mais longo.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Visão</font></font></button>
-                                    <button type="button" class="btn btn-sm btn-outline-success">Contato</button>
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Miniatura [100% x225]" style="height: 225px; width: 100%; display: block;" src="{{$republic->image}}" data-holder-rendered="true">
+                            <div class="card-body">
+                                <p class="card-text">
+                                <h4>{!! \Illuminate\Support\Str::limit($republic->name, 20) !!}</h4>
+                                <p>{!! \Illuminate\Support\Str::limit($republic->description, 80) !!}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                                            <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Visão</font></font>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-success">Contato</button>
+                                    </div>
+                                    <small class="text-muted">
+                                        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 min</font></font>
+                                    </small>
                                 </div>
-                                <small class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 min</font></font></small>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
     </div>
-
     <div class="jumbotron jumbotron-fluid bg-dark mb-0">
         <div class="container">
             <div class='row justify-content-md-center'>

@@ -20,7 +20,7 @@ class PortalController extends Controller
      */
     public function index()
     {
-        $republics = Republic::all();
+        $republics = Republic::paginate(6);
         return view('Portal.welcome', compact('republics'));
 
     }
@@ -32,7 +32,7 @@ class PortalController extends Controller
      */
     public function indexRepublics()
     {
-        $republics = Republic::all();
+        $republics = Republic::paginate(9);
         return view('Portal.Republic.Index', compact('republics'));
 
     }

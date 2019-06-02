@@ -55,7 +55,7 @@
             </div>
             <div class='col-sm-12 col-md-9 col-lg-9'>
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body  pb-0">
                         <div class='form-group'>
                             <div class="input-group mb-2">
                                 <input class='form-control' type='text' name='search' placeholder='Digite o nome da cidade onde você procura um lugar para alugar'>
@@ -67,15 +67,16 @@
                             <a href='' class='btn-sm btn btn-danger right'><i class="fas fa-sort-amount-down"></i></a>
                         </div>
                         <div class="album py-2">
-                            <div class="row justify-content-md-center">
+                            <div class="row justify-content-center mb-2">
                                 @if(isset($republics))
                                     @foreach($republics as $republic)
-                                        <div class='card m-1 border-darker' >
+                                        <div class='card m-1 border-darker'>
                                             <img class="card-img-top" style='width: 260px; height: 180px' src="{{$republic->image}}" alt="Card image cap">
-                                            <div class='card-body p-2 text-center'>
+                                            <div class='card-body p-2 text-center' style='width: 260px;'>
                                                 <small class='text-danger float-left font-weight-bold'>R$ 350,00 por mês</small>
                                                 <br>
                                                 <h5>{!! \Illuminate\Support\Str::limit($republic->name, 20) !!}</h5>
+                                                <p>{!! \Illuminate\Support\Str::limit($republic->description, 80) !!}</p>
                                                 <div class='row justify-content-md-center text-center'>
                                                     <div class='col-4'>
                                                         @if($republic->type_id == 1)
@@ -105,6 +106,7 @@
                                     @endforeach
                                 @endif
                             </div>
+                            {{$republics->render()}}
                         </div>
                     </div>
                 </div>

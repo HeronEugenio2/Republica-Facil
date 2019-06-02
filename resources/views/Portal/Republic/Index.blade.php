@@ -3,10 +3,10 @@
 
 @endpush
 @section('content')
-    <div class="container my-4">
+    <div class="jumbotron jumbotron-fluid p-4 mb-0">
         <div class='row'>
             <div class='col-sm-12 col-md-3 col-lg-3'>
-                <div class='card  mb-2'>
+                <div class='card mb-2 bg-light'>
                     <div class='card-body'>
                         <h3>Moradia para</h3>
                         <form>
@@ -25,7 +25,7 @@
                         </form>
                     </div>
                 </div>
-                <div class='card mb-2'>
+                <div class='card mb-2 bg-light'>
                     <div class='card-body '>
                         <h3>Faixa de preço</h3>
                         <form>
@@ -55,7 +55,7 @@
             </div>
             <div class='col-sm-12 col-md-9 col-lg-9'>
                 <div class="card">
-                    <div class="card-body  pb-0">
+                    <div class="card-body bg-light pb-0">
                         <div class='form-group'>
                             <div class="input-group mb-2">
                                 <input class='form-control' type='text' name='search' placeholder='Digite o nome da cidade onde você procura um lugar para alugar'>

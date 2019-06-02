@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    <div class="jumbotron jumbotron-fluid bg-light m-0">
+    <div class="jumbotron jumbotron-fluid m-0">
         <div class="container">
             <div class='row justify-content-md-center m-4'>
                 <div class='col-12 text-center'>

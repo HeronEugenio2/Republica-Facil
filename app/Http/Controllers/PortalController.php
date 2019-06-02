@@ -32,7 +32,7 @@ class PortalController extends Controller
      */
     public function indexRepublics()
     {
-        $republics = Republic::paginate(9);
+        $republics = Republic::paginate(8);
         return view('Portal.Republic.Index', compact('republics'));
 
     }

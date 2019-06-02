@@ -26,7 +26,8 @@ class CreateRepublicsTable extends Migration
             $table->integer('qtdMembers')->default(0);
             $table->integer('qtdVacancies')->default(0);
             $table->string('street')->nullable();
-            $table->string('neighborhood')->nullable();
+//            $table->string('neighborhood')->nullable();
+            $table->string('district')->nullable();
             $table->string('cep')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();

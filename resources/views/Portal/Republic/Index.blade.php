@@ -63,21 +63,28 @@
                                     <button type='submit' class='btn btn-danger'>Buscar</button>
                                 </div>
                             </div>
-                            <a href='' class='btn-sm btn btn-danger right'><i class="fas fa-sort-amount-up"></i></a>
-                            <a href='' class='btn-sm btn btn-danger right'><i class="fas fa-sort-amount-down"></i></a>
+                            <div class="d-flex justify-content-end">
+                                <a href='' class='btn-sm btn btn-danger right mr-1'>
+                                    <i class="fas fa-sort-amount-up"></i></a>
+                                <a href='' class='btn-sm btn btn-danger right'><i class="fas fa-sort-amount-down"></i>
+                                </a>
+                            </div>
                         </div>
                         <div class="album py-2">
                             <div class="row justify-content-center mb-2">
                                 @if(isset($republics))
                                     @foreach($republics as $republic)
-                                        <div class='card m-1 border-darker'>
+                                        <div class='card m-1 border-danger'>
                                             <img class="card-img-top" style='width: 260px; height: 180px' src="{{$republic->image}}" alt="Card image cap">
-                                            <div class='card-body p-2 text-center' style='width: 260px;'>
-                                                <small class='text-danger float-left font-weight-bold'>R$ 350,00 por mês</small>
+                                            <div class='card-body p-2 text-center' style='width: 260px; '>
+                                                <small class='text-danger float-left font-weight-bold'>
+                                                    <strong><i class="fas fa-money-bill"></i> R$ 350,00 por mês</strong></small>
                                                 <br>
-                                                <h5>{!! \Illuminate\Support\Str::limit($republic->name, 20) !!}</h5>
-                                                <p>{!! \Illuminate\Support\Str::limit($republic->description, 80) !!}</p>
-                                                <div class='row justify-content-md-center text-center'>
+                                                <div class="col-12 text-truncate text-left p-0 mb-2">
+                                                    <h5>{{$republic->name}}</h5>
+                                                </div>
+                                                <p class='text-muted text-left'>{!! \Illuminate\Support\Str::limit($republic->description, 90) !!}</p>
+                                                <div class='row justify-content-md-center text-center '>
                                                     <div class='col-4'>
                                                         @if($republic->type_id == 1)
                                                             <i class="fas fa-male"></i><br>

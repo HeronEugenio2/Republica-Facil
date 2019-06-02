@@ -3,7 +3,7 @@
 
 @endpush
 @section('content')
-    <div class="container mt-4">
+    <div class="container my-4">
         <div class='row'>
             <div class='col-sm-12 col-md-3 col-lg-3'>
                 <div class='card  mb-2'>
@@ -57,23 +57,48 @@
                 <div class="card">
                     <div class="card-body">
                         <div class='form-group'>
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-2">
                                 <input class='form-control' type='text' name='search' placeholder='Digite o nome da cidade onde você procura um lugar para alugar'>
                                 <div class="input-group-append">
                                     <button type='submit' class='btn btn-danger'>Buscar</button>
                                 </div>
                             </div>
+                            <a href='' class='btn-sm btn btn-danger right'><i class="fas fa-sort-amount-up"></i></a>
+                            <a href='' class='btn-sm btn btn-danger right'><i class="fas fa-sort-amount-down"></i></a>
                         </div>
                         <div class="album py-2">
                             <div class="row justify-content-md-center">
                                 @if(isset($republics))
                                     @foreach($republics as $republic)
-                                        <div class='card m-1 border-darker'>
-                                            <img class="card-img-top" style='width: 180px; height: 180px' src="{{$republic->image}}" alt="Card image cap">
-                                            <div class='card-body p-2'>
-                                                <small class='text-danger float-left font-weight-bold '>R$ 350,00 por mês</small>
+                                        <div class='card m-1 border-darker' >
+                                            <img class="card-img-top" style='width: 260px; height: 180px' src="{{$republic->image}}" alt="Card image cap">
+                                            <div class='card-body p-2 text-center'>
+                                                <small class='text-danger float-left font-weight-bold'>R$ 350,00 por mês</small>
                                                 <br>
-                                                <h5>{{$republic->name}}</h5>
+                                                <h5>{!! \Illuminate\Support\Str::limit($republic->name, 20) !!}</h5>
+                                                <div class='row justify-content-md-center text-center'>
+                                                    <div class='col-4'>
+                                                        @if($republic->type_id == 1)
+                                                            <i class="fas fa-male"></i><br>
+                                                            <small>Homens</small>
+                                                        @elseif($republic->type_id == 2)
+                                                            <i class="fas fa-female"></i><br>
+                                                            <small>Mulheres</small>
+                                                        @else
+                                                            <i class="fas fa-male"></i><i class="fas fa-female"></i></i>
+                                                            <br>
+                                                            <small>Mista</small>
+                                                        @endif
+                                                    </div>
+                                                    <div class='col-4'>
+                                                        {{$republic->qtdVacancies}}<br>
+                                                        <small>Vagas</small>
+                                                    </div>
+                                                    <div class='col-4'>
+                                                        {{$republic->qtdMembers}}<br>
+                                                        <small>Membros</small>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <a href='#' class='btn btn-sm btn-danger m-2'>Visualizar</a>
                                         </div>

@@ -116,7 +116,7 @@
                         {{$value4}},
                         {{$value5}},
                         {{$value6}},
-                        {{$value7}},b
+                        {{$value7}},
                         {{$value8}},
                         {{$value9}},
                         {{$value10}},

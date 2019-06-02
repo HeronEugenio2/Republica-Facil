@@ -21,7 +21,19 @@ class PortalController extends Controller
     public function index()
     {
         $republics = Republic::all();
-        return view('welcome', compact('republics'));
+        return view('Portal.welcome', compact('republics'));
+
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     * @author Heron Eugenio
+     */
+    public function indexRepublics()
+    {
+        $republics = Republic::all();
+        return view('Portal.Republic.Index', compact('republics'));
 
     }
 

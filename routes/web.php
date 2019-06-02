@@ -57,8 +57,10 @@ Route::group(
         'as'         => 'portal.',
     ],
     function() {
-        //REPUBLIC
+        //WELCOME
         Route::resource('/republicas', 'PortalController')->names('republics');
+        //PROCURAR
+        Route::get('/busca', 'PortalController@indexRepublics')->name('search');
 
 
     }

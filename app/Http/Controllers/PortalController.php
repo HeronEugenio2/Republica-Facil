@@ -32,7 +32,7 @@ class PortalController extends Controller
      */
     public function indexRepublics()
     {
-        $republics = Republic::paginate(8);
+//        $republics = Republic::paginate(8);
         return view('Portal.Republic.Index', compact('republics'));
 
     }
@@ -101,5 +101,17 @@ class PortalController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function search(Request $request)
+    {
+        $value = $request->input(['search']);
+
+        $republics = Republic::where('city','like','%'.$value.'%')->get();
+        return view('Portal.Republic.Index', compact('republics'));
     }
 }

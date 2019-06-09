@@ -78,10 +78,11 @@
                                             <img class="card-img-top" style='width: 260px; height: 180px' src="{{$republic->image}}" alt="Card image cap">
                                             <div class='card-body p-2 text-center' style='width: 260px; '>
                                                 <small class='text-danger float-left font-weight-bold'>
-                                                    <strong><i class="fas fa-money-bill"></i> R$ 350,00 por mês</strong></small>
+                                                    <strong><i class="fas fa-money-bill"></i> R$ 350,00 por mês</strong>
+                                                </small>
                                                 <br>
                                                 <div class="col-12 text-truncate text-left p-0 mb-2">
-                                                    <h5>{{$republic->name}}</h5>
+                                                   <h5><strong>{{$republic->name}}</strong></h5>
                                                 </div>
                                                 <p class='text-muted text-left'>{!! \Illuminate\Support\Str::limit($republic->description, 90) !!}</p>
                                                 <div class='row justify-content-md-center text-center '>
@@ -113,7 +114,7 @@
                                     @endforeach
                                 @endif
                             </div>
-                            {{$republics->render()}}
+                            {{--{{$republics->render()}}--}}
                         </div>
                     </div>
                 </div>

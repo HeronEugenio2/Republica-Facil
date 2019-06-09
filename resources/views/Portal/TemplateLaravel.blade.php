@@ -60,7 +60,7 @@
         }
     </style>
 </head>
-<body>
+<body  style='background-color: #e9ecef'>
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
     <img src="{{ asset('/images/favicon.png') }}" style='width: 30px' class="d-inline-block align-top mr-2" alt="">
     <a class="navbar-brand" href="{{ route('portal.index') }}">RepublicaFácil</a>

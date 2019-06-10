@@ -32,7 +32,7 @@ class PortalController extends Controller
      */
     public function indexRepublics()
     {
-//        $republics = Republic::paginate(8);
+        $republics = Republic::all();
         return view('Portal.Republic.Index', compact('republics'));
 
     }
@@ -110,9 +110,15 @@ class PortalController extends Controller
      */
     public function search(Request $request)
     {
+//        dd($request->request);
         $value = $request->input(['search']);
 
         $republics = Republic::where('city','like','%'.$value.'%')->get();
         return view('Portal.Republic.Index', compact('republics'));
+    }
+
+    public function ajaxSearch (Request $request){
+        $value = $request->input('value');
+        $type = $request->input('type');
     }
 }

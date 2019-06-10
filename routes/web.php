@@ -62,6 +62,7 @@ Route::group(
         //PROCURAR
         Route::get('/busca', 'PortalController@indexRepublics')->name('search');
         Route::post('/busca/cidade', 'PortalController@search')->name('republicSearch');
+        Route::post('/busca/cidade/filtrada', 'PortalController@ajaxSearch')->name('ajaxSearch');
 
 
     }

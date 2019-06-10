@@ -70,6 +70,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             @if (Route::has('login'))
+
                 @auth
                     <li class="nav-item">
                         <a href="{{ url('/home') }}" class="nav-link">Painel</a>
@@ -91,6 +92,7 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
+            @csrf
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -99,6 +101,13 @@
 <div class='container-fluid p-0'>
     @yield('content')
 </div>
+<!-- Scripts -->
+<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.bundle.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+<script> window.Laravel = '{!!json_encode(['csrfToken' => csrf_token()])!!}';</script>
+@stack('scripts')
 </body>
 
 </html>

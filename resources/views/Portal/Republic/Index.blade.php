@@ -6,52 +6,54 @@
     <div class="jumbotron jumbotron-fluid p-4 mb-0">
         <div class='row'>
             <div class='col-sm-12 col-md-3 col-lg-3'>
-                <div class='card mb-2 bg-light'>
-                    <div class='card-body'>
-                        <h3>Moradia para</h3>
-                        <form>
+                {{--<form action='{{route('portal.republicSearch')}}' method='POST'>--}}
+                <form action=''>
+                    <div class='card mb-2 bg-light'>
+                        <div class='card-body'>
+                            <h3>Moradia para</h3>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                                <input class="form-check-input chkType" type="radio" name="exampleRadios" value="1">
                                 <label class="form-check-label" for="exampleCheck1">Homens</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                                <input class="form-check-input chkType" type="radio" name="exampleRadios" value="2">
                                 <label class="form-check-label" for="exampleCheck1">Mulheres</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                                <input class="form-check-input chkType" type="radio" name="exampleRadios" value="3" checked>
                                 <label class="form-check-label" for="exampleCheck1">Mista</label>
                             </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                </form>
+                <form action=''>
                 <div class='card mb-2 bg-light'>
-                    <div class='card-body '>
-                        <h3>Faixa de preço</h3>
-                        <form>
+                        <div class='card-body '>
+                            <h3>Faixa de preço</h3>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                <input class="form-check-input chkValue" type="radio" name="exampleRadios " value="200">
                                 <label class="form-check-label" for="exampleCheck1">R$100,00 - R$200,00</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                <input class="form-check-input chkValue" type="radio" name="exampleRadios " value="300">
                                 <label class="form-check-label" for="exampleCheck1">R$200,00 - R$300,00</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                <input class="form-check-input chkValue" type="radio" name="exampleRadios " value="400" checked>
                                 <label class="form-check-label" for="exampleCheck1">R$300,00 - R$400,00</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                <input class="form-check-input chkValue" type="radio" name="exampleRadios " value="500">
                                 <label class="form-check-label" for="exampleCheck1">R$400,00 - R$500,00</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                <input class="form-check-input chkValue" type="radio" name="exampleRadios " value="all">
                                 <label class="form-check-label" for="exampleCheck1">Acima de R$500,00</label>
                             </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                    <a href='#' id='btnFiltro' class='btn btn-danger w-100'>Filtrar</a>
+                </form>
             </div>
             <div class='col-sm-12 col-md-9 col-lg-9'>
                 <div class="card">
@@ -82,7 +84,7 @@
                                                 </small>
                                                 <br>
                                                 <div class="col-12 text-truncate text-left p-0 mb-2">
-                                                   <h5><strong>{{$republic->name}}</strong></h5>
+                                                    <h5><strong>{{$republic->name}}</strong></h5>
                                                 </div>
                                                 <p class='text-muted text-left'>{!! \Illuminate\Support\Str::limit($republic->description, 90) !!}</p>
                                                 <div class='row justify-content-md-center text-center '>
@@ -122,4 +124,31 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $("#btnFiltro").click(function () {
+                let type = $('.chkType:checked').val();
+                let value = $('.chkValue:checked').val();
+                console.log(type);
+                console.log(value);
+                $.ajax({
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+                    method: 'POST',
+                    url: '{{route('portal.ajaxSearch')}}',
+                    data: {
+                        value: value,
+                        type : type,
+                    },
+                    success: function (response) {
+                        alert(type);
+                    },
+                    error: function (response) {
 
+                    }
+                });
+
+            });
+        });
+    </script>
+@endpush

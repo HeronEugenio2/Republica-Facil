@@ -28,7 +28,7 @@
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-bdcolor" id="sidenav-main">
     <div class="container-fluid">
         <!-- Toggler -->
-        <button class="navbar-toggler bg-primary collapsed" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->
@@ -77,12 +77,11 @@
             <!-- Collapse header -->
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
-                    <div class="col-6">
-                        <a href="..">
-                            <img src="#" alt='República Fácil'>
-                        </a>
+                    <div class="col-10">
+                        <img src="/images/favicon.png" style='width: 30px' alt='República Fácil'>
+                        <strong>República Fácil</strong>
                     </div>
-                    <div class="col-6 collapse-close">
+                    <div class="col-2 collapse-close">
                         <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
                             <span></span>
                             <span></span>
@@ -91,16 +90,16 @@
                 </div>
             </div>
             <!-- Form -->
-            <form class="mt-4 mb-3 d-md-none">
-                <div class="input-group input-group-rounded input-group-merge">
-                    <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <span class="fa fa-search"></span>
-                        </div>
-                    </div>
-                </div>
-            </form>
+            {{--<form class="mt-4 mb-3 d-md-none">--}}
+                {{--<div class="input-group input-group-rounded input-group-merge">--}}
+                    {{--<input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">--}}
+                    {{--<div class="input-group-prepend">--}}
+                        {{--<div class="input-group-text">--}}
+                            {{--<span class="fa fa-search"></span>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</form>--}}
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-title"></li>

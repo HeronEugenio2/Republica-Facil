@@ -109,7 +109,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <a href='#' class='btn btn-sm btn-danger m-2'>Visualizar</a>
+                                            <a href='{{route('portal.republics.show', $republic->id)}}' class='btn btn-sm btn-danger m-2'>Visualisar</a>
                                         </div>
                                     @endforeach
                                 @endif

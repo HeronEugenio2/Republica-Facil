@@ -66,7 +66,8 @@ class PortalController extends Controller
      */
     public function show($id)
     {
-        //
+        $republic = Republic::find($id);
+        return view('Portal.Republic.Show', compact('republic'));
     }
 
     /**

@@ -23,18 +23,32 @@
                             <small id="spentHelp" class="form-text text-muted">Data de vencimento.
                             </small>
                         </div>
-                        <div id='spentData' class="form-group col-md-3 col-lg-3 col-sm-12">
-                            <label for="inputSpent">Pagamento</label>
-                            <input id="inputSpent" name='dateSpent' type="date" class="form-control" aria-describedby="spentHelp" placeholder="12/05/2019" style='width: 100%'>
-                            <small id="spentHelp" class="form-text text-muted">Data do débito.
-                            </small>
-                        </div>
                         <div id='spentValue' class="form-group col-md-3 col-lg-3 col-sm-12">
                             <label for="inputValue">Valor</label>
-                            <input id="inputValue" name='value' type="number" step='0.01' class="form-control" aria-describedby="spentHelp" placeholder="" style='width: 100%'>
+                            <input name='value' type='text' class="form-control" id='valueVirgula1' style='width: 100%'>
                         </div>
+                        {{--<div id='select'>--}}
+                            {{--<div class="form-check">--}}
+                                {{--<input class="form-check-input" type="radio" name="exampleRadios" id="radio1" value="option1" checked>--}}
+                                {{--<label class="form-check-label" for="exampleRadios1">--}}
+                                    {{--Dividir igual para todos--}}
+                                {{--</label>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-check">--}}
+                                {{--<input class="form-check-input" type="radio" name="exampleRadios" id="radio2" value="option1">--}}
+                                {{--<label class="form-check-label" for="exampleRadios1">--}}
+                                    {{--Editar o valor para cada usuári--}}
+                                {{--</label>--}}
+                            {{--</div>--}}
+                            {{--<div id='selectArea' class='collapse'>--}}
+                                {{--dasd--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+
+
                     </div>
-                    <button type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Salvar</button>
+                    <button id='save1' type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Salvar
+                    </button>
                 </form>
             @else
                 <div class='alert alert-primary'>
@@ -67,7 +81,7 @@
                         </div>
                         <div id='spentValue' class="form-group col-md-4 col-lg-4 col-sm-12">
                             <label for="inputValue">Valor</label>
-                            <input id="inputValue" name='value' type="number" class="form-control" aria-describedby="spentHelp" placeholder="" style='width: 100%'>
+                            <input name='value' type='text' class="form-control" id='valueVirgula' style='width: 100%'>
                         </div>
                         @if($republic != null)
                             <div class="form-group col-md-4 col-lg-4 col-sm-12">
@@ -80,7 +94,9 @@
                             </div>
                         @endif
                     </div>
-                    <button type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Salvar</button>
+                    <button id='save' type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Salvar
+                    </button>
+                    <a href='#' id='aperte'>aperte</a>
                 </form>
             @else
                 <div class='alert alert-primary'>
@@ -100,6 +116,32 @@
             $("#headerVariable").click(function () {
                 $("#bodyVariable").toggle();
             });
+
+            //trocar virgula
+            $('#save').click(function () {
+                let rep = $('#valueVirgula').val();
+                let valuePoint = rep.replace(',', '.');
+                $('#valueVirgula').val(valuePoint);
+            });
+            $('#save1').click(function () {
+                let rep = $('#valueVirgula1').val();
+                let valuePoint = rep.replace(',', '.');
+                $('#valueVirgula1').val(valuePoint);
+            });
+
+            //multiplos pagamentos
+                $('#radio1').click(function () {
+                    $("#radio1"). prop("checked", true);
+                    $('#selectArea').hide();
+                    $("#radio2"). prop("checked", false);
+                });
+            $('#radio2').click(function () {
+                $("#radio2"). prop("checked", true);
+                $('#selectArea').show();
+                $("#radio1"). prop("checked", false);
+            });
+
+
         });
     </script>
 @endpush

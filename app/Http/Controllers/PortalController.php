@@ -8,38 +8,36 @@ use Illuminate\Http\Request;
 /**
  * Class PortalController
  * @package App\Http\Controllers
- * @author Heron Eugenio
+ * @author  Heron Eugenio
  */
 class PortalController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      * @author Heron Eugenio
      */
     public function index()
     {
         $republics = Republic::paginate(6);
-        return view('Portal.welcome', compact('republics'));
 
+        return view('Portal.welcome', compact('republics'));
     }
+
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      * @author Heron Eugenio
      */
     public function indexRepublics()
     {
         $republics = Republic::all();
-        return view('Portal.Republic.Index', compact('republics'));
 
+        return view('Portal.Republic.Index', compact('republics'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -49,8 +47,7 @@ class PortalController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -60,20 +57,19 @@ class PortalController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $republic = Republic::find($id);
+
         return view('Portal.Republic.Show', compact('republic'));
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -83,9 +79,8 @@ class PortalController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -95,8 +90,7 @@ class PortalController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -110,15 +104,21 @@ class PortalController extends Controller
      */
     public function search(Request $request)
     {
-//        dd($request->request);
         $value = $request->input(['search']);
+        //        dd($request->request);
 
-        $republics = Republic::where('city','like','%'.$value.'%')->get();
-        return view('Portal.Republic.Index', compact('republics'));
+        $republics = Republic::where('city', 'like', '%' . $value . '%')->get();
+
+        return view('Portal.Republic.Index', compact('republics', 'value'));
     }
 
-    public function ajaxSearch (Request $request){
-        $value = $request->input('value');
-        $type = $request->input('type');
+    public function ajaxSearch(Request $request)
+    {
+        $value       = $request->input('value');
+        $type        = $request->input('type');
+        $valueSearch = $request->input('valueSearch');
+        $republics   = Republic::where('city', 'like', '%' . $valueSearch . '%')
+                               ->where('type_id', $type)->get();
+        dd($republics);
     }
 }

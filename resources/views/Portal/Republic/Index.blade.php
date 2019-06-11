@@ -8,6 +8,7 @@
             <div class='col-sm-12 col-md-3 col-lg-3'>
                 {{--<form action='{{route('portal.republicSearch')}}' method='POST'>--}}
                 <form action=''>
+                    <input id='valueSearch' type='text' value='{{$value}}'>
                     <div class='card mb-2 bg-light'>
                         <div class='card-body'>
                             <h3>Moradia para</h3>
@@ -27,7 +28,7 @@
                     </div>
                 </form>
                 <form action=''>
-                <div class='card mb-2 bg-light'>
+                    <div class='card mb-2 bg-light'>
                         <div class='card-body '>
                             <h3>Faixa de preço</h3>
                             <div class="form-check">
@@ -130,6 +131,8 @@
             $("#btnFiltro").click(function () {
                 let type = $('.chkType:checked').val();
                 let value = $('.chkValue:checked').val();
+                let valueSearch = $('#valueSearch').val();
+
                 console.log(type);
                 console.log(value);
                 $.ajax({
@@ -138,10 +141,11 @@
                     url: '{{route('portal.ajaxSearch')}}',
                     data: {
                         value: value,
-                        type : type,
+                        type: type,
+                        valueSearch: valueSearch,
                     },
                     success: function (response) {
-                        alert(type);
+                        // alert(valueSearch);
                     },
                     error: function (response) {
 

@@ -25,7 +25,7 @@
         background-color: #e9ebee;
     }
 </style>
-<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-bdcolor" id="sidenav-main">
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-dark bg-dark" id="sidenav-main">
     <div class="container-fluid">
         <!-- Toggler -->
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,7 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand p-0" href="{{ route('home') }}">
-            {{--<img src="{{ asset('/img/brand/logo_perfectpay_h30.png') }}" alt='PerfectPay'>--}}
+            <img src="{{ asset('/images/favicon.png') }}" alt='PerfectPay'>
             República Fácil
         </a>
         <!-- User -->

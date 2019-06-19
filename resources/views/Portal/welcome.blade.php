@@ -4,7 +4,7 @@
         <div class="container text-white">
             <div class='row justify-content-md-center'>
                 <div class='col-12 text-center'>
-                    <img src='{{ asset('/images/favicon.png') }}' style='width: 70px'>
+                    <img src='{{ asset('/images/favicon.png') }}' style='width: 120px'>
                     <h1>Encontre Repúblicas em todo Brasil !</h1>
                     <p>Encontre quartos para alugar em repúblicas ou cadastre a sua.</p>
                 </div>
@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="col-12 text-truncate p-0 mb-2">
                                         <small>
-                                            <i class="fas fa-map-marker-alt text-danger"></i> {{$republic->neighborhood}}, {{$republic->city}} - {{$republic->state}}
+                                            <i class="fas fa-map-marker-alt text-danger"></i> {{$republic->district}}, {{$republic->city}} - {{$republic->state}}
                                         </small>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center">

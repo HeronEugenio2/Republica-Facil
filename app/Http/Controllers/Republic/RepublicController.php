@@ -130,7 +130,7 @@ class RepublicController extends Controller
                                             'type_id'      => $republicRequest->input('type_id'),
                                             'description'  => $republicRequest->input('description') ?? null,
                                             'street'       => $republicRequest->input('street') ?? null,
-                                            'neighborhood' => $republicRequest->input('neighborhood') ?? null,
+                                            'district' => $republicRequest->input('neighborhood') ?? null,
                                             'cep'          => $republicRequest->input('cep') ?? null,
                                             'city'         => $republicRequest->input('city') ?? null,
                                             'state'        => $republicRequest->input('state') ?? null,
@@ -147,7 +147,7 @@ class RepublicController extends Controller
         $republic->type_id      = $input['type_id'];
         $republic->description  = $input['description'];
         $republic->street       = $input['street'];
-        $republic->neighborhood = $input['neighborhood'];
+        $republic->district = $input['district'];
         $republic->cep          = $input['cep'];
         $republic->city         = $input['city'];
         $republic->state        = $input['state'];

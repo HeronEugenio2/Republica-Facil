@@ -114,11 +114,11 @@ class PortalController extends Controller
 
     public function ajaxSearch(Request $request)
     {
+        dd($request);
         $value       = $request->input('value');
         $type        = $request->input('type');
         $valueSearch = $request->input('valueSearch');
         $republics   = Republic::where('city', 'like', '%' . $valueSearch . '%')
                                ->where('type_id', $type)->get();
-        dd($republics);
     }
 }

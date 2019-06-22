@@ -10,17 +10,15 @@
                 </div>
                 <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center'>
                     <div class=''>
-                            <form id="logout-form" action="{{ route('portal.republicSearch') }}" method="POST">
-                                @csrf
-                                <div class="input-group mb-3">
-
+                        <form id="logout-form" action="{{ route('portal.republicSearch') }}" method="POST">
+                            @csrf
+                            <div class="input-group mb-3">
                                 <input class='form-control' type='text' name='search' placeholder='Preencha o nome da cidade'>
-                                    <div id='search' class="input-group-append">
-                                            <button type='submit' class='btn btn-danger'>Buscar</button>
-                                        </div>
+                                <div id='search' class="input-group-append">
+                                    <button type='submit' class='btn btn-danger'>Buscar</button>
                                 </div>
-
-                            </form>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

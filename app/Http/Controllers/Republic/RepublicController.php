@@ -29,7 +29,10 @@ class RepublicController extends Controller
     {
         $user     = auth()->user();
         $republic = $user->republic;
-        $invitations = Invitation::where('republic_id', $user->republic->id)->get();
+        $invitations = [];
+        if (!empty($republic = $user->republic)) {
+            $invitations = Invitation::where('republic_id', $user->republic->id)->get();
+        }
 
         return view('Painel.Republic.Index', compact('republic', 'user', 'invitations'));
     }
@@ -203,7 +206,6 @@ class RepublicController extends Controller
         $user        = auth()->user();
         $republic    = $user->republic;
         $invitations = Invitation::where('republic_id', $user->republic->id)->get();
-
 
         return view('Painel.Republic.Index', compact('republic', 'user', 'invitations'));
     }

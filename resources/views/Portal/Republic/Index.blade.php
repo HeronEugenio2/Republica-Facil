@@ -8,7 +8,6 @@
             <div class='col-sm-12 col-md-3 col-lg-3'>
                 {{--<form action='{{route('portal.republicSearch')}}' method='POST'>--}}
                 <form action=''>
-                    <input id='valueSearch' type='text' value='{{$value}}'>
                     <div class='card mb-2 bg-light'>
                         <div class='card-body'>
                             <h3>Moradia para</h3>
@@ -60,12 +59,15 @@
                 <div class="card">
                     <div class="card-body bg-light pb-0">
                         <div class='form-group'>
-                            <div class="input-group mb-2">
-                                <input class='form-control' type='text' name='search' placeholder='Digite o nome da cidade onde você procura um lugar para alugar'>
-                                <div class="input-group-append">
-                                    <button type='submit' class='btn btn-danger'>Buscar</button>
+                            <form id="logout-form" action="{{ route('portal.republicSearch') }}" method="POST">
+                                @csrf
+                                <div class="input-group mb-2">
+                                    <input class='form-control' id='valueSearch' value='{{$value}}' type='text' name='search' placeholder='Digite o nome da cidade onde você procura um lugar para alugar'>
+                                    <div class="input-group-append">
+                                        <button type='submit' class='btn btn-danger'>Buscar</button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                             <div class="d-flex justify-content-end">
                                 <a href='' class='btn-sm btn btn-danger right mr-1'>
                                     <i class="fas fa-sort-amount-up"></i></a>

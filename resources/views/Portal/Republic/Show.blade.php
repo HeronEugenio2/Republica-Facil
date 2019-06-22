@@ -29,9 +29,9 @@
                 <i class="fas fa-wifi text-success fa-2x"></i> <i class="fas fa-bed text-success fa-2x"></i>
                 <i class="fas fa-smoking text-danger fa-2x"></i>
             </div>
-            <div class='m-4'>
-                <a href='#' class='btn  btn-success px-4'><i class="fab fa-whatsapp text-white"></i> Contato</a>
-            </div>
+                <div class='m-4'>
+                    <a href='#' class='btn  btn-success px-4'><i class="fab fa-whatsapp text-white"></i> Contato</a>
+                </div>
         </center>
     </section>
 @endsection

@@ -21,6 +21,7 @@ class Republic extends Model
         'description',
         'qtdMembers',
         'qtdVacancies',
+        'value',
         'type_id',
         'street',
         'district',

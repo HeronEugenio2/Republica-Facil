@@ -21,10 +21,10 @@ class CreateRepublicsTable extends Migration
             $table->string('image')->nullable()->default('http://semantic-ui.com/images/wireframe/image.png');
             $table->string('name');
             $table->string('email');
-            $table->float('value')->nullable();
             $table->text('description')->nullable();
             $table->integer('qtdMembers')->default(0);
             $table->integer('qtdVacancies')->default(0);
+            $table->float('value')->nullable()->default(0);
             $table->string('street')->nullable();
 //            $table->string('neighborhood')->nullable();
             $table->string('district')->nullable();

@@ -14,7 +14,8 @@
                     <strong>Endereço:</strong> {{$republic->street}}, {{$republic->number}}<br>
                     <strong>Bairro:</strong> {{$republic->neighborhood}}<br> <strong>Cep:</strong> {{$republic->cep}}
                     <br> <strong>Cidade:</strong> {{$republic->city}}<br> <strong>Estado: </strong>{{$republic->state}}
-                    <br> <strong>Gênero:</strong> {{$republic->type->title}}<br>
+                    <br> <strong>Gênero:</strong> {{$republic->type->title}}<br> <br>
+                    <strong>Preço:</strong> R$ {{money_format('%.2n' ,$republic->value)}}<br>
                     <div class='mt-4'>
                         <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-danger">Editar</a>
                     </div>

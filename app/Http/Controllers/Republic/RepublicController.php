@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmailRequest;
 use App\Http\Requests\RepublicRequest;
 
+use App\Models\Invitations\Invitation;
 use App\Models\Republic;
 use App\Models\Type;
 use App\Models\User;
+use App\Notifications\RequestInvitation;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RepublicController extends Controller
@@ -25,8 +29,9 @@ class RepublicController extends Controller
     {
         $user     = auth()->user();
         $republic = $user->republic;
-//dd($republic);
-        return view('Painel.Republic.Index', compact('republic', 'user'));
+        $invitations = Invitation::where('republic_id', $user->republic->id)->get();
+
+        return view('Painel.Republic.Index', compact('republic', 'user', 'invitations'));
     }
 
     /**
@@ -130,7 +135,7 @@ class RepublicController extends Controller
                                             'type_id'      => $republicRequest->input('type_id'),
                                             'description'  => $republicRequest->input('description') ?? null,
                                             'street'       => $republicRequest->input('street') ?? null,
-                                            'district' => $republicRequest->input('neighborhood') ?? null,
+                                            'district'     => $republicRequest->input('neighborhood') ?? null,
                                             'cep'          => $republicRequest->input('cep') ?? null,
                                             'city'         => $republicRequest->input('city') ?? null,
                                             'state'        => $republicRequest->input('state') ?? null,
@@ -147,7 +152,7 @@ class RepublicController extends Controller
         $republic->type_id      = $input['type_id'];
         $republic->description  = $input['description'];
         $republic->street       = $input['street'];
-        $republic->district = $input['district'];
+        $republic->district     = $input['district'];
         $republic->cep          = $input['cep'];
         $republic->city         = $input['city'];
         $republic->state        = $input['state'];
@@ -167,8 +172,7 @@ class RepublicController extends Controller
      * @param  \App\Models\Republic $republic
      * @return \Illuminate\Http\Response
      */
-    public
-    function destroy($id)
+    public function destroy($id)
     {
         // delete
         $republic = Republic::find($id);
@@ -177,5 +181,30 @@ class RepublicController extends Controller
         $republic = Republic::with('User', 'type')->where('user_id', auth()->user()->id)->get()->first();
 
         return view('Painel.Republic.Republic', compact('republic'));
+    }
+
+    public function invitation(Request $request)
+    {
+        $user = User::where('id', $request['user_id'])->first();
+
+        $updateOrCreate = Invitation::updateOrCreate(
+            ['email' => $request['email']],
+            [
+                'republic_id' => $user->republic->id,
+                'user_id'     => $user->id,
+                'email'       => $request['email'],
+            ]
+        );
+        $data           = [
+            'userName'     => $user->name,
+            'republicName' => $user->republic->name,
+        ];
+        //        $user->notify(new RequestInvitation($data));
+        $user        = auth()->user();
+        $republic    = $user->republic;
+        $invitations = Invitation::where('republic_id', $user->republic->id)->get();
+
+
+        return view('Painel.Republic.Index', compact('republic', 'user', 'invitations'));
     }
 }

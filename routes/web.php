@@ -49,6 +49,8 @@ Route::group(
         Route::resource('/tarefas', 'AssignmentController')->names('assignment');
         //Advertisement
         Route::resource('/anuncios', 'Painel\AdvertisementController')->names('advertisement');
+        //Invitations
+        Route::post('/email', 'RepublicController@invitation')->name('invitation');
     }
 );
 Route::group(

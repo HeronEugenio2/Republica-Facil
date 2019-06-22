@@ -16,7 +16,7 @@
         background: #555;
     }
     .bg-nav {
-        background: #4267b2 !important;
+        background: #414958 !important;
     }
     .bg-bdcolor {
         background-color: #e9ebee;

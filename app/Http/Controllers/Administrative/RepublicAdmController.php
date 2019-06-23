@@ -36,7 +36,7 @@ class RepublicAdmController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -55,7 +55,7 @@ class RepublicAdmController extends Controller
      */
     public function create()
     {
-        //
+        dd('vre');
     }
 
     /**
@@ -66,7 +66,10 @@ class RepublicAdmController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $republic = Republic::find($id);
+        $republic->active_flag = $request['active_flag'];
+        $republic->save();
+        return redirect()->back();
     }
 
     /**
@@ -77,5 +80,11 @@ class RepublicAdmController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function activation()
+    {
+        $republics = Republic::paginate(20);
+
+        return view('Administrative.Republics', compact('republics'));
     }
 }

@@ -10,32 +10,20 @@
                     <table class="table table-bordered table-hover table-striped text-center">
                         <thead>
                             <tr>
-                                <th scope="col">#ID</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Vagas</th>
                                 <th scope="col">Tipo</th>
-                                <th scope="col">Ativo</th>
+                                <th scope="col">Ativar</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($republics as $republic)
                                 <tr class='text-center'>
-                                    <td>{{$republic->id}}</td>
                                     <td>{{$republic->name}}</td>
                                     <td>{{$republic->email}}</td>
-                                    <td>{{$republic->qtdVacancies}}</td>
                                     <td>{{$republic->type->title}}</td>
                                     <td>
-                                        <form action="{{route('administrative.republics.update', $republic->id)}}" method="POST" >
-                                            @method('PUT')
-                                            @csrf
-                                            @if($republic->active_flag == 0)
-                                                <button type='submit' class='btn btn-sm btn-danger'  name='active_flag' value='1'>Não</button>
-                                            @else
-                                                <button type='submit' class='btn btn-sm btn-success' name='active_flag' value='0'>Sim</button>
-                                            @endif
-                                        </form>
+                                        <input type='checkbox' id='active_flag' name='active_flag'>
                                     </td>
                                 </tr>
                             @endforeach
@@ -51,8 +39,3 @@
         </div>
     @endif
 @endsection
-{{--@push('scripts')--}}
-{{--<script type='text/javascript'>--}}
-{{----}}
-{{--</script>--}}
-{{--@endpush--}}

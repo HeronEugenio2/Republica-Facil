@@ -84,12 +84,12 @@
                     @endif
                 @endauth
             @endif
-            <li class="nav-item">
-                <a href="{{ route('portal.search') }}" class="nav-link">Procurar</a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('portal.search') }}" class="nav-link">Mercado</a>
-            </li>
+            {{--<li class="nav-item">--}}
+                {{--<a href="{{ route('portal.search') }}" class="nav-link">Procurar</a>--}}
+            {{--</li>--}}
+            {{--<li class="nav-item">--}}
+                {{--<a href="{{ route('portal.search') }}" class="nav-link">Mercado</a>--}}
+            {{--</li>--}}
         </ul>
         <form class="form-inline my-2 my-lg-0">
             @csrf

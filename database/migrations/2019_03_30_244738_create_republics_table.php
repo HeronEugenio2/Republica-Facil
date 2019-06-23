@@ -34,6 +34,7 @@ class CreateRepublicsTable extends Migration
             $table->integer('number')->nullable();
             $table->unsignedInteger('type_id')->index();
             $table->unsignedInteger('assignment_id')->nullable()->index();
+            $table->boolean('active_flag')->default(0)->index();
             $table->timestamps();
         });
         Schema::table('republics', function(Blueprint $table) {

@@ -25,13 +25,14 @@ Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProv
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(
     [
-        'prefix'     => 'administrative',
+        'prefix'     => 'administracao',
         'as'         => 'administrative.',
         'middleware' => ['auth'],
     ],
     function() {
         //REPUBLIC
-        Route::resource('/republicas', 'Administrative\RepublicAdmController')->names('republics');
+        Route::resource('republicas', 'Administrative\RepublicAdmController')
+             ->names('republics');
     }
 );
 Route::group(

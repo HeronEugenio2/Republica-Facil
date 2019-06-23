@@ -92,8 +92,6 @@
                 let value = $('.chkValue:checked').val();
                 let valueSearch = $('#valueSearch').val();
 
-                console.log(type);
-                console.log(value);
                 $.ajax({
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
                     method: 'POST',
@@ -104,7 +102,6 @@
                         valueSearch: valueSearch,
                     },
                     success: function (response) {
-                        // alert(valueSearch);
                         $('.album').html(response);
                     },
                     error: function (response) {

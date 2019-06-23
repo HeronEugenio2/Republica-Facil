@@ -7,6 +7,17 @@
             <div class="card">
                 <div class="card-header bg-nav text-white">Sua República</div>
                 <div class="card-body">
+                    <div class='mb-4'>
+                        @if($republic->active_flag == 0)
+                            <h2>
+                                <span class="badge badge-warning px-4" value='{{$republic->active_flag}}'>Em Análise</span>
+                            </h2>
+                        @else
+                            <h2>
+                                <span class="text-success" value='{{$republic->active_flag}}'>Ativa <i class="fas fa-check"></i></span>
+                            </h2>
+                        @endif
+                    </div>
                     <strong>Nome: </strong> {{$republic->name}}<br> <strong>Email:</strong> {{$republic->email}}<br>
                     <strong>Descrição:</strong> {{$republic->description}}<br>
                     <strong>Quantidade Membros:</strong> {{$republic->qtdMembers}}<br>
@@ -17,7 +28,7 @@
                     <br> <strong>Gênero:</strong> {{$republic->type->title}}<br> <br>
                     <strong>Preço:</strong> R$ {{money_format('%.2n' ,$republic->value)}}<br>
                     <div class='mt-4'>
-                        <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-danger">Editar</a>
+                        <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Editar</a>
                     </div>
                     <hr>
                     <h4>Membros</h4>
@@ -49,17 +60,24 @@
                     <form action='{{route('painel.invitation')}}' method='POST' class='mb-2'>
                         @csrf
                         <input type='hidden' name='user_id' value='{{$user->id}}'>
-                        <div id='email' class="form-group col-12 p-0">
-                            <div class="form-group">
-                                <label for="inputEmail">E-mail</label>
-                                <input id="inputEmail" name='email' type="email" class="form-control"
-                                       aria-describedby="emailHelp" placeholder="Ex: member@gmail.com" style='width: 100%'
-                                       required>
-                                <small id="emailHelp" class="form-text text-muted">Envie uma confirmação para o email de seu membro.
-                                </small>
+                        {{--<div id='email' class="form-group col-12 p-0">--}}
+                        {{--<div class="form-group">--}}
+                        {{--<label for="inputEmail">E-mail</label>--}}
+                        {{--<input id="inputEmail" name='email' type="email" class="form-control"--}}
+                        {{--aria-describedby="emailHelp" placeholder="Ex: member@gmail.com" style='width: 100%'--}}
+                        {{--required>--}}
+                        {{--<small id="emailHelp" class="form-text text-muted">Envie uma confirmação para o email de seu membro.--}}
+                        {{--</small>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<button type='submit' href="#" class="btn btn-danger">Enviar Convite</button>--}}
+                        <label>Para adicionar membros à sua república é preciso que o usuário aceite o convite no e-mail.</label>
+                        <div class="input-group mb-3">
+                            <input name='email' type="email" class="form-control" placeholder="Endereço de e-mail do convidado" aria-label="Recipient's username" aria-describedby="basic-addon2" style='border-top-right-radius: initial;border-bottom-right-radius: initial;'>
+                            <div class="input-group-append">
+                                <button type='submit' href="#" class="btn btn-secondary">Enviar Convite</button>
                             </div>
                         </div>
-                        <button type='submit' href="#" class="btn btn-danger">Enviar Convite</button>
                     </form>
                     @if(count($invitations)>0)
                         <div class='table-responsive'>

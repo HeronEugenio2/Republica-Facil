@@ -30,9 +30,9 @@
                     <div class='mt-4'>
                         <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Editar</a>
                     </div>
-                    <hr>
-                    <h4>Membros</h4>
                     @if(count($invitations)>0)
+                        <hr>
+                        <h4>Membros</h4>
                         <div class='table-responsive'>
                             <table class="table table-bordered table-sm table-hover table-striped text-center">
                                 <thead>
@@ -44,7 +44,8 @@
                                 <tbody>
                                     @foreach($republic->user as $user)
                                         <tr class='text-center'>
-                                            <td>{{$user->name}}</td>
+                                            <td><a href='#' class='float-left'><i class="fas fa-user-times text-danger"></i></a>
+                                                {{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                         </tr>
                                     @endforeach

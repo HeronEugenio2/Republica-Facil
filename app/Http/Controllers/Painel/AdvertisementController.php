@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdvertisementRequest;
 use App\Models\Advertisement;
 use App\Models\AdvertisementCategory;
+use App\Models\Republic;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdvertisementController extends Controller
 {
@@ -17,12 +19,9 @@ class AdvertisementController extends Controller
      */
     public function index()
     {
-        $user     = auth()->user();
-        $republic = $user->republic;
-        $spents   = $republic->spents;
-        $adverts = Advertisement::all();
-//        dd($adverts);
-        return view('Painel.Advertisement.Index', compact('adverts', 'republic', 'spents'));
+        $user = Auth::user();
+        $user = User::with('republic.advertisements')->where('id', $user->id)->first();
+        return view('Painel.Advertisement.Index', compact('user'));
     }
 
     /**

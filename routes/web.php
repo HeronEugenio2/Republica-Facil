@@ -10,9 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/login2', function() {
-    return View::make('auth.login2');
-})->name('login2');
 
 Route::resource('/', 'PortalController')->names('portal');
 Route::resource('/mercado', 'AdvertisementController')->names('advertisement');
@@ -33,6 +30,9 @@ Route::group(
         //REPUBLIC
         Route::resource('republicas', 'Administrative\RepublicAdmController')
              ->names('republics');
+        //ADVERTISEMENT
+        Route::resource('anuncios', 'Administrative\AdvertisementAdmController')
+             ->names('advertisements');
     }
 );
 Route::group(

@@ -24,7 +24,7 @@ class CreateAdvertisementsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('category_id')->nullable();
             $table->unsignedInteger('image_id')->nullable();
-            $table->tinyInteger('active_enum')->nullable()->default(0);
+            $table->tinyInteger('active_flag')->nullable()->default(0);
             $table->timestamps();
         });
         Schema::table('advertisements', function(Blueprint $table) {

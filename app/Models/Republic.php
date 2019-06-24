@@ -66,4 +66,13 @@ class Republic extends Model
     {
         return $this->hasMany(Spent::class, 'republic_id', 'id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @auathor Heron Eugenio
+     */
+    public function advertisements()
+    {
+        return $this->hasMany(Advertisement::class);
+    }
 }

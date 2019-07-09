@@ -41,15 +41,14 @@
                                         </td>
                                         <td class='align-middle'>
                                             <div class='btn-group'>
-                                                <a href="{{route('painel.advertisement.show',$advertisement->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
-                                                    <i class="fas fa-eye fa-2x"></i>
-                                                </a>
-                                                <a href="{{route('painel.advertisement.show',$advertisement->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
-                                                    <i class="fas fa-eye fa-2x"></i>
-                                                </a>
-                                                <a href="{{route('painel.advertisement.show',$advertisement->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
-                                                    <i class="fas fa-eye fa-2x"></i>
-                                                </a>
+                                                <form action="{{ route('painel.advertisement.destroy', $advertisement->id)}}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <a href="{{route('painel.advertisement.show',$advertisement->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
+                                                        <i class="fas fa-eye fa-2x"></i>
+                                                    </a>
+                                                    <button class="btn btn-danger btn-sm mb-2" type="submit"><i class="fas fa-trash"></i></button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>

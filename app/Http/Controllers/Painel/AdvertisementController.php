@@ -98,7 +98,6 @@ class AdvertisementController extends Controller
         $republic      = $user->republic;
         $advCategories = AdvertisementCategory::all();
 
-        //        dd($advCategories);
         return view('Painel.Advertisement.Create', compact('republic', 'user', 'advCategories'));
     }
 
@@ -120,6 +119,9 @@ class AdvertisementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $advert = Advertisement::find($id);
+        $advert->delete();
+
+//        return redirect()->with('success', 'Stock has been deleted Successfully');
     }
 }

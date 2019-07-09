@@ -204,7 +204,7 @@ class RepublicController extends Controller
             'userName'     => $user->name,
             'republicName' => $user->republic->name,
         ];
-        //        $user->notify(new RequestInvitation($data));
+                $user->notify(new RequestInvitation($data));
         $user        = auth()->user();
         $republic    = $user->republic;
         $invitations = Invitation::where('republic_id', $user->republic->id)->get();

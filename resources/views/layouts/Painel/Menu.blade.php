@@ -140,8 +140,8 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('administrative.republics.index')}}">Repúblicas</a>
-                            <a class="dropdown-item" href="{{route('painel.republic.index')}}">Casas</a>
-                            <a class="dropdown-item" href="{{route('painel.republic.index')}}">Comércio</a>
+                            <a class="dropdown-item" href="{{route('administrative.advertisements.index')}}">Anúncios</a>
+{{--                            <a class="dropdown-item" href="{{route('painel.advertisement.index')}}">Comércio</a>--}}
                         </div>
                     </li>
                 @endif

@@ -21,6 +21,7 @@ class Republic extends Model
         'description',
         'qtdMembers',
         'qtdVacancies',
+        'value',
         'type_id',
         'street',
         'district',
@@ -64,5 +65,14 @@ class Republic extends Model
     public function spents()
     {
         return $this->hasMany(Spent::class, 'republic_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @auathor Heron Eugenio
+     */
+    public function advertisements()
+    {
+        return $this->hasMany(Advertisement::class);
     }
 }

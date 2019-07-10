@@ -98,7 +98,7 @@
                             </small>
                         </div>
                     </div>
-                    <div id='type' class="form-group col-md-4 col-lg-4 col-sm-12">
+                    <div id='type' class="form-group col-md-2 col-lg-2 col-sm-12">
                         <label for="inputType">Tipo:</label>
                         @if(isset($types))
                             <select name='type_id' class='form-control col' id="inputCategory" required>
@@ -108,9 +108,17 @@
                             </select>
                         @endif
                     </div>
+                    <div id='valueDiv' class="form-group col-md-2 col-lg-2 col-sm-12">
+                        <div class="form-group">
+                            <label for="value">Preço</label>
+                            <input id="value" value='{{isset($republic)?$republic->value:old('value')??''}}' name='value' type="number" class="form-control"
+                                   aria-describedby="vacancyHelp" placeholder="R$ 450,00" style='width: 100%' required>
+                            <small id="vacancyHelp" class="form-text text-muted">Valor do aluguel da república
+                            </small>
+                        </div>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Salvar
-                </button>
                 </button>
             </form>
         </div>

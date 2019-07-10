@@ -31,7 +31,7 @@ class PortalController extends Controller
      */
     public function indexRepublics()
     {
-        $republics = Republic::all();
+        $republics = Republic::where('active_flag', 1)->get();
 
         return view('Portal.Republic.Index', compact('republics'));
     }
@@ -107,18 +107,45 @@ class PortalController extends Controller
         $value = $request->input(['search']);
         //        dd($request->request);
 
-        $republics = Republic::where('city', 'like', '%' . $value . '%')->get();
+        $republics = Republic::where('active_flag', 1)->where('city', 'like', '%' . $value . '%')->take(20)->get();
 
         return view('Portal.Republic.Index', compact('republics', 'value'));
     }
 
     public function ajaxSearch(Request $request)
     {
-        dd($request);
         $value       = $request->input('value');
         $type        = $request->input('type');
         $valueSearch = $request->input('valueSearch');
-        $republics   = Republic::where('city', 'like', '%' . $valueSearch . '%')
-                               ->where('type_id', $type)->get();
+
+        if ($value == 'all') {
+            if (!isset($valueSearch)) {
+                $republics = Republic::where('type_id', $type)
+                                     ->where('value', '>', 500)
+                                     ->where('active_flag', 1)
+                                     ->take(20)->get();
+
+                return view('Portal.Republic.IncludeSearch', compact('republics', 'value'))->render();
+            }
+            $republics = Republic::where('city', 'like', '%' . $valueSearch . '%')
+                                 ->where('active_flag', 1)
+                                 ->where('type_id', $type)
+                                 ->where('value', '>', 500)->take(20)->get();
+
+            return view('Portal.Republic.IncludeSearch', compact('republics', 'value'))->render();
+        }
+        if (!isset($valueSearch)) {
+            $republics = Republic::where('type_id', $type)
+                                 ->whereBetween('value', [$value - 99, $value])
+                                 ->where('active_flag', 1)->take(20)->get();
+
+            return view('Portal.Republic.IncludeSearch', compact('republics', 'value'))->render();
+        }
+        $republics = Republic::where('city', 'like', '%' . $valueSearch . '%')
+                             ->where('active_flag', 1)
+                             ->where('type_id', $type)
+                             ->whereBetween('value', [$value - 99, $value])->take(20)->get();
+
+        return view('Portal.Republic.IncludeSearch', compact('republics', 'value'))->render();
     }
 }

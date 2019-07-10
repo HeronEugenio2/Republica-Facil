@@ -27,8 +27,8 @@ class RepublicController extends Controller
      */
     public function index()
     {
-        $user     = auth()->user();
-        $republic = $user->republic;
+        $user        = auth()->user();
+        $republic    = $user->republic;
         $invitations = [];
         if (!empty($republic = $user->republic)) {
             $invitations = Invitation::where('republic_id', $user->republic->id)->get();
@@ -63,6 +63,7 @@ class RepublicController extends Controller
                     'email'        => $republicRequest->input('email'),
                     'qtdMembers'   => $republicRequest->input('qtdMembers'),
                     'qtdVacancies' => $republicRequest->input('qtdVacancies'),
+                    'value'        => $republicRequest->input('value'),
                     'type_id'      => $republicRequest->input('type_id'),
                     'description'  => $republicRequest->input('description') ?? null,
                     'street'       => $republicRequest->input('street') ?? null,
@@ -152,6 +153,7 @@ class RepublicController extends Controller
         $republic->email        = $input['email'];
         $republic->qtdMembers   = $input['qtdMembers'];
         $republic->qtdVacancies = $input['qtdVacancies'];
+        $republic->value        = $input['value'];
         $republic->type_id      = $input['type_id'];
         $republic->description  = $input['description'];
         $republic->street       = $input['street'];

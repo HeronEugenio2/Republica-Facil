@@ -22,25 +22,6 @@ class RepublicRequest extends FormRequest
     }
 
     /**
-     * The attributes that are mass assignable.
-     * @var array
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'qtdMembers',
-        'qtdVacancies',
-        'type_id',
-        'description',
-        'street',
-        'district',
-        'cep',
-        'city',
-        'state',
-        'number',
-    ];
-
-    /**
      * Get the validation rules that apply to the request.
      * @return array
      * @author Heron Eugenio
@@ -52,6 +33,7 @@ class RepublicRequest extends FormRequest
             'email'        => 'required|string|max:255',
             'qtdMembers'   => 'required|string|max:255',
             'qtdVacancies' => 'required|string|max:255',
+            'value'        => 'required|required|regex:/^\d+(\.\d{1,2})?$/',
             'type_id'      => 'required|numeric',
             'description'  => 'string|nullable',
             'street'       => 'string|nullable',

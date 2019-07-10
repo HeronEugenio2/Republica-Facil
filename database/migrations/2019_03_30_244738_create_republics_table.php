@@ -21,10 +21,10 @@ class CreateRepublicsTable extends Migration
             $table->string('image')->nullable()->default('http://semantic-ui.com/images/wireframe/image.png');
             $table->string('name');
             $table->string('email');
-            $table->float('value')->nullable();
             $table->text('description')->nullable();
             $table->integer('qtdMembers')->default(0);
             $table->integer('qtdVacancies')->default(0);
+            $table->float('value')->nullable()->default(0);
             $table->string('street')->nullable();
 //            $table->string('neighborhood')->nullable();
             $table->string('district')->nullable();
@@ -34,6 +34,7 @@ class CreateRepublicsTable extends Migration
             $table->integer('number')->nullable();
             $table->unsignedInteger('type_id')->index();
             $table->unsignedInteger('assignment_id')->nullable()->index();
+            $table->boolean('active_flag')->default(0)->index();
             $table->timestamps();
         });
         Schema::table('republics', function(Blueprint $table) {

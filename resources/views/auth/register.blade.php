@@ -39,42 +39,36 @@
         <img src="/images/logoRF.png" alt="" width="240">
     </a>
     <div class="form-group my-1">
-        <label for="name" class="col-form-label text-md-right">{{ __('Name') }}</label>
-        <div class="">
-            <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-            @if ($errors->has('name'))
-                <span class="invalid-feedback" role="alert">
+        {{--<label for="name" class="col-form-label text-md-right">{{ __('Name') }}</label>--}}
+        <input placeholder='Digite seu nome' id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+        @if ($errors->has('name'))
+            <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('name') }}</strong>
                 </span>
-            @endif
-        </div>
+        @endif
     </div>
     <div class="form-group my-1">
-        <label for="email" class="col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-        <div class="">
-            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-            @if ($errors->has('email'))
-                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-            @endif
-        </div>
+        {{--<label for="email" class="col-form-label text-md-right">{{ __('E-Mail Address') }}</label>--}}
+        <input placeholder='Seu e-mail' id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+        @if ($errors->has('email'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('email') }}</strong>
+            </span>
+        @endif
     </div>
     <div class="form-group my-1">
-        <label for="password" class="col-form-label text-md-right">{{ __('Password') }}</label>
-        <div class="">
-            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-            @if ($errors->has('password'))
-                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-            @endif
-        </div>
+        {{--<label for="password" class="col-form-label text-md-right">{{ __('Password') }}</label>--}}
+        <input placeholder='Digite uma senha' id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+        @if ($errors->has('password'))
+            <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
+        @endif
     </div>
     <div class="form-group my-1">
-        <label for="password-confirm" class="col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+        {{--<label for="password-confirm" class="col-form-label text-md-right">{{ __('Confirm Password') }}</label>--}}
         <div class="">
-            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+            <input placeholder='Confirme sua senha' id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
         </div>
     </div>
     <div class="form-group mt-2 mb-0">

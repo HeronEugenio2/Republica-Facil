@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Administrative;
 
 use App\Http\Controllers\Controller;
+use App\Models\Advertisement;
 use App\Models\Republic;
 use Illuminate\Http\Request;
 
-class RepublicAdmController extends Controller
+class AdvertisementAdmController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,11 @@ class RepublicAdmController extends Controller
      */
     public function index()
     {
-        $republics = Republic::with('type')->get();
+        $advertisements = Advertisement::with('category')->paginate(20);
 
-        return view('Administrative.Republics', compact('republics'));
+        //        dd($advertisements);
+
+        return view('Administrative.Advertisements', compact('advertisements'));
     }
 
     /**
@@ -26,8 +29,7 @@ class RepublicAdmController extends Controller
      */
     public function show($id)
     {
-        $republic = Republic::find($id);
-        return view('Administrative.Republics.Show', compact('republic'));
+        //
     }
 
     /**
@@ -56,7 +58,7 @@ class RepublicAdmController extends Controller
      */
     public function create()
     {
-        dd('vre');
+        //
     }
 
     /**
@@ -67,9 +69,10 @@ class RepublicAdmController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $republic = Republic::find($id);
-        $republic->active_flag = $request['active_flag'];
-        $republic->save();
+        $advertisement              = Advertisement::find($id);
+        $advertisement->active_flag = $request['active_flag'];
+        $advertisement->save();
+
         return redirect()->back();
     }
 
@@ -82,6 +85,7 @@ class RepublicAdmController extends Controller
     {
         //
     }
+
     public function activation()
     {
         $republics = Republic::paginate(20);

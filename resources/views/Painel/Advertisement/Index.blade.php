@@ -8,13 +8,14 @@
                 <i class="fas fa-plus-circle"></i> Novo Anúncio
             </a>
             <hr>
-            @if($republic != null)
-                @if(isset($adverts))
+
+            @if($user->republic != null)
+                @if(isset($user->republic->advertisements))
                     <div class='table-responsive'>
-                        <table class="table table-bordered table-hover table-striped text-center">
+                        <table class="table table-bordered table-hover table-striped  table-sm text-center">
                             <thead>
                                 <tr>
-                                    {{--<th scope="col" class='bg-nav text-white' width='10%'>Imagem</th>--}}
+                                    <th scope="col" class='bg-nav text-white' width='10%'>Imagem</th>
                                     <th scope="col" class='bg-nav text-white'>Título</th>
                                     <th scope="col" class='bg-nav text-white'>Descrição</th>
                                     <th scope="col" class='bg-nav text-white'>Valor</th>
@@ -23,16 +24,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($adverts as $advert)
-                                    <tr class='text-center'>
-                                        {{--<td class='align-middle'>--}}
-                                            {{--<img src="{{$advert->image->url}}" height="42" width="42">--}}
-                                        {{--</td>--}}
-                                        <td class='align-middle'>{{$advert->title}}</td>
-                                        <td class='align-middle'>{{$advert->description}}</td>
-                                        <td class='align-middle'>R$ {{number_format($advert->value,2,',', '.')}}</td>
+                                @foreach($user->republic->advertisements as $advertisement)
+                                <tr class='text-center'>
                                         <td class='align-middle'>
-                                            @if($advert->active_enum==1)
+                                            <img src="{{$advertisement->image}}" height="42" width="42">
+                                        </td>
+                                        <td class='align-middle'>{{$advertisement->title}}</td>
+                                        <td class='align-middle'>{{$advertisement->description}}</td>
+                                        <td class='align-middle'>R$ {{number_format($advertisement->value,2,',', '.')}}</td>
+                                        <td class='align-middle'>
+                                            @if($advertisement->active_flag==1)
                                                 <i class="fas fa-thumbs-up fa-2x text-success"></i>
                                             @else
                                                 <i class="fas fa-thumbs-down fa-2x text-danger"></i>
@@ -40,13 +41,13 @@
                                         </td>
                                         <td class='align-middle'>
                                             <div class='btn-group'>
-                                                <a href="{{route('painel.advertisement.show',$advert->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
+                                                <a href="{{route('painel.advertisement.show',$advertisement->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
                                                     <i class="fas fa-eye fa-2x"></i>
                                                 </a>
-                                                <a href="{{route('painel.advertisement.show',$advert->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
+                                                <a href="{{route('painel.advertisement.show',$advertisement->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
                                                     <i class="fas fa-eye fa-2x"></i>
                                                 </a>
-                                                <a href="{{route('painel.advertisement.show',$advert->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
+                                                <a href="{{route('painel.advertisement.show',$advertisement->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
                                                     <i class="fas fa-eye fa-2x"></i>
                                                 </a>
                                             </div>

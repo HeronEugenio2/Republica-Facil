@@ -84,12 +84,12 @@
                     @endif
                 @endauth
             @endif
-            <li class="nav-item">
-                <a href="{{ route('portal.search') }}" class="nav-link">Procurar</a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('portal.search') }}" class="nav-link">Mercado</a>
-            </li>
+            {{--<li class="nav-item">--}}
+                {{--<a href="{{ route('portal.search') }}" class="nav-link">Procurar</a>--}}
+            {{--</li>--}}
+            {{--<li class="nav-item">--}}
+                {{--<a href="{{ route('portal.search') }}" class="nav-link">Mercado</a>--}}
+            {{--</li>--}}
         </ul>
         <form class="form-inline my-2 my-lg-0">
             @csrf
@@ -102,7 +102,7 @@
     @yield('content')
 </div>
 <!-- Scripts -->
-<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+{{--<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>--}}
 <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>

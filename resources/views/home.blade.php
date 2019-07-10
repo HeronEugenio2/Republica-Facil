@@ -2,23 +2,41 @@
 @extends('layouts.Painel.LayoutFull')
 
 @section('content')
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Convites Pendentes</div>
+                    <div class="card-body">
+                        @if(count($invitations)>0)
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+                            <table class='table-sm table-striped table-light w-100 text-center'>
+                                <tr>
+                                    <td>Usuário</td>
+                                    <td>República</td>
+                                    <td>Aceitar</td>
+                                </tr>
+                                @foreach($invitations as $invitation)
+                                    <tr>
+                                        <td>{{$invitation->user->name}}</td>
+                                        <td>{{$invitation->republic->name}}</td>
+                                        <td>
+                                            <a href='#' class='btn btn-sm btn-primary'>Sim</a>
+                                            <a href='#' class='btn btn-sm btn-danger'>Não</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        @else
+                            <div class='alert alert-primary w-100 mb-0'>Você não possui convites</div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

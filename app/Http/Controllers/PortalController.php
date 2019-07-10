@@ -32,6 +32,7 @@ class PortalController extends Controller
      */
     public function indexRepublics()
     {
+        //TODO ta faltando with('categories')
         $republics = Republic::where('active_flag', 1)->get();
 
         return view('Portal.Republic.Index', compact('republics'));
@@ -42,8 +43,7 @@ class PortalController extends Controller
      */
     public function indexAdvertisement()
     {
-        $advertisementes = Advertisement::where('active_flag', 1)->get();
-
+        $advertisementes = Advertisement::where('active_flag', 1)->paginate(45);
         return view('Portal.Advertisement.Index', compact('advertisementes'));
     }
 

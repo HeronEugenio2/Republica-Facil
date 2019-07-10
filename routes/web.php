@@ -60,6 +60,8 @@ Route::group(
         'as'         => 'portal.',
     ],
     function() {
+        //ANUNCIOS
+        Route::get('/anuncios', 'PortalController@indexAdvertisement')->name('advertisement');
         //WELCOME
         Route::resource('/republicas', 'PortalController')->names('republics');
         //PROCURAR

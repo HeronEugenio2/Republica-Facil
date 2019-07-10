@@ -12,6 +12,7 @@
                     <br> Crédito Individual =
                     <strong class='float-right text-success'>R${{number_format($spentsIndividual, 2, ',', ' ')}}</strong>
                     <br> $media = <strong class='float-right '>R${{number_format($media, 2, ',', ' ')}}</strong>
+                    <br> Valor dividído entre = <strong class='float-right '>{{$republic->qtdMembers}} membros</strong>
                 </div>
                 <div class='card-footer text-center'>
                     @if($result>0)

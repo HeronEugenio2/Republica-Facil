@@ -70,7 +70,6 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             @if (Route::has('login'))
-
                 @auth
                     <li class="nav-item">
                         <a href="{{ url('/home') }}" class="nav-link">Painel</a>
@@ -87,15 +86,16 @@
             {{--<li class="nav-item">--}}
                 {{--<a href="{{ route('portal.search') }}" class="nav-link">Procurar</a>--}}
             {{--</li>--}}
-            {{--<li class="nav-item">--}}
-                {{--<a href="{{ route('portal.search') }}" class="nav-link">Mercado</a>--}}
-            {{--</li>--}}
+            <li class="nav-item">
+                <a href="{{ route('portal.advertisement') }}" class="nav-link">Anúncios</a>
+            </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            @csrf
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        {{--<form class="form-inline my-2 my-lg-0">--}}
+            {{--@csrf--}}
+            {{--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--}}
+            {{--<button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>--}}
+        {{--</form>--}}
+        <i class="fab fa-github fa-2x"></i>
     </div>
 </nav>
 <div class='container-fluid p-0'>

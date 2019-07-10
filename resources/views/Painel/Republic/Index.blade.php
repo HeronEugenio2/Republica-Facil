@@ -30,8 +30,8 @@
                     <div class='mt-4'>
                         <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Editar</a>
                     </div>
-                    @if(count($invitations)>0)
-                        <hr>
+                    @if(isset($invitations) && count($invitations)>0)
+                        <hr>i
                         <h4>Membros</h4>
                         <div class='table-responsive'>
                             <table class="table table-bordered table-sm table-hover table-striped text-center">

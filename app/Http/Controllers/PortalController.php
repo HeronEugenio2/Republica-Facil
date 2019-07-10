@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advertisement;
 use App\Models\Republic;
 use Illuminate\Http\Request;
 
@@ -34,6 +35,16 @@ class PortalController extends Controller
         $republics = Republic::where('active_flag', 1)->get();
 
         return view('Portal.Republic.Index', compact('republics'));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function indexAdvertisement()
+    {
+        $advertisementes = Advertisement::where('active_flag', 1)->get();
+
+        return view('Portal.Advertisement.Index', compact('advertisementes'));
     }
 
     /**

@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
     /**
@@ -32,7 +33,7 @@ class User extends Authenticatable
     /**
      * @var array
      */
-    protected $with = [ 'republic.type', 'republic.assignmets', 'republic.spents', 'historySpents'];
+    protected $with = ['republic.type', 'republic.assignmets', 'republic.spents', 'historySpents'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -47,9 +48,12 @@ class User extends Authenticatable
         return $this->belongsTo(Republic::class);
     }
 
-    public function assignmets()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function assignments()
     {
-        return $this->hasMany(Assignment::class, 'id', 'assignment_id');
+        return $this->belongsToMany(Assignment::class);
     }
 
     public function spents()
@@ -60,5 +64,10 @@ class User extends Authenticatable
     public function historySpents()
     {
         return $this->hasMany(SpentHistory::class);
+    }
+
+    public function userInformation()
+    {
+        return $this->hasOne(UserInformation::class);
     }
 }

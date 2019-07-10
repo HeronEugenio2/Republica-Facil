@@ -12,16 +12,24 @@ class CreateUserInformationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_informations', function(Blueprint $table) {
+        Schema::create('user_informations', function (Blueprint $table) {
             $table->unsignedInteger('id', true);
-            $table->string('name')->nullable();;
-            $table->string('cpf')->nullable();;
-            $table->date('birth')->nullable();
-            $table->boolean('active')->default(0);
+            $table->string('name')->nullable();
+            $table->date('date_birth')->nullable();
+            $table->string('user_type_enum')->nullable();
+            $table->string('email');
+            $table->string('identification_type')->nullable();
+            $table->string('identification_number')->nullable();
+            $table->string('phone_area_code')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('phone_extension')->nullable();
+            $table->string('profile_image_path')->nullable();
+            $table->boolean('complete_image_path')->default(0);
             $table->unsignedInteger('user_id')->index();
             $table->timestamps();
+            $table->softDeletes();
         });
-        Schema::table('user_informations', function(Blueprint $table) {
+        Schema::table('user_informations', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

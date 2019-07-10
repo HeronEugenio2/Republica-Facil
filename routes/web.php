@@ -10,14 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/login2', function() {
+Route::get('/login2', function () {
     return View::make('auth.login2');
 })->name('login2');
 
 Route::resource('/', 'PortalController')->names('portal');
 Route::resource('/mercado', 'AdvertisementController')->names('advertisement');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('login/{provider}', 'Auth\SocialAccountController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
@@ -25,22 +25,22 @@ Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProv
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(
     [
-        'prefix'     => 'administrative',
-        'as'         => 'administrative.',
+        'prefix' => 'administrative',
+        'as' => 'administrative.',
         'middleware' => ['auth'],
     ],
-    function() {
+    function () {
         //REPUBLIC
         Route::resource('/republicas', 'Administrative\RepublicAdmController')->names('republics');
     }
 );
 Route::group(
     [
-        'prefix'     => 'painel',
-        'as'         => 'painel.',
+        'prefix' => 'painel',
+        'as' => 'painel.',
         'middleware' => ['auth'],
     ],
-    function() {
+    function () {
         //REPUBLIC
         Route::resource('/republica', 'RepublicController')->names('republic');
         //SPENT
@@ -55,10 +55,10 @@ Route::group(
 );
 Route::group(
     [
-        'prefix'     => 'portal',
-        'as'         => 'portal.',
+        'prefix' => 'portal',
+        'as' => 'portal.',
     ],
-    function() {
+    function () {
         //WELCOME
         Route::resource('/republicas', 'PortalController')->names('republics');
         //PROCURAR

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -14,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -24,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user     = User::with('republic', 'republic.type')->first();
+        $user = User::with('republic', 'republic.type')->first();
         $republic = $user->republic;
         return view('home', compact('republic'));
     }

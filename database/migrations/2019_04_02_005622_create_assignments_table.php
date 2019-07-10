@@ -15,16 +15,20 @@ class CreateAssignmentsTable extends Migration
     {
         Schema::create('assignments', function (Blueprint $table) {
             $table->unsignedInteger('id', true);
-            $table->date('start');
-            $table->date('end');
-            $table->boolean('situation');
+            $table->string('name', 255);
+            $table->string('description', 255)->nullable();
+            $table->string('image_path')->nullable();
+            $table->date('date_start');
+            $table->date('date_end')->nullable();
+            $table->integer('situation');
+            $table->unsignedInteger('republic_id');
             $table->timestamps();
+            $table->softDeletes();
         });
-        Schema::table('republics', function(Blueprint $table) {
-            $table->foreign('assignment_id')->references('id')->on('assignments');
-        });
-        Schema::table('users', function(Blueprint $table) {
-            $table->foreign('assignment_id')->references('id')->on('assignments');
+
+        Schema::table('assignments', function (Blueprint $table) {
+            $table->foreign('republic_id')->references('id')->on('republics');
+
         });
     }
 
@@ -35,6 +39,9 @@ class CreateAssignmentsTable extends Migration
      */
     public function down()
     {
+        Schema::table('assignments', function (Blueprint $table) {
+            $table->dropForeign('assignments_republic_id_foreign');
+        });
         Schema::dropIfExists('assignments');
     }
 }

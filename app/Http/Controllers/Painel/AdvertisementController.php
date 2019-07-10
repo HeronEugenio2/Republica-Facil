@@ -8,18 +8,27 @@ use App\Models\Advertisement;
 use App\Models\AdvertisementCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AdvertisementController extends Controller
 {
+    private $advertisement;
+
+    public function __construct(Advertisement $advertisement)
+    {
+        $this->advertisement = $advertisement;
+    }
+
     /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $user     = auth()->user();
+        $user = auth()->user();
         $republic = $user->republic;
-        $spents   = $republic->spents;
+        $spents = $republic->spents;
         $adverts = Advertisement::all();
 //        dd($adverts);
         return view('Painel.Advertisement.Index', compact('adverts', 'republic', 'spents'));
@@ -27,7 +36,7 @@ class AdvertisementController extends Controller
 
     /**
      * Display the specified resource.
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -47,15 +56,19 @@ class AdvertisementController extends Controller
     {
 
         try {
+            $imagePath = $advRequest->input('image')->store('uploads', 'public');
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(300, 200);
+            $image->save();
+
             $data = array_filter(
                 [
-//                    'image'       => $advRequest->input('name'),
+                    'image' => $imagePath,
                     'description' => $advRequest->input('description'),
-                    'title'       => $advRequest->input('title'),
-                    'value'       => $advRequest->input('value'),
+                    'title' => $advRequest->input('title'),
+                    'value' => $advRequest->input('value'),
                     'republic_id' => $advRequest->input('republic_id'),
                     'category_id' => $advRequest->input('category_id'),
-                    'user_id'     => $advRequest->input('user_id'),
+                    'user_id' => $advRequest->input('user_id'),
 //                    'image_id'    => $advRequest->input('name'),
 //                    'active'      => $advRequest->input('name'),
                 ]
@@ -63,10 +76,9 @@ class AdvertisementController extends Controller
 
             $dataSaved = $advertisement->create($advRequest->all());
 //            dd($dataSaved);
-            if($dataSaved){
+            if ($dataSaved) {
                 return redirect()->route('painel.advertisement.index');
-            }
-            else{
+            } else {
                 return redirect()->back();
             }
 
@@ -81,7 +93,7 @@ class AdvertisementController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -95,8 +107,8 @@ class AdvertisementController extends Controller
      */
     public function create()
     {
-        $user          = auth()->user();
-        $republic      = $user->republic;
+        $user = auth()->user();
+        $republic = $user->republic;
         $advCategories = AdvertisementCategory::all();
 
         //        dd($advCategories);
@@ -105,8 +117,8 @@ class AdvertisementController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -116,7 +128,7 @@ class AdvertisementController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

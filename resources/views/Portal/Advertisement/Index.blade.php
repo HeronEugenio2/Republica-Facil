@@ -1,19 +1,18 @@
 @extends('Portal.TemplateLaravel')
-@push('css')
-
-@endpush
+<style>
+    .text-grey2 {
+        color: #636b6f !important;
+    }
+    h10 {
+        color: #636b6f !important;
+        font-family: unset;
+        font-weight: 600;
+        font-size: xx-large;
+    }
+</style>
 @section('content')
     <div class="jumbotron jumbotron-fluid m-0 bg-dark">
         <div class="container text-white">
-            <div class='row justify-content-md-center'>
-                @if(isset($categories) && count($categories)>0)
-                    <div class='row'>
-                        @foreach($categories as $category)
-                            <i class="fas fa-shopping-cart text-danger fa-2x"></i>
-                        @endforeach
-                    </div>
-                @endif
-            </div>
             <div class='col-md-12 col-lg-12 col-sm-12 text-center align-content-center'>
                 <div class=''>
                     <form id="logout-form" action="#" method="POST">
@@ -26,6 +25,20 @@
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class='row justify-content-md-center'>
+                {{--<h10>Categorias</h10>--}}
+                <div class='w-100 mb-4'></div>
+                @if(isset($categories) && count($categories)>0)
+                    <div class='row text-center'>
+                        @foreach($categories as $category)
+                            <div class='col'>
+                                <a href='#'><i class="fas fa-shopping-cart text-grey2 fa-2x mx-4"></i><br></a>
+                                <span class='text-grey2'>{{$category->title}}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
     </div>

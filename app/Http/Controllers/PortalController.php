@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Advertisement;
 use App\Models\Republic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class PortalController
@@ -44,7 +45,11 @@ class PortalController extends Controller
     public function indexAdvertisement()
     {
         $advertisementes = Advertisement::where('active_flag', 1)->paginate(45);
-        return view('Portal.Advertisement.Index', compact('advertisementes'));
+        $sql      = "SELECT id, title 
+                    FROM advertisement_categories                    
+                    ORDER BY title, id";
+        $categories = DB::select($sql);
+        return view('Portal.Advertisement.Index', compact('advertisementes', 'categories'));
     }
 
     /**

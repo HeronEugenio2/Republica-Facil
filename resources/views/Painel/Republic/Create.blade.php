@@ -4,15 +4,15 @@
     <div class='card'>
         <div class='card-header'>Cadastrar República</div>
         <div class='card-body'>
-            {{--@if( isset($errors) && count($errors) > 0 )--}}
-                {{--<div class='error'>--}}
-                    {{--<ul>--}}
-                        {{--@foreach($errors->all() as $error)--}}
-                            {{--<list style='color:red'>{{$error}}</list>--}}
-                        {{--@endforeach--}}
-                    {{--</ul>--}}
-                {{--</div>--}}
-            {{--@endif--}}
+            @if( isset($errors) && count($errors) > 0 )
+                <div class='error'>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <list style='color:red'>{{$error}}</list>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             @if(isset($republic))
             <form id="logout-form" method="POST" action="{{ route('painel.republic.update', ['republic'=>$republic->id]) }}">
                 {{method_field('PUT')}}

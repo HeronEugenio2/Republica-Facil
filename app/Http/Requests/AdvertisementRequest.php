@@ -13,7 +13,7 @@ class AdvertisementRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class AdvertisementRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'image'       => 'image|mimes:jpeg,png,jpg|max:2048',
+            'description' => 'required|string|max:255',
+            'title'       => 'required|string|max:255',
+            'value'       => 'required|string|max:255',
+            'republic_id' => 'required|string|max:255',
+            'category_id' => 'required|string|max:255',
+            'user_id'     => 'required|string|max:255',
+            //                    'image_id'    => $advRequest->input('name'),
+            //                    'active'      => $advRequest->input('name'),
         ];
     }
 }

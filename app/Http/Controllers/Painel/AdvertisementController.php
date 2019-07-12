@@ -20,8 +20,9 @@ class AdvertisementController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $user = User::with('republic.advertisements')->where('id', $user->id)->first();
-        return view('Painel.Advertisement.Index', compact('user'));
+        $advertisements = Advertisement::where('user_id', $user->id)->get();
+
+        return view('Painel.Advertisement.Index', compact('user', 'advertisements'));
     }
 
     /**
@@ -32,44 +33,41 @@ class AdvertisementController extends Controller
     public function show($id)
     {
         $advert = Advertisement::find($id)->with('user')->get()->first();
-//        dd($advert);
+
+        //        dd($advert);
 
         return view('Painel.Advertisement.Show', compact('advert'));
     }
 
     /**
      * @param Advertisement $advertisement
-     * @param Request $advRequest
+     * @param AdvertisementRequest $advRequest
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Advertisement $advertisement, Request $advRequest)
     {
-
         try {
             $data = array_filter(
                 [
-//                    'image'       => $advRequest->input('name'),
+                    'image'       => $advRequest->input('image'),
                     'description' => $advRequest->input('description'),
                     'title'       => $advRequest->input('title'),
                     'value'       => $advRequest->input('value'),
-                    'republic_id' => $advRequest->input('republic_id'),
                     'category_id' => $advRequest->input('category_id'),
                     'user_id'     => $advRequest->input('user_id'),
-//                    'image_id'    => $advRequest->input('name'),
-//                    'active'      => $advRequest->input('name'),
+                    //                    'republic_id' => $advRequest->input('republic_id'),
+                    //                    'image_id'    => $advRequest->input('name'),
+                    //                    'active'      => $advRequest->input('name'),
                 ]
             );
 
             $dataSaved = $advertisement->create($advRequest->all());
-//            dd($dataSaved);
-            if($dataSaved){
+            //            dd($dataSaved);
+            if ($dataSaved) {
                 return redirect()->route('painel.advertisement.index');
-            }
-            else{
+            } else {
                 return redirect()->back();
             }
-
-
         } catch (Exception $e) {
             report($e);
             Log::error($e->getMessage());
@@ -121,7 +119,6 @@ class AdvertisementController extends Controller
     {
         $advert = Advertisement::find($id);
         $advert->delete();
-
-//        return redirect()->with('success', 'Stock has been deleted Successfully');
+        //        return redirect()->with('success', 'Stock has been deleted Successfully');
     }
 }

@@ -9,8 +9,8 @@
             </a>
             <hr>
 
-            @if($user->republic != null)
-                @if(isset($user->republic->advertisements))
+            @if(count($advertisements)>0)
+                @if(isset($advertisements))
                     <div class='table-responsive'>
                         <table class="table table-bordered table-hover table-striped  table-sm text-center">
                             <thead>
@@ -24,7 +24,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($user->republic->advertisements as $advertisement)
+                                @foreach($advertisements as $advertisement)
                                 <tr class='text-center'>
                                         <td class='align-middle'>
                                             <img src="{{$advertisement->image}}" height="42" width="42">

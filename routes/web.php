@@ -62,14 +62,13 @@ Route::group(
     function() {
         //ANUNCIOS
         Route::get('/anuncios', 'PortalController@indexAdvertisement')->name('advertisement');
-        Route::get('/categoria/{id}', 'PortalController@searchCategory')->name('searchCategory');
+        Route::get('/anuncios/{id}', 'PortalController@showAdvertisement')->name('showAdvertisement');
+        Route::get('/anuncios/categoria/{id}', 'PortalController@searchCategory')->name('searchCategory');
         //WELCOME
         Route::resource('/republicas', 'PortalController')->names('republics');
         //PROCURAR
         Route::get('/busca', 'PortalController@indexRepublics')->name('search');
         Route::post('/busca/cidade', 'PortalController@search')->name('republicSearch');
         Route::post('/busca/cidade/filtrada', 'PortalController@ajaxSearch')->name('ajaxSearch');
-
-
     }
 );

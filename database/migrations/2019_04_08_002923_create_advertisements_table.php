@@ -20,7 +20,7 @@ class CreateAdvertisementsTable extends Migration
             $table->string('image')->default('https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg');
             $table->string('title');
             $table->float('value');
-//            $table->unsignedInteger('republic_id');
+//            $table->unsignedInteger('details_id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('category_id')->nullable();
             $table->unsignedInteger('image_id')->nullable();

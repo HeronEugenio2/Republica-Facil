@@ -56,7 +56,7 @@
                     </div>
                     <div class="form-group col-md-4 col-lg-4 col-sm-12">
                         <label>Estado</label>
-                        <input id="state" name='state' value='{{isset($republic)?$republic->state:old('state')??''}}' type="text" class="form-control" placeholder="Ex: Rio de Janeiro"
+                        <input id="state" name='state' value='{{isset($republic)?$republic->state:old('district')??''}}' type="text" class="form-control" placeholder="Ex: Rio de Janeiro"
                                style='width: 100%'>
                         <small class="form-text text-muted"></small>
                     </div>

@@ -84,6 +84,12 @@ class PortalController extends Controller
         return view('Portal.Republic.Show', compact('republic'));
     }
 
+    public function showAdvertisement($id)
+    {
+        $advertisement = Advertisement::with('category', 'user')->find($id);
+
+        return view('Portal.Advertisement.Show', compact('republic', 'advertisement'));
+    }
     /**
      * Show the form for editing the specified resource.
      * @param  int $id

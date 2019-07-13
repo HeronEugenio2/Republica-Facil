@@ -23,7 +23,7 @@
                     <strong>Quantidade Membros:</strong> {{$republic->qtdMembers}}<br>
                     <strong>Quantidade de Vagas:</strong> {{$republic->qtdVacancies}}<br>
                     <strong>Endereço:</strong> {{$republic->street}}, {{$republic->number}}<br>
-                    <strong>Bairro:</strong> {{$republic->neighborhood}}<br> <strong>Cep:</strong> {{$republic->cep}}
+                    <strong>Bairro:</strong> {{$republic->district}}<br> <strong>Cep:</strong> {{$republic->cep}}
                     <br> <strong>Cidade:</strong> {{$republic->city}}<br> <strong>Estado: </strong>{{$republic->state}}
                     <br> <strong>Gênero:</strong> {{$republic->type->title}}<br> <br>
                     <strong>Preço:</strong> R$ {{money_format('%.2n' ,$republic->value)}}<br>

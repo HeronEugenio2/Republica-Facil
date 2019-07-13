@@ -167,8 +167,11 @@ class RepublicController extends Controller
         if ($updatedRepublic) {
             $user     = User::with('republic', 'republic.type')->first();
             $republic = $user->republic;
-
-            return view('Painel.Republic.Index', compact('republic', 'user'));
+            $invitations = [];
+            if (!empty($republic = $user->republic)) {
+                $invitations = Invitation::where('republic_id', $user->republic->id)->get();
+            }
+            return view('Painel.Republic.Index', compact('republic', 'user', 'invitations'));
         }
     }
 

@@ -37,7 +37,7 @@
                 </div>
                 <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center'>
                     <div class='form-group text-center'>
-                        <button type='submit' class='btn btn-danger px-5'>Anunciar Agora</button>
+                        <a type='btn btn-danger' href='{{route('home')}}' class='btn btn-danger px-5'>Anunciar Agora</a>
                     </div>
                 </div>
             </div>

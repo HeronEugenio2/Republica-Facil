@@ -24,11 +24,10 @@ class AdvertisementRequest extends FormRequest
     public function rules()
     {
         return [
-            'image'       => 'image|mimes:jpeg,png,jpg|max:2048',
+            'image'       => 'nullable',
             'description' => 'required|string|max:255',
             'title'       => 'required|string|max:255',
-            'value'       => 'required|string|max:255',
-            'republic_id' => 'required|string|max:255',
+            'value'       => 'required|required|regex:/^\d+(\.\d{1,2})?$/',
             'category_id' => 'required|string|max:255',
             'user_id'     => 'required|string|max:255',
             //                    'image_id'    => $advRequest->input('name'),

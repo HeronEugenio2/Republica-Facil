@@ -45,10 +45,11 @@ class PortalController extends Controller
     public function indexAdvertisement()
     {
         $advertisementes = Advertisement::where('active_flag', 1)->paginate(45);
-        $sql      = "SELECT id, title 
+        $sql             = "SELECT id, title, icon 
                     FROM advertisement_categories                    
-                    ORDER BY title, id";
-        $categories = DB::select($sql);
+                    ORDER BY title, id, icon";
+        $categories      = DB::select($sql);
+
         return view('Portal.Advertisement.Index', compact('advertisementes', 'categories'));
     }
 
@@ -163,5 +164,18 @@ class PortalController extends Controller
                              ->whereBetween('value', [$value - 99, $value])->take(20)->get();
 
         return view('Portal.Republic.IncludeSearch', compact('republics', 'value'))->render();
+    }
+
+    public function searchCategory($id)
+    {
+        $advertisementes = Advertisement::with('category')
+                                        ->where('category_id', $id)
+                                        ->paginate(25);
+        $sql             = "SELECT id, title, icon 
+                    FROM advertisement_categories                    
+                    ORDER BY title, id, icon";
+        $categories      = DB::select($sql);
+
+        return view('Portal.Advertisement.Index', compact('advertisementes', 'categories'));
     }
 }

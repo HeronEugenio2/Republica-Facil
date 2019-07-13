@@ -19,7 +19,7 @@ class AdvertisementController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        $user           = Auth::user();
         $advertisements = Advertisement::where('user_id', $user->id)->get();
 
         return view('Painel.Advertisement.Index', compact('user', 'advertisements'));
@@ -32,9 +32,7 @@ class AdvertisementController extends Controller
      */
     public function show($id)
     {
-        $advert = Advertisement::find($id)->with('user')->get()->first();
-
-        //        dd($advert);
+        $advert = Advertisement::where('user_id', $id)->with('user')->first();
 
         return view('Painel.Advertisement.Show', compact('advert'));
     }
@@ -44,24 +42,24 @@ class AdvertisementController extends Controller
      * @param AdvertisementRequest $advRequest
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Advertisement $advertisement, Request $advRequest)
+    public function store(Advertisement $advertisement, AdvertisementRequest $advRequest)
     {
         try {
             $data = array_filter(
                 [
-                    'image'       => $advRequest->input('image'),
-                    'description' => $advRequest->input('description'),
-                    'title'       => $advRequest->input('title'),
-                    'value'       => $advRequest->input('value'),
-                    'category_id' => $advRequest->input('category_id'),
-                    'user_id'     => $advRequest->input('user_id'),
+                    'image'       => $advRequest->image ?? 'https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg',
+                    'description' => $advRequest->description,
+                    'title'       => $advRequest->title,
+                    'value'       => $advRequest->value,
+                    'category_id' => $advRequest->category_id,
+                    'user_id'     => $advRequest->user_id,
                     //                    'republic_id' => $advRequest->input('republic_id'),
                     //                    'image_id'    => $advRequest->input('name'),
                     //                    'active'      => $advRequest->input('name'),
                 ]
             );
 
-            $dataSaved = $advertisement->create($advRequest->all());
+            $dataSaved = $advertisement->create($data);
             //            dd($dataSaved);
             if ($dataSaved) {
                 return redirect()->route('painel.advertisement.index');
@@ -119,6 +117,7 @@ class AdvertisementController extends Controller
     {
         $advert = Advertisement::find($id);
         $advert->delete();
-        //        return redirect()->with('success', 'Stock has been deleted Successfully');
+
+        return redirect()->back()->with('success', 'Stock has been deleted Successfully');
     }
 }

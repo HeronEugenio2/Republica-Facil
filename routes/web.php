@@ -62,6 +62,7 @@ Route::group(
     function() {
         //ANUNCIOS
         Route::get('/anuncios', 'PortalController@indexAdvertisement')->name('advertisement');
+        Route::get('/categoria/{id}', 'PortalController@searchCategory')->name('searchCategory');
         //WELCOME
         Route::resource('/republicas', 'PortalController')->names('republics');
         //PROCURAR

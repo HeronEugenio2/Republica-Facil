@@ -3,6 +3,9 @@
     .text-grey2 {
         color: #636b6f !important;
     }
+    .text-grey3 {
+        color: #007bff !important;
+    }
     h10 {
         color: #636b6f !important;
         font-family: unset;
@@ -30,14 +33,19 @@
                 {{--<h10>Categorias</h10>--}}
                 <div class='w-100 mb-4'></div>
                 @if(isset($categories) && count($categories)>0)
-                    <div class='row text-center'>
-                        @foreach($categories as $category)
-                            <div class='col'>
-                                <a href='#'><i class="fas fa-shopping-cart text-grey2 fa-2x mx-4"></i><br></a>
-                                <span class='text-grey2'>{{$category->title}}</span>
-                            </div>
-                        @endforeach
-                    </div>
+                    {{--<form action='{{route('portal.searchCategory')}}' method="POST">--}}
+                        {{--@csrf--}}
+                        <div class='row text-center'>
+                            @foreach($categories as $category)
+                                <a href='{{route('portal.searchCategory', $category->id)}}' >
+                                    <div class='col icone' data-id='{{$category->id}}'>
+                                        <i class="fas fa-{{$category->icon}} text-grey2 fa-2x mx-4"></i><br>
+                                        <span class='text-grey2'>{{$category->title}}</span>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+                    {{--</form>--}}
                 @endif
             </div>
         </div>
@@ -51,7 +59,9 @@
 @push('scripts')
     <script>
         $(document).ready(function () {
-
+            $(".icone").hover(function () {
+                $(this).children().toggleClass('text-grey2 text-grey3');
+            });
         });
     </script>
 @endpush

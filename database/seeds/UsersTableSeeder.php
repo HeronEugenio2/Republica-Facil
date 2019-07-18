@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $userHeron = User::where('email', 'hrs.eugenio@gmail.com')->first();
+        $userTest = User::where('email', 'test@gmail.com')->first();
 
         if (!$userHeron) {
             DB::table('users')->insert([
@@ -24,6 +25,14 @@ class UsersTableSeeder extends Seeder
                 'email' => 'hrs.eugenio@gmail.com',
                 'password' => bcrypt('123123'),
             ]);
+        }
+        if (!$userTest) {
+            DB::table('users')->insert([
+                                           'name' => 'Teste Dono Republica',
+                                           'email' => 'test@gmail.com',
+                                           'password' => bcrypt('123123'),
+                                           'republic_id' => 1,
+                                       ]);
         }
     }
 }

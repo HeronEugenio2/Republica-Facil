@@ -12,6 +12,8 @@ use App\Models\User;
 use App\Notifications\RequestInvitation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Redirect;
 
 class RepublicController extends Controller
 {
@@ -190,24 +192,41 @@ class RepublicController extends Controller
 
     public function invitation(Request $request)
     {
-        $user = User::where('id', $request['user_id'])->first();
-
-        $updateOrCreate = Invitation::updateOrCreate(
-            ['email' => $request['email']],
-            [
-                'republic_id' => $user->republic->id,
-                'user_id'     => $user->id,
-                'email'       => $request['email'],
-            ]
-        );
-        $data           = [
-            'userName'     => $user->name,
-            'republicName' => $user->republic->name,
-        ];
-                $user->notify(new RequestInvitation($data));
         $user        = auth()->user();
         $republic    = $user->republic;
-        $invitations = Invitation::where('republic_id', $user->republic->id)->get();
+        $invitations = [];
+        if (!empty($republic)) {
+            $invitations = Invitation::where('republic_id', $republic->id)->get();
+        }
+        $invitationEqual = Invitation::where('republic_id', $request['republic_id'])->where('email', $request['email'])
+                                     ->get();
+        $data            = [
+            'userName'     => Auth::user()->name,
+            'republicName' => Auth::user()->republic->name,
+        ];
+        if ($invitationEqual == []) {
+            $invitationCreated = Invitation::create(
+                [
+                    'republic_id' => $request['republic_id'],
+                    'user_id'     => $request['user_id'],
+                    'email'       => $request['email'],
+                ]
+            );
+        } else {
+            $updateOrCreate = Invitation::updateOrCreate(
+                ['email' => $request['email']],
+                [
+                    'republic_id' => $request['republic_id'],
+                    'user_id'     => $request['user_id'],
+                    'email'       => $request['email'],
+                ]
+            );
+        }
+        //        if($user == null){
+        //            return Redirect::back()->withErrors(['O usuário não está cadastrado na plataforma', 'The Message']);
+        //        }
+        $invitation = Notification::route('mail', $updateOrCreate->email)
+                                  ->notify(new RequestInvitation($data));
 
         return view('Painel.Republic.Index', compact('republic', 'user', 'invitations'));
     }

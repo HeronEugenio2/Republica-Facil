@@ -30,8 +30,11 @@
                     <div class='mt-4'>
                         <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Editar</a>
                     </div>
+                    <div class='mt-4'>
+                        <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Sair</a>
+                    </div>
                     @if(isset($invitations) && count($invitations)>0)
-                        <hr>i
+                        <hr>
                         <h4>Membros</h4>
                         <div class='table-responsive'>
                             <table class="table table-bordered table-sm table-hover table-striped text-center">
@@ -44,7 +47,9 @@
                                 <tbody>
                                     @foreach($republic->user as $user)
                                         <tr class='text-center'>
-                                            <td><a href='#' class='float-left'><i class="fas fa-user-times text-danger"></i></a>
+                                            <td>
+                                                <a href='#' class='float-left'>
+                                                    <i class="fas fa-user-times text-danger"></i></a>
                                                 {{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                         </tr>
@@ -61,6 +66,7 @@
                     <form action='{{route('painel.invitation')}}' method='POST' class='mb-2'>
                         @csrf
                         <input type='hidden' name='user_id' value='{{$user->id}}'>
+                        <input type='hidden' name='republic_id' value='{{$user->id}}'>
                         {{--<div id='email' class="form-group col-12 p-0">--}}
                         {{--<div class="form-group">--}}
                         {{--<label for="inputEmail">E-mail</label>--}}
@@ -74,11 +80,14 @@
                         {{--<button type='submit' href="#" class="btn btn-danger">Enviar Convite</button>--}}
                         <label>Para adicionar membros à sua república é preciso que o usuário aceite o convite no e-mail.</label>
                         <div class="input-group mb-3">
-                            <input name='email' type="email" class="form-control" placeholder="Endereço de e-mail do convidado" aria-label="Recipient's username" aria-describedby="basic-addon2" style='border-top-right-radius: initial;border-bottom-right-radius: initial;'>
+                            <input name='email' type="email" class="form-control" placeholder="Endereço de e-mail do convidado" aria-label="Recipient's username" aria-describedby="basic-addon2" style='border-top-right-radius: initial;border-bottom-right-radius: initial;' required>
                             <div class="input-group-append">
                                 <button type='submit' href="#" class="btn btn-secondary">Enviar Convite</button>
                             </div>
                         </div>
+                        @if($errors->any())
+                            <h2 class='text-danger'>{{$errors->first()}}</h2>
+                        @endif
                     </form>
                     @if(count($invitations)>0)
                         <div class='table-responsive'>

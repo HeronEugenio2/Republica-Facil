@@ -52,12 +52,14 @@ Route::group(
         Route::resource('/anuncios', 'Painel\AdvertisementController')->names('advertisement');
         //Invitations
         Route::post('/email', 'RepublicController@invitation')->name('invitation');
+        //Invitation accept
+        Route::get('/republica/{id}/aceitar', 'RepublicController@invitationAccept')->name('invitationAccept');
     }
 );
 Route::group(
     [
-        'prefix'     => 'portal',
-        'as'         => 'portal.',
+        'prefix' => 'portal',
+        'as'     => 'portal.',
     ],
     function() {
         //ANUNCIOS
@@ -69,7 +71,5 @@ Route::group(
         Route::get('/busca', 'PortalController@indexRepublics')->name('search');
         Route::post('/busca/cidade', 'PortalController@search')->name('republicSearch');
         Route::post('/busca/cidade/filtrada', 'PortalController@ajaxSearch')->name('ajaxSearch');
-
-
     }
 );

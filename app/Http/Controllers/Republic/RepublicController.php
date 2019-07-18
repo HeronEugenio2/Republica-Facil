@@ -35,8 +35,9 @@ class RepublicController extends Controller
         if (!empty($republic = $user->republic)) {
             $invitations = Invitation::where('republic_id', $user->republic->id)->get();
         }
+        $members = User::where('republic_id', $republic->id)->get();
 
-        return view('Painel.Republic.Index', compact('republic', 'user', 'invitations'));
+        return view('Painel.Republic.Index', compact('republic', 'user', 'invitations', 'members'));
     }
 
     /**
@@ -101,8 +102,7 @@ class RepublicController extends Controller
      * @param  \App\Models\Republic $id
      * @return \Illuminate\Http\Response
      */
-    public
-    function show(Republic $id)
+    public function show(Republic $id)
     {
         //
     }
@@ -112,8 +112,7 @@ class RepublicController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @author Heron Eugenio
      */
-    public
-    function edit($id)
+    public function edit($id)
     {
         $republic = Republic::find($id);
         $types    = Type::all();
@@ -128,8 +127,7 @@ class RepublicController extends Controller
      * @return \Illuminate\Http\Response
      * @author Heron Eugenio
      */
-    public
-    function update(RepublicRequest $republicRequest, $id)
+    public function update(RepublicRequest $republicRequest, $id)
     {
         $input = $republicRequest->all();
         $republicRequest->validated([
@@ -169,8 +167,9 @@ class RepublicController extends Controller
         if ($updatedRepublic) {
             $user     = User::with('republic', 'republic.type')->first();
             $republic = $user->republic;
+            $members  = User::where('republic_id', $republic->id)->get();
 
-            return view('Painel.Republic.Index', compact('republic', 'user'));
+            return view('Painel.Republic.Index', compact('republic', 'user', 'members'));
         }
     }
 
@@ -190,11 +189,16 @@ class RepublicController extends Controller
         return view('Painel.Republic.Republic', compact('republic'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function invitation(Request $request)
     {
         $user        = auth()->user();
         $republic    = $user->republic;
         $invitations = [];
+        $members     = User::where('republic_id', $republic->id)->get();
         if (!empty($republic)) {
             $invitations = Invitation::where('republic_id', $republic->id)->get();
         }
@@ -228,6 +232,22 @@ class RepublicController extends Controller
         $invitation = Notification::route('mail', $updateOrCreate->email)
                                   ->notify(new RequestInvitation($data));
 
-        return view('Painel.Republic.Index', compact('republic', 'user', 'invitations'));
+        return view('Painel.Republic.Index', compact('republic', 'user', 'invitations', 'members'));
+    }
+
+    public function invitationAccept($id)
+    {
+        $invitation = Invitation::find($id);
+        if (isset($invitation)) {
+            $user              = User::findOrFail(Auth::user()->id);
+            $user->republic_id = $invitation->republic_id;
+            $user->save();
+            $invitation = Invitation::find($id);
+            $invitation->delete();
+
+            return redirect()->back()->with('success', 'Você agora está participando da república!');
+        }
+
+        return redirect()->back()->with('error', 'Houve algum erro no cadastro');
     }
 }

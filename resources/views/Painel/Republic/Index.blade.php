@@ -33,25 +33,28 @@
                     <div class='mt-4'>
                         <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Sair</a>
                     </div>
-                    @if(isset($invitations) && count($invitations)>0)
+                    @if(isset($republic))
                         <hr>
                         <h4>Membros</h4>
                         <div class='table-responsive'>
                             <table class="table table-bordered table-sm table-hover table-striped text-center">
                                 <thead>
                                     <tr>
+                                        <th scope="col">Nome</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Enviada</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($republic->user as $user)
+                                    @foreach($members as $member)
                                         <tr class='text-center'>
                                             <td>
                                                 <a href='#' class='float-left'>
                                                     <i class="fas fa-user-times text-danger"></i></a>
-                                                {{$user->name}}</td>
-                                            <td>{{$user->email}}</td>
+                                                {{$member->name}}</td>
+                                            <td>{{$member->email}}</td>
+                                            {{--<td>--}}
+                                                {{--{{$member->created_at = null ? $member->updated_at : $member->created_at}}--}}
+                                            {{--</td>--}}
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -61,12 +64,12 @@
                 </div>
             </div>
             <div class='card'>
-                <div class='card-header bg-nav text-white'>Membros</div>
+                <div class='card-header bg-nav text-white'>Convites</div>
                 <div class='card-body'>
                     <form action='{{route('painel.invitation')}}' method='POST' class='mb-2'>
                         @csrf
                         <input type='hidden' name='user_id' value='{{$user->id}}'>
-                        <input type='hidden' name='republic_id' value='{{$user->id}}'>
+                        <input type='hidden' name='republic_id' value='{{$republic->id}}'>
                         {{--<div id='email' class="form-group col-12 p-0">--}}
                         {{--<div class="form-group">--}}
                         {{--<label for="inputEmail">E-mail</label>--}}

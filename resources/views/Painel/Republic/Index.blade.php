@@ -7,23 +7,17 @@
             <div class="card">
                 <div class="card-header bg-nav text-white">Sua República</div>
                 <div class="card-body">
-                    <div class='row'>
-                        <div class='col-10'>
-                            <img id='imgSrc' class='mb-2' src='https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg' style="width:200px; height:200px;"/>
-                        </div>
-                        <div class='col'>
-                            <div class='mb-4'>
-                                @if($republic->active_flag == 0)
-                                    <h2>
-                                        <span class="badge badge-warning px-4" value='{{$republic->active_flag}}'>Em Análise</span>
-                                    </h2>
-                                @else
-                                    <h2>
-                                        <span class="text-success" value='{{$republic->active_flag}}'>Ativa <i class="fas fa-check"></i></span>
-                                    </h2>
-                                @endif
-                            </div>
-                        </div>
+                    <img id='imgSrc' class='mb-2' src='https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg' style="width:200px; height:200px;"/>
+                    <div class='mb-2'>
+                        @if($republic->active_flag == 0)
+                            <h2>
+                                <span class="badge badge-warning px-4" value='{{$republic->active_flag}}'>Em Análise</span>
+                            </h2>
+                        @else
+                            <h2>
+                                <span class="text-success" value='{{$republic->active_flag}}'>Ativa <i class="fas fa-check"></i></span>
+                            </h2>
+                        @endif
                     </div>
                     <div class="input-group mb-3">
                         <input type='text' name='image' id='image' class="form-control" placeholder="Ex: www.facebook.com/user/image.png" style='border-top-right-radius: 0; border-bottom-right-radius: 0;'>
@@ -31,7 +25,6 @@
                             <button id='btnCheck' class="btn btn-outline-danger" type="button">Upload</button>
                         </div>
                     </div>
-
                     <strong>Nome: </strong> {{$republic->name}}<br> <strong>Email:</strong> {{$republic->email}}<br>
                     <strong>Descrição:</strong> {{$republic->description}}<br>
                     <strong>Quantidade Membros:</strong> {{$republic->qtdMembers}}<br>

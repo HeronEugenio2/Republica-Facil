@@ -5,20 +5,20 @@
     @if(isset($user->republic))
         <div class='card-columns'>
             <div class="card">
-                <div class="card-header bg-nav text-white">Sua República</div>
+                <div class="card-header bg-nav text-white">Sua República
+                    @if($republic->active_flag == 0)
+                        <h2 class='float-right'>
+                            <span class="badge badge-warning px-4" value='{{$republic->active_flag}}'>Em Análise</span>
+                        </h2>
+                    @else
+                        <h2 class='float-right'>
+                            <span class="text-success" value='{{$republic->active_flag}}'>Ativa <i class="fas fa-check"></i></span>
+                        </h2>
+                    @endif
+                </div>
+
                 <div class="card-body">
                     <img id='imgSrc' class='mb-2' src='https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg' style="width:200px; height:200px;"/>
-                    <div class='mb-2'>
-                        @if($republic->active_flag == 0)
-                            <h2>
-                                <span class="badge badge-warning px-4" value='{{$republic->active_flag}}'>Em Análise</span>
-                            </h2>
-                        @else
-                            <h2>
-                                <span class="text-success" value='{{$republic->active_flag}}'>Ativa <i class="fas fa-check"></i></span>
-                            </h2>
-                        @endif
-                    </div>
                     <div class="input-group mb-3">
                         <input type='text' name='image' id='image' class="form-control" placeholder="Ex: www.facebook.com/user/image.png" style='border-top-right-radius: 0; border-bottom-right-radius: 0;'>
                         <div class="input-group-append">
@@ -136,3 +136,14 @@
         </div>
     @endif
 @endsection
+@push('scripts')
+    <script type='text/javascript'>
+        $('#btnCheck').click(function () {
+            let src = $('#image').val();
+            $('#imgSrc').attr("src", src);
+            if ($('#image').val() == '' || $('#image').val() == []) {
+                $('#imgSrc').attr("src", "https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg");
+            }
+        });
+    </script>
+@endpush

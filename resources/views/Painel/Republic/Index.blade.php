@@ -16,15 +16,21 @@
                         </h2>
                     @endif
                 </div>
-
                 <div class="card-body">
-                    <img id='imgSrc' class='mb-2' src='https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg' style="width:200px; height:200px;"/>
                     <div class="input-group mb-3">
                         <input type='text' name='image' id='image' class="form-control" placeholder="Ex: www.facebook.com/user/image.png" style='border-top-right-radius: 0; border-bottom-right-radius: 0;'>
                         <div class="input-group-append">
                             <button id='btnCheck' class="btn btn-outline-danger" type="button">Upload</button>
                         </div>
                     </div>
+                    <img id='imgSrc' class='mb-2' src='https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg' style="width:200px; height:200px;"/>
+                    <br>
+                    <div class="btn-group btn-group-sm mb-2" role="group" aria-label="...">
+                        <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Editar</a>
+                        <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Sair</a>
+                        <a href='#' class='btn btn-secondary btn-sm'>Fotos</a>
+                    </div>
+                    <br>
                     <strong>Nome: </strong> {{$republic->name}}<br> <strong>Email:</strong> {{$republic->email}}<br>
                     <strong>Descrição:</strong> {{$republic->description}}<br>
                     <strong>Quantidade Membros:</strong> {{$republic->qtdMembers}}<br>
@@ -34,12 +40,7 @@
                     <br> <strong>Cidade:</strong> {{$republic->city}}<br> <strong>Estado: </strong>{{$republic->state}}
                     <br> <strong>Gênero:</strong> {{$republic->type->title}}<br> <br>
                     <strong>Preço:</strong> R$ {{money_format('%.2n' ,$republic->value)}}<br>
-                    <div class='mt-4'>
-                        <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Editar</a>
-                    </div>
-                    <div class='mt-4'>
-                        <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Sair</a>
-                    </div>
+
                     @if(isset($republic))
                         <hr>
                         <h4>Membros</h4>

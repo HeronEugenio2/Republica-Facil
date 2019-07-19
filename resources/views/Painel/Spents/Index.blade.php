@@ -26,7 +26,7 @@
         <div class='col-sm-12 col-md-4 col-lg-4'>
             <div class='card'>
                 <div class='card-body'>
-                    <h2>Meus Débitos</h2>
+                    <h2>Meus Créditos</h2>
                     @if(count($myDebits)>0)
                         <div class='table-responsive'>
                             <table class="table table-bordered table-hover table-sm table-striped text-center">
@@ -62,7 +62,7 @@
         </div>
     </div>
     <div id='spentFull' class='card'>
-        <div id='headerFull' class='card-header bg-nav text-white c-'>Gastos</div>
+        <div id='headerFull' class='card-hespenader bg-nav text-white c-'>Gastos</div>
         <div id='bodyFull' class='card-body '>
             <a href="{{route('painel.spent.create')}}" class="btn btn-success mb-2">
                 <i class="fas fa-plus-circle"></i> Novo Gasto

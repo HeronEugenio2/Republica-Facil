@@ -52,12 +52,14 @@ Route::group(
         Route::resource('/anuncios', 'Painel\AdvertisementController')->names('advertisement');
         //Invitations
         Route::post('/email', 'RepublicController@invitation')->name('invitation');
+        //Invitation accept
+        Route::get('/republica/{id}/aceitar', 'RepublicController@invitationAccept')->name('invitationAccept');
     }
 );
 Route::group(
     [
-        'prefix'     => 'portal',
-        'as'         => 'portal.',
+        'prefix' => 'portal',
+        'as'     => 'portal.',
     ],
     function() {
         //ANUNCIOS

@@ -12,7 +12,6 @@ class HomeController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
      * @return void
      */
     public function __construct()
@@ -22,13 +21,13 @@ class HomeController extends Controller
 
     /**
      * Show the application dashboard.
-     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        $user = Auth::user();
-        $invitations = Invitation::with('republic','user')->where('email',$user->email)->get();
+        $user        = Auth::user();
+        $invitations = Invitation::with('republic', 'user')->where('email', $user->email)->get();
+
         return view('home', compact('invitations'));
     }
 }

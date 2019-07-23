@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <link rel="icon" type="image/png" href="https://static.wixstatic.com/media/e9f391_b594819e778c4c5090a0c162b905fa0f.jpg">
+    <link rel="icon" type="image/png"
+          href="https://static.wixstatic.com/media/e9f391_b594819e778c4c5090a0c162b905fa0f.jpg">
     <title>República Fácil</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +17,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     {{--<link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">--}}
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     @stack('css')
+    @stack('scripts')
 </head>
 <body class="vsc-initialized">
 @include('layouts.Painel.Menu')
@@ -34,10 +38,12 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell text-white"></i>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
+                        <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right"
+                             aria-labelledby="navbar-default_dropdown_1">
                             <a class="dropdown-item" href="#">Action</a>
                             <a class="dropdown-item" href="#">Another action</a>
                             <div class="dropdown-divider"></div>

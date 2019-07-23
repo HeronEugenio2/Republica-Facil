@@ -3,21 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Assignment extends Model
 {
     /**
      * @var array $dates
      */
-    protected $dates = ['deleted_at', 'created_at', 'deleted_at'];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     protected $fillable = [
         'name',
         'description',
-        'image_path',
         'date_start',
         'date_end',
-        'situation',
+        'status_flag',
         'republic_id',
     ];
 
@@ -30,10 +31,15 @@ class Assignment extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function assignmentUser()
+    {
+        return $this->hasOne(AssignmentUser::class);
     }
 }

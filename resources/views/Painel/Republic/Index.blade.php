@@ -2,32 +2,38 @@
 @extends('layouts.Painel.LayoutFull')
 
 @section('content')
-    @if(isset($user->republic))
+    @if(!empty($user->republic))
         <div class='card-columns'>
             <div class="card">
                 <div class="card-header bg-nav text-white">Sua República
-                    @if($republic->active_flag == 0)
+                    @if($republic->active_flag)
                         <h2 class='float-right'>
                             <span class="badge badge-warning px-4" value='{{$republic->active_flag}}'>Em Análise</span>
                         </h2>
                     @else
                         <h2 class='float-right'>
-                            <span class="text-success" value='{{$republic->active_flag}}'>Ativa <i class="fas fa-check"></i></span>
+                            <span class="text-success" value='{{$republic->active_flag}}'>Ativa <i
+                                        class="fas fa-check"></i></span>
                         </h2>
                     @endif
                 </div>
                 <div class="card-body">
                     <div class="input-group mb-3">
-                        <input type='text' name='image' id='image' class="form-control" placeholder="Ex: www.facebook.com/user/image.png" style='border-top-right-radius: 0; border-bottom-right-radius: 0;'>
+                        <input type='text' name='image' id='image' class="form-control"
+                               placeholder="Ex: www.facebook.com/user/image.png"
+                               style='border-top-right-radius: 0; border-bottom-right-radius: 0;'>
                         <div class="input-group-append">
                             <button id='btnCheck' class="btn btn-outline-danger" type="button">Upload</button>
                         </div>
                     </div>
-                    <img id='imgSrc' class='mb-2' src='https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg' style="width:200px; height:200px;"/>
+                    <img id='imgSrc' class='mb-2'
+                         src='https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg'
+                         style="width:200px; height:200px;"/>
                     <br>
                     <div class="btn-group btn-group-sm mb-2" role="group" aria-label="...">
                         <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Editar</a>
-                        <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Sair</a>
+                        <a href="{{route('painel.republic.edit', $user->republic->id )}}"
+                           class="btn btn-secondary">Sair</a>
                         <a href='#' class='btn btn-secondary btn-sm'>Fotos</a>
                     </div>
                     <br>
@@ -41,30 +47,30 @@
                     <br> <strong>Gênero:</strong> {{$republic->type->title}}<br> <br>
                     <strong>Preço:</strong> R$ {{money_format('%.2n' ,$republic->value)}}<br>
 
-                    @if(isset($republic))
+                    @if(!empty($republic))
                         <hr>
                         <h4>Membros</h4>
                         <div class='table-responsive'>
                             <table class="table table-bordered table-sm table-hover table-striped text-center">
                                 <thead>
-                                    <tr>
-                                        <th scope="col">Nome</th>
-                                        <th scope="col">Email</th>
-                                    </tr>
+                                <tr>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Email</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($members as $member)
-                                        <tr class='text-center'>
-                                            <td>
-                                                <a href='#' class='float-left'>
-                                                    <i class="fas fa-user-times text-danger"></i></a>
-                                                {{$member->name}}</td>
-                                            <td>{{$member->email}}</td>
-                                            {{--<td>--}}
-                                            {{--{{$member->created_at = null ? $member->updated_at : $member->created_at}}--}}
-                                            {{--</td>--}}
-                                        </tr>
-                                    @endforeach
+                                @foreach($members as $member)
+                                    <tr class='text-center'>
+                                        <td>
+                                            <a href='#' class='float-left'>
+                                                <i class="fas fa-user-times text-danger"></i></a>
+                                            {{$member->name}}</td>
+                                        <td>{{$member->email}}</td>
+                                        {{--<td>--}}
+                                        {{--{{$member->created_at = null ? $member->updated_at : $member->created_at}}--}}
+                                        {{--</td>--}}
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -78,20 +84,14 @@
                         @csrf
                         <input type='hidden' name='user_id' value='{{$user->id}}'>
                         <input type='hidden' name='republic_id' value='{{$republic->id}}'>
-                        {{--<div id='email' class="form-group col-12 p-0">--}}
-                        {{--<div class="form-group">--}}
-                        {{--<label for="inputEmail">E-mail</label>--}}
-                        {{--<input id="inputEmail" name='email' type="email" class="form-control"--}}
-                        {{--aria-describedby="emailHelp" placeholder="Ex: member@gmail.com" style='width: 100%'--}}
-                        {{--required>--}}
-                        {{--<small id="emailHelp" class="form-text text-muted">Envie uma confirmação para o email de seu membro.--}}
-                        {{--</small>--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<button type='submit' href="#" class="btn btn-danger">Enviar Convite</button>--}}
-                        <label>Para adicionar membros à sua república é preciso que o usuário aceite o convite no e-mail.</label>
+                        <label>Para adicionar membros à sua república é preciso que o usuário aceite o convite no
+                            e-mail.</label>
                         <div class="input-group mb-3">
-                            <input name='email' type="email" class="form-control" placeholder="Endereço de e-mail do convidado" aria-label="Recipient's username" aria-describedby="basic-addon2" style='border-top-right-radius: initial;border-bottom-right-radius: initial;' required>
+                            <input name='email' type="email" class="form-control"
+                                   placeholder="Endereço de e-mail do convidado" aria-label="Recipient's username"
+                                   aria-describedby="basic-addon2"
+                                   style='border-top-right-radius: initial;border-bottom-right-radius: initial;'
+                                   required>
                             <div class="input-group-append">
                                 <button type='submit' href="#" class="btn btn-secondary">Enviar Convite</button>
                             </div>
@@ -100,27 +100,27 @@
                             <h2 class='text-danger'>{{$errors->first()}}</h2>
                         @endif
                     </form>
-                    @if(count($invitations)>0)
+                    @if(!empty($invitations))
                         <div class='table-responsive'>
                             <table class="table table-bordered table-sm table-hover table-striped text-center">
                                 <thead>
-                                    <tr>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Enviada</th>
-                                    </tr>
+                                <tr>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Enviada</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($invitations as $invitation)
-                                        <tr class='text-center'>
-                                            <td>
-                                                {{$invitation->email}}
-                                            </td>
-                                            <td>
-                                                {{date_format($invitation->created_at,"d/m/Y")}}
-                                                <a href='#' class='btn btn-danger btn-sm float-right'>Cancelar</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                @foreach($invitations as $invitation)
+                                    <tr class='text-center'>
+                                        <td>
+                                            {{$invitation->email}}
+                                        </td>
+                                        <td>
+                                            {{date_format($invitation->created_at,"d/m/Y")}}
+                                            <a href='#' class='btn btn-danger btn-sm float-right'>Cancelar</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

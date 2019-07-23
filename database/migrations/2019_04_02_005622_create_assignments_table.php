@@ -17,10 +17,9 @@ class CreateAssignmentsTable extends Migration
             $table->unsignedInteger('id', true);
             $table->string('name', 255);
             $table->string('description', 255)->nullable();
-            $table->string('image_path')->nullable();
             $table->date('date_start');
             $table->date('date_end')->nullable();
-            $table->integer('situation');
+            $table->integer('status_flag');
             $table->unsignedInteger('republic_id');
             $table->timestamps();
             $table->softDeletes();
@@ -28,7 +27,6 @@ class CreateAssignmentsTable extends Migration
 
         Schema::table('assignments', function (Blueprint $table) {
             $table->foreign('republic_id')->references('id')->on('republics');
-
         });
     }
 

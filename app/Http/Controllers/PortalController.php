@@ -21,8 +21,9 @@ class PortalController extends Controller
      */
     public function index()
     {
-        $republics = Republic::where('active_flag', 1)->paginate(14);
+        $republics      = Republic::where('active_flag', 1)->paginate(14);
         $advertisements = Advertisement::where('active_flag', 1)->paginate(7);
+
         return view('Portal.welcome', compact('republics', 'advertisements'));
     }
 
@@ -34,7 +35,7 @@ class PortalController extends Controller
     public function indexRepublics()
     {
         //TODO ta faltando with('categories')
-        $republics = Republic::where('active_flag', 1)->get();
+        $republics      = Republic::where('active_flag', 1)->get();
         $advertisements = Advertisement::where('active_flag', 1)->paginate(45);
 
         return view('Portal.Republic.Index', compact('republics', 'advertisements'));
@@ -91,6 +92,7 @@ class PortalController extends Controller
 
         return view('Portal.Advertisement.Show', compact('republic', 'advertisement'));
     }
+
     /**
      * Show the form for editing the specified resource.
      * @param  int $id
@@ -177,6 +179,7 @@ class PortalController extends Controller
     {
         $advertisementes = Advertisement::with('category')
                                         ->where('category_id', $id)
+                                        ->where('active_flag', 1)
                                         ->paginate(25);
         $sql             = "SELECT id, title, icon 
                     FROM advertisement_categories                    

@@ -8,9 +8,8 @@
                 <i class="fas fa-plus-circle"></i> Novo Anúncio
             </a>
             <hr>
-
-            @if($user->republic != null)
-                @if(isset($user->republic->advertisements))
+            @if(count($advertisements)>0)
+                @if(isset($advertisements))
                     <div class='table-responsive'>
                         <table class="table table-bordered table-hover table-striped  table-sm text-center">
                             <thead>
@@ -24,8 +23,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($user->republic->advertisements as $advertisement)
-                                <tr class='text-center'>
+                                @foreach($advertisements as $advertisement)
+                                    <tr class='text-center'>
                                         <td class='align-middle'>
                                             <img src="{{$advertisement->image}}" height="42" width="42">
                                         </td>
@@ -41,15 +40,15 @@
                                         </td>
                                         <td class='align-middle'>
                                             <div class='btn-group'>
-                                                <a href="{{route('painel.advertisement.show',$advertisement->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
-                                                    <i class="fas fa-eye fa-2x"></i>
-                                                </a>
-                                                <a href="{{route('painel.advertisement.show',$advertisement->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
-                                                    <i class="fas fa-eye fa-2x"></i>
-                                                </a>
-                                                <a href="{{route('painel.advertisement.show',$advertisement->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
-                                                    <i class="fas fa-eye fa-2x"></i>
-                                                </a>
+                                                <form action="{{ route('painel.advertisement.destroy', $advertisement->id)}}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <a href="{{route('painel.advertisement.show',$advertisement->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
+                                                        <i class="fas fa-eye fa-2x"></i>
+                                                    </a>
+                                                    <button class="btn btn-danger btn-sm mb-2" type="submit">
+                                                        <i class="fas fa-trash"></i></button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>

@@ -6,12 +6,11 @@
         <div class="card">
             <div class="card-header">Anúncios</div>
             <div class="card-body">
-                <div class='table-responsive'>
-                    <table class="table table-sm table-bordered table-hover table-striped text-center">
+                <div class='table-responsive' >
+                    <table class="table table-sm table-bordered table-hover table-striped text-center" >
                         <thead>
-                            <tr>
+                            <tr >
                                 <th scope="col">#ID</th>
-                                <th scope="col">Imagem</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Valor</th>
                                 <th scope="col">Tipo</th>
@@ -20,14 +19,15 @@
                         </thead>
                         <tbody>
                             @foreach($advertisements as $advertisement)
-                                <tr class='text-center'>
-                                    <td>{{$advertisement->id}}</td>
-                                    <td>
-                                        <img src="{{$advertisement->image}}" height="42" width="42"></td>
-                                    <td>{{$advertisement->title}}</td>
-                                    <td>R$ {{money_format('%.2n', $advertisement->value)}}</td>
-                                    <td>{{$advertisement->category->title}}</td>
-                                    <td>
+                                <tr class='text-center' >
+                                    <td style='vertical-align: middle;'>{{$advertisement->id}}</td>
+                                    <td style='vertical-align: middle;'>
+                                        {{$advertisement->title}}
+                                        <a class='float-right' href='{{route('painel.advertisement.show', $advertisement->user->id)}}' ><i class="fas fa-info-circle text-primary"></i></a>
+                                    </td>
+                                    <td style='vertical-align: middle;'>R$ {{money_format('%.2n', $advertisement->value)}}</td>
+                                    <td style='vertical-align: middle;'>{{$advertisement->category->title}}</td>
+                                    <td style='vertical-align: middle;'>
                                         <form action="{{route('administrative.advertisements.update', $advertisement->id)}}" method="POST" >
                                             @method('PUT')
                                             @csrf

@@ -16,6 +16,7 @@ class CreateAdvertisementCategoriesTable extends Migration
         Schema::create('advertisement_categories', function (Blueprint $table) {
             $table->unsignedInteger('id', true);
             $table->string('title');
+            $table->string('icon');
             $table->timestamps();
         });
     }

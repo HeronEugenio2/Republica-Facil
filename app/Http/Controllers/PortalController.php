@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advertisement;
 use App\Models\Republic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class PortalController
@@ -19,9 +21,9 @@ class PortalController extends Controller
      */
     public function index()
     {
-        $republics = Republic::paginate(6);
-
-        return view('Portal.welcome', compact('republics'));
+        $republics = Republic::where('active_flag', 1)->paginate(14);
+        $advertisements = Advertisement::where('active_flag', 1)->paginate(7);
+        return view('Portal.welcome', compact('republics', 'advertisements'));
     }
 
     /**
@@ -31,9 +33,25 @@ class PortalController extends Controller
      */
     public function indexRepublics()
     {
+        //TODO ta faltando with('categories')
         $republics = Republic::where('active_flag', 1)->get();
+        $advertisements = Advertisement::where('active_flag', 1)->paginate(45);
 
-        return view('Portal.Republic.Index', compact('republics'));
+        return view('Portal.Republic.Index', compact('republics', 'advertisements'));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function indexAdvertisement()
+    {
+        $advertisementes = Advertisement::where('active_flag', 1)->paginate(45);
+        $sql             = "SELECT id, title, icon 
+                    FROM advertisement_categories                    
+                    ORDER BY title, id, icon";
+        $categories      = DB::select($sql);
+
+        return view('Portal.Advertisement.Index', compact('advertisementes', 'categories'));
     }
 
     /**
@@ -67,6 +85,12 @@ class PortalController extends Controller
         return view('Portal.Republic.Show', compact('republic'));
     }
 
+    public function showAdvertisement($id)
+    {
+        $advertisement = Advertisement::with('category', 'user')->find($id);
+
+        return view('Portal.Advertisement.Show', compact('republic', 'advertisement'));
+    }
     /**
      * Show the form for editing the specified resource.
      * @param  int $id
@@ -147,5 +171,18 @@ class PortalController extends Controller
                              ->whereBetween('value', [$value - 99, $value])->take(20)->get();
 
         return view('Portal.Republic.IncludeSearch', compact('republics', 'value'))->render();
+    }
+
+    public function searchCategory($id)
+    {
+        $advertisementes = Advertisement::with('category')
+                                        ->where('category_id', $id)
+                                        ->paginate(25);
+        $sql             = "SELECT id, title, icon 
+                    FROM advertisement_categories                    
+                    ORDER BY title, id, icon";
+        $categories      = DB::select($sql);
+
+        return view('Portal.Advertisement.Index', compact('advertisementes', 'categories'));
     }
 }

@@ -8,7 +8,7 @@
                 <h3>{{$advert->title}}</h3>
             </div>
             <div class='my-2'>
-                <img src='http://inyogo.com/img/image_not_available.png' style='width: 200px; height: 200px' alt=''>
+                <img src='{{$advert->image}}' style='width: 200px; height: 200px' alt=''>
             </div>
             <div class='border my-2 p-4'>
                 <h3>Descrição:</h3>

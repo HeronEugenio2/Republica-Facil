@@ -10,14 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/login2', function () {
-    return View::make('auth.login2');
-})->name('login2');
 
 Route::resource('/', 'PortalController')->names('portal');
 Route::resource('/mercado', 'AdvertisementController')->names('advertisement');
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 Route::get('login/{provider}', 'Auth\SocialAccountController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
@@ -25,22 +22,26 @@ Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProv
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(
     [
-        'prefix' => 'administrative',
-        'as' => 'administrative.',
+        'prefix'     => 'administracao',
+        'as'         => 'administrative.',
         'middleware' => ['auth'],
     ],
-    function () {
+    function() {
         //REPUBLIC
-        Route::resource('/republicas', 'Administrative\RepublicAdmController')->names('republics');
+        Route::resource('republicas', 'Administrative\RepublicAdmController')
+             ->names('republics');
+        //ADVERTISEMENT
+        Route::resource('anuncios', 'Administrative\AdvertisementAdmController')
+             ->names('advertisements');
     }
 );
 Route::group(
     [
-        'prefix' => 'painel',
-        'as' => 'painel.',
+        'prefix'     => 'painel',
+        'as'         => 'painel.',
         'middleware' => ['auth'],
     ],
-    function () {
+    function() {
         //REPUBLIC
         Route::resource('/republica', 'RepublicController')->names('republic');
         //SPENT
@@ -51,21 +52,25 @@ Route::group(
         Route::resource('/anuncios', 'Painel\AdvertisementController')->names('advertisement');
         //Invitations
         Route::post('/email', 'RepublicController@invitation')->name('invitation');
+        //Invitation accept
+        Route::get('/republica/{id}/aceitar', 'RepublicController@invitationAccept')->name('invitationAccept');
     }
 );
 Route::group(
     [
         'prefix' => 'portal',
-        'as' => 'portal.',
+        'as'     => 'portal.',
     ],
-    function () {
+    function() {
+        //ANUNCIOS
+        Route::get('/anuncios', 'PortalController@indexAdvertisement')->name('advertisement');
+        Route::get('/anuncios/{id}', 'PortalController@showAdvertisement')->name('showAdvertisement');
+        Route::get('/anuncios/categoria/{id}', 'PortalController@searchCategory')->name('searchCategory');
         //WELCOME
         Route::resource('/republicas', 'PortalController')->names('republics');
         //PROCURAR
         Route::get('/busca', 'PortalController@indexRepublics')->name('search');
         Route::post('/busca/cidade', 'PortalController@search')->name('republicSearch');
         Route::post('/busca/cidade/filtrada', 'PortalController@ajaxSearch')->name('ajaxSearch');
-
-
     }
 );

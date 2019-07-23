@@ -17,10 +17,10 @@ class CreateAdvertisementsTable extends Migration
         Schema::create('advertisements', function (Blueprint $table) {
             $table->unsignedInteger('id', true);
             $table->string('description');
-            $table->string('image')->nullable();
+            $table->string('image')->default('https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg');
             $table->string('title');
             $table->float('value');
-            $table->unsignedInteger('republic_id');
+//            $table->unsignedInteger('details_id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('category_id')->nullable();
             $table->unsignedInteger('image_id')->nullable();
@@ -30,9 +30,9 @@ class CreateAdvertisementsTable extends Migration
         Schema::table('advertisements', function(Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
-        Schema::table('advertisements', function(Blueprint $table) {
-            $table->foreign('republic_id')->references('id')->on('republics');
-        });
+//        Schema::table('advertisements', function(Blueprint $table) {
+//            $table->foreign('republic_id')->references('id')->on('republics');
+//        });
         Schema::table('advertisements', function(Blueprint $table) {
             $table->foreign('category_id')->references('id')->on('advertisement_categories');
         });

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Assignment;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AssignmentController extends Controller
 {
@@ -16,9 +17,9 @@ class AssignmentController extends Controller
     {
         $user     = auth()->user();
         $republic = $user->republic;
-//        $user = User::with('republic', 'republic.assignmets', 'assignmets')->first();
-//        //        dd($user);
-//        $republic           = $user->republic;
+        //        $user = User::with('republic', 'republic.assignmets', 'assignmets')->first();
+        //        //        dd($user);
+        //        $republic           = $user->republic;
         $republicAssignmets = $republic->assignmets;
 
         return view('Painel.Assignments.Assignment', compact('republic', 'republicAssignmets'));
@@ -30,7 +31,9 @@ class AssignmentController extends Controller
      */
     public function create()
     {
-        return view('Painel.Assignments.Create');
+        $users = User::where('republic_id', Auth::user()->republic_id)->get();
+
+        return view('Painel.Assignments.Create', compact('users'));
     }
 
     /**

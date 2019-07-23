@@ -124,12 +124,12 @@
                         <i class="fas fa-book text-gray"></i> Tarefas
                     </a>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('painel.advertisement.index') }}">
                         <i class="fas fa-cart-plus text-gray"></i> Anúncios
                     </a>
                 </li>
-                @endif
                 @if(auth()->user()->email == 'hrs.eugenio@gmail.com')
                     <li class="nav-item">
                         <hr>

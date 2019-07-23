@@ -4,15 +4,15 @@
     <div class='card'>
         <div class='card-header'>Cadastrar República</div>
         <div class='card-body'>
-            {{--@if( isset($errors) && count($errors) > 0 )--}}
-                {{--<div class='error'>--}}
-                    {{--<ul>--}}
-                        {{--@foreach($errors->all() as $error)--}}
-                            {{--<list style='color:red'>{{$error}}</list>--}}
-                        {{--@endforeach--}}
-                    {{--</ul>--}}
-                {{--</div>--}}
-            {{--@endif--}}
+            @if( isset($errors) && count($errors) > 0 )
+                <div class='error'>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <list style='color:red'>{{$error}}</list>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             @if(isset($republic))
             <form id="logout-form" method="POST" action="{{ route('painel.republic.update', ['republic'=>$republic->id]) }}">
                 {{method_field('PUT')}}
@@ -56,7 +56,7 @@
                     </div>
                     <div class="form-group col-md-4 col-lg-4 col-sm-12">
                         <label>Estado</label>
-                        <input id="state" name='state' value='{{isset($republic)?$republic->state:old('state')??''}}' type="text" class="form-control" placeholder="Ex: Rio de Janeiro"
+                        <input id="state" name='state' value='{{isset($republic)?$republic->state:old('district')??''}}' type="text" class="form-control" placeholder="Ex: Rio de Janeiro"
                                style='width: 100%'>
                         <small class="form-text text-muted"></small>
                     </div>

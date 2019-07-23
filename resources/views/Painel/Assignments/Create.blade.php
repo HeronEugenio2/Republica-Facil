@@ -35,6 +35,9 @@
                                     <label>Membro</label>
                                     <select class="form-control" style='width: 100%' required>
                                         <option>Selelcione</option>
+                                        @foreach($users as $id => $user)
+                                            <option value='{{$id}}'>{{$user->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

@@ -25,7 +25,7 @@
                                         <td>{{$invitation->user->name}}</td>
                                         <td>{{$invitation->republic->name}}</td>
                                         <td>
-                                            <a href='#' class='btn btn-sm btn-primary'>Sim</a>
+                                            <a href='{{route('painel.invitationAccept', $invitation->id)}}' class='btn btn-sm btn-primary'>Sim</a>
                                             <a href='#' class='btn btn-sm btn-danger'>Não</a>
                                         </td>
                                     </tr>

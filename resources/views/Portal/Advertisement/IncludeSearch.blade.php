@@ -4,8 +4,9 @@
             <div class='card m-1 border shadow' style='width: 150px; '>
                 <img class="card-img-top w-100" style='height: 120px' src="{{$advertisement->image}}" alt="Card image cap">
                 <div class='card-body p-1 text-center w-100'>
-                    <small>{{$advertisement->title}}</small>
-                    <br>
+                    <div class="col-12 text-truncate p-0 mb-2">
+                        <small>{{$advertisement->title}}</small>
+                    </div>
                     <small>
                         <strong><i class="fas fa-money-bill"></i> R$ {{money_format('%.2n', $advertisement->value)}}
                         </strong>

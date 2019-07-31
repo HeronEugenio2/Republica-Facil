@@ -133,7 +133,7 @@ class PortalController extends Controller
         $value = $request->input(['search']);
         //        dd($request->request);
 
-        $republics = Republic::where('active_flag', 1)->where('city', 'like', '%' . $value . '%')->take(20)->get();
+        $republics = Republic::where('active_flag', 1)->where('city', 'like', '%' . $value . '%')->take(100)->get();
 
         return view('Portal.Republic.Index', compact('republics', 'value'));
     }

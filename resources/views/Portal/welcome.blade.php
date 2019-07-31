@@ -118,45 +118,45 @@
             </div>
         </div>
     </div>
-    <div id='anuncioDestaque' class="jumbotron jumbotron-fluid mb-0">
-        <div class="album">
-            <div class="container">
-                <h2 class='text-center mb-2'><strong>Anúncios em Destaque</strong></h2>
-                <hr class='bg-danger'>
-                <div class="row">
-                    @foreach($republics as $republic)
-                        <div class="col-md-4">
-                            <div class="card mb-4 box-shadow shadow">
-                                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Miniatura [100% x225]" style="height: 225px; width: 100%; display: block;" src="{{$republic->image}}" data-holder-rendered="true">
-                                <div class="card-body">
-                                    <p class="card-text m-0">
-                                    <div class="col-12 text-truncate p-0 mb-2">
-                                        <h4>{{$republic->name}}</h4>
-                                    </div>
-                                    <div class="col-12 text-truncate p-0 mb-2">
-                                        <small>
-                                            <i class="fas fa-map-marker-alt text-danger"></i> {{$republic->district}}, {{$republic->city}} - {{$republic->state}}
-                                        </small>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">
-                                                VIsualizar
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-outline-success">Contato</button>
-                                        </div>
-                                        <small class="text-muted">
-                                            <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 min</font></font>
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
+    {{--<div id='anuncioDestaque' class="jumbotron jumbotron-fluid mb-0">--}}
+        {{--<div class="album">--}}
+            {{--<div class="container">--}}
+                {{--<h2 class='text-center mb-2'><strong>Anúncios em Destaque</strong></h2>--}}
+                {{--<hr class='bg-danger'>--}}
+                {{--<div class="row">--}}
+                    {{--@foreach($republics as $republic)--}}
+                        {{--<div class="col-md-4">--}}
+                            {{--<div class="card mb-4 box-shadow shadow">--}}
+                                {{--<img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Miniatura [100% x225]" style="height: 225px; width: 100%; display: block;" src="{{$republic->image}}" data-holder-rendered="true">--}}
+                                {{--<div class="card-body">--}}
+                                    {{--<p class="card-text m-0">--}}
+                                    {{--<div class="col-12 text-truncate p-0 mb-2">--}}
+                                        {{--<h4>{{$republic->name}}</h4>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col-12 text-truncate p-0 mb-2">--}}
+                                        {{--<small>--}}
+                                            {{--<i class="fas fa-map-marker-alt text-danger"></i> {{$republic->district}}, {{$republic->city}} - {{$republic->state}}--}}
+                                        {{--</small>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="d-flex justify-content-between align-items-center">--}}
+                                        {{--<div class="btn-group">--}}
+                                            {{--<button type="button" class="btn btn-sm btn-outline-secondary">--}}
+                                                {{--VIsualizar--}}
+                                            {{--</button>--}}
+                                            {{--<button type="button" class="btn btn-sm btn-outline-success">Contato</button>--}}
+                                        {{--</div>--}}
+                                        {{--<small class="text-muted">--}}
+                                            {{--<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 min</font></font>--}}
+                                        {{--</small>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--@endforeach--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
     <div id='footer' class="jumbotron jumbotron-fluid bg-dark mb-0">
         <div class="container">
             <div class='row justify-content-md-center'>

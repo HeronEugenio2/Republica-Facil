@@ -31,16 +31,21 @@
                     <h2>
                         Anúncio
                     </h2>
-                    <p class='text-secondary'>
-                        Anuncie gratuitamente agora. Iremos encontrar pessoas confiáveis que estejam interessadas em alugar seu quarto para morar com você.
-                    </p>
+                    <div class='row justify-content-center'>
+                        <div class='' style='max-width: 400px;'>
+                            <p class='text-secondary'>
+                                Anuncie gratuitamente agora. Iremos encontrar pessoas confiáveis que estejam interessadas em alugar seu quarto para morar com você.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center'>
+                <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center  mb-4'>
                     <div class='form-group text-center'>
                         <div class='col-sm-12'></div>
                         <a type='btn btn-danger' href='{{route('home')}}' class='btn btn-danger w-100 btn-lg px-5'>Grátis</a>
                     </div>
                 </div>
+                <div class='w-100'><br><br></div>
             </div>
             <div class="container">
                 <div class="row justify-content-center mb-2">
@@ -49,12 +54,13 @@
                             <div class='card m-1 border shadow' style='width: 150px; '>
                                 <img class="card-img-top w-100" style='height: 120px' src="{{$republic->image}}" alt="Card image cap">
                                 <div class='card-body p-1 text-center w-100'>
-                                    <small>{{$republic->title}}</small>
+                                    <div class='text-truncate'>
+                                        <small>{{$republic->name}}</small>
+                                    </div>
                                     <br>
-                                    <small>
+                                    <div class='font-weight-bold' style='    color: brown;'>
                                         <strong><i class="fas fa-money-bill"></i> R$ {{money_format('%.2n', $republic->value)}}
-                                        </strong>
-                                    </small>
+                                        </strong></div>
                                     <a href='#' href='#' class='btn btn-sm btn-danger w-100'>Visualisar</a>
                                 </div>
                             </div>
@@ -119,43 +125,43 @@
         </div>
     </div>
     {{--<div id='anuncioDestaque' class="jumbotron jumbotron-fluid mb-0">--}}
-        {{--<div class="album">--}}
-            {{--<div class="container">--}}
-                {{--<h2 class='text-center mb-2'><strong>Anúncios em Destaque</strong></h2>--}}
-                {{--<hr class='bg-danger'>--}}
-                {{--<div class="row">--}}
-                    {{--@foreach($republics as $republic)--}}
-                        {{--<div class="col-md-4">--}}
-                            {{--<div class="card mb-4 box-shadow shadow">--}}
-                                {{--<img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Miniatura [100% x225]" style="height: 225px; width: 100%; display: block;" src="{{$republic->image}}" data-holder-rendered="true">--}}
-                                {{--<div class="card-body">--}}
-                                    {{--<p class="card-text m-0">--}}
-                                    {{--<div class="col-12 text-truncate p-0 mb-2">--}}
-                                        {{--<h4>{{$republic->name}}</h4>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col-12 text-truncate p-0 mb-2">--}}
-                                        {{--<small>--}}
-                                            {{--<i class="fas fa-map-marker-alt text-danger"></i> {{$republic->district}}, {{$republic->city}} - {{$republic->state}}--}}
-                                        {{--</small>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="d-flex justify-content-between align-items-center">--}}
-                                        {{--<div class="btn-group">--}}
-                                            {{--<button type="button" class="btn btn-sm btn-outline-secondary">--}}
-                                                {{--VIsualizar--}}
-                                            {{--</button>--}}
-                                            {{--<button type="button" class="btn btn-sm btn-outline-success">Contato</button>--}}
-                                        {{--</div>--}}
-                                        {{--<small class="text-muted">--}}
-                                            {{--<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 min</font></font>--}}
-                                        {{--</small>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--@endforeach--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
+    {{--<div class="album">--}}
+    {{--<div class="container">--}}
+    {{--<h2 class='text-center mb-2'><strong>Anúncios em Destaque</strong></h2>--}}
+    {{--<hr class='bg-danger'>--}}
+    {{--<div class="row">--}}
+    {{--@foreach($republics as $republic)--}}
+    {{--<div class="col-md-4">--}}
+    {{--<div class="card mb-4 box-shadow shadow">--}}
+    {{--<img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Miniatura [100% x225]" style="height: 225px; width: 100%; display: block;" src="{{$republic->image}}" data-holder-rendered="true">--}}
+    {{--<div class="card-body">--}}
+    {{--<p class="card-text m-0">--}}
+    {{--<div class="col-12 text-truncate p-0 mb-2">--}}
+    {{--<h4>{{$republic->name}}</h4>--}}
+    {{--</div>--}}
+    {{--<div class="col-12 text-truncate p-0 mb-2">--}}
+    {{--<small>--}}
+    {{--<i class="fas fa-map-marker-alt text-danger"></i> {{$republic->district}}, {{$republic->city}} - {{$republic->state}}--}}
+    {{--</small>--}}
+    {{--</div>--}}
+    {{--<div class="d-flex justify-content-between align-items-center">--}}
+    {{--<div class="btn-group">--}}
+    {{--<button type="button" class="btn btn-sm btn-outline-secondary">--}}
+    {{--VIsualizar--}}
+    {{--</button>--}}
+    {{--<button type="button" class="btn btn-sm btn-outline-success">Contato</button>--}}
+    {{--</div>--}}
+    {{--<small class="text-muted">--}}
+    {{--<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 min</font></font>--}}
+    {{--</small>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--@endforeach--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
     {{--</div>--}}
     <div id='footer' class="jumbotron jumbotron-fluid bg-dark mb-0">
         <div class="container">

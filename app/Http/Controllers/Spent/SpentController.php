@@ -24,9 +24,10 @@ class SpentController extends Controller
         $histories = SpentHistory::where('user_id', $user->id)->orderBy('month')
                                  ->get();
 
-        $sql            = "SELECT value
+        $sql      = "SELECT value
                             , h.month
                             , buy
+                            , created_at
                             FROM spent_histories as h
                             WHERE (user_id = $user->id)
                             ORDER BY h.month";

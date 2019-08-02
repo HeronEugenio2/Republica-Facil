@@ -19,7 +19,8 @@
                                     <th scope="col" class='bg-nav text-white'>Descrição</th>
                                     <th scope="col" class='bg-nav text-white'>Valor</th>
                                     <th scope="col" class='bg-nav text-white'>Ativo</th>
-                                    <th scope="col" class='bg-nav text-white'>Ações</th>
+                                    <th scope="col" class='bg-nav text-white'>Detalhes</th>
+                                    <th scope="col" class='bg-nav text-white'>Deletar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,17 +40,17 @@
                                             @endif
                                         </td>
                                         <td class='align-middle'>
-                                            <div class='btn-group'>
-                                                <form action="{{ route('painel.advertisement.destroy', $advertisement->id)}}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{route('painel.advertisement.show',$advertisement->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
-                                                        <i class="fas fa-eye fa-2x"></i>
-                                                    </a>
-                                                    <button class="btn btn-danger btn-sm mb-2" type="submit">
-                                                        <i class="fas fa-trash"></i></button>
-                                                </form>
-                                            </div>
+                                            <a href="{{route('painel.advertisement.show',$advertisement->id )}}" class="btn btn-sm text-gray mb-2 p-0 px-1">
+                                                <i class="fas fa-eye fa-2x"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('painel.advertisement.destroy', $advertisement->id)}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger btn-sm mb-2" type="submit">
+                                                    <i class="fas fa-trash"></i></button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

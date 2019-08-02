@@ -2,7 +2,7 @@
 
 @section('content')
     <div class='row'>
-        <div class='col-sm-12 col-md-4 col-lg-4'>
+        <div class='col-sm-12 col-md-3 col-lg-3'>
             <div class="card text-dark bg-primary mb-3" style="height: 300px;">
                 <div class="card-header bg-nav text-white c-">Gerenciador de gastos</div>
                 <div class="card-body">
@@ -40,7 +40,7 @@
                                 <tbody>
                                     @foreach($myDebits as $myDebit)
                                         <tr class='text-center'>
-                                            <td>{{$myDebit->month}}</td>
+                                            <td>{{$myDebit->created_at}}</td>
                                             <td>{{$myDebit->buy}}</td>
                                             <td>R$ {{number_format($myDebit->value,2,',', '.')}}</td>
                                         </tr>
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <div class='col-sm-12 col-md-12 col-lg-12'>
+        <div class='col-sm-12 col-md-5 col-lg-5'>
             <div class='card'>
                 <div class='card-body'>
                     {{--<div id="chart_div" style="width: 100%; height: 300px;"></div>--}}
@@ -62,7 +62,7 @@
         </div>
     </div>
     <div id='spentFull' class='card'>
-        <div id='headerFull' class='card-hespenader bg-nav text-white c-'>Gastos</div>
+        <div id='headerFull' class='card-header bg-nav text-white'>Gastos</div>
         <div id='bodyFull' class='card-body '>
             <a href="{{route('painel.spent.create')}}" class="btn btn-success mb-2">
                 <i class="fas fa-plus-circle"></i> Novo Gasto

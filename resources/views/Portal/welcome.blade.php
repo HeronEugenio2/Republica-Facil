@@ -4,8 +4,8 @@
         <div class="container text-white">
             <div class='row justify-content-md-center'>
                 <div class='col-12 text-center'>
-                    <img src='{{ asset('/images/favicon.png') }}' style='width: 120px'>
-                    <h1>Encontre Repúblicas em todo Brasil !</h1>
+                    <img src='{{ asset('/images/favicon.png') }}' style='width: 60px'>
+                    <h1>Encontre Repúblicas em todo Brasil!</h1>
                     <p>Encontre quartos para alugar em repúblicas ou cadastre a sua.</p>
                 </div>
                 <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center'>

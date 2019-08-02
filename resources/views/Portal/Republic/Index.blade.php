@@ -52,7 +52,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href='#' id='btnFiltro' class='btn btn-danger w-100'>Filtrar</a>
+                    <a href='#' id='btnFiltro' class='btn btn-danger w-100 mb-2'>Filtrar</a>
                 </form>
             </div>
             <div class='col-sm-12 col-md-9 col-lg-9'>

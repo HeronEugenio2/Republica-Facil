@@ -3,7 +3,7 @@
 
 @endpush
 @section('content')
-    <div class="jumbotron jumbotron-fluid p-4 mb-0">
+    <div class="jumbotron jumbotron-fluid p-4 mb-0" style="background-color: ghostwhite">
         <div class='row'>
             <div class='col-sm-12 col-md-3 col-lg-3'>
                 {{--<form action='{{route('portal.republicSearch')}}' method='POST'>--}}

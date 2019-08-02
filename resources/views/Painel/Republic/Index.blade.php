@@ -4,7 +4,7 @@
 @section('content')
     @if(isset($user->republic))
         <div class='card-columns'>
-            <div class="card">
+            <div class='card'>
                 <div class="card-header bg-nav text-white">Sua República
                     @if($republic->active_flag == 0)
                         <h2 class='float-right'>
@@ -33,11 +33,7 @@
                     <br> <strong>Descrição:</strong> {{$republic->description}}<br>
                     <strong>Quantidade Membros:</strong> {{$republic->qtdMembers}}<br>
                     <strong>Quantidade de Vagas:</strong> {{$republic->qtdVacancies}}<br>
-                    <hr>
-                    <strong>Endereço:</strong> {{$republic->street}}, {{$republic->number}}<br>
-                    <strong>Bairro:</strong> {{$republic->district}}<br> <strong>Cep:</strong> {{$republic->cep}}
-                    <br> <strong>Cidade:</strong> {{$republic->city}}<br> <strong>Estado: </strong>{{$republic->state}}
-                    <br> <strong>Gênero:</strong> {{$republic->type->title}}<br> <br>
+
                     <strong>Preço:</strong> R$ {{money_format('%.2n' ,$republic->value)}}<br>
                 </div>
             </div>
@@ -97,7 +93,6 @@
                     @endif
                 </div>
             </div>
-
             <div class='card'>
                 <div class='card-header bg-nav text-white'>Membros</div>
                 <div class='card-header'>
@@ -127,6 +122,16 @@
                             </table>
                         </div>
                     @endif
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-header bg-nav text-white'>Endereço</div>
+                <div class='card-body'>
+                    <strong>Endereço:</strong> {{$republic->street}}, {{$republic->number}}<br>
+                    <strong>Bairro:</strong> {{$republic->district}}<br> <strong>Cep:</strong> {{$republic->cep}}
+                    <br> <strong>Cidade:</strong> {{$republic->city}}<br> <strong>Estado: </strong>{{$republic->state}}
+                    <br> <strong>Gênero:</strong> {{$republic->type->title}}<br> <br>
+                    <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Editar</a>
                 </div>
             </div>
         </div>

@@ -7,6 +7,17 @@
             <a href="{{route('painel.advertisement.create')}}" class="btn btn-success mb-2">
                 <i class="fas fa-plus-circle"></i> Novo Anúncio
             </a>
+            <div class='filtro'>
+                <form>
+                    <div class="input-group mb-3  w-50">
+                        <input type="text" class="form-control" placeholder="Palavra Chave"
+                               style='border-bottom-right-radius: unset;border-top-right-radius: unset;'>
+                        <div class="input-group-append">
+                            <span class="input-group-text btn-secondary">Buscar</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <hr>
             @if(count($advertisements)>0)
                 @if(isset($advertisements))

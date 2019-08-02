@@ -27,6 +27,7 @@ class RepublicAdmController extends Controller
     public function show($id)
     {
         $republic = Republic::find($id);
+
         return view('Administrative.Republics.Show', compact('republic'));
     }
 
@@ -67,9 +68,10 @@ class RepublicAdmController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $republic = Republic::find($id);
+        $republic              = Republic::find($id);
         $republic->active_flag = $request['active_flag'];
         $republic->save();
+
         return redirect()->back();
     }
 
@@ -82,6 +84,7 @@ class RepublicAdmController extends Controller
     {
         //
     }
+
     public function activation()
     {
         $republics = Republic::paginate(20);

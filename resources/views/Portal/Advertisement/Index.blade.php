@@ -34,24 +34,24 @@
                 <div class='w-100 mb-4'></div>
                 @if(isset($categories) && count($categories)>0)
                     {{--<form action='{{route('portal.searchCategory')}}' method="POST">--}}
-                        {{--@csrf--}}
-                        <div class='row text-center'>
-                            @foreach($categories as $category)
-                                <a href='{{route('portal.searchCategory', $category->id)}}' >
-                                    <div class='col icone' data-id='{{$category->id}}'>
-                                        <i class="fas fa-{{$category->icon}} text-grey2 fa-2x mx-4"></i><br>
-                                        <span class='text-grey2'>{{$category->title}}</span>
-                                    </div>
-                                </a>
-                            @endforeach
-                        </div>
+                    {{--@csrf--}}
+                    <div class='row text-center'>
+                        @foreach($categories as $category)
+                            <a href='{{route('portal.searchCategory', $category->id)}}'>
+                                <div class='col icone' data-id='{{$category->id}}'>
+                                    <i class="fas fa-{{$category->icon}} text-grey2 fa-2x mx-4"></i><br>
+                                    <span class='text-grey2'>{{$category->title}}</span>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
                     {{--</form>--}}
                 @endif
             </div>
         </div>
     </div>
     </div>
-    <div class="jumbotron jumbotron-fluid p-4 mb-0">
+    <div class="jumbotron jumbotron-fluid p-4 mb-0" style="background-color: ghostwhite">
         @include('Portal.Advertisement.IncludeSearch')
         {{ $advertisementes->links() }}
     </div>

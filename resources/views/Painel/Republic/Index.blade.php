@@ -17,12 +17,6 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    <div class="input-group mb-3">
-                        <input type='text' name='image' id='image' class="form-control" placeholder="Ex: www.facebook.com/user/image.png" style='border-top-right-radius: 0; border-bottom-right-radius: 0;'>
-                        <div class="input-group-append">
-                            <button id='btnCheck' class="btn btn-outline-danger" type="button">Upload</button>
-                        </div>
-                    </div>
                     <img id='imgSrc' class='mb-2' src='{{$republic->image}}' style="width:200px; height:200px;"/> <br>
                     <div class="btn-group btn-group-sm mb-2" role="group" aria-label="...">
                         <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Editar</a>

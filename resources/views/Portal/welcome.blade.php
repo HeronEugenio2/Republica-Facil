@@ -1,6 +1,6 @@
 @extends('Portal.TemplateLaravel')
 @section('content')
-    <div id='busca' class="jumbotron jumbotron-fluid m-0 bg-dark">
+    <div id='busca' class="jumbotron jumbotron-fluid m-0 bg-dark"  style='background-image: linear-gradient(0deg, #dc3544, transparent);'>
         <div class="container text-white">
             <div class='row justify-content-md-center'>
                 <div class='col-12 text-center'>
@@ -28,13 +28,15 @@
         <div class="container">
             <div class='row justify-content-md-center m-1'>
                 <div class='col-12 text-center -20'>
+                    <img src='/images/faceinsta.png' style='width: 100px;height: 60px'>
                     <h2>
                         Anúncio
                     </h2>
                     <div class='row justify-content-center'>
-                        <div class='' style='max-width: 400px;'>
+                        <div class='' style='max-width: 600px;'>
                             <p class='text-secondary'>
-                                Anuncie gratuitamente agora. Iremos encontrar pessoas confiáveis que estejam interessadas em alugar seu quarto para morar com você.
+                                Anuncie gratuitamente agora e deixe o resto com a gente!
+                                Vamos encontrar pessoas confiáveis que estejam interessadas em seus anúncios.
                             </p>
                         </div>
                     </div>

@@ -37,7 +37,7 @@
                                                     {{ method_field('DELETE') }}
                                                     <div class="btn-group-vertical">
                                                         <button class='btn btn-danger btn-sm' type="submit">Excluir</button>
-                                                        <button class='btn btn-primary btn-sm'>Editar</button>
+                                                        {{--<button class='btn btn-primary btn-sm'>Editar</button>--}}
                                                     </div>
                                                 </form>
                                             </td>
@@ -67,7 +67,7 @@
                 @endif
             </div>
         </div>
-        <div class="card text-dark bg-primary mb-3" style="height: 300px;">
+        <div class="card text-dark bg-primary" style="height: 300px;">
             <div class="card-header bg-nav text-white c-">Gerenciador de gastos</div>
             <div class="card-body">
                 <h4 class="card-text text-center">ST = (ST/QT)-SI</h4>
@@ -90,6 +90,7 @@
             <div class='card-header bg-success'>Crédito</div>
             <div class='card-body'>
                 <small class='text-muted'>Adicione compras feitas por você que devem ser divididas entre todos.</small>
+                <br>
                 @if(count($myDebits)>0)
                     <div class='table-responsive'>
                         <table class="table table-bordered table-hover table-sm table-striped text-center">

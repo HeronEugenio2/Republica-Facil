@@ -150,6 +150,7 @@ class RepublicController extends Controller
         // store
         $republic               = Republic::find($id);
         $republic->name         = $input['name'];
+        $republic->image        = $input['image'] ?? 'https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg';
         $republic->email        = $input['email'];
         $republic->qtdMembers   = $input['qtdMembers'];
         $republic->qtdVacancies = $input['qtdVacancies'];
@@ -163,18 +164,18 @@ class RepublicController extends Controller
         $republic->state        = $input['state'];
         $republic->number       = $input['number'];
         //        dd($input);
+
         $updatedRepublic = $republic->save();
         if ($updatedRepublic) {
-            $user     = User::with('republic', 'republic.type')->first();
-            $republic = $user->republic;
+            $user        = User::with('republic', 'republic.type')->first();
+            $republic    = $user->republic;
             $invitations = [];
             if (!empty($republic = $user->republic)) {
                 $invitations = Invitation::where('republic_id', $user->republic->id)->get();
             }
-            return view('Painel.Republic.Index', compact('republic', 'user', 'invitations'));
-            $members  = User::where('republic_id', $republic->id)->get();
+            $members = User::where('republic_id', $republic->id)->get();
 
-            return view('Painel.Republic.Index', compact('republic', 'user', 'members'));
+            return view('Painel.Republic.Index', compact('republic', 'user', 'invitations', 'members'));
         }
     }
 

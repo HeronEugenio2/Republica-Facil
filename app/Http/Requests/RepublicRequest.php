@@ -30,6 +30,7 @@ class RepublicRequest extends FormRequest
     {
         return [
             'name'         => 'required|string|max:255',
+            'image'        => 'string|max:255|nullable',
             'email'        => 'required|string|max:255',
             'qtdMembers'   => 'required|string|max:255',
             'qtdVacancies' => 'required|string|max:255',
@@ -49,10 +50,10 @@ class RepublicRequest extends FormRequest
     //     * @return array
     //     * @author Heron Eugenio
     //     */
-    //    public function messages()
-    //    {
-    //        return [
-    //            'required' => '- :attribute tem que ser preenchido',
-    //        ];
-    //    }
+        public function messages()
+        {
+            return [
+//                'image' => '- :attribute tem que ser preenchido',
+            ];
+        }
 }

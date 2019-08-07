@@ -89,7 +89,7 @@
             </div>
         </div>
     </div>
-    <div id='informacaoAleatoria' class="jumbotron jumbotron-fluid text-white bg-dark mb-0">
+    <div id='informacaoAleatoria' class="jumbotron jumbotron-fluid mb-0">
         <div class="container">
             <div class='row justify-content-md-center'>
                 <div class='col-12 text-center'>

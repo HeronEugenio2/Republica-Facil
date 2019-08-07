@@ -97,7 +97,7 @@
             {{--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--}}
             {{--<button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>--}}
         {{--</form>--}}
-        <i class="fab fa-github fa-2x"></i>
+        <i class="fab fa-github text-white fa-2x"></i>
     </div>
 </nav>
 <div class='container-fluid p-0'>

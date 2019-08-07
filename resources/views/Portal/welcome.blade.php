@@ -1,6 +1,11 @@
 @extends('Portal.TemplateLaravel')
+<style>
+    .bg-danger2{
+        background-image: linear-gradient(0deg, #a90516, transparent);
+    }
+</style>
 @section('content')
-    <div id='busca' class="jumbotron jumbotron-fluid m-0 bg-dark"  style='background-image: linear-gradient(0deg, #dc3544, transparent);'>
+    <div id='busca' class="jumbotron jumbotron-fluid m-0 bg-dark"  style='background-image: linear-gradient(0deg, #a90516, transparent);'>
         <div class="container text-white">
             <div class='row justify-content-md-center'>
                 <div class='col-12 text-center'>
@@ -44,7 +49,7 @@
                 <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center  mb-4'>
                     <div class='form-group text-center'>
                         <div class='col-sm-12'></div>
-                        <a type='btn btn-danger' href='{{route('home')}}' class='btn btn-danger w-100 btn-lg px-5'>Grátis</a>
+                        <a type='btn btn-danger' href='{{route('home')}}' class='btn btn-danger bg-danger2 w-100 btn-lg px-5'>Grátis</a>
                     </div>
                 </div>
                 <div class='w-100'><br><br></div>
@@ -63,7 +68,7 @@
                                     <div class='font-weight-bold' style='    color: brown;'>
                                         <strong><i class="fas fa-money-bill"></i> R$ {{money_format('%.2n', $republic->value)}}
                                         </strong></div>
-                                    <a href='#' href='#' class='btn btn-sm btn-danger w-100'>Visualisar</a>
+                                    <a href='#' href='#' class='btn btn-sm btn-danger bg-danger2 w-100'>Visualisar</a>
                                 </div>
                             </div>
                         @endforeach

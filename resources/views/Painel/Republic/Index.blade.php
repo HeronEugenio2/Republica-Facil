@@ -16,19 +16,19 @@
                         </h2>
                     @endif
                 </div>
-                <div class="card-body">
+                <div class="card-body text-center">
                     <img id='imgSrc' class='mb-2' src='{{$republic->image}}' style="width:200px; height:200px;"/> <br>
                     <div class="btn-group btn-group-sm mb-2" role="group" aria-label="...">
                         <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Editar</a>
                         <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Sair</a>
                         <a href='#' class='btn btn-secondary btn-sm'>Fotos</a>
                     </div>
-                    <br> <strong>Nome: </strong> {{$republic->name}}<br> <strong>Email:</strong> {{$republic->email}}
+                    <br> <h2>{{$republic->name}}</h2><strong>Email:</strong> {{$republic->email}}
                     <br> <strong>Descrição:</strong> {{$republic->description}}<br>
-                    <strong>Quantidade Membros:</strong> {{$republic->qtdMembers}}<br>
-                    <strong>Quantidade de Vagas:</strong> {{$republic->qtdVacancies}}<br>
+                    <strong>Membros:</strong> {{$republic->qtdMembers}}<br>
+                    <strong>Vagas:</strong> {{$republic->qtdVacancies}}<br>
 
-                    <strong>Preço:</strong> R$ {{money_format('%.2n' ,$republic->value)}}<br>
+                    <br><h2>R$ {{money_format('%.2n' ,$republic->value)}}</h2><br>
                 </div>
             </div>
             <div class='card'>

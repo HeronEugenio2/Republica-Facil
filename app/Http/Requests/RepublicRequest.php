@@ -34,7 +34,8 @@ class RepublicRequest extends FormRequest
             'email'        => 'required|string|max:255',
             'qtdMembers'   => 'required|string|max:255',
             'qtdVacancies' => 'required|string|max:255',
-            'value'        => 'required|required|regex:/^\d+(\.\d{1,2})?$/',
+//            'value'        => 'required|regex:/^\d+([.,]\d{1,X})?$]/',
+            'value'        => 'required',
             'type_id'      => 'required|numeric',
             'description'  => 'string|nullable',
             'street'       => 'string|nullable',
@@ -53,7 +54,7 @@ class RepublicRequest extends FormRequest
         public function messages()
         {
             return [
-//                'image' => '- :attribute tem que ser preenchido',
+//                'value.regex' => 'o valor deve ser dividido com ponto e nao virgula',
             ];
         }
 }

@@ -80,6 +80,11 @@
                         <a href="{{route('painel.spent.create')}}" class="btn btn-success mt-2">
                             <i class="fas fa-plus-circle"></i> Novo Gasto
                         </a>
+                        {{--                        <a href="#" class="btn btn-primary mt-2"><i class="fas fa-history"></i> Extrato de contas</a>--}}
+                        <button type="button" class="btn btn-primary mt-2" data-toggle="modal"
+                                data-target="#modalExtract"><i class="fas fa-history"></i> Extrato de
+                            contas
+                        </button>
                     @else
                         <div class='alert alert-primary'>
                             Não possui gastos!
@@ -199,6 +204,58 @@
                             </button>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalExtract" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="TituloModalCentralizado">Extrato de Contas</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="year col">
+                            <label for="">Ano:</label>
+                            <select name="selectYear" id="selectYear" data-year="valorAno" class="form-control"
+                                    style='width: 100%'>
+                                <option value="1">Selecione</option>
+                                <option value="1">2019</option>
+                                <option value="1">2018</option>
+                                <option value="1">2017</option>
+                            </select>
+                        </div>
+                        <div class="month col">
+                            <label for="">Mês:</label>
+                            <select name="selectYear" id="selectYear" data-year="valorAno" class="form-control"
+                                    style='width: 100%'>
+                                <option value="1">Selecione</option>
+                                <option value="1">Janeiro</option>
+                                <option value="1">Fevereiro</option>
+                                <option value="1">Março</option>
+                            </select>
+                        </div>
+                        <div class="p-2">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta ducimus id nisi omnis
+                            perferendis quidem temporibus? Accusantium cumque dolores ea inventore nisi quis quod unde
+                            veniam. Accusamus dignissimos dolorem eius.lorem Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit. Ab aperiam at cum ex, facilis itaque, iure laborum minus necessitatibus
+                            nemo nihil nostrum numquam odio officia quasi quibusdam ratione unde voluptate.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta ducimus id nisi omnis
+                            perferendis quidem temporibus? Accusantium cumque dolores ea inventore nisi quis quod unde
+                            veniam. Accusamus dignissimos dolorem eius.lorem Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit. Ab aperiam at cum ex, facilis itaque, iure laborum minus necessitatibus
+                            nemo nihil nostrum numquam odio officia quasi quibusdam ratione unde voluptate.
+                        </div>
+                        <button class="btn btn-success"><i class="fas fa-file-download"></i> Exportar</button>
+                    </div>
+
+
                 </div>
             </div>
         </div>

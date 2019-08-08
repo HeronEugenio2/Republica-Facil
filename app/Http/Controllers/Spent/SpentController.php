@@ -24,13 +24,16 @@ class SpentController extends Controller
         $histories = SpentHistory::where('user_id', $user->id)->orderBy('month')
                                  ->get();
 
-        $sql      = "SELECT value
-                            , h.month
-                            , buy
-                            , created_at
-                            FROM spent_histories as h
-                            WHERE (user_id = $user->id)
-                            ORDER BY h.month";
+        $sql      = "SELECT h.value
+                    , h.month
+                    , buy
+                    , h.created_at       
+                    , s.description
+                    FROM spent_histories as h
+                    INNER JOIN spents as s on h.spent_id = s.id
+                    WHERE h.user_id = $user->id
+                    ORDER BY h.created_at";
+
         $myDebits = DB::select($sql);
 
         //CALC GASTOS

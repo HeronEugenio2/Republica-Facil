@@ -258,4 +258,10 @@ class RepublicController extends Controller
 
         return redirect()->back()->with('error', 'Houve algum erro no cadastro');
     }
+
+    public function debitStore(Request $request){
+        $user = '<div>'.$request->user.'</div>';
+
+        return $user;
+    }
 }

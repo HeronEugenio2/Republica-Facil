@@ -54,6 +54,8 @@ Route::group(
         Route::post('/email', 'RepublicController@invitation')->name('invitation');
         //Invitation accept
         Route::get('/republica/{id}/aceitar', 'RepublicController@invitationAccept')->name('invitationAccept');
+        //Debit store
+        Route::post('/debito', 'RepublicController@debitStore')->name('debitStore');
     }
 );
 Route::group(

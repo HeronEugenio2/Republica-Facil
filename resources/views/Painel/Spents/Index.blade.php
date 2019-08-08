@@ -2,7 +2,7 @@
 
 @section('content')
     <div class='card-columns'>
-        <div class='card' id='spentFull' >
+        <div class='card' id='spentFull'>
             <div id='headerFull' class='card-header bg-nav text-white'>Gastos</div>
             <div id='bodyFull' class='card-body '>
                 @if($republic != null)
@@ -10,41 +10,42 @@
                         <div class='table-responsive'>
                             <table class="table table-bordered table-hover table-sm table-striped text-center">
                                 <thead>
-                                    <tr>
-                                        <th scope="col">Data</th>
-                                        <th scope="col">Descrição</th>
-                                        <th scope="col">Valor</th>
-                                        <th scope="col">Membro</th>
-                                        <th scope="col">Ações</th>
-                                    </tr>
+                                <tr>
+                                    <th scope="col">Data</th>
+                                    <th scope="col">Descrição</th>
+                                    <th scope="col">Valor</th>
+                                    <th scope="col">Membro</th>
+                                    <th scope="col">Ações</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($spents as $spent)
-                                        <tr class='text-center'>
-                                            <td>{{date('d/m/Y', strtotime($spent->dateSpent))}}</td>
-                                            <td>{{$spent->description}}</td>
-                                            <td>R$ {{number_format($spent->value,2,',', '.')}}</td>
-                                            <td>
-                                                @if($spent->user_id!=null)
-                                                    {{$spent->user->name}}
-                                                @else
-                                                    Todos
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <form method="POST" action="{{route('painel.spent.destroy',$spent->id) }}">
-                                                    {{ csrf_field() }}
-                                                    {{ method_field('DELETE') }}
-                                                    <div class="btn-group-vertical">
-                                                        <button class='btn btn-danger btn-sm' type="submit">Excluir</button>
-                                                        {{--<button class='btn btn-primary btn-sm'>Editar</button>--}}
-                                                    </div>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    <td colspan='4'><strong>Total</strong></td>
-                                    <td><strong>R$ {{number_format($spentsTotal,2,',', '.')}}</strong></td>
+                                @foreach($spents as $spent)
+                                    <tr class='text-center'>
+                                        <td>{{date('d/m/Y', strtotime($spent->dateSpent))}}</td>
+                                        <td>{{$spent->description}}</td>
+                                        <td>R$ {{number_format($spent->value,2,',', '.')}}</td>
+                                        <td>
+                                        <td>
+                                            @if($spent->user_id!=null)
+                                                {{$spent->user->name}}
+                                            @else
+                                                Todos
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <form method="POST" action="{{route('painel.spent.destroy',$spent->id) }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <div class="btn-group-vertical">
+                                                    <button class='btn btn-danger btn-sm' type="submit">Excluir</button>
+                                                    {{--<button class='btn btn-primary btn-sm'>Editar</button>--}}
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                <td colspan='5'><strong>Total</strong></td>
+                                <td><strong>R$ {{number_format($spentsTotal,2,',', '.')}}</strong></td>
                                 </tbody>
                             </table>
                         </div>
@@ -95,25 +96,29 @@
                     <div class='table-responsive'>
                         <table class="table table-bordered table-hover table-sm table-striped text-center">
                             <thead>
-                                <tr>
-                                    <th scope="col">Data</th>
-                                    <th scope="col">Descrição</th>
-                                    <th scope="col">Valor</th>
-                                </tr>
+                            <tr>
+                                <th scope="col">Data</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">Valor</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                @foreach($myDebits as $myDebit)
-                                    <tr class='text-center'>
-                                        <td>{{$myDebit->created_at}}</td>
-                                        <td>{{$myDebit->buy}}</td>
-                                        <td>R$ {{number_format($myDebit->value,2,',', '.')}}</td>
-                                    </tr>
-                                @endforeach
+                            @foreach($myDebits as $myDebit)
+                                <tr class='text-center'>
+                                    <td>{{$myDebit->created_at}}</td>
+                                    <td>{{$myDebit->description}}</td>
+                                    <td>R$ {{number_format($myDebit->value,2,',', '.')}}</td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
-                @endif
-                <a href='#' class='btn btn-success btn-sm mt-2'>Adicionar</a>
+            @endif
+            <!-- Botão para acionar modal -->
+                <button id="newDebit" data-user="{{auth()->user()->id}}" type="button"
+                        class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#modalDebit">
+                    Adicionar
+                </button>
             </div>
         </div>
         <div class='card'>
@@ -124,6 +129,61 @@
         </div>
     </div>
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalDebit" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="TituloModalCentralizado">Adicionar Débito</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="teste">
+                        <form id="logout-form" method="POST" action="{{ route('painel.spent.store', ['republic'=>$republic->id]) }}">
+                            @csrf
+                            <input type='hidden' name='republic_id' value='{{$republic->id}}'>
+                            <div id='spent' class="form-group col-12 p-0">
+                                <label for="inputDescription">Descrição</label>
+                                <input id="inputDescription" name='description' type="text" class="form-control"
+                                       aria-describedby="descriptionHelp" placeholder="Ex: Produtos de limpeza" style='width: 100%'
+                                       required>
+                                <small id="descriptionHelp" class="form-text text-muted">Insira descrição do gasto.
+                                </small>
+                            </div>
+                            <div class='row'>
+                                <div id='spentData' class="form-group col-md-4 col-lg-4 col-sm-12">
+                                    <label for="inputSpent">Dia</label>
+                                    <input id="inputSpent" name='dateSpent' type="date" class="form-control" aria-describedby="spentHelp" placeholder="12/05/2019" style='width: 100%' required>
+                                    <small id="spentHelp" class="form-text text-muted">Data do débito.
+                                    </small>
+                                </div>
+                                <div id='spentValue' class="form-group col-md-4 col-lg-4 col-sm-12">
+                                    <label for="inputValue">Valor</label>
+                                    <input name='value' type='text' class="form-control" id='valueVirgula' style='width: 100%' required>
+                                </div>
+                                @if($republic != null)
+                                    <div class="form-group col-md-4 col-lg-4 col-sm-12">
+                                        <label>Membro</label>
+                                        <select class="form-control" style='width: 100%' name='user_id'>
+                                            @foreach($republic->user as $user)
+                                                <option value='{{$user->id}}'>{{$user->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @endif
+                            </div>
+                            <button id='save' type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Salvar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 @push('scripts')
@@ -188,6 +248,26 @@
             $("#headerFull").click(function () {
                 $("#bodyFull").toggle();
             });
+            $("#newDebit").click(function () {
+                let user = $('#newDebit').data('user');
+                $.ajaxSetup({
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+                    method: 'POST',
+                    url: '{{ route("painel.debitStore") }}'
+                });
+                $.ajax({
+                    data: {
+                        user: user
+                    },
+                    success: function (data) {
+                        // $("#teste").html(data);
+                    },
+                    error: function (data) {
+                        alert('nao veio');
+                    }
+                });
+            });
+
         });
     </script>
 @endpush

@@ -63,7 +63,7 @@
     </style>
 </head>
 <body  style='background-color: ghostwhite'>
-<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar navbar-dark" style="background-color: #000000">
     <img src="{{ asset('/images/favicon.png') }}" style='width: 30px' class="d-inline-block align-top mr-2" alt="">
     <a class="navbar-brand" href="{{ route('portal.index') }}">RepublicaFácil</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

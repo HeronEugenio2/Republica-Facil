@@ -3,32 +3,53 @@
     .bg-danger2{
         background-image: linear-gradient(0deg, #a90516, transparent);
     }
+    .parallax {
+        /* The image used */
+        /*background-image: url("images/casa.jpg");*/
+        /*background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.49), #000000), url("images/chave_casa.jpg");*/
+        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.54), #000000), url("images/avaliacao_casa.jpg");
+        /* Set a specific height */
+        min-height: 280px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        /*background-repeat: no-repeat;*/
+        background-size: cover;
+    }
+    /*a90516cc a90516*
+    style='background-image: linear-gradient(0deg, #a90516db, #000000), url("images/casa.jpg");'
+    /
+     */
 </style>
 @section('content')
-    <div id='busca' class="jumbotron jumbotron-fluid m-0 bg-dark"  style='background-image: linear-gradient(0deg, #a90516, transparent);'>
-        <div class="container text-white">
-            <div class='row justify-content-md-center'>
-                <div class='col-12 text-center'>
-                    <img src='{{ asset('/images/favicon.png') }}' style='width: 60px'>
-                    <h1>Encontre Repúblicas em todo Brasil!</h1>
-                    <p>Encontre quartos para alugar em repúblicas ou cadastre a sua.</p>
-                </div>
-                <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center'>
-                    <div class=''>
-                        <form id="logout-form" action="{{ route('portal.republicSearch') }}" method="POST">
-                            @csrf
-                            <div class="input-group mb-3">
-                                <input class='form-control' type='text' name='search' placeholder='Preencha o nome da cidade'>
-                                <div id='search' class="input-group-append">
-                                    <button type='submit' class='btn btn-danger'>Buscar</button>
+    <div class="parallax">
+        <div id='busca' class="p-4"  >
+            <div class="container text-white">
+                <div class='row justify-content-md-center'>
+                    <div class='col-12 text-center mt-3'>
+                        <img src='{{ asset('/images/favicon.png') }}' style='width: 60px'>
+                        <h1>Encontre Repúblicas em todo Brasil!</h1>
+                        <p>Encontre quartos para alugar em repúblicas ou cadastre a sua.</p>
+                    </div>
+                    <div class='col-md-12 col-lg-12 col-sm-12 text-center align-content-center' style="max-width: 500px">
+                        <div style="">
+                            <form id="logout-form" action="{{ route('portal.republicSearch') }}" method="POST">
+                                @csrf
+                                <div class="input-group mb-3">
+                                    <input class='form-control' type='text' name='search' placeholder='Preencha o nome da cidade'>
+                                    <div id='search' class="input-group-append">
+                                        <button type='submit' class='btn btn-danger'>Buscar</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div id='fazerAnuncio' class="jumbotron jumbotron-fluid m-0">
         <div class="container">
             <div class='row justify-content-md-center m-1'>
@@ -58,7 +79,7 @@
                 <div class="row justify-content-center mb-2">
                     @if(isset($republics))
                         @foreach($republics as $republic)
-                            <div class='card m-1 border shadow' style='width: 150px; '>
+                            <div class='card m-1 border-dark shadow' style='width: 150px; '>
                                 <img class="card-img-top w-100" style='height: 120px' src="{{$republic->image}}" alt="Card image cap">
                                 <div class='card-body p-1 text-center w-100'>
                                     <div class='text-truncate'>
@@ -75,7 +96,7 @@
                     @endif
                     @if(isset($advertisements))
                         @foreach($advertisements as $advertisement)
-                            <div class='card m-1 border shadow' style='width: 150px; '>
+                            <div class='card m-1 border-dark shadow' style='width: 150px; '>
                                 <img class="card-img-top w-100" style='height: 120px' src="{{$advertisement->image}}" alt="Card image cap">
                                 <div class='card-body p-1 text-center w-100 text-truncate'>
                                     <small>{{$advertisement->title}}</small>

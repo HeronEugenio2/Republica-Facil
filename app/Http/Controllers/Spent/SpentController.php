@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SpentRequest;
+use App\Http\Service\Service;
 use App\Models\Spent;
 use App\Models\User;
 use App\Models\SpentHistory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
 class SpentController extends Controller
@@ -18,13 +20,13 @@ class SpentController extends Controller
      */
     public function index()
     {
-        $user      = auth()->user();
-        $republic  = $user->republic;
-        $spents    = $republic->spents;
+        $user = auth()->user();
+        $republic = $user->republic;
+        $spents = $republic->spents;
         $histories = SpentHistory::where('user_id', $user->id)->orderBy('month')
-                                 ->get();
+            ->get();
 
-        $sql      = "SELECT h.value
+        $sql = "SELECT h.value
                     , h.month
                     , buy
                     , h.created_at       
@@ -33,12 +35,11 @@ class SpentController extends Controller
                     INNER JOIN spents as s on h.spent_id = s.id
                     WHERE h.user_id = $user->id
                     ORDER BY h.created_at";
-
         $myDebits = DB::select($sql);
 
         //CALC GASTOS
         if ($spents) {
-            $spentsTotal      = 0;
+            $spentsTotal = 0;
             $spentsIndividual = 0;
             foreach ($spents as $spent) {
                 $spentsTotal += $spent->value;
@@ -55,67 +56,67 @@ class SpentController extends Controller
         }
         //GRAFICO
         if (isset($histories)) {
-            $value1  = 0;
-            $value2  = 0;
-            $value3  = 0;
-            $value4  = 0;
-            $value5  = 0;
-            $value6  = 0;
-            $value7  = 0;
-            $value8  = 0;
-            $value9  = 0;
+            $value1 = 0;
+            $value2 = 0;
+            $value3 = 0;
+            $value4 = 0;
+            $value5 = 0;
+            $value6 = 0;
+            $value7 = 0;
+            $value8 = 0;
+            $value9 = 0;
             $value10 = 0;
             $value11 = 0;
             $value12 = 0;
             foreach ($histories as $key => $history) {
                 switch ($history->month) {
                     case 1:
-                        $mes    = 'janeiro';
+                        $mes = 'janeiro';
                         $value1 += $history->value;
                         break;
                     case 2:
-                        $mes    = 'fevereiro';
+                        $mes = 'fevereiro';
                         $value2 += $history->value;
                         break;
                     case 3:
-                        $mes    = 'março';
+                        $mes = 'março';
                         $value3 += $history->value;
                         break;
                     case 4:
-                        $mes    = 'abril';
+                        $mes = 'abril';
                         $value4 += $history->value;
                         break;
                     case 5:
-                        $mes    = 'maio';
+                        $mes = 'maio';
                         $value5 = $media;
                         //                        $value5 = $media;
                         break;
                     case 6:
-                        $mes    = 'junho';
+                        $mes = 'junho';
                         $value6 += $history->value;
                         break;
                     case 7:
-                        $mes    = 'julho';
+                        $mes = 'julho';
                         $value7 += $history->value;
                         break;
                     case 8:
-                        $mes    = 'agosto';
+                        $mes = 'agosto';
                         $value8 += $history->value;
                         break;
                     case 9:
-                        $mes    = 'setembro';
+                        $mes = 'setembro';
                         $value9 += $history->value;
                         break;
                     case 10:
-                        $mes     = 'outubro';
+                        $mes = 'outubro';
                         $value10 += $history->value;
                         break;
                     case 11:
-                        $mes     = 'novembro';
+                        $mes = 'novembro';
                         $value11 += $history->value;
                         break;
                     case 12:
-                        $mes     = 'dezembro';
+                        $mes = 'dezembro';
                         $value12 += $history->value;
                         break;
                 }
@@ -123,10 +124,10 @@ class SpentController extends Controller
         }
 
         return view('Painel.Spents.Index',
-                    compact('republic', 'spents', 'republic', 'spentsTotal', 'media', 'spentsIndividual', 'result',
-                            'dataSpents', 'histories', 'value1', 'value2', 'value3', 'value4', 'value5', 'value6',
-                            'value7', 'value8', 'value9', 'value10', 'value11', 'value12', 'myDebits'
-                    )
+            compact('republic', 'spents', 'republic', 'spentsTotal', 'media', 'spentsIndividual', 'result',
+                'dataSpents', 'histories', 'value1', 'value2', 'value3', 'value4', 'value5', 'value6',
+                'value7', 'value8', 'value9', 'value10', 'value11', 'value12', 'myDebits'
+            )
         );
     }
 
@@ -136,28 +137,28 @@ class SpentController extends Controller
      */
     public function create()
     {
-        $user     = User::with('republic', 'republic.spents')->first();
+        $user = User::with('republic', 'republic.spents')->first();
         $republic = $user->republic;
-        $spents   = $republic->spents;
+        $spents = $republic->spents;
 
         return view('Painel.Spents.Create', compact('spents', 'republic'));
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(SpentRequest $spentRequest)
     {
         try {
-            $data      = array_filter([
-                                          'description' => $spentRequest->input('description') ?? null,
-                                          'dateSpent'   => $spentRequest->input('dateSpent') ?? null,
-                                          'value'       => $spentRequest->input('value'),
-                                          'republic_id' => $spentRequest->input('republic_id'),
-                                          'user_id'     => $spentRequest->input('user_id'),
-                                      ]);
+            $data = array_filter([
+                'description' => $spentRequest->input('description') ?? null,
+                'dateSpent' => $spentRequest->input('dateSpent') ?? null,
+                'value' => $spentRequest->input('value'),
+                'republic_id' => $spentRequest->input('republic_id'),
+                'user_id' => $spentRequest->input('user_id'),
+            ]);
             $saveSpent = Spent::create($data);
             //            $now       = new Carbon();
             //            $month     = date('m');
@@ -166,17 +167,17 @@ class SpentController extends Controller
 
             if ($saveSpent) {
                 //IF SAVED SPENT, SAVE HISTORY SPENT
-                $data             = array_filter([
-                                                     'month'       => $month ?? null,
-                                                     'value'       => $saveSpent->value,
-                                                     'republic_id' => $saveSpent->republic_id ?? null,
-                                                     'user_id'     => $saveSpent->user_id ?? null,
-                                                     'spent_id'    => $saveSpent->id,
-                                                 ]);
+                $data = array_filter([
+                    'month' => $month ?? null,
+                    'value' => $saveSpent->value,
+                    'republic_id' => $saveSpent->republic_id ?? null,
+                    'user_id' => $saveSpent->user_id ?? null,
+                    'spent_id' => $saveSpent->id,
+                ]);
                 $saveHistorySpent = SpentHistory::create($data);
 
                 return redirect()->route('painel.spent.index', ['id' => auth()->user('id')])
-                                 ->with('success', 'Gasto salvo com sucesso!');
+                    ->with('success', 'Gasto salvo com sucesso!');
             } else {
                 return redirect()->back()->with('error', 'Ocorreu um erro ao tentar salvar gasto!');
             }
@@ -190,7 +191,7 @@ class SpentController extends Controller
 
     /**
      * Display the specified resource.
-     * @param  \App\Spent $spent
+     * @param \App\Spent $spent
      * @return \Illuminate\Http\Response
      */
     public function show(Spent $spent)
@@ -200,7 +201,7 @@ class SpentController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @param  \App\Spent $spent
+     * @param \App\Spent $spent
      * @return \Illuminate\Http\Response
      */
     public function edit(Spent $spent)
@@ -210,8 +211,8 @@ class SpentController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Spent $spent
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Spent $spent
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Spent $spent)
@@ -221,12 +222,12 @@ class SpentController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * @param  \App\Spent $spent
+     * @param \App\Spent $spent
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $spent   = Spent::find($id);
+        $spent = Spent::find($id);
         $deleted = $spent->delete();
         if ($deleted) {
             $spentHistory = SpentHistory::where('spent_id', $id)->first();

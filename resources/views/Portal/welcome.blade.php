@@ -54,7 +54,7 @@
         <div class="container">
             <div class='row justify-content-md-center m-1'>
                 <div class='col-12 text-center -20'>
-                    <img src='/images/faceinsta.png' style='width: 100px;height: 60px'>
+                    <img src='/images/Google-Facebook-Instagram.png' style='height: 60px'>
                     <h2>
                         Anúncio
                     </h2>
@@ -115,7 +115,7 @@
             </div>
         </div>
     </div>
-    <div id='informacaoAleatoria' class="jumbotron jumbotron-fluid mb-0">
+    <div id='informacaoAleatoria' class="jumbotron jumbotron-fluid mb-0" style="background-color: #dedede;">
         <div class="container">
             <div class='row justify-content-md-center'>
                 <div class='col-12 text-center'>

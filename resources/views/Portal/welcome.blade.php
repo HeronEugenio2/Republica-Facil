@@ -3,6 +3,7 @@
     .bg-danger2 {
         background-image: linear-gradient(0deg, #a90516, transparent);
     }
+
     .bg-danger3 {
         background-image: linear-gradient(0deg, #a90516, transparent);
     }
@@ -93,15 +94,15 @@
                         </div>
                     @endforeach
                 @endif
-                    <div class="w-100"></div>
-                    <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center mt-4'>
-                        <div class='form-group text-center'>
-                            <div class='col-sm-12'></div>
-                            <a type='btn btn-danger' href='{{route('home')}}'
-                               class='btn btn-outline-danger w-100 btn-lg px-5'
-                               style="border-radius: 50px;">Todas</a>
-                        </div>
+                <div class="w-100"></div>
+                <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center mt-4'>
+                    <div class='form-group text-center'>
+                        <div class='col-sm-12'></div>
+                        <a type='btn btn-danger' href='{{route('home')}}'
+                           class='btn btn-outline-danger w-100 btn-lg px-5'
+                           style="border-radius: 50px;">Todas</a>
                     </div>
+                </div>
             </div>
         </div>
 
@@ -165,8 +166,8 @@
             </div>
             <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center  mb-4'>
                 <div class='form-group text-center'>
-                    <a type='btn btn-danger' href='{{route('home')}}'
-                       class='btn btn-primary w-100 btn-lg px-5'>Grátis</a>
+                    <a type='btn btn-danger' href='{{route('home')}}' class='btn btn-primary w-100 btn-lg px-5'
+                       style="max-width: 300px;">Grátis</a>
                 </div>
             </div>
             <div class="container">

@@ -7,7 +7,7 @@
         /* The image used */
         /*background-image: url("images/casa.jpg");*/
         /*background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.49), #000000), url("images/chave_casa.jpg");*/
-        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.54), #000000), url("images/avaliacao_casa.jpg");
+        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.54), #000000), url("/images/avaliacao_casa.jpg");
         /* Set a specific height */
         min-height: 280px;
 
@@ -50,7 +50,7 @@
         </div>
     </div>
 
-    <div id='fazerAnuncio' class="jumbotron jumbotron-fluid m-0 " style="    background-image: linear-gradient(0deg, #dddddd, #f8f9fabf) ,url(images/FotoJet2.png);">
+    <div id='fazerAnuncio' class="jumbotron jumbotron-fluid m-0 " style="    background-image: linear-gradient(0deg, #dddddd, #f8f9fabf) ,url(/images/FotoJet2.png);">
         <div class="container">
             <div class='row justify-content-md-center m-1'>
                 <div class='col-12 text-center -20'>

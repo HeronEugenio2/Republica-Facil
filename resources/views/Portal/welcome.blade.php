@@ -12,9 +12,10 @@
         /* The image used */
         /*background-image: url("images/casa.jpg");*/
         /*background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.49), #000000), url("images/chave_casa.jpg");*/
-        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.54), #000000), url("/images/avaliacao_casa.jpg");
+        background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.22), rgba(0, 0, 0, 0.96)), url("/images/avaliacao_casa.jpg");
         /* Set a specific height */
-        min-height: 280px;
+        max-height: 320px;
+        height: 100%;
 
         /* Create the parallax scrolling effect */
         background-attachment: fixed;
@@ -44,7 +45,7 @@
 @section('content')
     <div id="parallax" class="parallax">
         <div id='busca' class="p-4">
-            <div class="container text-white">
+            <div class="container text-white mt-4">
                 <div class='row justify-content-md-center'>
                     <div class='col-12 text-center mt-3'>
                         <img src='{{ asset('/images/favicon.png') }}' style='width: 60px'>
@@ -71,7 +72,7 @@
         </div>
     </div>
     <div id='republicas' class="jumbotron jumbotron-fluid m-0 "
-         style="    background-image: linear-gradient(0deg, #dededebd, #f8f9fa) ,url(/images/FotoJet2.png);background-position: center;">
+         style="background-image: linear-gradient(0deg, #dededebd, #f8f9fa) ,url(/images/FotoJet2.png);background-position: center;">
         <div class="container">
             <div class="row justify-content-center mb-2">
                 @if(isset($republics))
@@ -96,10 +97,14 @@
                 <div class="w-100"></div>
                 <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center mt-4'>
                     <div class='form-group text-center'>
-                        <div class='col-sm-12'></div>
-                        <a type='btn btn-danger' href='{{route('portal.republicSearch')}}'
+                        <div class='w-100'></div>
+                        <form id="logout-form" action="{{ route('portal.republicSearch') }}" method="POST">
+                            @csrf
+                            <button type='submit' href='{{ route('portal.republicSearch') }}'
                            class='btn btn-outline-danger w-100 btn-lg px-5'
-                           style="border-radius: 50px;">Todas</a>
+                           style="border-radius: 50px;">Todas</button>
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -196,8 +201,8 @@
             <div class="w-100"></div>
             <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center mt-4'>
                 <div class='form-group text-center'>
-                    <a type='btn' href='{{route('home')}}'
-                       class='btn btn-outline-primary btn-lg px-8 w-100'
+                    <a type='btn' href="{{ route('portal.advertisement') }}"
+                       class='btn btn-outline-primary btn-lg px-5 w-100'
                        style="border-radius: 50px;">Todos</a>
                 </div>
             </div>

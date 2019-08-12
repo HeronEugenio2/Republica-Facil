@@ -89,7 +89,7 @@
                                     <strong><i class="fas fa-money-bill"></i>
                                         R$ {{money_format('%.2n', $republic->value)}}
                                     </strong></div>
-                                <a href='#' href='#' class='btn btn-sm btn-danger bg-danger2 w-100'>Visualisar</a>
+                                <a href='{{route('portal.republics.show', $republic->id)}}' class='btn btn-sm btn-danger bg-danger2 w-100'>Visualisar</a>
                             </div>
                         </div>
                     @endforeach
@@ -98,7 +98,7 @@
                 <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center mt-4'>
                     <div class='form-group text-center'>
                         <div class='col-sm-12'></div>
-                        <a type='btn btn-danger' href='{{route('home')}}'
+                        <a type='btn btn-danger' href='{{route('portal.republicSearch')}}'
                            class='btn btn-outline-danger w-100 btn-lg px-5'
                            style="border-radius: 50px;">Todas</a>
                     </div>

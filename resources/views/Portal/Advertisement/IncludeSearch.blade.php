@@ -1,7 +1,7 @@
 <div class="row justify-content-center mb-2">
     @if(isset($advertisementes))
         @foreach($advertisementes as $advertisement)
-            <div class='card m-1 border shadow' style='width: 150px; '>
+            <div class='card m-1 shadow' style='width: 150px; border-color: rgba(14,160,255,0.47) '>
                 <img class="card-img-top w-100" style='height: 120px' src="{{$advertisement->image}}" alt="Card image cap">
                 <div class='card-body p-1 text-center w-100'>
                     <div class="col-12 text-truncate p-0 mb-2">

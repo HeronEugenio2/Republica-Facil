@@ -71,8 +71,7 @@
         </div>
     </div>
     <div id='republicas' class="jumbotron jumbotron-fluid m-0 "
-         style="    background-image: linear-gradient(0deg, #dedede96, #dededef0) ,url(/images/FotoJet2.png);background-position: center;">
-
+         style="    background-image: linear-gradient(0deg, #dededebd, #f8f9fa) ,url(/images/FotoJet2.png);background-position: center;">
         <div class="container">
             <div class="row justify-content-center mb-2">
                 @if(isset($republics))
@@ -105,7 +104,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     <div id='informacaoAleatoria' class="jumbotron jumbotron-fluid mb-0" style="background-color: #e2e3e5">
         <div class="container">
@@ -170,6 +168,7 @@
                        style="max-width: 300px;">Grátis</a>
                 </div>
             </div>
+            <div class="w-100"></div>
             <div class="container">
                 <div class="row justify-content-center mb-2">
                     @if(isset($advertisements))

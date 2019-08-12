@@ -5,7 +5,7 @@
     }
 
     .text-grey3 {
-        color: rgba(0, 123, 255, 0.52) !important;
+        color: rgba(100, 103, 198, 0.76) !important;
     }
 
     h10 {
@@ -44,7 +44,11 @@
 
 </style>
 @section('content')
-    <div class="jumbotron jumbotron-fluid m-0 bg-header">
+
+
+
+
+    <div class="jumbotron jumbotron-fluid m-0 pb-0 bg-header">
         <div class="container">
             <div class='col-md-12 col-lg-12 col-sm-12 text-center align-content-center'>
                 <div class=''>
@@ -59,16 +63,20 @@
                     </form>
                 </div>
             </div>
+            <div class='col-md-12 col-lg-12 col-sm-12 text-center align-content-center'>
+
             <div class='row justify-content-md-center'>
                 {{--<h10>Categorias</h10>--}}
                 <div class='w-100 mb-4'></div>
                 @if(isset($categories) && count($categories)>0)
                     {{--<form action='{{route('portal.searchCategory')}}' method="POST">--}}
                     {{--@csrf--}}
-                    <div class='row text-center justify-content-center'>
+                    <div class='row text-center justify-content-center p-0'>
                         @foreach($categories as $category)
                             <a href='{{route('portal.searchCategory', $category->id)}}'>
-                                <div class='col icone' data-id='{{$category->id}}'>
+                                <div class='icone m-2' data-id='{{$category->id}}'
+                                     style="border: #6495ed52;
+                                            border-bottom-style: groove;">
                                     <i class="fas fa-{{$category->icon}} text-grey3 fa-2x mx-4"></i><br>
                                     <span class='text-grey3'>{{$category->title}}</span>
                                 </div>
@@ -78,49 +86,35 @@
                     {{--</form>--}}
                 @endif
             </div>
-        </div>
-    </div>
-
-
-    <div id="carrossel" class="carrossel">
-        <div class="w-100">
-            <div class="row justify-content-center">
-                <div id="demo" class="carousel slide w-100" style="background-color: white; " data-ride="carousel">
-                    <!-- The slideshow -->
-                    <div class="carousel-inner " style="max-height: 360px;min-height: 360px">
-                        <div class="carousel-item active" href="#">
-                            <img class="image d-block img-responsive w-100"
-                                 src="https://www.casasbahia-imagens.com.br/HotSite/2019/loja-oficial-apple/imagens/2019-07-26/01-banner-tv-geral.png">
-                        </div>
-                        <div class="carousel-item">
-                            <a href="#">
-                                <img class="image d-block img-responsive  center-block w-100"
-                                     src="https://www.casasbahia-imagens.com.br/HotSite/2019/loja-oficial-apple/imagens/v2/03-banner-tv-watch.png">
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Left and right controls -->
-                    <a class="carousel-control-prev bg-dark" style="width: 5%; background-color: #1b252f2e!important;"
-                       href="#demo" data-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </a>
-                    <a class="carousel-control-next bg-dark" style="width: 5%; background-color: #1b252f2e!important;"
-                       href="#demo" data-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </a>
-
-                </div>
             </div>
         </div>
     </div>
-
-
-
-
     <div class="jumbotron jumbotron-fluid p-4 mb-0 bg-anuncios" style="background-color: ghostwhite">
         @include('Portal.Advertisement.IncludeSearch')
         {{ $advertisementes->links() }}
     </div>
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="https://www.incimages.com/uploaded_files/image/970x450/objectivesoverview_364479.jpg" alt="Primeiro Slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="https://www.incimages.com/uploaded_files/image/1940x900/executivesummary_364478.jpg" alt="Segundo Slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="https://www.incimages.com/uploaded_files/image/970x450/products_364475.jpg" alt="Terceiro Slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+        </a>
+    </div>
+
 @endsection
 @push('scripts')
     <script>

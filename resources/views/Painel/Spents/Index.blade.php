@@ -2,7 +2,7 @@
 
 @section('content')
     <div class='card-columns'>
-        <div class="card text-dark bg-primary" id='managerSpent' style="height: 300px;">
+        <div class="card text-dark bg-primary" id='managerSpent' style="height: auto;">
             <div class="card-header bg-nav text-white c-">Gerenciador de gastos</div>
             <div class="card-body">
                 <h4 class="card-text text-center">ST = (ST/QT)-SI</h4>
@@ -12,12 +12,16 @@
                 <strong class='float-right text-success'>R${{number_format($spentsIndividual, 2, ',', ' ')}}</strong>
                 <br> $media = <strong class='float-right '>R${{number_format($media, 2, ',', ' ')}}</strong>
                 <br> Valor dividído entre = <strong class='float-right '>{{$republic->qtdMembers}} membros</strong>
-            </div>
-            <div class='card-footer text-center'>
                 @if($result>0)
-                    <h2 class='text-success display-4'>CRÉDITO R${{number_format($result, 2, ',', ' ')}}</h2>
+                    <div class="w-100 bg-success mt-4 p-2">
+                        <h2 class='text-white display-4 text-center'>CRÉDITO
+                            R${{number_format($result, 2, ',', ' ')}}</h2>
+                    </div>
                 @else
-                    <h2 class='text-danger display-4'>DÉBITO R${{number_format($result, 2, ',', ' ')}}</h2>
+                    <div class="w-100 bg-danger mt-4 p-2">
+                        <h2 class='text-white display-4 text-center'>DÉBITO
+                            R${{number_format($result, 2, ',', ' ')}}</h2>
+                    </div>
                 @endif
             </div>
         </div>
@@ -77,9 +81,12 @@
                         <a href="#" class="btn btn-primary mt-2">
                             <i class="far fa-check-circle"></i> Fechar Mês
                         </a>
-                        <a href="{{route('painel.spent.create')}}" class="btn btn-success mt-2">
-                            <i class="fas fa-plus-circle"></i> Novo Gasto
-                        </a>
+                        {{--                        <a href="{{route('painel.spent.create')}}" class="btn btn-success mt-2">--}}
+                        {{--                            <i class="fas fa-plus-circle"></i> Novo Gasto--}}
+                        {{--                        </a>--}}
+                        <button type="button" class="btn btn-success mt-2" data-toggle="modal"
+                                data-target="#modalSpent"><i class="fas fa-plus-circle"></i> Novo Gasto
+                        </button>
                         {{--                        <a href="#" class="btn btn-primary mt-2"><i class="fas fa-history"></i> Extrato de contas</a>--}}
                         <button type="button" class="btn btn-primary mt-2" data-toggle="modal"
                                 data-target="#modalExtract"><i class="fas fa-history"></i> Extrato de
@@ -99,7 +106,7 @@
         </div>
         <div class='card'>
             <div class='card-header bg-success'>Crédito</div>
-            <div class='card-body'>
+            <div class='card-body' style="border-color: #20b790">
                 <small class='text-muted'>Adicione compras feitas por você que devem ser divididas entre todos.</small>
                 <br>
                 @if(count($myDebits)>0)
@@ -110,7 +117,6 @@
                                 <th scope="col">Data</th>
                                 <th scope="col">Descrição</th>
                                 <th scope="col">Valor</th>
-                                <th scope="col">Ações</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -119,16 +125,6 @@
                                     <td>{{$myDebit->created_at}}</td>
                                     <td>{{$myDebit->description}}</td>
                                     <td>R$ {{number_format($myDebit->value,2,',', '.')}}</td>
-                                    <td>
-                                        <form method="POST" action="{{route('painel.spent.destroy',$spent->id) }}">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <div class="btn-group-vertical">
-                                                <button class='btn btn-danger btn-sm' type="submit"><i
-                                                        class="fas fa-trash-alt"></i></button>
-                                            </div>
-                                        </form>
-                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -137,8 +133,7 @@
             @endif
             <!-- Botão para acionar modal -->
                 <button id="newDebit" data-user="{{auth()->user()->id}}" type="button"
-                        class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#modalDebit">
-                    Adicionar
+                        class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#modalDebit"> Adicionar
                 </button>
             </div>
         </div>
@@ -256,6 +251,51 @@
                     </div>
 
 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalSpent" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="TituloModalCentralizado">Novo Gasto</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="logout-form" method="POST"
+                          action="{{ route('painel.spent.store', ['republic'=>$republic->id]) }}">
+                        @csrf
+                        <input type='hidden' name='republic_id' value='{{$republic->id}}'>
+                        <div id='spent' class="form-group col-12 p-0">
+                            <label for="inputDescription">Descrição</label>
+                            <input id="inputDescription" name='description' type="text" class="form-control"
+                                   aria-describedby="descriptionHelp" placeholder="Ex: Produtos de limpeza"
+                                   style='width: 100%'
+                                   required>
+                            <small id="descriptionHelp" class="form-text text-muted">Insira descrição do gasto.
+                            </small>
+                        </div>
+                        <div class='row'>
+                            <div id='spentDataVencimento' class="form-group col-md-3 col-lg-3 col-sm-12">
+                                <label for="inputSpent">Vencimento</label>
+                                <input id="inputSpent" name='dateSpent' type="date" class="form-control"
+                                       aria-describedby="spentHelp" placeholder="12/05/2019" style='width: 100%'>
+                                <small id="spentHelp" class="form-text text-muted">Data de vencimento.
+                                </small>
+                            </div>
+                            <div id='spentValue' class="form-group col-md-3 col-lg-3 col-sm-12">
+                                <label for="inputValue">Valor</label>
+                                <input name='value' type='text' class="form-control" id='valueVirgula1'
+                                       style='width: 100%'>
+                            </div>
+                        </div>
+                        <button id='save1' type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Salvar
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

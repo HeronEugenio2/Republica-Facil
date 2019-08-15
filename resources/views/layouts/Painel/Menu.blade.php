@@ -22,7 +22,9 @@
         background-color: #e9ebee;
     }
     body {
-        background-color: #e9ebee;
+        background-image: linear-gradient(0deg, rgba(239, 239, 246, 0), rgb(248, 248, 255)), url("/images/redepb.png");
+        background-position: left;
+        background-repeat: no-repeat;
     }
 </style>
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-dark bg-dark" id="sidenav-main">

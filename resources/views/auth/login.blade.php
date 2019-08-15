@@ -60,13 +60,13 @@
     <button class="btn btn-lg btn-danger btn-block" type="submit">Entrar</button>
     <div class='row'>
         <div class='col-5'>
-            <a class="btn btn-link text-danger" href='{{route('register')}}'>
+            <a class="btn btn-link text-danger p-0 mt-2" href='{{route('register')}}'>
                 {{ __('Criar Conta') }}
             </a>
         </div>
         <div class='col-7'>
             @if (Route::has('password.request'))
-                <a class="btn btn-link text-danger" href="{{ route('password.request') }}">
+                <a class="btn btn-link text-danger p-0 mt-2" href="{{ route('password.request') }}">
                     {{ __('Esqueceu a senha?') }}
                 </a>
             @endif

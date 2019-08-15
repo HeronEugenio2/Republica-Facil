@@ -17,6 +17,13 @@
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     {{--<link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">--}}
     @stack('css')
+    <style>
+        .card-body {
+            border: ridge;
+            border-color: #a9a9a952;
+            border-top: none;
+        }
+    </style>
 </head>
 <body class="vsc-initialized">
 @include('layouts.Painel.Menu')

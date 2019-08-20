@@ -7,6 +7,10 @@
     .bg-danger3 {
         background-image: linear-gradient(0deg, #a90516, transparent);
     }
+    .bg-anuncio{
+        background-image: linear-gradient(0deg, #dddddde8, #f8f9faf0)
+        /*url(https://image.freepik.com/vetores-gratis/pessoas-a-fazer-compras-com-cartao-de-credito_53876-43130.jpg);*/
+    }
 
     .parallax {
         /* The image used */
@@ -150,8 +154,7 @@
             </div>
         </div>
     </div>
-    <div id="anuncios" class="jumbotron jumbotron-fluid mb-0"
-         style="background-image: linear-gradient(0deg, #dddddde8, #f8f9faf0) ,url(https://image.freepik.com/vetores-gratis/pessoas-a-fazer-compras-com-cartao-de-credito_53876-43130.jpg);">
+    <div id="anuncios" class="jumbotron jumbotron-fluid mb-0 bg-anuncio">
         <div class='row justify-content-md-center m-1'>
             <div class='col-12 text-center -20'>
                 <img src='/images/Google-Facebook-Instagram.png' style='height: 60px'>

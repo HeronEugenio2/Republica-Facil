@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Convites Pendentes</div>
+                    <div class="card-header bg-nav text-white">Convites Pendentes</div>
                     <div class="card-body">
                         @if(count($invitations)>0)
                             @if (session('status'))

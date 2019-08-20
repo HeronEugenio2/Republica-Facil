@@ -32,22 +32,19 @@
     }
 
     @media screen and (max-width: 600px) {
-        .carrossel{
+        .carrossel {
             display: none;
         }
     }
+
     @media screen and (min-width: 3000px) {
-        .carrossel{
+        .carrossel {
             display: none;
         }
     }
 
 </style>
 @section('content')
-
-
-
-
     <div class="jumbotron jumbotron-fluid m-0 pb-0 bg-header">
         <div class="container">
             <div class='col-md-12 col-lg-12 col-sm-12 text-center align-content-center'>
@@ -65,44 +62,47 @@
             </div>
             <div class='col-md-12 col-lg-12 col-sm-12 text-center align-content-center'>
 
-            <div class='row justify-content-md-center'>
-                {{--<h10>Categorias</h10>--}}
-                <div class='w-100 mb-4'></div>
-                @if(isset($categories) && count($categories)>0)
-                    {{--<form action='{{route('portal.searchCategory')}}' method="POST">--}}
-                    {{--@csrf--}}
-                    <div class='row text-center justify-content-center p-0'>
-                        @foreach($categories as $category)
-                            <a href='{{route('portal.searchCategory', $category->id)}}'>
-                                <div class='icone m-2' data-id='{{$category->id}}'
-                                     style="border: #6495ed52;
+                <div class='row justify-content-md-center'>
+                    {{--<h10>Categorias</h10>--}}
+                    <div class='w-100 mb-4'></div>
+                    @if(isset($categories) && count($categories)>0)
+                        {{--<form action='{{route('portal.searchCategory')}}' method="POST">--}}
+                        {{--@csrf--}}
+                        <div class='row text-center justify-content-center p-0'>
+                            @foreach($categories as $category)
+                                <a href='{{route('portal.searchCategory', $category->id)}}'>
+                                    <div class='icone m-2' data-id='{{$category->id}}'
+                                         style="border: #6495ed52;
                                             border-bottom-style: groove;">
-                                    <i class="fas fa-{{$category->icon}} text-grey3 fa-2x mx-4"></i><br>
-                                    <span class='text-grey3'>{{$category->title}}</span>
-                                </div>
-                            </a>
-                        @endforeach
-                    </div>
-                    {{--</form>--}}
-                @endif
-            </div>
+                                        <i class="fas fa-{{$category->icon}} text-grey3 fa-2x mx-4"></i><br>
+                                        <span class='text-grey3'>{{$category->title}}</span>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+                        {{--</form>--}}
+                    @endif
+                </div>
             </div>
         </div>
     </div>
-    <div class="jumbotron jumbotron-fluid p-4 mb-0 bg-anuncios" style="background-color: ghostwhite">
-        @include('Portal.Advertisement.IncludeSearch')
-        {{ $advertisementes->links() }}
-    </div>
+
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-        <div class="carousel-inner">
+        <div class="carousel-inner" style="max-height: 330px">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="https://www.incimages.com/uploaded_files/image/970x450/objectivesoverview_364479.jpg" alt="Primeiro Slide">
+                <a href="#">
+                    <img class="d-block w-100 image" src="/images/2.png" alt="Primeiro Slide" style="max-height: 330px">
+                </a>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="https://www.incimages.com/uploaded_files/image/1940x900/executivesummary_364478.jpg" alt="Segundo Slide">
+                <a href="#">
+                    <img class="d-block w-100 image" src="/images/3.png" alt="Segundo Slide" style="max-height: 330px">
+                </a>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="https://www.incimages.com/uploaded_files/image/970x450/products_364475.jpg" alt="Terceiro Slide">
+                <img class="d-block w-100"
+                     src="https://www.incimages.com/uploaded_files/image/970x450/products_364475.jpg"
+                     alt="Terceiro Slide">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
@@ -115,6 +115,20 @@
         </a>
     </div>
 
+    <div class="jumbotron jumbotron-fluid p-4 mb-0 bg-anuncios" style="background-color: ghostwhite">
+        @include('Portal.Advertisement.IncludeSearch')
+        {{ $advertisementes->links() }}
+    </div>
+    <div id='footer' class="jumbotron jumbotron-fluid bg-dark mb-0">
+        <div class="container">
+            <div class='row justify-content-md-center'>
+                <a href='#' class='text-white mx-1'><i class="fas fa-id-badge"></i> Contato</a>
+                <a href='#' class='text-white mx-1'><i class="fab fa-github-alt"></i> GitHub</a>
+                <a href='#' class='text-white mx-1'><i class="fab fa-instagram"></i> Instagram</a>
+            </div>
+        </div>
+    </div>
+
 @endsection
 @push('scripts')
     <script>
@@ -125,10 +139,14 @@
         });
         // $(window).resize(function () {
         //     if ($(window).width() < 500) {
-        //         $('.image').removeClass('w-100');
+        //         // $('.image').removeClass('w-100');
+        //         $('.carousel-inner').css('min-height','350px');
+        //         $('.image').css('min-height','350px');
+        //         $('.image').css('min-width','850px');
+        //
         //     }
         //     if ($(window).width() >= 500) {
-        //         $('.image').addClass('w-100');
+        //         // $('.image').addClass('w-100');
         //     }
         // });
     </script>

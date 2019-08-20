@@ -20,7 +20,6 @@
         /* Set a specific height */
         max-height: 320px;
         height: 100%;
-
         /* Create the parallax scrolling effect */
         background-attachment: fixed;
         background-position: center;
@@ -32,7 +31,6 @@
         background-image: linear-gradient(0deg, rgba(174, 174, 174, 0.28), rgba(160, 160, 160, 0.22)), url("/images/avaliacao_casa.jpg");
         /* Set a specific height */
         min-height: 280px;
-
         /* Create the parallax scrolling effect */
         background-attachment: fixed;
         background-position: center;

@@ -22,8 +22,8 @@
         background-color: #e9ebee;
     }
     body {
-        background-image: linear-gradient(0deg, rgba(239, 239, 246, 0), rgb(248, 248, 255)), url("/images/redepb.png");
-        background-position: left;
+        background-image: url("/images/FotoJet3.png");
+        background-position: top;
         background-repeat: no-repeat;
     }
 </style>

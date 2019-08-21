@@ -19,9 +19,9 @@
     @stack('css')
     <style>
         .card-body {
-            border: ridge;
-            border-color: #a9a9a952;
-            border-top: none;
+            /*border: ridge;*/
+            /*border-color: #a9a9a952;*/
+            /*border-top: none;*/
         }
     </style>
 </head>

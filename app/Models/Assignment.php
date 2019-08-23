@@ -14,6 +14,8 @@ class Assignment extends Model
         'start',
         'end',
         'situation',
+        'republic_id',
+        'user_id',
     ];
 
     public function republic()

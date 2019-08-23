@@ -55,7 +55,7 @@ class Republic extends Model
      */
     public function assignmets()
     {
-        return $this->hasMany(Assignment::class, 'id', 'assignment_id');
+        return $this->hasMany(Assignment::class, 'republic_id', 'id');
     }
 
     /**

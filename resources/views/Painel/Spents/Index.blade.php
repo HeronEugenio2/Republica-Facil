@@ -1,5 +1,4 @@
 @extends('layouts.Painel.LayoutFull')
-
 @section('content')
     <div class='card-columns'>
         <div class="card text-dark bg-primary" id='managerSpent' style="height: auto;">
@@ -143,6 +142,11 @@
                 <canvas id="myChart" width="100%" height='31px'></canvas>
             </div>
         </div>
+
+        <!-- Botão para acionar modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSpentResult">
+            Fechar Mês
+        </button>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="modalDebit" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
@@ -269,7 +273,7 @@
                     <form id="logout-form" method="POST"
                           action="{{ route('painel.spent.store', ['republic'=>$republic->id]) }}">
                         @csrf
-                        <input type='hidden' name='republic_id' value='{{$republic->id}}'>
+                        <input type='hidden' id="republic_id" name='republic_id' value='{{$republic->id}}'>
                         <div id='spent' class="form-group col-12 p-0">
                             <label for="inputDescription">Descrição</label>
                             <input id="inputDescription" name='description' type="text" class="form-control"
@@ -296,6 +300,28 @@
                         <button id='save1' type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Salvar
                         </button>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalSpentResult" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="    border: outset;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Fechar mês</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h3>Seu saldo:</h3>
+                    <h1 class="{{($result > 0) ? 'text-success' : 'text-danger'}}">R${{number_format($result, 2, ',', ' ')}}</h1>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnConfirm" type="button" class="btn btn-success" data-result="{{$result}}" data-republic="{{$republic->id}}" data-user="{{auth()->user()->id}}" data-dismiss="modal">Confirmar</button>
                 </div>
             </div>
         </div>
@@ -376,6 +402,30 @@
                     },
                     success: function (data) {
                         // $("#teste").html(data);
+                    },
+                    error: function (data) {
+                        alert('nao veio');
+                    }
+                });
+            });
+            $("#btnConfirm").click(function () {
+                let result = $('#btnConfirm').data('result');
+                let republic_id = $('#btnConfirm').data('republic');
+                let user_id = $('#btnConfirm').data('user');
+                $.ajaxSetup({
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+                    method: 'POST',
+                    url: '{{ route("painel.spendingResult") }}'
+                });
+                $.ajax({
+                    data: {
+                        result: result,
+                        republic_id: republic_id,
+                        user_id: user_id,
+                    },
+                    success: function (data) {
+                        // $("#teste").html(data);
+                        // alert(result);
                     },
                     error: function (data) {
                         alert('nao veio');

@@ -236,4 +236,11 @@ class SpentController extends Controller
 
         return redirect()->route('painel.spent.index');
     }
+
+    public function spendingResult(Request $request){
+        $x= $request->all();
+        dd($x);
+//        $request->user_id;
+//        $request->republic_id;
+    }
 }

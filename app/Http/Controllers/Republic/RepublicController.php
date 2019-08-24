@@ -23,7 +23,7 @@ class RepublicController extends Controller
     //        $this->republic = $republic;
     //    }
     /**
-     * Display a listing of the resource.
+* Display a listing of the resource.
      * @return \Illuminate\Http\Response
      * @author Heron Eugenio
      */
@@ -264,4 +264,6 @@ class RepublicController extends Controller
 
         return $user;
     }
+
+
 }

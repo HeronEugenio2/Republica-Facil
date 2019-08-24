@@ -42,20 +42,25 @@ Route::group(
         'middleware' => ['auth'],
     ],
     function() {
-        //REPUBLIC
+        //republic@
         Route::resource('/republica', 'RepublicController')->names('republic');
-        //SPENT
+        //spent@
         Route::resource('/gastos', 'SpentController')->names('spent');
-        //Assignment
+        //assignment@
         Route::resource('/tarefas', 'AssignmentController')->names('assignment');
-        //Advertisement
+        //Advertisement@
         Route::resource('/anuncios', 'Painel\AdvertisementController')->names('advertisement');
-        //Invitations
+
+        //painel.spendingResult
+        Route::post('/sangria', 'SpentController@spendingResult')->name('spendingResult');
+        //painel.Invitation
         Route::post('/email', 'RepublicController@invitation')->name('invitation');
-        //Invitation accept
+        //painel.invitationAccept
         Route::get('/republica/{id}/aceitar', 'RepublicController@invitationAccept')->name('invitationAccept');
-        //Debit store
+        //painel.debitStore
         Route::post('/debito', 'RepublicController@debitStore')->name('debitStore');
+//        //painel.Debit store
+//        Route::post('/debito', 'RepublicController@debitStore')->name('debitStore');
     }
 );
 Route::group(

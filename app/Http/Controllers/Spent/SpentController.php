@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SpentRequest;
 use App\Http\Service\Service;
+use App\Models\Republic;
 use App\Models\Spent;
 use App\Models\User;
 use App\Models\SpentHistory;
@@ -37,22 +38,12 @@ class SpentController extends Controller
                     ORDER BY h.created_at";
         $myDebits = DB::select($sql);
 
-        //CALC GASTOS
         if ($spents) {
-            $spentsTotal = 0;
-            $spentsIndividual = 0;
-            foreach ($spents as $spent) {
-                $spentsTotal += $spent->value;
-            }
-            foreach ($user->spents as $spent) {
-                $spentsIndividual += $spent->value;
-            }
-            if ($republic->qtdMembers == 0) {
-                $media = $spentsTotal;
-            } else {
-                $media = $spentsTotal / $republic->qtdMembers;
-            }
-            $result = -$media + $spentsIndividual;
+            $result = $this->calcSpent($republic->id, $user->id);
+            $spentsTotal = $result['total'];
+            $spentsIndividual = $result['individual'];
+            $media = $result['media'];
+            $result = $result['result'];
         }
         //GRAFICO
         if (isset($histories)) {
@@ -137,11 +128,11 @@ class SpentController extends Controller
      */
     public function create()
     {
-        $user = User::with('republic', 'republic.spents')->first();
+        $user = User::with('republic', 'republic . spents')->first();
         $republic = $user->republic;
         $spents = $republic->spents;
 
-        return view('Painel.Spents.Create', compact('spents', 'republic'));
+        return view('Painel . Spents . Create', compact('spents', 'republic'));
     }
 
     /**
@@ -176,7 +167,7 @@ class SpentController extends Controller
                 ]);
                 $saveHistorySpent = SpentHistory::create($data);
 
-                return redirect()->route('painel.spent.index', ['id' => auth()->user('id')])
+                return redirect()->route('painel . spent . index', ['id' => auth()->user('id')])
                     ->with('success', 'Gasto salvo com sucesso!');
             } else {
                 return redirect()->back()->with('error', 'Ocorreu um erro ao tentar salvar gasto!');
@@ -237,10 +228,57 @@ class SpentController extends Controller
         return redirect()->route('painel.spent.index');
     }
 
-    public function spendingResult(Request $request){
-        $x= $request->all();
-        dd($x);
-//        $request->user_id;
-//        $request->republic_id;
+    public function spendingResult(Request $request)
+    {
+        $users = User::where('republic_id', $request->republic_id)->get();
+        $arrayData = collect();
+        foreach ($users as $user) {
+            $result = $this->calcSpent($request->republic_id, $user->id);
+            $arrayData[]= ([
+                'user_name' => $user->name,
+                'result' => $result,
+            ]);
+        }
+//        dd($arrayData[0]['user_name']);
+//        $data[] = [
+//
+//        ];
+        return view('Painel.Spents.IncludeClose', compact('arrayData'))->render();
+    }
+
+    /**
+     * @param $republicId
+     * @param $userId
+     * @return array
+
+     * @author $Heron
+     */
+    public function calcSpent($republicId, $userId)
+    {
+        $user = User::where('id', $userId)->first();
+        $republic = Republic::where('id', $republicId)->first();
+        $spents = $republic->spents;
+        $spentsTotal = 0;
+        $spentsIndividual = 0;
+        foreach ($spents as $spent) {
+            $spentsTotal += $spent->value;
+        }
+        foreach ($user->spents as $spent) {
+            $spentsIndividual += $spent->value;
+        }
+        if ($republic->qtdMembers == 0) {
+            $media = $spentsTotal;
+        } else {
+            $media = $spentsTotal / $republic->qtdMembers;
+        }
+        $result = -$media + $spentsIndividual;
+        $data =
+            [
+                'total' => $spentsTotal,
+                'individual' => $spentsIndividual,
+                'media' => $media,
+                'result' => $result
+            ];
+        return $data;
     }
 }

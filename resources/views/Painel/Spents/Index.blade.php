@@ -77,7 +77,7 @@
                             </table>
                         </div>
                         <small class='text-muted'>Aqui estão listados todos os gastos da república.</small><br>
-                        <a href="#" class="btn btn-primary mt-2">
+                        <a href="#" class="btn btn-primary mt-2" >
                             <i class="far fa-check-circle"></i> Fechar Mês
                         </a>
                         {{--                        <a href="{{route('painel.spent.create')}}" class="btn btn-success mt-2">--}}
@@ -144,7 +144,7 @@
         </div>
 
         <!-- Botão para acionar modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSpentResult">
+        <button id="closeMonth" data-result="{{$result}}" data-republic="{{$republic->id}}" data-user="{{auth()->user()->id}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSpentResult">
             Fechar Mês
         </button>
     </div>
@@ -319,9 +319,10 @@
                 <div class="modal-body text-center">
                     <h3>Seu saldo:</h3>
                     <h1 class="{{($result > 0) ? 'text-success' : 'text-danger'}}">R${{number_format($result, 2, ',', ' ')}}</h1>
+                    @include('Painel.Spents.IncludeClose')
                 </div>
                 <div class="modal-footer">
-                    <button id="btnConfirm" type="button" class="btn btn-success" data-result="{{$result}}" data-republic="{{$republic->id}}" data-user="{{auth()->user()->id}}" data-dismiss="modal">Confirmar</button>
+                    <button id="btnConfirm" type="button" class="btn btn-success" data-dismiss="modal">Confirmar</button>
                 </div>
             </div>
         </div>
@@ -408,10 +409,10 @@
                     }
                 });
             });
-            $("#btnConfirm").click(function () {
-                let result = $('#btnConfirm').data('result');
-                let republic_id = $('#btnConfirm').data('republic');
-                let user_id = $('#btnConfirm').data('user');
+            $("#closeMonth").click(function () {
+                let result = $('#closeMonth').data('result');
+                let republic_id = $('#closeMonth').data('republic');
+                let user_id = $('#closeMonth').data('user');
                 $.ajaxSetup({
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
                     method: 'POST',
@@ -425,7 +426,6 @@
                     },
                     success: function (data) {
                         // $("#teste").html(data);
-                        // alert(result);
                     },
                     error: function (data) {
                         alert('nao veio');

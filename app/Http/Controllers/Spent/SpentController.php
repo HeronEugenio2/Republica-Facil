@@ -24,18 +24,23 @@ class SpentController extends Controller
         $user = auth()->user();
         $republic = $user->republic;
         $spents = $republic->spents;
+        if (count($spents) > 0) {
+            $spents = Spent::where('republic_id', $republic->id)->where('close', 0)->get();
+        }
         $histories = SpentHistory::where('user_id', $user->id)->orderBy('month')
             ->get();
 
         $sql = "SELECT h.value
-                    , h.month
-                    , buy
-                    , h.created_at       
-                    , s.description
-                    FROM spent_histories as h
-                    INNER JOIN spents as s on h.spent_id = s.id
-                    WHERE h.user_id = $user->id
-                    ORDER BY h.created_at";
+                , h.month
+                , buy
+                , h.created_at       
+                , s.description       
+                , h.user_id       
+                , s.close
+                FROM spent_histories as h
+                INNER JOIN spents as s on h.spent_id = s.id
+                WHERE h.user_id = $user->id AND s.close = 0
+                ORDER BY h.created_at";
         $myDebits = DB::select($sql);
 
         if ($spents) {
@@ -132,7 +137,7 @@ class SpentController extends Controller
         $republic = $user->republic;
         $spents = $republic->spents;
 
-        return view('Painel . Spents . Create', compact('spents', 'republic'));
+        return view('Painel.Spents.Create', compact('spents', 'republic'));
     }
 
     /**
@@ -167,7 +172,7 @@ class SpentController extends Controller
                 ]);
                 $saveHistorySpent = SpentHistory::create($data);
 
-                return redirect()->route('painel . spent . index', ['id' => auth()->user('id')])
+                return redirect()->route('painel.spent.index', ['id' => auth()->user('id')])
                     ->with('success', 'Gasto salvo com sucesso!');
             } else {
                 return redirect()->back()->with('error', 'Ocorreu um erro ao tentar salvar gasto!');
@@ -234,15 +239,12 @@ class SpentController extends Controller
         $arrayData = collect();
         foreach ($users as $user) {
             $result = $this->calcSpent($request->republic_id, $user->id);
-            $arrayData[]= ([
+            $arrayData[] = ([
                 'user_name' => $user->name,
                 'result' => $result,
             ]);
         }
-//        dd($arrayData[0]['user_name']);
-//        $data[] = [
-//
-//        ];
+
         return view('Painel.Spents.IncludeClose', compact('arrayData'))->render();
     }
 
@@ -250,20 +252,25 @@ class SpentController extends Controller
      * @param $republicId
      * @param $userId
      * @return array
-
      * @author $Heron
      */
     public function calcSpent($republicId, $userId)
     {
         $user = User::where('id', $userId)->first();
         $republic = Republic::where('id', $republicId)->first();
-        $spents = $republic->spents;
+        $spents = Spent::where('republic_id', $republicId)
+            ->where('close', 0)
+            ->get();
+        $userSpents = Spent::where('republic_id', $republicId)
+            ->where('user_id', $userId)
+            ->where('close', 0)
+            ->get();
         $spentsTotal = 0;
         $spentsIndividual = 0;
         foreach ($spents as $spent) {
             $spentsTotal += $spent->value;
         }
-        foreach ($user->spents as $spent) {
+        foreach ($userSpents as $spent) {
             $spentsIndividual += $spent->value;
         }
         if ($republic->qtdMembers == 0) {
@@ -280,5 +287,26 @@ class SpentController extends Controller
                 'result' => $result
             ];
         return $data;
+    }
+
+    public function spentHistoryStore(Request $request)
+    {
+        $spentsHistories = SpentHistory::where('month', Carbon::now()->month)
+            ->where('republic_id', $request->republic_id)
+            ->where('close', 0)
+            ->get();
+        $spents = Spent::where('republic_id', $request->republic_id)
+            ->where('close', 0)
+            ->get();
+
+        foreach ($spentsHistories as $spentsHistory) {
+            $spentsHistory->close = 1;
+            $spentsHistory->save();
+        }
+        foreach ($spents as $spent) {
+            $spent->close = 1;
+            $spent->save();
+        }
+        return redirect()->back();
     }
 }

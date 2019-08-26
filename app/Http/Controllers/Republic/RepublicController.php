@@ -77,10 +77,10 @@ class RepublicController extends Controller
                     'city' => $republicRequest->input('city') ?? null,
                     'state' => $republicRequest->input('state') ?? null,
                     'number' => $republicRequest->input('number') ?? null,
+                    'user_id' => auth()->user()->id,
                 ]
             );
             $savedRepublic = Republic::create($data);
-            //            dd($savedRepublic->id);
             if ($savedRepublic) {
                 $user = auth()->user();
                 $user->republic_id = $savedRepublic->id;

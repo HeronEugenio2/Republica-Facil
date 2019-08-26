@@ -18,6 +18,7 @@ class CreateSpentsTable extends Migration
             $table->string('description');
             $table->date('dateSpent')->nullable();
             $table->float('value');
+            $table->boolean('close')->default(0);
             $table->unsignedInteger('republic_id');
             $table->unsignedInteger('user_id')->nullable();
             $table->timestamps();

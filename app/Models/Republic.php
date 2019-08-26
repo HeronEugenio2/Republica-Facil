@@ -23,6 +23,7 @@ class Republic extends Model
         'qtdVacancies',
         'value',
         'type_id',
+        'user_id',
         'street',
         'district',
         'cep',

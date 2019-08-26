@@ -24,6 +24,13 @@
                 @endif
             </div>
         </div>
+        <button type="button" class="btn btn-success my-2" data-toggle="modal"
+                data-target="#modalSpent"><i class="fas fa-plus-circle"></i> Novo Gasto
+        </button>
+        <button type="button" class="btn btn-primary my-2" data-toggle="modal"
+                data-target="#modalExtract"><i class="fas fa-history"></i> Extrato de
+            contas
+        </button>
         <div class='card' id='spentFull'>
             <div id='headerFull' class='card-header bg-nav text-white'>Gastos</div>
             <div id='bodyFull' class='card-body '>
@@ -77,19 +84,9 @@
                             </table>
                         </div>
                         <small class='text-muted'>Aqui estão listados todos os gastos da república.</small><br>
-                        <a href="#" class="btn btn-primary mt-2" >
+                        <!-- Botão para acionar modal -->
+                        <button id="closeMonth" data-result="{{$result}}" data-republic="{{$republic->id}}" data-user="{{auth()->user()->id}}" type="button" class="btn btn-primary my-2" data-toggle="modal" data-target="#modalSpentResult">
                             <i class="far fa-check-circle"></i> Fechar Mês
-                        </a>
-                        {{--                        <a href="{{route('painel.spent.create')}}" class="btn btn-success mt-2">--}}
-                        {{--                            <i class="fas fa-plus-circle"></i> Novo Gasto--}}
-                        {{--                        </a>--}}
-                        <button type="button" class="btn btn-success mt-2" data-toggle="modal"
-                                data-target="#modalSpent"><i class="fas fa-plus-circle"></i> Novo Gasto
-                        </button>
-                        {{--                        <a href="#" class="btn btn-primary mt-2"><i class="fas fa-history"></i> Extrato de contas</a>--}}
-                        <button type="button" class="btn btn-primary mt-2" data-toggle="modal"
-                                data-target="#modalExtract"><i class="fas fa-history"></i> Extrato de
-                            contas
                         </button>
                     @else
                         <div class='alert alert-primary'>
@@ -142,11 +139,6 @@
                 <canvas id="myChart" width="100%" height='31px'></canvas>
             </div>
         </div>
-
-        <!-- Botão para acionar modal -->
-        <button id="closeMonth" data-result="{{$result}}" data-republic="{{$republic->id}}" data-user="{{auth()->user()->id}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSpentResult">
-            Fechar Mês
-        </button>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="modalDebit" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
@@ -188,11 +180,11 @@
                                     <input name='value' type='text' class="form-control" id='valueVirgula'
                                            style='width: 100%' required>
                                 </div>
-                                @if($republic != null)
+                                @if(auth()->user()->republic != null)
                                     <div class="form-group col-md-4 col-lg-4 col-sm-12">
                                         <label>Membro</label>
                                         <select class="form-control" style='width: 100%' name='user_id'>
-                                            @foreach($republic->user as $user)
+                                            @foreach(auth()->user()->republic->user as $user)
                                                 <option value='{{$user->id}}'>{{$user->name}}</option>
                                             @endforeach
                                         </select>
@@ -207,6 +199,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="modalExtract" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -224,37 +217,36 @@
                             <select name="selectYear" id="selectYear" data-year="valorAno" class="form-control"
                                     style='width: 100%'>
                                 <option value="1">Selecione</option>
-                                <option value="1">2019</option>
-                                <option value="1">2018</option>
-                                <option value="1">2017</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
                             </select>
                         </div>
                         <div class="month col">
                             <label for="">Mês:</label>
                             <select name="selectYear" id="selectYear" data-year="valorAno" class="form-control"
                                     style='width: 100%'>
-                                <option value="1">Selecione</option>
+                                <option value="0">Selecione</option>
                                 <option value="1">Janeiro</option>
-                                <option value="1">Fevereiro</option>
-                                <option value="1">Março</option>
+                                <option value="2">Fevereiro</option>
+                                <option value="3">Março</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Maio</option>
+                                <option value="6">Junho</option>
+                                <option value="7">Julho</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Setembro</option>
+                                <option value="10">Outubro</option>
+                                <option value="11">Novembro</option>
+                                <option value="12">Dezembro</option>
                             </select>
                         </div>
-                        <div class="p-2">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta ducimus id nisi omnis
-                            perferendis quidem temporibus? Accusantium cumque dolores ea inventore nisi quis quod unde
-                            veniam. Accusamus dignissimos dolorem eius.lorem Lorem ipsum dolor sit amet, consectetur
-                            adipisicing elit. Ab aperiam at cum ex, facilis itaque, iure laborum minus necessitatibus
-                            nemo nihil nostrum numquam odio officia quasi quibusdam ratione unde voluptate.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta ducimus id nisi omnis
-                            perferendis quidem temporibus? Accusantium cumque dolores ea inventore nisi quis quod unde
-                            veniam. Accusamus dignissimos dolorem eius.lorem Lorem ipsum dolor sit amet, consectetur
-                            adipisicing elit. Ab aperiam at cum ex, facilis itaque, iure laborum minus necessitatibus
-                            nemo nihil nostrum numquam odio officia quasi quibusdam ratione unde voluptate.
-                        </div>
-                        <button class="btn btn-success"><i class="fas fa-file-download"></i> Exportar</button>
                     </div>
-
-
+                    <button class="btn btn-success my-2"><i class="fas fa-file-download"></i> Exportar</button>
+                    <button class="btn btn-success my-2">Buscar</button>
+                    <div class="my-2">
+                        <div id="includeTable" class="mt-2"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -304,7 +296,6 @@
             </div>
         </div>
     </div>
-
     <!-- Modal -->
     <div class="modal fade" id="modalSpentResult" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -319,7 +310,7 @@
                 <div class="modal-body text-center">
                     <h3>Seu saldo:</h3>
                     <h1 class="{{($result > 0) ? 'text-success' : 'text-danger'}}">R${{number_format($result, 2, ',', ' ')}}</h1>
-                    @include('Painel.Spents.IncludeClose')
+                    <div class="mt-2" id="contentClose"></div>
                 </div>
                 <div class="modal-footer">
                     <button id="btnConfirm" type="button" class="btn btn-success" data-dismiss="modal">Confirmar</button>
@@ -426,6 +417,30 @@
                     },
                     success: function (data) {
                         // $("#teste").html(data);
+                        $("#contentClose").html(data);
+                    },
+                    error: function (data) {
+                        alert('nao veio');
+                    }
+                });
+            });
+            $("#btnConfirm").click(function () {
+                let result = $('#closeMonth').data('result');
+                let republic_id = $('#closeMonth').data('republic');
+                let user_id = $('#closeMonth').data('user');
+                $.ajaxSetup({
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+                    method: 'POST',
+                    url: '{{ route("painel.spentHistoryStore") }}'
+                });
+                $.ajax({
+                    data: {
+                        result: result,
+                        republic_id: republic_id,
+                        user_id: user_id,
+                    },
+                    success: function (data) {
+                        location.reload();
                     },
                     error: function (data) {
                         alert('nao veio');

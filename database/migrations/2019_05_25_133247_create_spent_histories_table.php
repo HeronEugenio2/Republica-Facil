@@ -21,6 +21,7 @@ class CreateSpentHistoriesTable extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('spent_id')->nullable();
             $table->boolean('buy')->default(0);
+            $table->boolean('close')->default(0);
             $table->timestamps();
         });
         Schema::table('spent_histories', function(Blueprint $table) {

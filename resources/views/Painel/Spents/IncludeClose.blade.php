@@ -1,23 +1,22 @@
 <div class="row justify-content-center mb-2">
-    asd
     @if(isset($arrayData))
-        <h1>{{$arrayData[0]['user_name']}}</h1>
-        {{--                @foreach($arrayData as $e)--}}
-        {{--                    <table class="table table-striped">--}}
-        {{--                        <thead>--}}
-        {{--                        <tr>--}}
-        {{--                            <th scope="col">Membro</th>--}}
-        {{--                            <th scope="col">Valor</th>--}}
-        {{--                        </tr>--}}
-        {{--                        </thead>--}}
-        {{--                        <tbody>--}}
-        {{--                        <tr>--}}
-        {{--                            <th scope="row">1</th>--}}
-        {{--                            <td>{{$e->user_name}}</td>--}}
-        {{--                            <td>{{$e->result}}</td>--}}
-        {{--                        </tr>--}}
-        {{--                        </tbody>--}}
-        {{--                    </table>--}}
-        {{--                @endforeach--}}
+            <table class="table table-bordered table-hover table-sm table-striped text-center mt-4">
+                <thead>
+                <tr>
+                    <th scope="col">Membro</th>
+                    <th scope="col">Valor</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($arrayData as $e)
+
+                    <tr>
+                    <td>{{$e['user_name']}}</td>
+                    <td>R${{number_format($e['result']['result'], 2, ',', ' ')}}</td>
+                </tr>
+                @endforeach
+
+                </tbody>
+            </table>
     @endif
 </div>

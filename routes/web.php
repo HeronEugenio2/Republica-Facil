@@ -22,26 +22,26 @@ Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProv
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(
     [
-        'prefix'     => 'administracao',
-        'as'         => 'administrative.',
+        'prefix' => 'administracao',
+        'as' => 'administrative.',
         'middleware' => ['auth'],
     ],
-    function() {
+    function () {
         //REPUBLIC
         Route::resource('republicas', 'Administrative\RepublicAdmController')
-             ->names('republics');
+            ->names('republics');
         //ADVERTISEMENT
         Route::resource('anuncios', 'Administrative\AdvertisementAdmController')
-             ->names('advertisements');
+            ->names('advertisements');
     }
 );
 Route::group(
     [
-        'prefix'     => 'painel',
-        'as'         => 'painel.',
+        'prefix' => 'painel',
+        'as' => 'painel.',
         'middleware' => ['auth'],
     ],
-    function() {
+    function () {
         //republic@
         Route::resource('/republica', 'RepublicController')->names('republic');
         //spent@
@@ -59,16 +59,16 @@ Route::group(
         Route::get('/republica/{id}/aceitar', 'RepublicController@invitationAccept')->name('invitationAccept');
         //painel.debitStore
         Route::post('/debito', 'RepublicController@debitStore')->name('debitStore');
-//        //painel.Debit store
-//        Route::post('/debito', 'RepublicController@debitStore')->name('debitStore');
+        //painel.spentHistoryStore
+        Route::post('/confirma', 'SpentController@spentHistoryStore')->name('spentHistoryStore');
     }
 );
 Route::group(
     [
         'prefix' => 'portal',
-        'as'     => 'portal.',
+        'as' => 'portal.',
     ],
-    function() {
+    function () {
         //ANUNCIOS
         Route::get('/anuncios', 'PortalController@indexAdvertisement')->name('advertisement');
         Route::get('/anuncios/{id}', 'PortalController@showAdvertisement')->name('showAdvertisement');

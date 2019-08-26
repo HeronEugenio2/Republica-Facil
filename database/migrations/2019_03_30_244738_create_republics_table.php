@@ -34,6 +34,7 @@ class CreateRepublicsTable extends Migration
             $table->integer('number')->nullable();
             $table->unsignedInteger('type_id')->index();
             $table->unsignedInteger('assignment_id')->nullable()->index();
+            $table->unsignedInteger('user_id')->nullable()->index();
             $table->boolean('active_flag')->default(0)->index();
             $table->timestamps();
         });
@@ -42,6 +43,9 @@ class CreateRepublicsTable extends Migration
         });
         Schema::table('users', function(Blueprint $table) {
             $table->foreign('republic_id')->references('id')->on('republics');
+        });
+        Schema::table('republics', function(Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

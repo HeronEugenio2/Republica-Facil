@@ -83,11 +83,11 @@
                             <label for="inputValue">Valor</label>
                             <input name='value' type='text' class="form-control" id='valueVirgula' style='width: 100%'>
                         </div>
-                        @if($republic != null)
+                        @if(auth()->user()->republic != null)
                             <div class="form-group col-md-4 col-lg-4 col-sm-12">
                                 <label>Membro</label>
                                 <select class="form-control" style='width: 100%' name='user_id'>
-                                    @foreach($republic->user as $user)
+                                    @foreach(auth()->user()->republic as $user)
                                         <option value='{{$user->id}}'>{{$user->name}}</option>
                                     @endforeach
                                 </select>

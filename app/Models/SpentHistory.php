@@ -27,7 +27,7 @@ class SpentHistory extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function spent()
+    public function spents()
     {
         return $this->hasMany(Spent::class);
     }

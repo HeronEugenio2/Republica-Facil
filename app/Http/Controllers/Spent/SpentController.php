@@ -267,6 +267,7 @@ class SpentController extends Controller
             ->get();
         $spentsTotal = 0;
         $spentsIndividual = 0;
+        $month = $spents[0]->created_at;
         foreach ($spents as $spent) {
             $spentsTotal += $spent->value;
         }
@@ -284,7 +285,8 @@ class SpentController extends Controller
                 'total' => $spentsTotal,
                 'individual' => $spentsIndividual,
                 'media' => $media,
-                'result' => $result
+                'result' => $result,
+                'month' => $month,
             ];
         return $data;
     }
@@ -308,5 +310,26 @@ class SpentController extends Controller
             $spent->save();
         }
         return redirect()->back();
+    }
+
+    public function listSpents(Request $request)
+    {
+        $users = User::where('republic_id', $request->republic_id)->get();
+        $arrayData = collect();
+        foreach ($users as $user) {
+            $result = $this->calcSpent($request->republic_id, $user->id);
+            $arrayData[] = ([
+                'user_name' => $user->name,
+                'result' => $result,
+                'buy' => 0
+            ]);
+        }
+        dd($arrayData);
+
+//        $arrayData = SpentHistory::where('republic_id', $request->republic_id)
+//            ->where('user_id', '=', null)->get();
+//            ->where('year', $request->year)
+        return view('Painel.Spents.IncludeListSpents', compact('arrayData'))->render();
+
     }
 }

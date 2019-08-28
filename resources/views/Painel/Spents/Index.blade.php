@@ -214,9 +214,9 @@
                     <div class="row">
                         <div class="year col">
                             <label for="">Ano:</label>
-                            <select name="selectYear" id="selectYear" data-year="valorAno" class="form-control"
+                            <select name="selectYear" id="selectYear" data-year="valueYear" class="form-control"
                                     style='width: 100%'>
-                                <option value="1">Selecione</option>
+                                <option value="0">Selecione</option>
                                 <option value="2019">2019</option>
                                 <option value="2018">2018</option>
                                 <option value="2017">2017</option>
@@ -224,7 +224,7 @@
                         </div>
                         <div class="month col">
                             <label for="">Mês:</label>
-                            <select name="selectYear" id="selectYear" data-year="valorAno" class="form-control"
+                            <select name="selectMonth" id="selectMonth" data-month="valueMonth" class="form-control"
                                     style='width: 100%'>
                                 <option value="0">Selecione</option>
                                 <option value="1">Janeiro</option>
@@ -242,8 +242,9 @@
                             </select>
                         </div>
                     </div>
+                    <div class="listSpentsHtml my-2"></div>
                     <button class="btn btn-success my-2"><i class="fas fa-file-download"></i> Exportar</button>
-                    <button class="btn btn-success my-2">Buscar</button>
+                    <button id="btnSearch" class="btn btn-success my-2" data-user="{{auth()->user()->id}}" data-republic="{{$republic->id}}">Buscar</button>
                     <div class="my-2">
                         <div id="includeTable" class="mt-2"></div>
                     </div>
@@ -441,6 +442,58 @@
                     },
                     success: function (data) {
                         location.reload();
+                    },
+                    error: function (data) {
+                        alert('nao veio');
+                    }
+                });
+            });
+
+            $("#btnSearch").click(function () {
+                let year = $("#selectYear").val();
+                let month = $("#selectMonth").val();
+                let republic_id = $('#btnSearch').data('republic');
+                let user_id = $('#btnSearch').data('user');
+                $.ajaxSetup({
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+                    method: 'POST',
+                    url: '{{ route("painel.spendingResult") }}'
+                });
+                $.ajax({
+                    data: {
+                        year: year,
+                        month: month,
+                        republic_id: republic_id,
+                        user_id: user_id,
+                    },
+                    success: function (data) {
+                        $(".listSpentsHtml").html(data);
+                    },
+                    error: function (data) {
+                        alert('nao veio');
+                    }
+                });
+            });
+            $("#btnBuy").click(function () {
+                alert('de');
+                let year = $("#selectYear").val();
+                let month = $("#selectMonth").val();
+                let republic_id = $('#btnSearch').data('republic');
+                let user_id = $('#btnSearch').data('user');
+                $.ajaxSetup({
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+                    method: 'POST',
+                    url: '{{ route("painel.listSpents") }}'
+                });
+                $.ajax({
+                    data: {
+                        year: year,
+                        month: month,
+                        republic_id: republic_id,
+                        user_id: user_id,
+                    },
+                    success: function (data) {
+                        $(".listSpentsHtml").html(data);
                     },
                     error: function (data) {
                         alert('nao veio');

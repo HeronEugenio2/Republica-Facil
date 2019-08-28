@@ -16,6 +16,7 @@ class CreateSpentHistoriesTable extends Migration
         Schema::create('spent_histories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('month')->nullable();
+            $table->string('year')->default(2019);
             $table->float('value')->nullable();
             $table->unsignedInteger('republic_id')->nullable();
             $table->unsignedInteger('user_id')->nullable();

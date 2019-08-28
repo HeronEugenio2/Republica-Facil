@@ -61,6 +61,8 @@ Route::group(
         Route::post('/debito', 'RepublicController@debitStore')->name('debitStore');
         //painel.spentHistoryStore
         Route::post('/confirma', 'SpentController@spentHistoryStore')->name('spentHistoryStore');
+        //painel.listSpents
+        Route::post('/gastos/lista', 'SpentController@listSpents')->name('listSpents');
     }
 );
 Route::group(

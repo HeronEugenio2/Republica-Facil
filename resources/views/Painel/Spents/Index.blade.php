@@ -376,8 +376,6 @@
                 }
             }
         });
-    </script>
-    <script>
         $(document).ready(function () {
             $("#headerFull").click(function () {
                 $("#bodyFull").toggle();
@@ -474,33 +472,6 @@
                     }
                 });
             });
-            $("#btnBuy").click(function () {
-                alert('de');
-                let year = $("#selectYear").val();
-                let month = $("#selectMonth").val();
-                let republic_id = $('#btnSearch').data('republic');
-                let user_id = $('#btnSearch').data('user');
-                $.ajaxSetup({
-                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
-                    method: 'POST',
-                    url: '{{ route("painel.listSpents") }}'
-                });
-                $.ajax({
-                    data: {
-                        year: year,
-                        month: month,
-                        republic_id: republic_id,
-                        user_id: user_id,
-                    },
-                    success: function (data) {
-                        $(".listSpentsHtml").html(data);
-                    },
-                    error: function (data) {
-                        alert('nao veio');
-                    }
-                });
-            });
-
         });
     </script>
 @endpush

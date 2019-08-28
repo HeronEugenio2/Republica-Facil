@@ -267,7 +267,7 @@ class SpentController extends Controller
             ->get();
         $spentsTotal = 0;
         $spentsIndividual = 0;
-        $month = $spents[0]->created_at;
+//        $month = $spents[0]->created_at;
         foreach ($spents as $spent) {
             $spentsTotal += $spent->value;
         }
@@ -286,7 +286,6 @@ class SpentController extends Controller
                 'individual' => $spentsIndividual,
                 'media' => $media,
                 'result' => $result,
-                'month' => $month,
             ];
         return $data;
     }

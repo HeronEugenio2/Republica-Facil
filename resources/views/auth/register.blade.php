@@ -76,7 +76,7 @@
             {{ __('Register') }}
         </button>
     </div>
-    <a class="text-danger float-left" href='{{route('login')}}'>
+    <a class="text-danger float-left mt-2" href='{{route('login')}}'>
         {{ __('Login') }}
     </a>
 </form>

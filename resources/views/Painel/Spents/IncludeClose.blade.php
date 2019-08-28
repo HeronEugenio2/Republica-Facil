@@ -12,14 +12,17 @@
                 <tr>
                     <td>{{$e['user_name']}}</td>
                     <td>R${{number_format($e['result']['result'], 2, ',', ' ')}}</td>
+                    <td><button onclick='vai()' id='btnBuy'>idaisd</button></td>
                 </tr>
             @endforeach
             </tbody>
         </table>
     @endif
 </div>
-@push('scripts')
     <script>
+        function vai(){
+            alet('s');
+        }
         $(document).ready(function () {
 
             $("#btnBuy").click(function () {
@@ -50,4 +53,3 @@
             });
         });
     </script>
-@endpush

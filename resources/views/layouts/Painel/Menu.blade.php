@@ -132,6 +132,11 @@
                         <i class="fas fa-cart-plus text-gray"></i> Anúncios
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('painel.marketing.index') }}">
+                        <i class="fas fa-bullhorn text-gray"></i> Marketing
+                    </a>
+                </li>
                 @if(auth()->user()->email == 'hrs.eugenio@gmail.com')
                     <li class="nav-item">
                         <hr>

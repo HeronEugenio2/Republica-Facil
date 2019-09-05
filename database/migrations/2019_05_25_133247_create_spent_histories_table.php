@@ -31,6 +31,9 @@ class CreateSpentHistoriesTable extends Migration
         Schema::table('spent_histories', function(Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
+        Schema::table('spent_histories', function(Blueprint $table) {
+            $table->foreign('spent_id')->references('id')->on('spents');
+        });
     }
 
     /**

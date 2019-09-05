@@ -27,6 +27,8 @@ class SpentRequest extends FormRequest
             'value'       => 'required|string|max:255',
             'republic_id' => 'required|integer|max:255',
             'user_id'     => 'integer',
+            'buy'         => 'nullable',
+            'dateSpent'         => 'nullable',
         ];
     }
 

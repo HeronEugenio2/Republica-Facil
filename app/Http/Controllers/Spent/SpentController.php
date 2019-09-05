@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ExtractRequest;
 use App\Http\Requests\SpentRequest;
 use App\Http\Service\Service;
 use App\Models\Republic;
@@ -21,11 +22,14 @@ class SpentController extends Controller
      */
     public function index()
     {
+        $now = new Carbon();
+        $month = date_format($now, 'm');
         $user = auth()->user();
         $republic = $user->republic;
         $spents = $republic->spents;
         if (count($spents) > 0) {
-            $spents = Spent::where('republic_id', $republic->id)->where('close', 0)->get();
+            $spents = Spent::where('republic_id', $republic->id)->where('close', 0)->whereMonth('dateSpent', '=', $month)
+                ->get();
         }
         $histories = SpentHistory::where('user_id', $user->id)->orderBy('month')
             ->get();
@@ -33,14 +37,14 @@ class SpentController extends Controller
         $sql = "SELECT h.value
                 , h.month
                 , buy
-                , h.created_at       
                 , s.description       
                 , h.user_id       
                 , s.close
+                , h.year
                 FROM spent_histories as h
                 INNER JOIN spents as s on h.spent_id = s.id
                 WHERE h.user_id = $user->id AND s.close = 0
-                ORDER BY h.created_at";
+                ORDER BY h.month";
         $myDebits = DB::select($sql);
 
         if ($spents) {
@@ -159,17 +163,29 @@ class SpentController extends Controller
             //            $now       = new Carbon();
             //            $month     = date('m');
 
-            $month = Carbon::parse($saveSpent['created_at'])->format('m');
+            $month = Carbon::parse($saveSpent['dateSpent'])->format('m');
 
             if ($saveSpent) {
+
                 //IF SAVED SPENT, SAVE HISTORY SPENT
-                $data = array_filter([
-                    'month' => $month ?? null,
-                    'value' => $saveSpent->value,
-                    'republic_id' => $saveSpent->republic_id ?? null,
-                    'user_id' => $saveSpent->user_id ?? null,
-                    'spent_id' => $saveSpent->id,
-                ]);
+                if ($spentRequest->buy == "1") {
+                    $data = array_filter([
+                        'month' => $month ?? null,
+                        'value' => $saveSpent->value,
+                        'republic_id' => $saveSpent->republic_id ?? null,
+                        'user_id' => $saveSpent->user_id ?? null,
+                        'spent_id' => $saveSpent->id,
+                        'buy' => $spentRequest->buy,
+                    ]);
+                } else {
+                    $data = array_filter([
+                        'month' => $month ?? null,
+                        'value' => $saveSpent->value,
+                        'republic_id' => $saveSpent->republic_id ?? null,
+                        'user_id' => $saveSpent->user_id ?? null,
+                        'spent_id' => $saveSpent->id,
+                    ]);
+                }
                 $saveHistorySpent = SpentHistory::create($data);
 
                 return redirect()->route('painel.spent.index', ['id' => auth()->user('id')])
@@ -233,8 +249,30 @@ class SpentController extends Controller
         return redirect()->route('painel.spent.index');
     }
 
-    public function spendingResult(Request $request)
+    public function extractList(Request $request)
     {
+        $user = auth()->user();
+        $republic = $user->republic;
+        $spents = $republic->spents;
+        if (count($spents) > 0) {
+            $extractSpents = Spent::where('republic_id', $request->republic_id)
+                ->with('history')
+                ->whereMonth('dateSpent', '=', $request->month)
+                ->whereYear('dateSpent', $request->year)
+                ->get();
+        }
+
+        $spentsTotal = 0;
+        foreach ($extractSpents as $e) {
+            $spentsTotal += $e->value;
+        }
+        return view('Painel.Spents.IncludeExtract', compact('extractSpents', 'spentsTotal'))->render();
+    }
+
+    public function spendingResult (Request $request)
+    {
+        $now = new Carbon();
+        $month = date_format($now, 'm');
         $users = User::where('republic_id', $request->republic_id)->get();
         $arrayData = collect();
         foreach ($users as $user) {
@@ -242,11 +280,12 @@ class SpentController extends Controller
             $arrayData[] = ([
                 'user_name' => $user->name,
                 'result' => $result,
+                'date' => date_format($now, 'm/y'),
             ]);
         }
-
         return view('Painel.Spents.IncludeClose', compact('arrayData'))->render();
     }
+
 
     /**
      * @param $republicId
@@ -256,18 +295,22 @@ class SpentController extends Controller
      */
     public function calcSpent($republicId, $userId)
     {
+        $now = new Carbon();
+        $month = date_format($now, 'm');
         $user = User::where('id', $userId)->first();
         $republic = Republic::where('id', $republicId)->first();
         $spents = Spent::where('republic_id', $republicId)
             ->where('close', 0)
+            ->whereMonth('dateSpent', '=', $month)
             ->get();
         $userSpents = Spent::where('republic_id', $republicId)
             ->where('user_id', $userId)
+            ->whereMonth('dateSpent', '=', $month)
             ->where('close', 0)
             ->get();
         $spentsTotal = 0;
         $spentsIndividual = 0;
-//        $month = $spents[0]->created_at;
+//        $month = $spents[0]->dateSpent;
         foreach ($spents as $spent) {
             $spentsTotal += $spent->value;
         }
@@ -292,12 +335,15 @@ class SpentController extends Controller
 
     public function spentHistoryStore(Request $request)
     {
+        $now = new Carbon();
+        $month = date_format($now, 'm');
         $spentsHistories = SpentHistory::where('month', Carbon::now()->month)
             ->where('republic_id', $request->republic_id)
             ->where('close', 0)
             ->get();
         $spents = Spent::where('republic_id', $request->republic_id)
             ->where('close', 0)
+            ->whereMonth('dateSpent', '=', $month)
             ->get();
 
         foreach ($spentsHistories as $spentsHistory) {
@@ -323,8 +369,6 @@ class SpentController extends Controller
                 'buy' => 0
             ]);
         }
-        dd($arrayData);
-
 //        $arrayData = SpentHistory::where('republic_id', $request->republic_id)
 //            ->where('user_id', '=', null)->get();
 //            ->where('year', $request->year)

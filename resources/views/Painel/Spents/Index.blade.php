@@ -27,9 +27,8 @@
         <button type="button" class="btn btn-success my-2" data-toggle="modal"
                 data-target="#modalSpent"><i class="fas fa-plus-circle"></i> Novo Gasto
         </button>
-        <button type="button" class="btn btn-primary my-2" data-toggle="modal"
-                data-target="#modalExtract"><i class="fas fa-history"></i> Extrato de
-            contas
+        <button id="btnExtract" type="button" class="btn btn-primary my-2" data-toggle="modal"
+                data-target="#modalExtract"><i class="fas fa-history"></i> Extrato de contas
         </button>
         <div class='card' id='spentFull'>
             <div id='headerFull' class='card-header bg-nav text-white'>Gastos</div>
@@ -85,7 +84,9 @@
                         </div>
                         <small class='text-muted'>Aqui estão listados todos os gastos da república.</small><br>
                         <!-- Botão para acionar modal -->
-                        <button id="closeMonth" data-result="{{$result}}" data-republic="{{$republic->id}}" data-user="{{auth()->user()->id}}" type="button" class="btn btn-primary my-2" data-toggle="modal" data-target="#modalSpentResult">
+                        <button id="closeMonth" data-result="{{$result}}" data-republic="{{$republic->id}}"
+                                data-user="{{auth()->user()->id}}" type="button" class="btn btn-secondary my-2"
+                                data-toggle="modal" data-target="#modalSpentResult">
                             <i class="far fa-check-circle"></i> Fechar Mês
                         </button>
                     @else
@@ -118,7 +119,7 @@
                             <tbody>
                             @foreach($myDebits as $myDebit)
                                 <tr class='text-center'>
-                                    <td>{{$myDebit->created_at}}</td>
+                                    <td>{{$myDebit->month}}/{{$myDebit->year}}</td>
                                     <td>{{$myDebit->description}}</td>
                                     <td>R$ {{number_format($myDebit->value,2,',', '.')}}</td>
                                 </tr>
@@ -191,6 +192,7 @@
                                     </div>
                                 @endif
                             </div>
+                            <input type="hidden" value="1" name="buy">
                             <button id='save' type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Salvar
                             </button>
                         </form>
@@ -202,7 +204,7 @@
 
     <div class="modal fade" id="modalExtract" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
          aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h2 class="modal-title" id="TituloModalCentralizado">Extrato de Contas</h2>
@@ -215,7 +217,7 @@
                         <div class="year col">
                             <label for="">Ano:</label>
                             <select name="selectYear" id="selectYear" data-year="valueYear" class="form-control"
-                                    style='width: 100%'>
+                                    style='width: 100%' required>
                                 <option value="0">Selecione</option>
                                 <option value="2019">2019</option>
                                 <option value="2018">2018</option>
@@ -242,12 +244,10 @@
                             </select>
                         </div>
                     </div>
+                    <button id="btnSearch" class="btn btn-success my-2" data-user="{{auth()->user()->id}}"
+                            data-republic="{{$republic->id}}">Buscar
+                    </button>
                     <div class="listSpentsHtml my-2"></div>
-                    <button class="btn btn-success my-2"><i class="fas fa-file-download"></i> Exportar</button>
-                    <button id="btnSearch" class="btn btn-success my-2" data-user="{{auth()->user()->id}}" data-republic="{{$republic->id}}">Buscar</button>
-                    <div class="my-2">
-                        <div id="includeTable" class="mt-2"></div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -277,14 +277,14 @@
                             </small>
                         </div>
                         <div class='row'>
-                            <div id='spentDataVencimento' class="form-group col-md-3 col-lg-3 col-sm-12">
+                            <div id='spentDataVencimento' class="form-group col-md-6 col-lg-6 col-sm-12">
                                 <label for="inputSpent">Vencimento</label>
                                 <input id="inputSpent" name='dateSpent' type="date" class="form-control"
                                        aria-describedby="spentHelp" placeholder="12/05/2019" style='width: 100%'>
                                 <small id="spentHelp" class="form-text text-muted">Data de vencimento.
                                 </small>
                             </div>
-                            <div id='spentValue' class="form-group col-md-3 col-lg-3 col-sm-12">
+                            <div id='spentValue' class="form-group col-md-6 col-lg-6 col-sm-12">
                                 <label for="inputValue">Valor</label>
                                 <input name='value' type='text' class="form-control" id='valueVirgula1'
                                        style='width: 100%'>
@@ -310,11 +310,13 @@
                 </div>
                 <div class="modal-body text-center">
                     <h3>Seu saldo:</h3>
-                    <h1 class="{{($result > 0) ? 'text-success' : 'text-danger'}}">R${{number_format($result, 2, ',', ' ')}}</h1>
+                    <h1 class="{{($result > 0) ? 'text-success' : 'text-danger'}}">
+                        R${{number_format($result, 2, ',', ' ')}}</h1>
                     <div class="mt-2" id="contentClose"></div>
                 </div>
                 <div class="modal-footer">
-                    <button id="btnConfirm" type="button" class="btn btn-success" data-dismiss="modal">Confirmar</button>
+                    <button id="btnConfirm" type="button" class="btn btn-success" data-dismiss="modal">Confirmar
+                    </button>
                 </div>
             </div>
         </div>
@@ -455,7 +457,7 @@
                 $.ajaxSetup({
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
                     method: 'POST',
-                    url: '{{ route("painel.spendingResult") }}'
+                    url: '{{ route("painel.extractList") }}'
                 });
                 $.ajax({
                     data: {
@@ -468,7 +470,7 @@
                         $(".listSpentsHtml").html(data);
                     },
                     error: function (data) {
-                        alert('nao veio');
+                        alert('Selecione Ano e Mês');
                     }
                 });
             });

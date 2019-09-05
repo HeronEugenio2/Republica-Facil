@@ -50,6 +50,8 @@ Route::group(
         Route::resource('/tarefas', 'AssignmentController')->names('assignment');
         //Advertisement@
         Route::resource('/anuncios', 'Painel\AdvertisementController')->names('advertisement');
+        //Marketing@
+        Route::resource('/marketing', 'Marketing\MarketingController')->names('marketing');
 
         //painel.spendingResult
         Route::post('/sangria', 'SpentController@spendingResult')->name('spendingResult');
@@ -63,6 +65,8 @@ Route::group(
         Route::post('/confirma', 'SpentController@spentHistoryStore')->name('spentHistoryStore');
         //painel.listSpents
         Route::post('/gastos/lista', 'SpentController@listSpents')->name('listSpents');
+        //painel.extractList
+        Route::post('/gastos/extrato', 'SpentController@extractList')->name('extractList');
     }
 );
 Route::group(

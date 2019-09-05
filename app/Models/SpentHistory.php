@@ -16,6 +16,7 @@ class SpentHistory extends Model
         'spent_id',
         'user_id',
         'republic_id',
+        'buy',
     ];
 
     public function republic()
@@ -29,6 +30,6 @@ class SpentHistory extends Model
     }
     public function spents()
     {
-        return $this->hasMany(Spent::class);
+        return $this->belongsTo(Spent::class);
     }
 }

@@ -33,6 +33,6 @@ class Spent extends Model
 
     }public function history()
 {
-    return $this->belongsTo(SpentHistory::class);
+    return $this->hasOne(SpentHistory::class);
 }
 }

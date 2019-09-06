@@ -95,6 +95,7 @@
                             vagas
                         @endif do tipo {{$republic->type->title}}.
                     </dd>
+                    <hr>
                     <dt>
                         Membros
                     </dt>
@@ -115,7 +116,7 @@
                 </dl>
             </div>
             <div class="col-md-6 my-4">
-                <div class="jumbotron card card-block">
+                <div class="jumbotron card card-block py-4">
                     <img class="mr-3 mb-4" src="{{$republic->image}}" style="width: 150px;height: 120px;">
                     <h2>
                         {{$republic->name}}
@@ -125,10 +126,11 @@
                         called the hero unit and three supporting pieces of content. Use it as a starting point to
                         create something more unique.
                     </p>
-                    <p>
+                    <p class="text-center">
                         <a class="btn btn-success btn-large" href="#"><i class="fab fa-whatsapp text-white"></i> Contato</a>
                         <a class="btn btn-secondary btn-large" href="#"><i class="far fa-star"></i> Avaliar</a>
                     </p>
+                    <p class="text-center">Irregularidades no anúncio? <a href="#">Denunciar</a></p>
                 </div>
             </div>
         </div>

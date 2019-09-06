@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Vote;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -75,5 +76,14 @@ class Republic extends Model
     public function advertisements()
     {
         return $this->hasMany(Advertisement::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @author Heron Eugenio
+     */
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
     }
 }

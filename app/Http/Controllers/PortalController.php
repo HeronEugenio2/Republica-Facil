@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Advertisement;
 use App\Models\Republic;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -81,9 +82,9 @@ class PortalController extends Controller
      */
     public function show($id)
     {
-        $republic = Republic::find($id);
-
-        return view('Portal.Republic.Show', compact('republic'));
+        $user = User::where('republic_id', $id)->first();
+        $republic = Republic::with('user')->where('id', $id)->first();
+        return view('Portal.Republic.Show2', compact('republic', 'user'));
     }
 
     public function showAdvertisement($id)

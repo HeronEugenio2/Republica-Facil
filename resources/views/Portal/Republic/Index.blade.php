@@ -5,6 +5,7 @@
 @section('content')
     <div class="jumbotron jumbotron-fluid p-4 mb-0" style="background-color: ghostwhite">
         <div class='row'>
+            {{--    filtros--}}
             <div class='col-sm-12 col-md-3 col-lg-3'>
                 {{--<form action='{{route('portal.republicSearch')}}' method='POST'>--}}
                 <form action=''>
@@ -20,7 +21,8 @@
                                 <label class="form-check-label" for="exampleCheck1">Mulheres</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input chkType" type="radio" name="exampleRadios" value="3" checked>
+                                <input class="form-check-input chkType" type="radio" name="exampleRadios" value="3"
+                                       checked>
                                 <label class="form-check-label" for="exampleCheck1">Mista</label>
                             </div>
                         </div>
@@ -39,7 +41,8 @@
                                 <label class="form-check-label" for="exampleCheck1">R$200,00 - R$300,00</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input chkValue" type="radio" name="exampleRadios " value="400" checked>
+                                <input class="form-check-input chkValue" type="radio" name="exampleRadios " value="400"
+                                       checked>
                                 <label class="form-check-label" for="exampleCheck1">R$300,00 - R$400,00</label>
                             </div>
                             <div class="form-check">
@@ -55,6 +58,7 @@
                     <a href='#' id='btnFiltro' class='btn btn-danger w-100 mb-2'>Filtrar</a>
                 </form>
             </div>
+
             <div class='col-sm-12 col-md-9 col-lg-9'>
                 <div class="card">
                     <div class="card-body bg-light pb-0">
@@ -62,7 +66,9 @@
                             <form id="logout-form" action="{{ route('portal.republicSearch') }}" method="POST">
                                 @csrf
                                 <div class="input-group mb-2">
-                                    <input class='form-control' id='valueSearch' value='{{$value}}' type='text' name='search' placeholder='Digite o nome da cidade onde você procura um lugar para alugar'>
+                                    <input class='form-control' id='valueSearch' value='{{$value}}' type='text'
+                                           name='search'
+                                           placeholder='Digite o nome da cidade onde você procura um lugar para alugar'>
                                     <div class="input-group-append">
                                         <button type='submit' class='btn btn-danger'>Buscar</button>
                                     </div>
@@ -110,6 +116,30 @@
                 });
 
             });
+
+            {{--$(".vote").on('click', (function (e) {--}}
+            {{--        let vote = $(this).data('value');--}}
+            {{--    let republic_id =  $('#btnView{{$republic->id}}').data('republic');--}}
+            {{--    alert(republic_id);--}}
+            {{--    e.preventDefault();--}}
+            {{--        $.ajax({--}}
+            {{--            headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},--}}
+            {{--            method: 'POST',--}}
+            {{--            url: 'https://support.perfectpay.com.br/vote/faq',--}}
+            {{--            data: {--}}
+            {{--                vote: vote,--}}
+            {{--                slug_id: republic_id,--}}
+            {{--            },--}}
+            {{--            success: function (response) {--}}
+            {{--                $('.answer').replaceWith('<h5 class="py-4 text-muted">' + response.message + '</h5>');--}}
+            {{--            },--}}
+            {{--            error: function (response) {--}}
+            {{--                $('.answer').replaceWith('<h5 class="py-4 text-muted">' + response.message + '</h5>');--}}
+
+            {{--            }--}}
+            {{--        });--}}
+            {{--    })--}}
+            {{--);--}}
         });
     </script>
 @endpush

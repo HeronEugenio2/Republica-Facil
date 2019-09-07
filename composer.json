@@ -14,7 +14,7 @@
         "laravel/framework": "5.7.*",
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
-        "ext-http": "*"
+        "oriceon/toastr-5-laravel": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

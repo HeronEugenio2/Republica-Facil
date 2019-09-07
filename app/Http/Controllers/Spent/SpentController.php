@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ExtractRequest;
 use App\Http\Requests\SpentRequest;
 use App\Http\Service\Service;
 use App\Models\Republic;
 use App\Models\Spent;
-use App\Models\User;
 use App\Models\SpentHistory;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
 class SpentController extends Controller
@@ -260,16 +258,16 @@ class SpentController extends Controller
                 ->whereMonth('dateSpent', '=', $request->month)
                 ->whereYear('dateSpent', $request->year)
                 ->get();
+            $spentsTotal = 0;
+            foreach ($extractSpents as $e) {
+                $spentsTotal += $e->value;
+            }
         }
 
-        $spentsTotal = 0;
-        foreach ($extractSpents as $e) {
-            $spentsTotal += $e->value;
-        }
         return view('Painel.Spents.IncludeExtract', compact('extractSpents', 'spentsTotal'))->render();
     }
 
-    public function spendingResult (Request $request)
+    public function spendingResult(Request $request)
     {
         $now = new Carbon();
         $month = date_format($now, 'm');

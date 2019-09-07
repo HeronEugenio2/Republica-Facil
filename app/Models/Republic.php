@@ -31,6 +31,8 @@ class Republic extends Model
         'city',
         'state',
         'number',
+        'up',
+        'down',
     ];
 
     /**

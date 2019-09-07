@@ -2,6 +2,7 @@
 @extends('layouts.Painel.LayoutFull')
 
 @section('content')
+    {{--        {!! Toastr::success('como q retorna essa merda certo ?', $title = null, $options = []) !!}--}}
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -25,8 +26,10 @@
                                         <td>{{$invitation->user->name}}</td>
                                         <td>{{$invitation->republic->name}}</td>
                                         <td>
-                                            <a href='{{route('painel.invitationAccept', $invitation->id)}}' class='btn btn-sm btn-primary'>Sim</a>
-                                            <a href='#' class='btn btn-sm btn-danger'>Não</a>
+                                            <a href='{{route('painel.invitationAccept', $invitation->id)}}'
+                                               class='btn btn-sm btn-primary'>Sim</a>
+                                            <a href='{{route('painel.invitationAccept', $invitation->id)}}'
+                                               class='btn btn-sm btn-danger'>Não</a>
                                         </td>
                                     </tr>
                                 @endforeach

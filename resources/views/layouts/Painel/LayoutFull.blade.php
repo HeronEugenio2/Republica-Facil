@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     {{--<link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">--}}
+    {{--    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">--}}
+    <link href="toastr.css" rel="stylesheet"/>
     @stack('css')
     <style>
         .card-body {
@@ -127,8 +129,15 @@
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+{{--<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>--}}
 <script> window.Laravel = '{!!json_encode(['csrfToken' => csrf_token()])!!}';</script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+{{--<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>--}}
+
+<script src="toastr.js"></script>
+{{--{!! Toastr::render() !!}--}}
 @stack('scripts')
 </body>
 </html>

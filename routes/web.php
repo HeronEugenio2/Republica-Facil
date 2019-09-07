@@ -67,6 +67,8 @@ Route::group(
         Route::post('/gastos/lista', 'SpentController@listSpents')->name('listSpents');
         //painel.extractList
         Route::post('/gastos/extrato', 'SpentController@extractList')->name('extractList');
+        //painel.invitationDeny
+        Route::post('/republica/{id}/apagar', 'RepublicController@invitationDeny')->name('invitationDeny');
     }
 );
 Route::group(
@@ -85,5 +87,7 @@ Route::group(
         Route::get('/busca', 'PortalController@indexRepublics')->name('search');
         Route::post('/busca/cidade', 'PortalController@search')->name('republicSearch');
         Route::post('/busca/cidade/filtrada', 'PortalController@ajaxSearch')->name('ajaxSearch');
+        //portal.vote
+        Route::post('/votar/{id}', 'PortalController@vote')->name('vote');
     }
 );

@@ -15,6 +15,7 @@ class Vote extends Model
         'cpf',
         'value',
         'republic_id',
+        'type_vote',
     ];
 
     /**

@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EmailRequest;
 use App\Http\Requests\RepublicRequest;
-
 use App\Models\Invitations\Invitation;
 use App\Models\Republic;
 use App\Models\Type;
 use App\Models\User;
 use App\Notifications\RequestInvitation;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Redirect;
 
 class RepublicController extends Controller
 {
@@ -56,7 +54,7 @@ class RepublicController extends Controller
 
     /**
      * @param RepublicRequest $republicRequest
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      * @author Heron Eugenio
      */
     public function store(RepublicRequest $republicRequest)
@@ -243,9 +241,14 @@ class RepublicController extends Controller
         return view('Painel.Republic.Index', compact('republic', 'user', 'invitations', 'members'));
     }
 
+    /**
+     * @param $id
+     * @return RedirectResponse
+     */
     public function invitationAccept($id)
     {
         $invitation = Invitation::find($id);
+
         if (isset($invitation)) {
             $user = User::findOrFail(Auth::user()->id);
             $user->republic_id = $invitation->republic_id;
@@ -259,6 +262,21 @@ class RepublicController extends Controller
         return redirect()->back()->with('error', 'Houve algum erro no cadastro');
     }
 
+    public function invitationDeny($id)
+    {
+        $invitation = Invitation::find($id);
+        if (isset($invitation)) {
+            $invitation->delete();
+            return redirect()->back()->with('success', 'Solicitação negada!');
+        }
+
+        return redirect()->back()->with('error', 'Erro ao excluir');
+    }
+
+    /**
+     * @param Request $request
+     * @return string
+     */
     public function debitStore(Request $request){
         $user = '<div>'.$request->user.'</div>';
 

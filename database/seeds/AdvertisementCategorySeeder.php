@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Advertisement;
 use App\Models\AdvertisementCategory;
 use Illuminate\Database\Seeder;
 

@@ -1,6 +1,14 @@
 @extends('Portal.TemplateLaravel')
 @push('css')
-
+    <style type="text/css">
+        img {
+            display: block;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -116,30 +124,103 @@
                 </dl>
             </div>
             <div class="col-md-6 my-4">
-                <div class="jumbotron card card-block py-4">
-                    <img class="mr-3 mb-4" src="{{$republic->image}}" style="width: 150px;height: 120px;">
+                <div class="jumbotron card card-block py-4 text-center justify-content-center"
+                     style="align-items: center;">
+                    <img class=" mb-4" src="{{$republic->image}}" style="width: 150px;height: 120px;">
                     <h2>
                         {{$republic->name}}
                     </h2>
-                    <p>
-                        This is a template for a simple marketing or informational website. It includes a large callout
-                        called the hero unit and three supporting pieces of content. Use it as a starting point to
-                        create something more unique.
-                    </p>
                     <p class="text-center">
                         <a class="btn btn-success btn-large" href="#"><i class="fab fa-whatsapp text-white"></i> Contato</a>
-                        <a class="btn btn-secondary btn-large" href="#"><i class="far fa-star"></i> Avaliar</a>
+                        <a class="btn btn-secondary btn-large" href="#" data-toggle="modal" data-target="#modalExemplo"><i
+                                class="far fa-star"></i> Avaliar</a>
                     </p>
-                    <p class="text-center">Irregularidades no anúncio? <a href="#">Denunciar</a></p>
+                    <hr>
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>{{$republic->down}}</h3>
+                            <i class="fas fa-thumbs-down text-danger fa-2x"></i>
+                        </div>
+                        <div class="col-6">
+                            <h3>{{$republic->up}}</h3>
+                            <i class="fas fa-thumbs-up text-success fa-2x"></i>
+                        </div>
+                    </div>
+                    <hr>
+                    <p class="text-center text-secondary mt-4">Irregularidades no anúncio? <a href="#">Denunciar</a></p>
+                    <div class="col-12 mt-2">
+                        @if(count($errors) > 0)
+                            <div class="row">
+                                <div class="col-12 col-md-offset-4 error alert-danger p-4">
+                                    @foreach($errors->all() as $error)
+                                        {{$error}}<br>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                        @if(Session::has('message'))
+                            <div class="row">
+                                <div class="col-md-4 col-md--offset-4 success">
+                                    {{Session::get('message')}}
+                                </div>
+                            </div>
+                        @endif
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Avaliar República</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('portal.vote', $republic->id)}}" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Cpf</label>
+                            <input type="text" id="cpf" class="form-control" name="cpf"
+                                   placeholder="Digite apenas números" maxlength="14" required>
+                            <small id="emailHelp" class="form-text text-muted">Seus dados não serão divulgados.</small>
+                            <label class="mt-4">Sua avaliação sobre a república é positiva?</label>
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="optionVote" id="inlineRadio1"
+                                       value="up">
+                                <label class="form-check-label" for="inlineRadio1"><i
+                                        class="fas fa-thumbs-up text-success"></i> Sim</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="optionVote" id="inlineRadio2"
+                                       value="down">
+                                <label class="form-check-label" for="inlineRadio2"><i
+                                        class="fas fa-thumbs-up text-danger"></i> Não</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary float-right">Enviar</button>
+                    </form>
+                </div>
+                {{--                <div class="modal-footer">--}}
+                {{--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>--}}
+                {{--                    <button type="button" class="btn btn-primary">Salvar mudanças</button>--}}
+                {{--                </div>--}}
             </div>
         </div>
     </div>
 @endsection
 
 @push('scripts')
+    <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
     <script>
         $(document).ready(function () {
+            $('#cpf').mask('###.###.###-##', {reverse: true});
+
             $(".vote").on('click', (function (e) {
                     let vote = $(this).data('value');
                     let republic_id = $('#btnView{{$republic->id}}').data('republic');
@@ -154,10 +235,10 @@
                             slug_id: republic_id,
                         },
                         success: function (response) {
-                            $('.answer').replaceWith('<h5 class="py-4 text-muted">' + response.message + '</h5>');
+                            // $('.answer').replaceWith('<h5 class="py-4 text-muted">' + response.message + '</h5>');
                         },
                         error: function (response) {
-                            $('.answer').replaceWith('<h5 class="py-4 text-muted">' + response.message + '</h5>');
+                            // $('.answer').replaceWith('<h5 class="py-4 text-muted">' + response.message + '</h5>');
 
                         }
                     });

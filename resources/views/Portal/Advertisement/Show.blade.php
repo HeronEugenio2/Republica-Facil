@@ -1,231 +1,171 @@
 @extends('Portal.TemplateLaravel')
-<style type='text/css'>
-    #myImg {
-        border-radius: 5px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    #myImg:hover {
-        opacity: 0.7;
-    }
-
-    /* The Modal (background) */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0, 0, 0); /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
-    }
-
-    /* Modal Content (image) */
-    .modal-content {
-        margin: auto;
-        display: block;
-        width: 100%;
-        max-width: 800px;
-        max-height: 600px;
-        /*max-width: 600px;*/
-    }
-
-    /* Caption of Modal Image */
-    #caption {
-        margin: auto;
-        display: block;
-        width: 80%;
-        max-width: 700px;
-        text-align: center;
-        color: #ccc;
-        padding: 10px 0;
-        height: 150px;
-    }
-
-    /* Add Animation */
-    .modal-content, #caption {
-        -webkit-animation-name: zoom;
-        -webkit-animation-duration: 0.6s;
-        animation-name: zoom;
-        animation-duration: 0.6s;
-    }
-
-    @-webkit-keyframes zoom {
-        from {
-            -webkit-transform: scale(0)
-        }
-        to {
-            -webkit-transform: scale(1)
-        }
-    }
-
-    @keyframes zoom {
-        from {
-            transform: scale(0)
-        }
-        to {
-            transform: scale(1)
-        }
-    }
-
-    /* The Close Button */
-    .close {
-        position: absolute;
-        top: 15px;
-        right: 35px;
-        color: #f1f1f1;
-        /*font-size: 40px;*/
-        font-weight: bold;
-        transition: 0.3s;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #bbb;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    /* 100% Image Width on Smaller Screens */
-    @media only screen and (max-width: 700px) {
-        .modal-content {
-            width: 100%;
-        }
-    }
-
-    body {
-        background-image: linear-gradient(0deg, #dededebd, #f8f9fa), url(/images/FotoJet2.png)
-    }
-</style>
 
 @section('content')
-    <div class='container'>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="carousel slide" id="carousel-576688">
-                        <ol class="carousel-indicators">
-                            <li data-slide-to="0" data-target="#carousel-576688" class="active">
-                            </li>
-                            <li data-slide-to="1" data-target="#carousel-576688">
-                            </li>
-                            <li data-slide-to="2" data-target="#carousel-576688">
-                            </li>
-                        </ol>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" alt="Carousel Bootstrap First"
-                                     src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg"/>
-                                <div class="carousel-caption">
-                                    <h4>
-                                        First Thumbnail label
-                                    </h4>
-                                    <p>
-                                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non
-                                        mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id
-                                        elit.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" alt="Carousel Bootstrap Second"
-                                     src="https://www.layoutit.com/img/sports-q-c-1600-500-2.jpg"/>
-                                <div class="carousel-caption">
-                                    <h4>
-                                        Second Thumbnail label
-                                    </h4>
-                                    <p>
-                                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non
-                                        mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id
-                                        elit.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" alt="Carousel Bootstrap Third"
-                                     src="https://www.layoutit.com/img/sports-q-c-1600-500-3.jpg"/>
-                                <div class="carousel-caption">
-                                    <h4>
-                                        Third Thumbnail label
-                                    </h4>
-                                    <p>
-                                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non
-                                        mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id
-                                        elit.
-                                    </p>
-                                </div>
+
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-md-12">
+                <div class="carousel slide" id="carousel-437692">
+                    <ol class="carousel-indicators">
+                        <li data-slide-to="0" data-target="#carousel-437692" class="active">
+                        </li>
+                        <li data-slide-to="1" data-target="#carousel-437692">
+                        </li>
+                        <li data-slide-to="2" data-target="#carousel-437692">
+                        </li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" alt="Carousel Bootstrap First"
+                                 src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg">
+                            <div class="carousel-caption">
+                                <h4>
+                                    First Thumbnail label
+                                </h4>
+                                <p>
+                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi
+                                    porta
+                                    gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                </p>
                             </div>
                         </div>
-                        <a class="carousel-control-prev" href="#carousel-576688" data-slide="prev"><span
-                                class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span></a> <a
-                            class="carousel-control-next" href="#carousel-576688" data-slide="next"><span
-                                class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" alt="Carousel Bootstrap Second"
+                                 src="https://www.layoutit.com/img/sports-q-c-1600-500-2.jpg">
+                            <div class="carousel-caption">
+                                <h4>
+                                    Second Thumbnail label
+                                </h4>
+                                <p>
+                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi
+                                    porta
+                                    gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" alt="Carousel Bootstrap Third"
+                                 src="https://www.layoutit.com/img/sports-q-c-1600-500-3.jpg">
+                            <div class="carousel-caption">
+                                <h4>
+                                    Third Thumbnail label
+                                </h4>
+                                <p>
+                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi
+                                    porta
+                                    gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carousel-437692" data-slide="prev"><span
+                            class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span></a>
+                    <a class="carousel-control-next" href="#carousel-437692" data-slide="next"><span
+                            class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <dl>
+                    <dt>
+                        Descrição
+                    </dt>
+                    <dd>
+                        {{$advertisement->description}}
+                    </dd>
+                    <dt>
+                        Categoria
+                    </dt>
+                    <dd>
+                        {{$advertisement->category->title}}
+                    </dd>
+                    <hr>
+                    <dt>
+                        Anunciante
+                    </dt>
+                    <dd>
+                        {{$advertisement->user->name}} <br>
+                        ({{$advertisement->user->email}})
+                    </dd>
+                    <a class="btn btn-success btn-large" href="#"><i class="fab fa-whatsapp"></i> Contato</a>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <div class="jumbotron">
+                    <h1>
+                        {{$advertisement->title}}
+                    </h1>
+                    <p>
+                        {{$advertisement->description}}
+                    </p>
+                    <div class="badge badge-primary w-100" style="border-radius: 8px;">
+                        <h3 class="text-white"><i class="fas fa-money-bill"></i>
+                            R$ {{(money_format('%.2n', $advertisement->value))}}</h3>
                     </div>
                 </div>
             </div>
         </div>
-        <center class="mt-4">
-            <div class='row'>
-                <div class='col-sm-12 col-lg-8 col-md-8'>
-                    <center>
-                        <div id="myModal" class="modal">
-                            <span class="close text-white" style='font-size: xx-large'>&times;</span>
-                            <img class="modal-content" id="img01">
-                            <div id="caption"></div>
-                        </div>
-                        <img id="myImg" src="{{$advertisement->image}}"
-                             class='rounded-circle shadow border photo' alt="{{$advertisement->title}}"
-                             style='width: 200px; height: 200px;'>
-                    </center>
-                    <div class='text-lg-left'>
-                        <h1>{{$advertisement->title}}</h1>
-                        <h4 class='visible-sm'>R$ {{money_format('%.2n', $advertisement->value)}}</h4>
-                        @if(isset($advertisement->created_at))
-                            <small>Publicado em: {{date_format($advertisement->created_at,'d/m')}}
-                                às {{date_format($advertisement->created_at,'h:m')}}</small>
-                        @endif
-                        <hr>
-                        <h2>Descrição</h2> <br>
-                        <p>{{$advertisement->description}}</p>
-                        {{--                        <a href='#'>Ver descrição completa</a>--}}
-                        <hr>
-                        <h2>Localização</h2> <br>
-                        <p>CEP: {{$advertisement->value}}<br> Município: {{$advertisement->value}}
-                            <br> Bairro: {{$advertisement->value}}</p>
-                    </div>
-                    <hr>
-                </div>
-                <div class='col-sm-12 col-lg-4 col-md-4'>
-                    Anunciante
-                    <div class='card m-4'>
-                        <div class='card-body'>
-                            <h3>{{$advertisement->user->name}}</h3>
-                            <div class='m-4'>
-                                <a href='#' class='btn  btn-success px-4'>
-                                    <i class="fab fa-whatsapp text-white"></i> Contato
-                                </a>
-                            </div>
-                            <p>No República Fácil desde {{$advertisement->user->created_at}}<br>
-                                <a href='#'><i class="fab fa-buffer"></i> Ver todos anúncios</a>
+        <div class="col-md-12  my-2">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img class="card-img-top" alt="Bootstrap Thumbnail First"
+                             src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg">
+                        <div class="card-block">
+                            <h5 class="card-title">
+                                Card title
+                            </h5>
+                            <p class="card-text">
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
+                                gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                            <p>
+                                <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
                             </p>
                         </div>
                     </div>
-                    Discas de segurança <br>
-                    <div class='card m-4 p-2'>
-                        <small>
-                            Irregularidades no anúncio?
-                            <a href='#'>Denunciar</a>
-                        </small>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img class="card-img-top" alt="Bootstrap Thumbnail Second"
+                             src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg">
+                        <div class="card-block">
+                            <h5 class="card-title">
+                                Card title
+                            </h5>
+                            <p class="card-text">
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
+                                gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                            <p>
+                                <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img class="card-img-top" alt="Bootstrap Thumbnail Third"
+                             src="https://www.layoutit.com/img/sports-q-c-600-200-1.jpg">
+                        <div class="card-block">
+                            <h5 class="card-title">
+                                Card title
+                            </h5>
+                            <p class="card-text">
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
+                                gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                            <p>
+                                <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </center>
+        </div>
     </div>
+
     {{--    FOOTER--}}
     <div id='footer' class="jumbotron jumbotron-fluid bg-dark mb-0">
         <div class="container">
@@ -261,4 +201,3 @@
         });
     </script>
 @endpush
-

@@ -44,7 +44,8 @@
                     </div>
                     <div id='adValue' class="form-group col-md-3 col-lg-3 col-sm-12">
                         <label for="inputValue">Valor</label>
-                        <input id="inputValue" name='value' type="number" step='0.01' class="form-control" aria-describedby="spentHelp" placeholder="" style='width: 100%'>
+                        <input id="inputValue" name='value' type="text" step='0.01' class="form-control"
+                               aria-describedby="spentHelp" placeholder="" style='width: 100%'>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Salvar</button>
@@ -69,6 +70,7 @@
         //         $preview.src = reader.result;
         //     };
         // });
+        $('#inputValue').mask('#.##0,00', {reverse: true});
 
         $('#btnCheck').click(function () {
             let src = $('#image').val();

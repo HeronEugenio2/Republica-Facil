@@ -27,7 +27,7 @@ class AdvertisementRequest extends FormRequest
             'image'       => 'nullable',
             'description' => 'required|string|max:255',
             'title'       => 'required|string|max:255',
-            'value'       => 'required|required|regex:/^\d+(\.\d{1,2})?$/',
+            'value' => 'required',
             'category_id' => 'required|string|max:255',
             'user_id'     => 'required|string|max:255',
             //                    'image_id'    => $advRequest->input('name'),

@@ -11,6 +11,10 @@
 |
 */
 
+//test.index
+Route::get('/test', 'testController@index')->name('index');
+Route::post('/test/upload', 'testController@uploadImage')->name('uploadImage');
+
 Route::resource('/', 'PortalController')->names('portal');
 Route::resource('/mercado', 'AdvertisementController')->names('advertisement');
 
@@ -86,6 +90,7 @@ Route::group(
         //PROCURAR
         Route::get('/busca', 'PortalController@indexRepublics')->name('search');
         Route::post('/busca/cidade', 'PortalController@search')->name('republicSearch');
+        //portal.ajaxSearch
         Route::post('/busca/cidade/filtrada', 'PortalController@ajaxSearch')->name('ajaxSearch');
         //portal.vote
         Route::post('/votar/{id}', 'PortalController@vote')->name('vote');

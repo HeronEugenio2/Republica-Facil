@@ -129,12 +129,15 @@
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+
 {{--<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>--}}
 <script> window.Laravel = '{!!json_encode(['csrfToken' => csrf_token()])!!}';</script>
 
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 {{--<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>--}}
+<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+
 
 <script src="toastr.js"></script>
 {{--{!! Toastr::render() !!}--}}

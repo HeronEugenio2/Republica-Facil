@@ -56,6 +56,7 @@ class AdvertisementController extends Controller
                     //                    'active'      => $advRequest->input('name'),
                 ]
             );
+            $data['value'] = str_replace(",", ".", $data['value']);
 
             $dataSaved = $advertisement->create($data);
             //            dd($dataSaved);

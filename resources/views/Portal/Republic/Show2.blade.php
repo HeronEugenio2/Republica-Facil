@@ -216,10 +216,8 @@
 @endsection
 
 @push('scripts')
-    <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#cpf').mask('###.###.###-##', {reverse: true});
 
             $(".vote").on('click', (function (e) {
                     let vote = $(this).data('value');
@@ -244,6 +242,9 @@
                     });
                 })
             );
+
+            $('#cpf').mask('###.###.###-##', {reverse: true});
+
         });
     </script>
 @endpush

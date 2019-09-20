@@ -49,8 +49,8 @@
         </div>
     @else
         <div class="alert alert-primary col-md-6 col-lg-4 col-sm-12">
-            <h2><i class="fas fa-exclamation-triangle"></i> Olá usuário {{ Auth::user()->name }} !</h2>
-            Ainda não existem epúblicas cadastradas na plataforma.
+            <h2><i class="fas fa-exclamation-triangle"></i> Olá {{ Auth::user()->name }} !</h2>
+            Ainda não existem anúncios cadastrados na plataforma.
         </div>
     @endif
 @endsection

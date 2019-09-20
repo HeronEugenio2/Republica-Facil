@@ -98,7 +98,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"
                                  aria-labelledby="navbarDropdown">
-                                <a href="./examples/profile.html" class="dropdown-item">Meu Perfil</a>
+                                <a href="{{route('perfil')}}" class="dropdown-item">Meu Perfil</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">

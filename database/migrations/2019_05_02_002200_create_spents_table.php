@@ -19,9 +19,11 @@ class CreateSpentsTable extends Migration
             $table->date('dateSpent')->nullable();
             $table->float('value');
             $table->boolean('close')->default(0);
+            $table->boolean('available_flag')->default(1);
             $table->unsignedInteger('republic_id');
             $table->unsignedInteger('user_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::table('spents', function(Blueprint $table) {
             $table->foreign('republic_id')->references('id')->on('republics');

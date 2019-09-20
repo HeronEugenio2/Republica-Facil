@@ -26,8 +26,7 @@ class RepublicAdmController extends Controller
      */
     public function show($id)
     {
-        $republic = Republic::find($id);
-
+        $republic = Republic::with('user.advertisements')->find($id);
         return view('Administrative.Republics.Show', compact('republic'));
     }
 

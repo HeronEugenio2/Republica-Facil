@@ -61,4 +61,10 @@ class testController extends Controller
         }
         return $randomString;
     }
+
+    public function perfil()
+    {
+        $user = User::where('id', auth()->id())->first();
+        return view('Painel.User.Perfil', compact('user'));
+    }
 }

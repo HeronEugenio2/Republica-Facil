@@ -15,6 +15,7 @@
 Route::get('/test', 'testController@index')->name('index');
 Route::post('/test/upload', 'testController@uploadImage')->name('uploadImage');
 Route::get('/perfil', 'testController@perfil')->name('perfil');
+Route::post('/perfil/update', 'testController@update')->name('update');
 
 Route::resource('/', 'PortalController')->names('portal');
 Route::resource('/mercado', 'AdvertisementController')->names('advertisement');

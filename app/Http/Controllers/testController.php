@@ -67,4 +67,23 @@ class testController extends Controller
         $user = User::where('id', auth()->id())->first();
         return view('Painel.User.Perfil', compact('user'));
     }
+
+    public function update(Request $request)
+    {
+        $user = User::where('id', auth()->id())->first();
+        $data = $request->except('_token');
+        $phone = str_replace('(', '', $request->phone);
+        $phone = str_replace(')', '', $phone);
+        $phone = str_replace(' ', '', $phone);
+        $phone = str_replace('-', '', $phone);
+        $data['phone'] = $phone;
+        $user->update([
+            "image" => $request->image,
+            "name" => $request->name,
+            "email" => $request->email,
+            "phone" => $phone,
+        ]);
+        $user->save();
+        return view('Painel.User.Perfil', compact('user'));
+    }
 }

@@ -27,7 +27,8 @@
                     <div class="carousel-inner">
                         <div class="carousel-item">
                             <img class="d-block w-100" alt="Carousel Bootstrap First"
-                                 src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg">
+                                 style="height: 200px;"
+                                 src="https://www.wildlifetrusts.org/sites/default/files/styles/node_hero_default/public/2018-01/Grey%20heron%20%282%29%20credit%20Neil%20Aldridge.jpg?h=860fe8e1&itok=LzKGIkQR">
                             <div class="carousel-caption">
                                 <h4>
                                     First Thumbnail label
@@ -111,7 +112,7 @@
                         @foreach($republic->user as $user)
                             <div class="media my-1">
                                 <img class="mr-3" alt="Bootstrap Media Preview"
-                                     src="https://www.layoutit.com/img/sports-q-c-64-64-8.jpg">
+                                     src="{{$user->image}}" style="width: 90px;height:auto">
                                 <div class="media-body">
                                     <h5 class="mt-0">
                                         {{$user->name}}
@@ -216,6 +217,7 @@
 @endsection
 
 @push('scripts')
+    <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
     <script>
         $(document).ready(function () {
 

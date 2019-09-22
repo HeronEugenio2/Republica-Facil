@@ -157,6 +157,9 @@ class SpentController extends Controller
                 'republic_id' => $spentRequest->input('republic_id'),
                 'user_id' => $spentRequest->input('user_id'),
             ]);
+            $data['value'] = str_replace('.', '', $data['value']);
+            $data['value'] = str_replace(',', '.', $data['value']);
+
             $saveSpent = Spent::create($data);
             //            $now       = new Carbon();
             //            $month     = date('m');

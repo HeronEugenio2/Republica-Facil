@@ -448,7 +448,6 @@
                     }
                 });
             });
-
             $("#btnSearch").click(function () {
                 let year = $("#selectYear").val();
                 let month = $("#selectMonth").val();
@@ -474,6 +473,8 @@
                     }
                 });
             });
+            $('#valueVirgula').mask('#.##0,00', {reverse: true});
+            $('#valueVirgula1').mask('#.##0,00', {reverse: true});
         });
     </script>
 @endpush

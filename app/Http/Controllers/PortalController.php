@@ -227,15 +227,15 @@ class PortalController extends Controller
             'republic_id' => intval($republic_id),
             'type_vote' => $data['type_vote'],
         ];
-        $voteCreated = $vote->create($data);
+        $voteCreated = $vote->updateOrCreate($data);
 
         if ($voteCreated) {
             $republic = Republic::find($republic_id);
             if ($data['type_vote'] == "up") {
-                $republic->up = $republic->up + 1;
+                $republic->up = $vote->where('republic_id', intval($republic_id))->where('type_vote', 'up')->sum('value');
                 $republic->save();
             } elseif ($data['type_vote'] == "down") {
-                $republic->down = $republic->down + 1;
+                $republic->down = $vote->where('republic_id', intval($republic_id))->where('type_vote', 'down')->sum('value');
                 $republic->save();
             }
         }

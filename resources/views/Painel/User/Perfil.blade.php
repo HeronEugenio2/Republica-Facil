@@ -1,15 +1,28 @@
 @extends('layouts.Painel.LayoutFull')
 
+@push('css')
+
+
+@endpush
+
 @section('content')
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">Informações do perfil</div>
             <div class="card-body">
-                <form action="{{route('update')}}" method="POST">
+                @if($errors->any())
+                    @foreach($errors->all() as $error)      {{ $error }} @endforeach
+                @elseif(session()->has('success'))
+                    {{ session('success') }}
+                @endif
+                <form action="{{route('painel.profile.update', auth()->user()->id)}}" method="POST">
+                    @method('PUT')
                     @csrf
                     <div class="row">
-                        <div class="col-6">
-                            <img id='imgSrc' class='my-2' src='{{$user->image}}' style="width:200px; height:200px;"/>
+                        <div class="col-6 row">
+                            <span id="uploadForm"></span>
+                            <div>{{$errors->first('img')}}</div>
+                            {{--<img id='imgSrc' class='my-2' src='{{$user->image}}' style="width:200px; height:200px;"/>
                             <br>
                             <div class="input-group mb-3">
                                 <input type='text' name='image' id='image' value="{{$user->image}}" class="form-control"
@@ -19,7 +32,11 @@
                                     <button id='btnCheck' class="btn btn-outline-danger" type="button">Upload
                                     </button>
                                 </div>
-                            </div>
+                            </div>--}}
+
+
+                            <input type="file" name="file" id="file"/>
+
                         </div>
                         <div class="col-6">
                             <div class="form-group">
@@ -43,17 +60,41 @@
         </div>
     </div>
 @endsection
+
 @push('scripts')
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#phone').mask('(99) 99999-9999');
-    });
-    $('#btnCheck').click(function () {
-        let src = $('#image').val();
-        $('#imgSrc').attr("src", src);
-        if ($('#image').val() == '' || $('#image').val() == []) {
-            $('#imgSrc').attr("src", "https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg");
-        }
-    });
-</script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#phone').mask('(99) 99999-9999');
+
+            $("#file").change(function () {
+                filePreview(this);
+            });
+
+
+            function filePreview(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#uploadForm + img').remove();
+                        $('#uploadForm').after('<img class="img-fluid img-thumbnail" src="' + e.target.result + '" width="200" height="300"/>');
+                    }
+
+                    $("#file").val(e.target.result);
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+        });
+
+        /*$('#btnCheck').click(function () {
+            let src = $('#image').val();
+            $('#imgSrc').attr("src", src);
+            if ($('#image').val() == '' || $('#image').val() == []) {
+                $('#imgSrc').attr("src", "https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg");
+            }
+        });*/
+
+
+    </script>
 @endpush

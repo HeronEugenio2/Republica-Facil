@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class testController extends Controller
 {
@@ -16,7 +18,7 @@ class testController extends Controller
     /**
      * Upload of images
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function uploadImage(Request $request)
     {
@@ -64,15 +66,19 @@ class testController extends Controller
 
     public function perfil()
     {
-        $user = User::where('id', auth()->id())->first();
-        return view('Painel.User.Perfil', compact('user'));
+
     }
 
+    /**
+     * @param Request $request
+     * @return Factory|View
+     * @property request.phone
+     */
     public function update(Request $request)
     {
         $user = User::where('id', auth()->id())->first();
         $data = $request->except('_token');
-        $phone = str_replace('(', '', $request->phone);
+        $phone = str_replace('(', '', );
         $phone = str_replace(')', '', $phone);
         $phone = str_replace(' ', '', $phone);
         $phone = str_replace('-', '', $phone);

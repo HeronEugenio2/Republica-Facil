@@ -12,6 +12,8 @@
 */
 
 //test.index
+use Illuminate\Support\Facades\Route;
+
 Route::get('/test', 'testController@index')->name('index');
 Route::post('/test/upload', 'testController@uploadImage')->name('uploadImage');
 Route::get('/perfil', 'testController@perfil')->name('perfil');
@@ -48,6 +50,10 @@ Route::group(
         'middleware' => ['auth'],
     ],
     function () {
+        /**
+         * Rota tela de Perfil do usuario
+         */
+        Route::resource('/profile', 'UserProfileController')->names('profile');
         //republic@
         Route::resource('/republica', 'RepublicController')->names('republic');
         //spent@

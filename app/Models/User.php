@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -39,16 +41,19 @@ class User extends Authenticatable
     /**
      * @var array
      */
-    protected $with = [ 'republic.type', 'republic.assignmets', 'republic.spents', 'historySpents'];
+    protected $with = ['republic.type', 'republic.assignmets', 'republic.spents', 'historySpents'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function accounts()
     {
         return $this->hasMany(LinkedSocialAccount::class);
     }
 
+    /**
+     * @return BelongsTo
+     */
     public function republic()
     {
         return $this->belongsTo(Republic::class);

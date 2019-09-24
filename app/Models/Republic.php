@@ -4,14 +4,23 @@ namespace App\Models;
 
 use App\Vote;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Republic
  * @package App
- * @author  Heron Eugenio
  */
 class Republic extends Model
 {
+    /**
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at'
+    ];
+
     /**
      * @var array
      * @author Heron Eugenio
@@ -36,8 +45,7 @@ class Republic extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     * @author Heron Eugenio
+     * @return BelongsTo
      */
     public function type()
     {
@@ -45,16 +53,15 @@ class Republic extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|\Illuminate\Database\Eloquent\Relations\HasMany
-     * @author Heron Eugenio
+     * @return HasMany
      */
-    public function user()
+    public function users()
     {
         return $this->hasMany(User::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      * @auathor Heron Eugenio
      */
     public function assignmets()
@@ -63,7 +70,7 @@ class Republic extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      * @author Heron Eugenio
      */
     public function spents()
@@ -72,7 +79,7 @@ class Republic extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      * @auathor Heron Eugenio
      */
     public function advertisements()
@@ -81,7 +88,7 @@ class Republic extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      * @author Heron Eugenio
      */
     public function votes()

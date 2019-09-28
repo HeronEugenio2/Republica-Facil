@@ -93,9 +93,9 @@ class PortalController extends Controller
 
     public function showAdvertisement($id)
     {
-        $advertisement = Advertisement::with('category', 'user')->find($id);
-
-        return view('Portal.Advertisement.Show', compact('republic', 'advertisement'));
+        $advertisement = Advertisement::with('category', 'user.republic')->find($id);
+        $advertisements = Advertisement::where('category_id', $advertisement->category->id)->limit(8)->get();
+        return view('Portal.Advertisement.Show2', compact('republic', 'advertisement', 'advertisements'));
     }
 
     /**

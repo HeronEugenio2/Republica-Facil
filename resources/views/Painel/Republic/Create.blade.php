@@ -4,11 +4,19 @@
     <div class='card'>
         <div class='card-header'>Cadastrar República</div>
         <div class='card-body'>
-            @if( isset($errors) && count($errors) > 0 )
-                <div class='error'>
+
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
+
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
                     <ul>
-                        @foreach($errors->all() as $error)
-                            <list style='color:red'>{{$error}}</list>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -194,5 +202,8 @@
             let valuePoint = rep.replace(',', '.');
             $('#value').val(valuePoint);
         });
+
+
+        jQuery("#cep").mask("99999-999");
     </script>
 @endpush

@@ -2,7 +2,24 @@
 @extends('layouts.Painel.LayoutFull')
 
 @section('content')
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
+
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     @if(isset($user->republic))
+
         <div class='card-columns'>
             <div class='card'>
                 <div class="card-header bg-nav text-white">Sua República
@@ -47,17 +64,6 @@
                         @csrf
                         <input type='hidden' name='user_id' value='{{$user->id}}'>
                         <input type='hidden' name='republic_id' value='{{$republic->id}}'>
-                        {{--<div id='email' class="form-group col-12 p-0">--}}
-                        {{--<div class="form-group">--}}
-                        {{--<label for="inputEmail">E-mail</label>--}}
-                        {{--<input id="inputEmail" name='email' type="email" class="form-control"--}}
-                        {{--aria-describedby="emailHelp" placeholder="Ex: member@gmail.com" style='width: 100%'--}}
-                        {{--required>--}}
-                        {{--<small id="emailHelp" class="form-text text-muted">Envie uma confirmação para o email de seu membro.--}}
-                        {{--</small>--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<button type='submit' href="#" class="btn btn-danger">Enviar Convite</button>--}}
                         <label>Para adicionar membros à sua república é preciso que o usuário aceite o convite no
                             e-mail.</label>
                         <div class="input-group mb-3">

@@ -32,9 +32,11 @@
                             <input name="profile_photo" type="file" class="form-control input-pad" id="profile_photo"
                                    style="display: none;">
                             <div style="margin: 20px 0 0 30px;">
-                                <img src="{{asset('images/'.$user->image)}}" id="previewimage"
-                                     alt="Nenhuma foto cadastrada" accept="image/*"
-                                     style="max-height: 250px; max-width: 350px; cursor: pointer;">
+                                <img
+                                    src="{{asset('images/' . ($user->image != null ? $user->image :'/user-default.png') )}}"
+                                    id="previewimage"
+                                    alt="Nenhuma foto cadastrada" accept="image/*"
+                                    style="max-height: 250px; max-width: 350px; cursor: pointer;">
                             </div>
                             <input type="hidden" name="photo_x1">
                             <input type="hidden" name="photo_y1">
@@ -98,6 +100,15 @@
         $("#previewimage").on('click', function () {
             $("#profile_photo").click();
         });
+
+        @if(!$user->image)
+
+        $('#previewimage').error(function () {
+            $(this).attr('src', '{{asset('/images/user-default.png')}}');
+        });
+        @endif
+
+
 
 
         /*$('#btnCheck').click(function () {

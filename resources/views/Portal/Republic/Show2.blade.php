@@ -72,10 +72,10 @@
             {{--                            class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>--}}
             {{--                </div>--}}
             {{--            </div>--}}
-            <div class="col-md-6 my-4">
+            <div class="col-md-5 my-4">
                 <div class="jumbotron card card-block py-4 text-center justify-content-center"
                      style="align-items: center;">
-                    <img class=" mb-4" src="{{$republic->image}}" style="width: 300px;height: 150px;">
+                    <img class=" mb-4" src="{{$republic->image}}" style="width: 330px;height: auto;">
                     <h2>
                         {{$republic->name}}
                     </h2>
@@ -123,7 +123,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 my-2">
+            <div class="col my-4">
                 <dl>
                     <dt>
                         Descrição

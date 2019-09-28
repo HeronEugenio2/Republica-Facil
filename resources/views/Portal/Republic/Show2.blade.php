@@ -14,64 +14,6 @@
 @section('content')
     <div class="container mt-4">
         <div class="row">
-            {{--            <div class="col-md-12">--}}
-            {{--                <div class="carousel slide" id="carousel-602221">--}}
-            {{--                    <ol class="carousel-indicators">--}}
-            {{--                        <li data-slide-to="0" data-target="#carousel-602221">--}}
-            {{--                        </li>--}}
-            {{--                        <li data-slide-to="1" data-target="#carousel-602221" class="active">--}}
-            {{--                        </li>--}}
-            {{--                        <li data-slide-to="2" data-target="#carousel-602221">--}}
-            {{--                        </li>--}}
-            {{--                    </ol>--}}
-            {{--                    <div class="carousel-inner">--}}
-            {{--                        <div class="carousel-item">--}}
-            {{--                            <img class="d-block w-100" alt="Carousel Bootstrap First"--}}
-            {{--                                 style="height: 200px;"--}}
-            {{--                                 src="https://www.wildlifetrusts.org/sites/default/files/styles/node_hero_default/public/2018-01/Grey%20heron%20%282%29%20credit%20Neil%20Aldridge.jpg?h=860fe8e1&itok=LzKGIkQR">--}}
-            {{--                            <div class="carousel-caption">--}}
-            {{--                                <h4>--}}
-            {{--                                    First Thumbnail label--}}
-            {{--                                </h4>--}}
-            {{--                                <p>--}}
-            {{--                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi--}}
-            {{--                                    porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.--}}
-            {{--                                </p>--}}
-            {{--                            </div>--}}
-            {{--                        </div>--}}
-            {{--                        <div class="carousel-item active">--}}
-            {{--                            <img class="d-block w-100" alt="Carousel Bootstrap Second"--}}
-            {{--                                 src="https://www.layoutit.com/img/sports-q-c-1600-500-2.jpg">--}}
-            {{--                            <div class="carousel-caption">--}}
-            {{--                                <h4>--}}
-            {{--                                    Second Thumbnail label--}}
-            {{--                                </h4>--}}
-            {{--                                <p>--}}
-            {{--                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi--}}
-            {{--                                    porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.--}}
-            {{--                                </p>--}}
-            {{--                            </div>--}}
-            {{--                        </div>--}}
-            {{--                        <div class="carousel-item">--}}
-            {{--                            <img class="d-block w-100" alt="Carousel Bootstrap Third"--}}
-            {{--                                 src="https://www.layoutit.com/img/sports-q-c-1600-500-3.jpg">--}}
-            {{--                            <div class="carousel-caption">--}}
-            {{--                                <h4>--}}
-            {{--                                    Third Thumbnail label--}}
-            {{--                                </h4>--}}
-            {{--                                <p>--}}
-            {{--                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi--}}
-            {{--                                    porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.--}}
-            {{--                                </p>--}}
-            {{--                            </div>--}}
-            {{--                        </div>--}}
-            {{--                    </div>--}}
-            {{--                    <a class="carousel-control-prev" href="#carousel-602221" data-slide="prev"><span--}}
-            {{--                            class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span></a> <a--}}
-            {{--                        class="carousel-control-next" href="#carousel-602221" data-slide="next"><span--}}
-            {{--                            class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
             <div class="col-md-5 my-4">
                 <div class="jumbotron card card-block py-4 text-center justify-content-center"
                      style="align-items: center;">
@@ -85,12 +27,6 @@
                         <a class="btn btn-warning text-white btn-large" href="#" data-toggle="modal"
                            data-target="#modalExemplo"><i class="fas fa-star"></i> Avaliar</a>
                     </p>
-                    <address class="my-4">
-                        <i class="fas fa-map-marked-alt fa-2x"></i>
-                        <strong>{{$republic->city}} - {{$republic->state}} </strong>
-                        <br> {{$republic->street}}, {{$republic->number}} <br> {{$republic->district}},
-                        CEP {{$republic->cep}}<br>
-                    </address>
                     <div class="row">
                         <div class="col-6">
                             <h3>{{$republic->down}}</h3>
@@ -126,7 +62,7 @@
             <div class="col my-4">
                 <dl>
                     <dt>
-                        Descrição
+                        <h2>Descrição</h2>
                     </dt>
                     <dd>
                         {{$republic->description}}
@@ -148,6 +84,12 @@
                             vagas
                         @endif do tipo {{$republic->type->title}}.
                     </dd>
+                    <address class="my-4 text-center">
+                        <i class="fas fa-map-marked-alt fa-2x"></i>
+                        <strong>{{$republic->city}} - {{$republic->state}} </strong>
+                        <br> {{$republic->street}}, {{$republic->number}} <br> {{$republic->district}},
+                        CEP {{$republic->cep}}<br>
+                    </address>
                     <hr>
                     <dt>
                         Membros
@@ -168,7 +110,6 @@
                     </dd>
                 </dl>
             </div>
-
         </div>
     </div>
     <div id='footer' class="jumbotron jumbotron-fluid bg-dark mb-0">
@@ -216,10 +157,6 @@
                         <button type="submit" class="btn btn-primary float-right">Enviar</button>
                     </form>
                 </div>
-                {{--                <div class="modal-footer">--}}
-                {{--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>--}}
-                {{--                    <button type="button" class="btn btn-primary">Salvar mudanças</button>--}}
-                {{--                </div>--}}
             </div>
         </div>
     </div>

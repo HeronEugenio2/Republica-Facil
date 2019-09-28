@@ -34,7 +34,6 @@ class Republic extends Model
         'up',
         'down',
     ];
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      * @author Heron Eugenio

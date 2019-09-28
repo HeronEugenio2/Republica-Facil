@@ -24,15 +24,15 @@
                 @endif
             </div>
         </div>
-        <button type="button" class="btn btn-success my-2" data-toggle="modal"
-                data-target="#modalSpent"><i class="fas fa-plus-circle"></i> Novo Gasto
-        </button>
-        <button id="btnExtract" type="button" class="btn btn-primary my-2" data-toggle="modal"
-                data-target="#modalExtract"><i class="fas fa-history"></i> Extrato de contas
-        </button>
         <div class='card' id='spentFull'>
             <div id='headerFull' class='card-header bg-nav text-white'>Gastos</div>
             <div id='bodyFull' class='card-body '>
+                <button type="button" class="btn btn-success my-2" data-toggle="modal"
+                        data-target="#modalSpent"><i class="fas fa-plus-circle"></i> Novo Gasto
+                </button>
+                <button id="btnExtract" type="button" class="btn btn-primary my-2" data-toggle="modal"
+                        data-target="#modalExtract"><i class="fas fa-history"></i> Extrato de contas
+                </button>
                 @if($republic != null)
                     @if(count($spents)>0)
                         <div class='table-responsive'>

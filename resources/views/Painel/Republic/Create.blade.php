@@ -64,7 +64,7 @@
                                 <div class="form-group col-md-4 col-lg-4 col-sm-12">
                                     <label>Bairro</label>
                                     <input id="district" name='district'
-                                           value='{{isset($republic)?$republic->neighborhood:old('neighborhood')??''}}'
+                                           value='{{isset($republic)?$republic->district:old('district')??''}}'
                                            type="text" class="form-control"
                                            placeholder="Ex: Manejo" style='width: 100%'>
                                 </div>

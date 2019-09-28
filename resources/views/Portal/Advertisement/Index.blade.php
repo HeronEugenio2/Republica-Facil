@@ -100,33 +100,33 @@
         {{ $advertisementes->links() }}
     </div>
     {{--    CAROUSEL--}}
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-        <div class="carousel-inner" style="max-height: 330px">
-            <div class="carousel-item active">
-                <a href="#">
-                    <img class="d-block w-100 image" src="/images/2.png" alt="Primeiro Slide" style="max-height: 330px">
-                </a>
-            </div>
-            <div class="carousel-item">
-                <a href="#">
-                    <img class="d-block w-100 image" src="/images/3.png" alt="Segundo Slide" style="max-height: 330px">
-                </a>
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100"
-                     src="https://www.incimages.com/uploaded_files/image/970x450/products_364475.jpg"
-                     alt="Terceiro Slide">
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Anterior</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Próximo</span>
-        </a>
-    </div>
+    {{--    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">--}}
+    {{--        <div class="carousel-inner" style="max-height: 330px">--}}
+    {{--            <div class="carousel-item active">--}}
+    {{--                <a href="#">--}}
+    {{--                    <img class="d-block w-100 image" src="/images/2.png" alt="Primeiro Slide" style="max-height: 330px">--}}
+    {{--                </a>--}}
+    {{--            </div>--}}
+    {{--            <div class="carousel-item">--}}
+    {{--                <a href="#">--}}
+    {{--                    <img class="d-block w-100 image" src="/images/3.png" alt="Segundo Slide" style="max-height: 330px">--}}
+    {{--                </a>--}}
+    {{--            </div>--}}
+    {{--            <div class="carousel-item">--}}
+    {{--                <img class="d-block w-100"--}}
+    {{--                     src="https://www.incimages.com/uploaded_files/image/970x450/products_364475.jpg"--}}
+    {{--                     alt="Terceiro Slide">--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--        <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">--}}
+    {{--            <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
+    {{--            <span class="sr-only">Anterior</span>--}}
+    {{--        </a>--}}
+    {{--        <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">--}}
+    {{--            <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
+    {{--            <span class="sr-only">Próximo</span>--}}
+    {{--        </a>--}}
+    {{--    </div>--}}
     {{--    FOOTER--}}
     <div id='footer' class="jumbotron jumbotron-fluid bg-dark mb-0">
         <div class="container">

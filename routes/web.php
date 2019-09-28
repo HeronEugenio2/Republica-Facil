@@ -12,6 +12,8 @@
 */
 
 //test.index
+use Illuminate\Support\Facades\Route;
+
 Route::get('/test', 'testController@index')->name('index');
 Route::post('/test/upload', 'testController@uploadImage')->name('uploadImage');
 Route::get('/perfil', 'testController@perfil')->name('perfil');
@@ -48,6 +50,8 @@ Route::group(
         'middleware' => ['auth'],
     ],
     function () {
+        // user
+        Route::resource('/user', 'UserController')->names('user');
         //republic@
         Route::resource('/republica', 'RepublicController')->names('republic');
         //spent@

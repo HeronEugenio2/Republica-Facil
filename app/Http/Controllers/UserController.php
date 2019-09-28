@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
 {
@@ -16,8 +16,8 @@ class UserController extends Controller
 
     /**
      * @param $id
-     * @param Request $request
-     * @return void
+     * @param UserRequest $request
+     * @return RedirectResponse
      */
     public function update($id, UserRequest $request)
     {
@@ -34,14 +34,20 @@ class UserController extends Controller
         }
 
 
-        $user->update([
+        $userUpdate = $user->update([
             "image" => $imageName,
             "name" => $requestValidate['name'],
             "phone" => $phone,
         ]);
 
-        return back()
-            ->with('success', 'Salvo com sucesso')
-            ->with('user', $user);
+        if ($userUpdate) {
+            return back()
+                ->with('success', 'Salvo com sucesso')
+                ->with('user', $user);
+        } else {
+            return back()
+                ->with('error', 'Ocorreu um erro')
+                ->with('user', $user);
+        }
     }
 }

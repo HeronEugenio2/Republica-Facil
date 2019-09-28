@@ -15,8 +15,10 @@ class CreateAssignmentsTable extends Migration
     {
         Schema::create('assignments', function (Blueprint $table) {
             $table->unsignedInteger('id', true);
+            $table->string('description');
             $table->date('start');
             $table->date('end');
+            $table->unsignedInteger('user_id');
             $table->boolean('situation');
             $table->unsignedInteger('republic_id');
             $table->timestamps();
@@ -24,8 +26,8 @@ class CreateAssignmentsTable extends Migration
         Schema::table('republics', function(Blueprint $table) {
             $table->foreign('assignment_id')->references('id')->on('assignments');
         });
-        Schema::table('users', function(Blueprint $table) {
-            $table->foreign('assignment_id')->references('id')->on('assignments');
+        Schema::table('assignments', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
         Schema::table('assignments', function(Blueprint $table) {
             $table->foreign('republic_id')->references('id')->on('republics');

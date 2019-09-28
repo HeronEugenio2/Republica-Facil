@@ -13,6 +13,7 @@ class Assignment extends Model
     protected $fillable = [
         'start',
         'end',
+        'description',
         'situation',
         'republic_id',
         'user_id',

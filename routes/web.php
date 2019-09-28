@@ -52,15 +52,15 @@ Route::group(
     function () {
         // user
         Route::resource('/user', 'UserController')->names('user');
-        //republic@
+        //painel.republic@
         Route::resource('/republica', 'RepublicController')->names('republic');
-        //spent@
+        //painel.spent@
         Route::resource('/gastos', 'SpentController')->names('spent');
-        //assignment@
+        //painel.assignment@
         Route::resource('/tarefas', 'AssignmentController')->names('assignment');
-        //Advertisement@
+        //painel.Advertisement@
         Route::resource('/anuncios', 'Painel\AdvertisementController')->names('advertisement');
-        //Marketing@
+        //painel.Marketing@
         Route::resource('/marketing', 'Marketing\MarketingController')->names('marketing');
 
         //painel.spendingResult
@@ -79,6 +79,8 @@ Route::group(
         Route::post('/gastos/extrato', 'SpentController@extractList')->name('extractList');
         //painel.invitationDeny
         Route::post('/republica/{id}/apagar', 'RepublicController@invitationDeny')->name('invitationDeny');
+        //painel.conclude
+        Route::post('/tarefa/concluir', 'AssignmentController@conclude')->name('conclude');
     }
 );
 Route::group(

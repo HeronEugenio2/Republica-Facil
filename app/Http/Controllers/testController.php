@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Republic;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,7 @@ class testController extends Controller
 {
     public function index()
     {
-
+        return $this->exportTxt();
         return view('test');
     }
 
@@ -85,5 +86,56 @@ class testController extends Controller
         ]);
         $user->save();
         return view('Painel.User.Perfil', compact('user'));
+    }
+
+    public function testRepublicStore(Republic $republic)
+    {
+    }
+
+    /**
+     *
+     */
+    public function republicStore()
+    {
+        $data = [
+            'name' => 'Republica Liberdade',
+            'email' => 'republicafacil@gmail.com.br',
+            'description' => 'Temos cinco membros, três quartos, uma cozinha, um banheiro, lavanderia e área externa. Tarefas divididas entre os membros da república, sujeito à multa do não cumprimento das tarefas. Horário para afazeres não deve ultrapassar as onze horas e não aceitamos dumar dentro de casa.',
+            'qtdMembers' => 5,
+            'qtdVacancies' => 1,
+            'value' => 130.00,
+            'type_id' => 1,  // foreignkey
+            'user_id' => 1, // foreignkey
+            'street' => 'Av. General Afonseca',
+            'district' => 'Manejo',
+            'cep' => 27520 - 172,
+            'city' => 'Resende',
+            'state' => 'Rio de Janeiro',
+            'number' => 993,
+            'up' => 13,
+            'down' => 1,
+        ];
+        Republic::updateOrCreate($data);
+    }
+
+    public function exportTxt()
+    {
+        $textContent = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.'; // custom contents
+        $txtfile = $_SERVER["DOCUMENT_ROOT"] . "/download/export_links.txt";
+        $handle = fopen($txtfile, 'w') or die('Cannot open file:  ' . $txtfile); // check the file is readable
+        fwrite($handle, $textContent); // write content
+        fclose($handle); // close the text file
+        return $downLink = 'download/download.php?f=export_links.txt'; // text file download hyperlink
+    }
+
+    public function export()
+    {
+        header('Content-Type: application/download');
+        header('Content-Disposition: attachment; filename="example.csv"');
+        header("Content-Length: " . filesize("example.csv"));
+
+        $fp = fopen("example.csv", "r");
+        fpassthru($fp);
+        fclose($fp);
     }
 }

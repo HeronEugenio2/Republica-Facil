@@ -98,13 +98,16 @@
                         @foreach($republic->user as $user)
                             <div class="media my-1">
                                 <img class="mr-3" alt="Bootstrap Media Preview"
-                                     src="{{$user->image}}" style="width: 90px;height:auto">
+                                     src="{{asset('images/'.$user->image)}}" style="width: 90px;height:auto">
                                 <div class="media-body">
                                     <h5 class="mt-0">
                                         {{$user->name}}
                                     </h5>
                                     {{$user->email}}
                                 </div>
+                                @if($user->id == $republic->user_id)
+                                    Proprietário
+                                @endif
                             </div>
                         @endforeach
                     </dd>

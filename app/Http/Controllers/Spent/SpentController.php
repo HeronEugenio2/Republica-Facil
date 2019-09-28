@@ -167,7 +167,6 @@ class SpentController extends Controller
             $month = Carbon::parse($saveSpent['dateSpent'])->format('m');
 
             if ($saveSpent) {
-
                 //IF SAVED SPENT, SAVE HISTORY SPENT
                 if ($spentRequest->buy == "1") {
                     $data = array_filter([

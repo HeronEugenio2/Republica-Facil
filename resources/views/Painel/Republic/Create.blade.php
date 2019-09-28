@@ -23,7 +23,7 @@
                             @endif
                             @csrf
                             @if(isset($republic))
-                                <img id='imgSrc' class='mb-2' src='{{$republic->image}}'
+                                <img id='imgSrc' class='mb-2' src='{{asset('images/'.$user->image)}}'
                                      style="width:200px; height:200px;"/>
                                 <br>
                                 <div class="input-group mb-3">

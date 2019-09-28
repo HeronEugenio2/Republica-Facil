@@ -9,30 +9,57 @@
             </a>
             <hr>
             @if(isset($republicAssignmets))
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col">Início</th>
-                        <th scope="col">Fim</th>
-                        <th scope="col">Membro</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($republicAssignmets as $assignmet )
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
                         <tr>
-                            <td>{{$assignmet->start}}</td>
-                            <td>{{$assignmet->end}}</td>
-                            <td>{{$assignmet->user->name}}</td>
-                            @if($assignmet->situation == 1)
-                                <td><span class="badge badge-warning">Pendente</span></td>
-                            @else
-                                <td><span class="badge badge-success">Concluída</span></td>
-                            @endif
+                            <th scope="col">Início</th>
+                            <th scope="col">Fim</th>
+                            <th scope="col">Membro</th>
+                            <th class="text-center" scope="col">Status</th>
+                            <th class="text-center" scope="col">Ações</th>
                         </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        @foreach($republicAssignmets as $assignmet )
+                            <tr>
+                                <td>{{$assignmet->start}}</td>
+                                <td>{{$assignmet->end}}</td>
+                                <td>{{$assignmet->user->name}}</td>
+                                <td width="1%">
+                                    <form action="{{route('painel.conclude')}}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="assignmet_id" value="{{$assignmet->id}}">
+                                        @if($assignmet->situation == 0)
+                                            <button type='submit' class='btn btn-sm btn-warning text-white'
+                                                    name='situationFlag'
+                                                    value='1'>Pendente
+                                            </button>
+                                        @else
+                                            <button type='submit' class='btn btn-sm btn-success text-white'
+                                                    name='situationFlag'
+                                                    value='0'>Concluída
+                                            </button>
+                                        @endif
+                                    </form>
+                                </td>
+                                <td width="1%">
+                                    <form class="mr-2" method="POST"
+                                          action="{{route('painel.assignment.destroy',$assignmet->id) }}">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <div class="btn-group-vertical">
+                                            <button class='btn btn-danger btn-sm' type="submit"><i
+                                                    class="fas fa-trash-alt"></i> Excluir
+                                            </button>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             @else
                 <div class='alert alert-primary'>
                     Não possui tarefas!
@@ -40,5 +67,4 @@
             @endif
         </div>
     </div>
-
 @endsection

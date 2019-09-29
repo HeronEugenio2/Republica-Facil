@@ -77,8 +77,8 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                                <td colspan='4'><strong>Total</strong></td>
-                                <td><strong>R$ {{number_format($spentsTotal,2,',', '.')}}</strong></td>
+                                <td colspan='3'><strong>Total</strong></td>
+                                <td colspan='2'><strong>R$ {{number_format($spentsTotal,2,',', '.')}}</strong></td>
                                 </tbody>
                             </table>
                         </div>

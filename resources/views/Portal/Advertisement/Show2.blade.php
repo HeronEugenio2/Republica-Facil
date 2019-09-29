@@ -17,7 +17,7 @@
             <div class="col-md-5 my-4">
                 <div class="jumbotron card card-block py-4 text-center justify-content-center"
                      style="align-items: center;">
-                    <img class=" mb-4" src="{{asset('images/'.$advertisement->image)}}"
+                    <img class=" mb-4" src="{{asset($advertisement->image)}}"
                          style="width: 330px;height: auto;">
                     <h2>
                         {{$advertisement->title}}
@@ -27,7 +27,7 @@
                     </h2>
                     <hr>
                     <div class="media">
-                        <img class="mr-3" src="{{$advertisement->user->image}}" style="width: 80px;height:80px">
+                        <img class="mr-3" src="{{asset('images/'.$advertisement->user->image)}}" style="width: 80px;height:80px">
                         <div class="media-body">
                             <h5 class="mt-0">{{$advertisement->user->name}}</h5>
                             {{$advertisement->user->email}}<br>

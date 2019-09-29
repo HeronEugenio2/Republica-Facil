@@ -51,12 +51,12 @@
                     <h2>R$ {{money_format('%.2n' ,$republic->value)}}</h2><br>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header  bg-nav text-white">Gasto Mensal</div>
-                <div class="card-body">
-                    <h2>R$ 220,00</h2>
-                </div>
-            </div>
+{{--            <div class="card">--}}
+{{--                <div class="card-header  bg-nav text-white">Gasto Mensal</div>--}}
+{{--                <div class="card-body">--}}
+{{--                    <h2>R$ 220,00</h2>--}}
+{{--                </div>--}}
+{{--            </div>--}}
             <div class='card'>
                 <div class='card-header bg-nav text-white'>Convites</div>
                 <div class='card-body'>

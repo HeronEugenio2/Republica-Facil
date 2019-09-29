@@ -15,6 +15,7 @@
                         <tr>
                             <th scope="col">Início</th>
                             <th scope="col">Fim</th>
+                            <th scope="col">Descrição</th>
                             <th scope="col">Membro</th>
                             <th class="text-center" scope="col">Status</th>
                             <th class="text-center" scope="col">Ações</th>
@@ -25,6 +26,7 @@
                             <tr>
                                 <td>{{$assignmet->start}}</td>
                                 <td>{{$assignmet->end}}</td>
+                                <td>{{$assignmet->description}}</td>
                                 <td>{{$assignmet->user->name}}</td>
                                 <td width="1%">
                                     <form action="{{route('painel.conclude')}}" method="POST">

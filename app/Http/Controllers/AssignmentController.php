@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignment;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AssignmentController extends Controller
 {
@@ -30,7 +32,6 @@ class AssignmentController extends Controller
         $republic = $user->republic;
         $republicAssignmets = $republic->assignmets;
         $users = User::with('republic')->where('republic_id', Auth::user()->republic_id)->get();
-
         return view('Painel.Assignments.Assignment', compact('republic', 'republicAssignmets', 'users'));
     }
 
@@ -98,8 +99,7 @@ class AssignmentController extends Controller
      */
     public function update(Request $request, Assignment $assignment)
     {
-        dd(12);
-
+        //
     }
 
     /**

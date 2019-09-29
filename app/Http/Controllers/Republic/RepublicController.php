@@ -62,8 +62,9 @@ class RepublicController extends Controller
      * @return RedirectResponse
      * @author Heron Eugenio
      */
-    public function store(RepublicRequest $republicRequest)
+    public function store(Request $republicRequest)
     {
+        dd($republicRequest->all());
         try {
             $data = array_filter(
                 [

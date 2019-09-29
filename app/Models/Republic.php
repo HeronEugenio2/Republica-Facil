@@ -20,6 +20,7 @@ class Republic extends Model
         'name',
         'email',
         'description',
+        'image',
         'qtdMembers',
         'qtdVacancies',
         'value',

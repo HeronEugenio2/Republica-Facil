@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <link rel="icon" type="image/png"
-          href="https://static.wixstatic.com/media/e9f391_b594819e778c4c5090a0c162b905fa0f.jpg">
+    <link rel="icon" type="image/png" href="{{ asset('/images/favicon.png') }}">
+        {{--<link rel="icon" type="image/png"
+              href="https://static.wixstatic.com/media/e9f391_b594819e778c4c5090a0c162b905fa0f.jpg">--}}
     <title>República Fácil</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

@@ -4,14 +4,35 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Log;
+use Intervention\Image\Facades\Image;
+use Vinkla\Hashids\Facades\Hashids;
 
 class UserController extends Controller
 {
     public function show($id)
     {
-        $user = User::find($id);
-        return view('Painel.User.Perfil', compact('user'));
+        try {
+            $userId = current(Hashids::decode($id));
+            $user   = auth()->user();
+
+            if (!empty($userId) && $userId == $user->id) {
+
+                return view('Painel.User.Perfil', compact('user'));
+            } else {
+                return redirect()->back()
+                                 ->with('error', 'Ocorreu um erro');
+            }
+        } catch (Exception $e) {
+            Log::warning('Erro ao tentar buscar dados do usuario');
+            report($e);
+
+            return back()
+                ->with('error', 'Ocorreu um erro')
+                ->with('user', $user);
+        }
     }
 
     /**
@@ -21,33 +42,52 @@ class UserController extends Controller
      */
     public function update($id, UserRequest $request)
     {
-        $requestValidate = $request->validated();
+        try {
+            $requestValidate = $request->validated();
+            $id              = current(Hashids::decode($id));
+            $user            = auth()->user();
 
-        $user = User::find($id);
-        $phone = preg_replace('/[^0-9]/', '', $requestValidate['phone']);
+            if (!empty($id) && $user->id == $id) {
+                $phone = preg_replace('/[^0-9]/', '', $requestValidate['phone']);
 
-        if (!empty($requestValidate['profile_photo'])) {
-            $imageName = time() . '.' . $requestValidate['profile_photo']->getClientOriginalExtension();
-            $requestValidate['profile_photo']->move(public_path('images'), $imageName);
-        } else {
-            $imageName = $user->image;
-        }
+                if (!empty($requestValidate['profile_photo'])) {
+                    $avatar   = $request->file('profile_photo');
+                    $fileName = time() . '.' . $avatar->getClientOriginalExtension();
+                    $path     = public_path('/images/uploads/avatars/' . $fileName);
+                    Image::make($avatar->getRealPath())->resize(300, 300)->save($path);
 
 
-        $userUpdate = $user->update([
-            "image" => $imageName,
-            "name" => $requestValidate['name'],
-            "phone" => $phone,
-        ]);
+                    $user->update([
+                                      "image" => '/images/uploads/avatars/' . $fileName,
+                                  ]);
+                } else {
+                    $imageName = $user->image;
+                }
 
-        if ($userUpdate) {
+                $userUpdate = $user->update([
+                                                "name"  => $requestValidate['name'],
+                                                "phone" => $phone,
+                                            ]);
+
+                if ($userUpdate) {
+                    return back()
+                        ->with('success', 'Salvo com sucesso')
+                        ->with('user', $user);
+                } else {
+                    return back()
+                        ->with('error', 'Ocorreu um erro')
+                        ->with('user', $user);
+                }
+            } else {
+                return back()
+                    ->with('error', 'Ocorreu um erro')->with('user', auth()->user());
+            }
+        } catch (Exception $e) {
+            Log::warning('Erro ao tentar atualizar dados do usuario');
+            report($e);
+
             return back()
-                ->with('success', 'Salvo com sucesso')
-                ->with('user', $user);
-        } else {
-            return back()
-                ->with('error', 'Ocorreu um erro')
-                ->with('user', $user);
+                ->with('error', 'Ocorreu um erro')->with('user', auth()->user());
         }
     }
 }

@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-header">Informações do perfil</div>
             <div class="card-body">
-                <form action="{{route('painel.user.update', $user->id)}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('painel.user.update', \Vinkla\Hashids\Facades\Hashids::encode($user->id))}}" method="POST" enctype="multipart/form-data">
                     @method("PUT")
                     @csrf
 
@@ -33,16 +33,13 @@
                                    style="display: none;">
                             <div style="margin: 20px 0 0 30px;">
                                 <img
-                                    src="{{asset('images/' . ($user->image != null ? $user->image :'/user-default.png') )}}"
+                                    src="{{asset($user->image != null ? $user->image :'/user-default.png') }}"
                                     id="previewimage"
                                     alt="Nenhuma foto cadastrada" accept="image/*"
                                     style="max-height: 250px; max-width: 350px; cursor: pointer;">
                             </div>
-                            <input type="hidden" name="photo_x1">
-                            <input type="hidden" name="photo_y1">
-                            <input type="hidden" name="photo_w">
-                            <input type="hidden" name="photo_h">
-
+                            <input type="hidden" name="photo_x1"> <input type="hidden" name="photo_y1">
+                            <input type="hidden" name="photo_w"> <input type="hidden" name="photo_h">
                             {{--
                             <img id='imgSrc' class='my-2' src='{{$user->image}}' style="width:200px; height:200px;"/>
                             <br>
@@ -65,7 +62,6 @@
                                 <label for="" class="form-control-label">E-mail</label>
                                 <input type="email" class="form-control w-100" name="email" disabled
                                        value="{{$user->email}}"/>
-
                             </div>
                             <div class="form-group">
                                 <label for="" class="form-control-label">Telefone</label>

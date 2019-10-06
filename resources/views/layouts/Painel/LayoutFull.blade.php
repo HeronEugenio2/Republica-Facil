@@ -20,9 +20,7 @@
     {{--    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">--}}
     {{--    <link href="toastr.css" rel="stylesheet"/>--}}
     <link rel="stylesheet" href="{{asset('css/imgAreaSelect.css')}}">
-
     <script type="text/javascript" src="/public/js/scripts/imgselect.js"></script>
-
     @stack('css')
     <style>
         .card-body {
@@ -105,8 +103,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"
                                  aria-labelledby="navbarDropdown">
-                                <a href="{{route('painel.user.show', auth()->user()->id)}}" class="dropdown-item">Meu
-                                    Perfil</a>
+                                <a href="{{route('painel.user.show', \Vinkla\Hashids\Facades\Hashids::encode(auth()->user()->id))}}" class="dropdown-item">Meu Perfil</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
@@ -137,16 +134,11 @@
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
-
 {{--<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>--}}
 <script> window.Laravel = '{!!json_encode(['csrfToken' => csrf_token()])!!}';</script>
-
-
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 {{--<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>--}}
 <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
-
-
 <script src="toastr.js"></script>
 {{--{!! Toastr::render() !!}--}}
 @stack('scripts')

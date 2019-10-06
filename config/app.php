@@ -178,6 +178,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
 
         Intervention\Image\ImageServiceProvider::class,
+        Aws\Laravel\AwsServiceProvider::class,
 
     ],
 
@@ -230,6 +231,7 @@ return [
         'Socialite'    => Laravel\Socialite\Facades\Socialite::class,
         'Hashids'      => Vinkla\Hashids\Facades\Hashids::class,
         'Image'        => Intervention\Image\Facades\Image::class,
+        'AWS'          => Aws\Laravel\AwsFacade::class,
 
     ],
 

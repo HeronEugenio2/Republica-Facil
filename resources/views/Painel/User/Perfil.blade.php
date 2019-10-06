@@ -32,8 +32,8 @@
                             <input name="profile_photo" type="file" class="form-control input-pad" id="profile_photo"
                                    style="display: none;">
                             <div style="margin: 20px 0 0 30px;">
-                                <img
-                                    src="{{asset($user->image != null ? $user->image :'/user-default.png') }}"
+                                <img src='{{$user->image}}'
+{{--                                    src="{{asset($user->image != null ? $user->image :'/user-default.png') }}"--}}
                                     id="previewimage"
                                     alt="Nenhuma foto cadastrada" accept="image/*"
                                     style="max-height: 250px; max-width: 350px; cursor: pointer;">

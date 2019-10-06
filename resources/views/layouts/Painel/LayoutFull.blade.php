@@ -52,36 +52,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right"
                              aria-labelledby="navbar-default_dropdown_1">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
                         </div>
-                    </li>
-                    {{--<li class="nav-item dropdown">--}}
-                    {{--<a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-                    {{--<div class="media align-items-center">--}}
-                    {{--<i class='fa fa-user'></i>--}}
-                    {{--</div>--}}
-                    {{--</a>--}}
-                    {{--<div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">--}}
-                    {{--<div class=" dropdown-header noti-title">--}}
-                    {{--<h6 class="text-overflow m-0">Bem vindo(a)!</h6>--}}
-                    {{--</div>--}}
-                    {{--<a href="./examples/profile.html" class="dropdown-item">--}}
-                    {{--<i class="fa fa-user-cog"></i>--}}
-                    {{--<span>Meu perfil</span>--}}
-                    {{--</a>--}}
-                    {{--<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">--}}
-                    {{--<i class="fa fa-lock"></i> Logout--}}
-                    {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-                    {{--{{ csrf_field() }}--}}
-                    {{--</form>--}}
-                    {{--</a>--}}
-                    {{--</div>--}}
-                    {{--</li>--}}
-                    <li class="nav-item">
-                        {{--<a class="nav-link" href="{{ route('portal') }}">Portal</a>--}}
                     </li>
                     <!-- Authentication Links -->
                     @guest
@@ -96,8 +67,8 @@
                     @else
 
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" data-toggle='dropdown' role="button" aria-expanded='false' style='position: relative; padding-left: 50px;'>
+                                <img src='{{asset(auth()->user()->image)}}' style='width: 32px; height: 32px; position: absolute; top: -2px; left: 10px; border-radius: 50%'>
                                 {{ Auth::user()->name }}
                                 <span class="caret"></span>
                             </a>

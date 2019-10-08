@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RepublicRequest;
+use App\Http\Requests\RepublicStoreRequest;
 use App\Models\Invitations\Invitation;
 use App\Models\Republic;
 use App\Models\Type;
@@ -20,11 +21,13 @@ use Illuminate\View\View;
 
 class RepublicController extends Controller
 {
-    //    private $republic;
-    //    public function __construct(Republic $republic)
-    //    {
-    //        $this->republic = $republic;
-    //    }
+    private $republic;
+
+    public function __construct(Republic $republic)
+    {
+        $this->republic = $republic;
+    }
+
     /**
      * Display a listing of the resource.
      * @return Response
@@ -62,29 +65,12 @@ class RepublicController extends Controller
      * @return RedirectResponse
      * @author Heron Eugenio
      */
-    public function store(Request $republicRequest)
+    public function store(RepublicStoreRequest $republicRequest)
     {
-        dd($republicRequest->all());
         try {
-            $data = array_filter(
-                [
-                    'name' => $republicRequest->input('name'),
-                    'email' => $republicRequest->input('email'),
-                    'qtdMembers' => $republicRequest->input('qtdMembers'),
-                    'qtdVacancies' => $republicRequest->input('qtdVacancies'),
-                    'value' => $republicRequest->input('value'),
-                    'type_id' => $republicRequest->input('type_id'),
-                    'description' => $republicRequest->input('description') ?? null,
-                    'street' => $republicRequest->input('street') ?? null,
-                    'neighborhood' => $republicRequest->input('neighborhood') ?? null,
-                    'cep' => $republicRequest->input('cep') ?? null,
-                    'city' => $republicRequest->input('city') ?? null,
-                    'state' => $republicRequest->input('state') ?? null,
-                    'number' => $republicRequest->input('number') ?? null,
-                    'user_id' => auth()->user()->id,
-                ]
-            );
-            $savedRepublic = Republic::create($data);
+            $dataValidated = $republicRequest->validated();
+            $dataValidated['value'] = preg_replace('/\D/', '', $dataValidated['value']);
+            $savedRepublic = Republic::create($dataValidated);
             if ($savedRepublic) {
                 $user = auth()->user();
                 $user->republic_id = $savedRepublic->id;
@@ -99,7 +85,7 @@ class RepublicController extends Controller
             report($e);
             Log::error($e->getMessage());
 
-            return redirect()->back()->with('error', 'Ocorreu um erro');
+            return redirect()->back()->with('error', 'Ocorreu um erro, tente novamente mais tarde');
         }
     }
 

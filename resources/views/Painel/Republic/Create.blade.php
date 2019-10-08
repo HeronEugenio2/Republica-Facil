@@ -66,7 +66,7 @@
                                     <label>Número</label>
                                     <input id="number" name='number'
                                            value='{{isset($republic)?$republic->number:old('number')??''}}'
-                                           type="number" class="form-control" placeholder="Ex: 251"
+                                           type="text" class="form-control" placeholder="Ex: 251"
                                            style='width: 100%'>
                                 </div>
                                 <div class="form-group col-md-4 col-lg-4 col-sm-12">
@@ -130,7 +130,7 @@
                                         <label for="inputMember">Membros</label>
                                         <input id="inputMember"
                                                value='{{isset($republic)?$republic->qtdMembers:old('qtdMembers')??''}}'
-                                               name='qtdMembers' type="number" class="form-control"
+                                               name='qtdMembers' type="text" class="form-control"
                                                aria-describedby="memberHelp" placeholder="Ex: 5" style='width: 100%'
                                                required>
                                         <small id="memberHelp" class="form-text text-muted">Quantidade de membros
@@ -143,7 +143,7 @@
                                         <label for="inputVacancy">Vagas</label>
                                         <input id="inputVacancy"
                                                value='{{isset($republic)?$republic->qtdVacancies:old('qtdVacancies')??''}}'
-                                               name='qtdVacancies' type="number" class="form-control"
+                                               name='qtdVacancies' type="text" class="form-control"
                                                aria-describedby="vacancyHelp" placeholder="Ex: 1" style='width: 100%'
                                                required>
                                         <small id="vacancyHelp" class="form-text text-muted">Quantidade de vagas
@@ -180,6 +180,7 @@
                             <button id="save" type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Salvar
                             </button>
                         </form>
+                </form>
         </div>
     </div>
 @endsection

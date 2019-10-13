@@ -63,10 +63,15 @@
                     </table>
                 </div>
             @else
-                <div class='alert alert-primary'>
-                    Não possui tarefas!
-                </div>
+                @if(isset($republicAssignmets))
+                    <div class='alert alert-primary'>
+                        Não possui tarefas!
+                    </div>
+                @endif
             @endif
+            <a href="{{route('painel.assignment.create')}}" class="btn btn-primary mt-2">
+                <i class="fas fa-plus-circle"></i> Limpar Lista
+            </a>
         </div>
     </div>
 @endsection

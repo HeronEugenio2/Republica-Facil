@@ -23,7 +23,8 @@
                     </h2>
                     <p class="text-center">
                         <a class="btn btn-success btn-large" href="#"><i class="fab fa-whatsapp text-white"></i> Contato</a>
-                        <a class="btn btn-primary btn-large" href="#"><i class="fas fa-link"></i> Compartilhar</a>
+                        <a class="btn btn-primary btn-large" href="www.republicafacil.com.br/portal/republicas/1"><i
+                                class="fas fa-link"></i> Compartilhar</a>
                         <a class="btn btn-warning text-white btn-large" href="#" data-toggle="modal"
                            data-target="#modalExemplo"><i class="fas fa-star"></i> Avaliar</a>
                     </p>
@@ -60,58 +61,63 @@
                 </div>
             </div>
             <div class="col my-4">
-                <dl>
-                    <dt>
-                        <h2>Descrição</h2>
-                    </dt>
-                    <dd>
-                        {{$republic->description}}
-                    </dd>
-                    <dt>
-                        Mensalidade
-                    </dt>
-                    <dd>
-                        O valor oferecido pela república é de R$ {{money_format('%.2n', $republic->value)}} por quarto.
-                    </dd>
-                    <dt>
-                        Tipo de moradia
-                    </dt>
-                    <dd>
-                        A república oferece {{$republic->qtdVacancies}}
-                        @if($republic->qtdVacancies == 1)
-                            vaga
-                        @else
-                            vagas
-                        @endif do tipo {{$republic->type->title}}.
-                    </dd>
-                    <address class="my-4 text-center">
-                        <i class="fas fa-map-marked-alt fa-2x"></i>
-                        <strong>{{$republic->city}} - {{$republic->state}} </strong>
-                        <br> {{$republic->street}}, {{$republic->number}} <br> {{$republic->district}},
-                        CEP {{$republic->cep}}<br>
-                    </address>
-                    <hr>
-                    <dt>
-                        Membros
-                    </dt>
-                    <dd>
-                        @foreach($republic->user as $user)
-                            <div class="media my-1">
-                                <img class="mr-3" alt="Bootstrap Media Preview"
-                                     src="{{asset('images/'.$user->image)}}" style="width: 90px;height:70px">
-                                <div class="media-body">
-                                    <h5 class="mt-0">
-                                        {{$user->name}}
-                                    </h5>
-                                    {{$user->email}}
-                                </div>
-                                @if($user->id == $republic->user_id)
-                                    Proprietário
-                                @endif
-                            </div>
-                        @endforeach
-                    </dd>
-                </dl>
+                <div class="card">
+                    <div class="card-body">
+                        <dl>
+                            <dt>
+                                <h2>Descrição</h2>
+                            </dt>
+                            <dd>
+                                {{$republic->description}}
+                            </dd>
+                            <dt>
+                                Mensalidade
+                            </dt>
+                            <dd>
+                                O valor oferecido pela república é de R$ {{money_format('%.2n', $republic->value)}} por
+                                quarto.
+                            </dd>
+                            <dt>
+                                Tipo de moradia
+                            </dt>
+                            <dd>
+                                A república oferece {{$republic->qtdVacancies}}
+                                @if($republic->qtdVacancies == 1)
+                                    vaga
+                                @else
+                                    vagas
+                                @endif do tipo {{$republic->type->title}}.
+                            </dd>
+                            <address class="my-4 text-center">
+                                <i class="fas fa-map-marked-alt fa-2x"></i>
+                                <strong>{{$republic->city}} - {{$republic->state}} </strong>
+                                <br> {{$republic->street}}, {{$republic->number}} <br> {{$republic->district}},
+                                CEP {{$republic->cep}}<br>
+                            </address>
+                            <hr>
+                            <dt>
+                                Membros
+                            </dt>
+                            <dd>
+                                @foreach($republic->user as $user)
+                                    <div class="media my-1">
+                                        <img class="mr-3 img-thumbnail" alt="Bootstrap Media Preview"
+                                             src="{{asset('images/'.$user->image)}}" style="width: 90px;height:70px">
+                                        <div class="media-body">
+                                            <h5 class="mt-0">
+                                                {{$user->name}}
+                                            </h5>
+                                            {{$user->email}}
+                                        </div>
+                                        @if($user->id == $republic->user_id)
+                                            Proprietário
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

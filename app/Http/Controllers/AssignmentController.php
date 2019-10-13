@@ -55,18 +55,16 @@ class AssignmentController extends Controller
     {
         try {
             $user = auth()->user();
+//            $republic = Republic::where('id', auth()->user()->republic_id)->with('assignments')->first();
             $republic = $user->republic;
+            $users = User::with('republic')->where('republic_id', Auth::user()->republic_id)->get();
+
             $republicAssignmets = $republic->assignmets;
             $saved = Assignment::create($request->all());
-            if ($saved) {
-                return view('Painel.Assignments.Assignment', compact('republic', 'republicAssignmets'));
-            } else {
-                return redirect()->back();
-            }
-        } catch (Exception $e) {
-            report($e);
-            Log::error($e->getMessage());
+            return view('Painel.Assignments.Assignment', compact('republic', 'republicAssignmets', 'users'));
 
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         }
     }

@@ -122,11 +122,8 @@ class RepublicController extends Controller
     public function update(RepublicRequest $republicRequest, $id)
     {
         $republicRequestValidate = $republicRequest->validated();
-
         $republic = Republic::find($id);
-
         $republicUpdated = $republic->update($republicRequestValidate);
-
 
         if ($republicUpdated) {
             $invitations = Invitation::where('republic_id', $republic->id)->get();

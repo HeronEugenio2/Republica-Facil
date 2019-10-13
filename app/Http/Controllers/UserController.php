@@ -4,21 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use Exception;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use Vinkla\Hashids\Facades\Hashids;
 
+/**
+ * Class UserController
+ * @package App\Http\Controllers
+ */
 class UserController extends Controller
 {
     private $s3;
 
+    /**
+     * UserController constructor.
+     */
     public function __construct()
     {
         $this->s3 = App::make('aws')->createClient('s3');
     }
 
+    /**
+     * @param $id
+     * @return Factory|RedirectResponse|View
+     */
     public function show($id)
     {
         try {

@@ -61,7 +61,7 @@ class RepublicController extends Controller
     }
 
     /**
-     * @param RepublicRequest $republicRequest
+     * @param RepublicStoreRequest $republicRequest
      * @return RedirectResponse
      * @author Heron Eugenio
      */
@@ -78,22 +78,20 @@ class RepublicController extends Controller
                 $user->save();
 
                 return redirect()->route('painel.republic.index', ['id' => auth()->user()->id])
-                    ->with('success', 'Republica salva com sucesso!');
+                    ->with('toast_success', 'Republica salva com sucesso!');
             } else {
-                return redirect()->back()->with('error', 'Ocorreu um erro ao tentar salvar a República!');
+                return redirect()->back()->with('toast_error', 'Ocorreu um erro ao tentar salvar a República!');
             }
         } catch (Exception $e) {
             report($e);
             Log::error($e->getMessage());
 
-            return redirect()->back()->with('error', 'Ocorreu um erro, tente novamente mais tarde');
+            return redirect()->back()->with('toast_error', 'Ocorreu um erro, tente novamente mais tarde');
         }
     }
 
     /**
-     * Display the specified resource.
      * @param Republic $id
-     * @return Response
      */
     public function show(Republic $id)
     {
@@ -130,21 +128,19 @@ class RepublicController extends Controller
             $invitations = Invitation::where('republic_id', $republic->id)->get();
             $members = User::where('republic_id', $republic->id)->get();
             return redirect()->route('painel.republic.index', ['republic' => $republic, 'invitations' => $invitations, 'members' => $members])
-                ->with('success', 'Republica salva com sucesso!');
+                ->with('toast_success', 'Republica atualizada com sucesso!');
         } else {
-            return redirect()->back()->with('error', 'Ocorreu um erro ao tentar atualizar  República!');
+            return redirect()->back()->with('toast_error', 'Ocorreu um erro ao tentar atualizar  República!');
         }
 
     }
 
     /**
-     * Remove the specified resource from storage.
-     * @param Republic $republic
-     * @return Response
+     * @param $id
+     * @return Factory|View
      */
     public function destroy($id)
     {
-        // delete
         $republic = Republic::find($id);
         $republic->delete();
         // redirect

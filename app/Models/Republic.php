@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Vote;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Republic
@@ -36,7 +38,7 @@ class Republic extends Model
         'down',
     ];
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      * @author Heron Eugenio
      */
     public function type()
@@ -45,7 +47,7 @@ class Republic extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|\Illuminate\Database\Eloquent\Relations\HasMany
+     * @return BelongsTo|HasMany
      * @author Heron Eugenio
      */
     public function user()
@@ -54,7 +56,7 @@ class Republic extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      * @auathor Heron Eugenio
      */
     public function assignmets()
@@ -63,7 +65,7 @@ class Republic extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      * @author Heron Eugenio
      */
     public function spents()
@@ -72,7 +74,7 @@ class Republic extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      * @auathor Heron Eugenio
      */
     public function advertisements()
@@ -81,11 +83,16 @@ class Republic extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      * @author Heron Eugenio
      */
     public function votes()
     {
         return $this->hasMany(Vote::class);
+    }
+
+    public function resources()
+    {
+        return $this->belongsToMany(Resource::class);
     }
 }

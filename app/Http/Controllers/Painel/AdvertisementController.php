@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdvertisementRequest;
 use App\Models\Advertisement;
 use App\Models\AdvertisementCategory;
+use App\Models\Resource;
+use App\Models\ResourceRepublic;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -22,14 +24,23 @@ use Illuminate\View\View;
 class AdvertisementController extends Controller
 {
     private $advertisementModel;
+    private $advertisementCategoryModel;
+    private $resourceModel;
+    private $resourceRepublicModel;
 
     /**
      * AdvertisementController constructor.
      * @param Advertisement $advertisement
+     * @param AdvertisementCategory $advertisementCategory
+     * @param Resource $resource
+     * @param ResourceRepublic $resourceRepublic
      */
-    public function __construct(Advertisement $advertisement)
+    public function __construct(Advertisement $advertisement, AdvertisementCategory $advertisementCategory, Resource $resource, ResourceRepublic $resourceRepublic)
     {
         $this->advertisementModel = $advertisement;
+        $this->advertisementCategoryModel = $advertisementCategory;
+        $this->resourceModel = $resource;
+        $this->resourceRepublicModel = $resourceRepublic;
     }
 
     /**
@@ -72,13 +83,13 @@ class AdvertisementController extends Controller
     }
 
     /**
-     * @param Advertisement $advertisement
      * @param AdvertisementRequest $advRequest
      * @return RedirectResponse
      */
-    public function store(Advertisement $advertisement, AdvertisementRequest $advRequest)
+    public function store(AdvertisementRequest $advRequest)
     {
         try {
+
 
             $advRequest->value = preg_replace('/\D/', '', $advRequest->value);
 
@@ -90,14 +101,24 @@ class AdvertisementController extends Controller
                     'value' => $advRequest->value,
                     'category_id' => $advRequest->category_id,
                     'user_id' => $advRequest->user_id,
+                    'cep' => $advRequest->cep,
+                    'address' => $advRequest->address,
+                    'street' => $advRequest->street,
+                    'city' => $advRequest->city,
+                    'state' => $advRequest->state
                 ]
             );
 
-            $dataSaved = $advertisement->create($data);
+
+            $dataSaved = $this->advertisementModel->create($data);
+            $advRequest['anuncio'] = $dataSaved->id;
             if ($dataSaved) {
-                return redirect()->route('painel.advertisement.index');
+                $response = $this->createResourceAnuncio($data, $advRequest->all());
+
+
+                return redirect()->route('painel.advertisement.index')->with('toast_success', 'Salvo com sucesso');
             } else {
-                return redirect()->back();
+                return redirect()->back()->with('toast_error', 'Ocorreu um erro');
             }
         } catch (Exception $e) {
             report($e);
@@ -107,14 +128,166 @@ class AdvertisementController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
+    private function createResourceAnuncio(array $data, $resources)
     {
-        //
+
+        if (!empty($resources['Câmeras'])) {
+
+            $resource = $this->resourceModel->where('name', 'LIKE', '%' . $resources['Câmeras'] . '%')->first();
+            if (!empty($resource)) {
+
+                $this->resourceRepublicModel->create([
+                    'resource_id' => $resource->id,
+                    'anuncio_id' => $resources['anuncio']
+                ]);
+            }
+            unset($resource);
+
+
+        }
+        if (!empty($resources['Mobiliado'])) {
+            $resource = $this->resourceModel->where('name', 'like', '%' . $resources['Mobiliado'] . '%')->first();
+
+            if (!empty($resource)) {
+
+                $this->resourceRepublicModel->create([
+                    'resource_id' => $resource->id,
+                    'anuncio_id' => $resources['anuncio']
+                ]);
+            }
+            unset($resource);
+
+
+        }
+        if (!empty($resources['Próximo ao ônibus'])) {
+            $resource = $this->resourceModel->where('name', 'like', '%' . $resources['Próximo ao ônibus'] . '%')->first();
+
+            if (!empty($resource)) {
+                $this->resourceRepublicModel->create([
+                    'resource_id' => $resource->id,
+                    'anuncio_id' => $resources['anuncio']
+                ]);
+            }
+            unset($resource);
+
+        }
+        if (!empty($resources['Quarto individual'])) {
+            $resource = $this->resourceModel->where('name', 'like', '%' . $resources['Quarto individual'] . '%')->first();
+
+            if (!empty($resource)) {
+                $this->resourceRepublicModel->create([
+                    'resource_id' => $resource->id,
+                    'anuncio_id' => $resources['anuncio']
+                ]);
+            }
+            unset($resource);
+
+        }
+        if (!empty($resources['Televisão'])) {
+            $resource = $this->resourceModel->where('name', 'like', '%' . $resources['Televisão'] . '%')->first();
+
+            if (!empty($resource)) {
+                $this->resourceRepublicModel->create([
+                    'resource_id' => $resource->id,
+                    'anuncio_id' => $resources['anuncio']
+                ]);
+            }
+            unset($resource);
+
+        }
+        if (!empty($resources['Wi-fi / Internet'])) {
+            $resource = $this->resourceModel->where('name', 'like', '%' . $resources['Wi-fi / Internet'] . '%')->first();
+
+            if (!empty($resource)) {
+                $this->resourceRepublicModel->create([
+                    'resource_id' => $resource->id,
+                    'anuncio_id' => $resources['anuncio']
+                ]);
+            }
+            unset($resource);
+
+        }
+        if (!empty($resources['Lavanderia'])) {
+            $resource = $this->resourceModel->where('name', 'like', '%' . $resources['Lavanderia'] . '%')->first();
+
+            if (!empty($resource)) {
+                $this->resourceRepublicModel->create([
+                    'resource_id' => $resource->id,
+                    'anuncio_id' => $resources['anuncio']
+                ]);
+            }
+            unset($resource);
+
+        }
+        if (!empty($resources['Próximo ao Metrô'])) {
+            $resource = $this->resourceModel->where('name', 'like', '%' . $resources['Próximo ao Metrô'] . '%')->first();
+
+            if (!empty($resource)) {
+                $this->resourceRepublicModel->create([
+                    'resource_id' => $resource->id,
+                    'anuncio_id' => $resources['anuncio']
+                ]);
+            }
+            unset($resource);
+
+        }
+        if (!empty($resources['Quarto Compartilhado'])) {
+            $resource = $this->resourceModel->where('name', 'like', '%' . $resources['Quarto Compartilhado'] . '%')->first();
+
+            if (!empty($resource)) {
+                $this->resourceRepublicModel->create([
+                    'resource_id' => $resource->id,
+                    'anuncio_id' => $resources['anuncio']
+                ]);
+            }
+            unset($resource);
+
+        }
+        if (!empty($resources['Quintal'])) {
+            $resource = $this->resourceModel->where('name', 'like', '%' . $resources['Quintal'] . '%')->first();
+
+            if (!empty($resource)) {
+                $this->resourceRepublicModel->create([
+                    'resource_id' => $resource->id,
+                    'anuncio_id' => $resources['anuncio']
+                ]);
+            }
+            unset($resource);
+
+        }
+        if (!empty($resources['Todas as contas inclusas'])) {
+            $resource = $this->resourceModel->where('name', 'like', '%' . $resources['Todas as contas inclusas'] . '%')->first();
+
+            if (!empty($resource)) {
+                $this->resourceRepublicModel->create([
+                    'resource_id' => $resource->id,
+                    'anuncio_id' => $resources['anuncio']
+                ]);
+            }
+            unset($resource);
+
+        }
+        if (!empty($resources['Ventilador'])) {
+            $resource = $this->resourceModel->where('name', 'like', '%' . $resources['Ventilador'] . '%')->first();
+            if (!empty($resource)) {
+                $this->resourceRepublicModel->create([
+                    'resource_id' => $resource->id,
+                    'anuncio_id' => $resources['anuncio']
+                ]);
+            }
+            unset($resource);
+
+
+        }
+
+        return true;
+
+        /* $resource = $this->resourceModel->where('name', $item)->first();
+
+         $this->resourceRepublicModel->create([
+             'republic_id' => $dataSaved->id,
+             'resource_id' => $resource->id
+         ]);*/
     }
 
     /**
@@ -125,9 +298,10 @@ class AdvertisementController extends Controller
         try {
             $user = auth()->user();
             $republic = $user->republic;
-            $advCategories = AdvertisementCategory::all();
+            $advCategories = $this->advertisementCategoryModel->all();
+            $resources = $this->resourceModel->all();
 
-            return view('Painel.Advertisement.Create', compact('republic', 'user', 'advCategories'));
+            return view('Painel.Advertisement.Create', compact('republic', 'user', 'advCategories', 'resources'));
         } catch (Exception $e) {
             Log::warning('Ocorreu um erro (create- AdvertisementController)');
             report($e);

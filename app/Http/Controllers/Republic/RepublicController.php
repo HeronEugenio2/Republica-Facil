@@ -6,6 +6,7 @@ use App\Http\Requests\RepublicRequest;
 use App\Http\Requests\RepublicStoreRequest;
 use App\Models\Invitations\Invitation;
 use App\Models\Republic;
+use App\Models\Resource;
 use App\Models\Type;
 use App\Models\User;
 use App\Notifications\RequestInvitation;
@@ -56,8 +57,9 @@ class RepublicController extends Controller
     public function create()
     {
         $types = Type::all();
+        $resources = Resource::all();
 
-        return view('Painel.Republic.Create', compact('types'));
+        return view('Painel.Republic.Create', compact('types', 'resources'));
     }
 
     /**

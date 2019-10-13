@@ -2,8 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <link rel="icon" type="image/png" href="{{ asset('/images/favicon.png') }}">
-        {{--<link rel="icon" type="image/png"
-              href="https://static.wixstatic.com/media/e9f391_b594819e778c4c5090a0c162b905fa0f.jpg">--}}
+    {{--<link rel="icon" type="image/png"
+          href="https://static.wixstatic.com/media/e9f391_b594819e778c4c5090a0c162b905fa0f.jpg">--}}
     <title>República Fácil</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +15,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/argon.css') }}">
     {{--<link rel="stylesheet" href="{{ asset('/css/style.css') }}">--}}
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     {{--<link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">--}}
@@ -22,6 +24,11 @@
     {{--    <link href="toastr.css" rel="stylesheet"/>--}}
     <link rel="stylesheet" href="{{asset('css/imgAreaSelect.css')}}">
     <script type="text/javascript" src="/public/js/scripts/imgselect.js"></script>
+    @if(isset($map))
+        {!! $map['js'] !!}
+
+    @endif
+
     @stack('css')
     <style>
         .card-body {
@@ -30,6 +37,7 @@
             /*border-top: none;*/
         }
     </style>
+
 </head>
 <body class="vsc-initialized">
 @include('layouts.Painel.Menu')
@@ -68,14 +76,18 @@
                     @else
 
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" data-toggle='dropdown' role="button" aria-expanded='false' style='position: relative; padding-left: 50px;'>
-                                <img src='{{asset(auth()->user()->image)}}' style='width: 32px; height: 32px; position: absolute; top: -2px; left: 10px; border-radius: 50%'>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#"
+                               data-toggle='dropdown' role="button" aria-expanded='false'
+                               style='position: relative; padding-left: 50px;'>
+                                <img src='{{asset(auth()->user()->image)}}'
+                                     style='width: 32px; height: 32px; position: absolute; top: -2px; left: 10px; border-radius: 50%'>
                                 {{ Auth::user()->name }}
                                 <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"
                                  aria-labelledby="navbarDropdown">
-                                <a href="{{route('painel.user.show', \Vinkla\Hashids\Facades\Hashids::encode(auth()->user()->id))}}" class="dropdown-item">Meu Perfil</a>
+                                <a href="{{route('painel.user.show', \Vinkla\Hashids\Facades\Hashids::encode(auth()->user()->id))}}"
+                                   class="dropdown-item">Meu Perfil</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
@@ -113,6 +125,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 {{--<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>--}}
 <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="toastr.js"></script>
 {{--{!! Toastr::render() !!}--}}
 @stack('scripts')

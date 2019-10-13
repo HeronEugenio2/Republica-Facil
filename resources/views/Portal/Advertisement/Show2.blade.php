@@ -11,6 +11,8 @@
     </style>
 @endpush
 
+
+
 @section('content')
     <div class="container mt-4">
         <div class="row">
@@ -27,11 +29,12 @@
                     </h2>
                     <hr>
                     <div class="media">
-                        <img class="mr-3" src="{{asset('images/'.$advertisement->user->image)}}" style="width: 80px;height:80px">
+                        <img class="mr-3" src="{{asset('images/'.$advertisement->user->image)}}"
+                             style="width: 80px;height:80px">
                         <div class="media-body">
                             <h5 class="mt-0">{{$advertisement->user->name}}</h5>
                             {{$advertisement->user->email}}<br>
-                            <strong>{{$advertisement->user->republic->name}}</strong>
+                            <strong>{{$republic->name ??''}}</strong>
                         </div>
                     </div>
                     <hr>
@@ -71,8 +74,12 @@
                     @endif
                 </div>
             </div>
+            {!! $map['html'] !!}
+            <div id="directionsDiv"></div>
         </div>
+
     </div>
+
     <div id='footer' class="jumbotron jumbotron-fluid bg-dark mb-0">
         <div class="container">
             <div class='row justify-content-md-center'>
@@ -85,7 +92,22 @@
 @endsection
 
 @push('scripts')
+
     <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
     <script>
+        $(window).ready(function () {
+            navigator.geolocation.getCurrentPosition(success => {
+                /* Do some magic. */
+            }, failure => {
+                if (failure.message.startsWith("Only secure origins are allowed")) {
+                    // Secure Origin issue.
+                }
+            });
+            $("#directionsDiv").hide();
+        });
+
+
     </script>
+
+
 @endpush

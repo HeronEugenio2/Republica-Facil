@@ -180,6 +180,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Aws\Laravel\AwsServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        FarhanWazir\GoogleMaps\GMapsServiceProvider::class,
 
 
     ],
@@ -235,6 +236,8 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'AWS' => Aws\Laravel\AwsFacade::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'GMaps' => FarhanWazir\GoogleMaps\Facades\GMapsFacade::class,
+
     ],
 
 ];

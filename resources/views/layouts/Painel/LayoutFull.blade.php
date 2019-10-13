@@ -2,8 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <link rel="icon" type="image/png" href="{{ asset('/images/favicon.png') }}">
-        {{--<link rel="icon" type="image/png"
-              href="https://static.wixstatic.com/media/e9f391_b594819e778c4c5090a0c162b905fa0f.jpg">--}}
+    {{--<link rel="icon" type="image/png"
+          href="https://static.wixstatic.com/media/e9f391_b594819e778c4c5090a0c162b905fa0f.jpg">--}}
     <title>República Fácil</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -68,14 +68,18 @@
                     @else
 
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" data-toggle='dropdown' role="button" aria-expanded='false' style='position: relative; padding-left: 50px;'>
-                                <img src='{{asset(auth()->user()->image)}}' style='width: 32px; height: 32px; position: absolute; top: -2px; left: 10px; border-radius: 50%'>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#"
+                               data-toggle='dropdown' role="button" aria-expanded='false'
+                               style='position: relative; padding-left: 50px;'>
+                                <img src='{{asset(auth()->user()->image)}}'
+                                     style='width: 32px; height: 32px; position: absolute; top: -2px; left: 10px; border-radius: 50%'>
                                 {{ Auth::user()->name }}
                                 <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"
                                  aria-labelledby="navbarDropdown">
-                                <a href="{{route('painel.user.show', \Vinkla\Hashids\Facades\Hashids::encode(auth()->user()->id))}}" class="dropdown-item">Meu Perfil</a>
+                                <a href="{{route('painel.user.show', \Vinkla\Hashids\Facades\Hashids::encode(auth()->user()->id))}}"
+                                   class="dropdown-item">Meu Perfil</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
@@ -102,6 +106,8 @@
         @yield('content')
     </div>
 </div>
+@include('sweetalert::alert')
+
 <!-- Scripts -->
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.js') }}"></script>

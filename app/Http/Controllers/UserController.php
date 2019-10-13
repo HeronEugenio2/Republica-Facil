@@ -91,7 +91,7 @@ class UserController extends Controller
 
                 if ($userUpdate) {
                     return back()
-                        ->with('success', 'Salvo com sucesso')
+                        ->with('toast_success', 'Salvo com sucesso')
                         ->with('user', $user);
                 } else {
                     return back()

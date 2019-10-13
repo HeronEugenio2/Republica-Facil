@@ -4,19 +4,11 @@
     <div class='card'>
         <div class='card-header'>Cadastrar República</div>
         <div class='card-body'>
-
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>{{ $message }}</strong>
-                </div>
-            @endif
-
-            @if (count($errors) > 0)
-                <div class="alert alert-danger">
+            @if( isset($errors) && count($errors) > 0 )
+                <div class='error'>
                     <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
+                        @foreach($errors->all() as $error)
+                            <list style='color:red'>{{$error}}</list>
                         @endforeach
                     </ul>
                 </div>
@@ -35,7 +27,9 @@
                                      style="width:200px; height:200px;"/>
                                 <br>
                                 <div class="input-group mb-3">
-                                    <input type='text' name='image' id='image' class="form-control"
+                                    <input type='text' name='image'
+                                           value="{{isset($republic) ? $republic->image:old('image') ?? ''}}" id='image'
+                                           class="form-control"
                                            placeholder="Ex: www.facebook.com/user/image.png"
                                            style='border-top-right-radius: 0;border-bottom-right-radius: 0;max-width: 300px;'>
                                     <div class="input-group-append">
@@ -167,7 +161,8 @@
                                 <div id='valueDiv' class="form-group col-md-2 col-lg-2 col-sm-12">
                                     <div class="form-group">
                                         <label for="value">Preço</label>
-                                        <input id="value" value='{{isset($republic)?$republic->value:old('value')??''}}'
+                                        <input id="value"
+                                               value='{{isset($republic) ? $republic->value : old('value') ?? ''}}'
                                                name='value' type="text" class="value form-control"
                                                aria-describedby="vacancyHelp" placeholder="R$ 450,00"
                                                style='width: 100%' required>
@@ -202,8 +197,5 @@
             let valuePoint = rep.replace(',', '.');
             $('#value').val(valuePoint);
         });
-
-
-        jQuery("#cep").mask("99999-999");
     </script>
 @endpush

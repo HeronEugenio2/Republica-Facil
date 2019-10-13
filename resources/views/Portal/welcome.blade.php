@@ -7,7 +7,8 @@
     .bg-danger3 {
         background-image: linear-gradient(0deg, #a90516, transparent);
     }
-    .bg-anuncio{
+
+    .bg-anuncio {
         background-image: linear-gradient(0deg, #dddddde8, #f8f9faf0)
         /*url(https://image.freepik.com/vetores-gratis/pessoas-a-fazer-compras-com-cartao-de-credito_53876-43130.jpg);*/
     }
@@ -16,9 +17,9 @@
         /* The image used */
         /*background-image: url("images/casa.jpg");*/
         /*background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.49), #000000), url("images/chave_casa.jpg");*/
-        background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.22), rgba(0, 0, 0, 0.96)), url("/images/avaliacao_casa.jpg");
+        background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.22), rgba(0, 0, 0, 0.96)), url("/images/GetImage.jpeg");
         /* Set a specific height */
-        max-height: 320px;
+        /*max-height: 320px;*/
         height: 100%;
         /* Create the parallax scrolling effect */
         background-attachment: fixed;
@@ -38,6 +39,17 @@
         background-size: cover;
     }
 
+    .outer {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .inner {
+        width: 200px; /* Ou a que você quiser. */
+    }
 
     /*a90516cc a90516*
     style='background-image: linear-gradient(0deg, #a90516db, #000000), url("images/casa.jpg");'
@@ -45,30 +57,33 @@
      */
 </style>
 @section('content')
-    <div id="parallax" class="parallax">
+    <div id="parallax" class="parallax justify-content-center align-middle outer">
         <div id='busca' class="p-4">
-            <div class="container text-white mt-4">
+            <div class="container text-white inner">
                 <div class='row justify-content-md-center'>
-                    <div class='col-12 text-center mt-3'>
+                    <div class='col-12 text-center'>
                         <img src='{{ asset('/images/favicon.png') }}' style='width: 60px'>
-                        <h1 class="font-weight-bold">República Fácil</h1>
+                        <h1 class="font-weight-bold">Bem-vindo ao mundo das Repúblicas!</h1>
                         <p class="font-italic">"Encontre quartos para alugar em repúblicas ou cadastre a sua."</p>
                     </div>
                     <div class='col-md-12 col-lg-12 col-sm-12 text-center align-content-center'
                          style="max-width: 500px">
-                        <div style="">
-                            <form id="logout-form" action="{{ route('portal.republicSearch') }}" method="POST">
-                                @csrf
-                                <div class="input-group mb-3">
-                                    <input class='form-control' type='text' name='search'
-                                           placeholder='Preencha o nome da cidade'>
-                                    <div id='search' class="input-group-append">
-                                        <button type='submit' class='btn btn-danger'>Buscar</button>
-                                    </div>
+                        <form id="logout-form" action="{{ route('portal.republicSearch') }}" method="POST">
+                            @csrf
+                            <div class="input-group mb-3">
+                                <input class='form-control' type='text' name='search'
+                                       placeholder='Preencha o nome da cidade'>
+                                <div id='search' class="input-group-append">
+                                    <button type='submit' class='btn btn-danger'>Buscar</button>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
+                </div>
+                <div class='row justify-content-md-center'>
+                    <a href="#" class="btn btn-light text-secondary btn-lg">Estado</a>
+                    <a href="#" class="btn btn-light text-secondary btn-lg mx-2">Cidade</a>
+                    <a href="#" class="btn btn-light text-secondary btn-lg">Bairro</a>
                 </div>
             </div>
         </div>
@@ -91,7 +106,8 @@
                                     <strong><i class="fas fa-money-bill"></i>
                                         R$ {{money_format('%.2n', $republic->value)}}
                                     </strong></div>
-                                <a href='{{route('portal.republics.show', $republic->id)}}' class='btn btn-sm btn-danger bg-danger2 w-100'>Visualisar</a>
+                                <a href='{{route('portal.republics.show', $republic->id)}}'
+                                   class='btn btn-sm btn-danger bg-danger2 w-100'>Visualisar</a>
                             </div>
                         </div>
                     @endforeach
@@ -103,8 +119,9 @@
                         <form id="logout-form" action="{{ route('portal.republicSearch') }}" method="POST">
                             @csrf
                             <button type='submit' href='{{ route('portal.republicSearch') }}'
-                           class='btn btn-outline-danger w-100 btn-lg px-5'
-                           style="border-radius: 50px;">Todas</button>
+                                    class='btn btn-outline-danger w-100 btn-lg px-5'
+                                    style="border-radius: 50px;">Todas
+                            </button>
                         </form>
 
                     </div>

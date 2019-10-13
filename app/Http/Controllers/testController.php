@@ -10,7 +10,6 @@ class testController extends Controller
 {
     public function index()
     {
-        return $this->exportTxt();
         return view('test');
     }
 

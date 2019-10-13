@@ -5,126 +5,127 @@ namespace App\Http\Controllers;
 use App\Models\Assignment;
 use App\Models\User;
 use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\View\View;
 
 class AssignmentController extends Controller
 {
     /**
      * @var Assignment
      */
-    private $assignment;
+    private $assignmentModel;
+    private $userModel;
 
-    public function __construct(Assignment $assignment)
+    public function __construct(Assignment $assignment, User $user)
     {
-
-        $this->assignment = $assignment;
+        $this->assignmentModel = $assignment;
+        $this->userModel = $user;
     }
 
     /**
      * Display a listing of the resource.
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        $user = auth()->user();
-        $republic = $user->republic;
-        $republicAssignmets = $republic->assignmets;
-        $users = User::with('republic')->where('republic_id', Auth::user()->republic_id)->get();
-        return view('Painel.Assignments.Assignment', compact('republic', 'republicAssignmets', 'users'));
+        try {
+
+            $user = auth()->user();
+            $republic = $user->republic;
+            $republicAssignmets = $republic->assignmets;
+            $users = $this->userModel->with('republic')->where('republic_id', Auth::user()->republic_id)->get();
+            return view('Painel.Assignments.Assignment', compact('republic', 'republicAssignmets', 'users'));
+        } catch (Exception $e) {
+            Log::warning('Erro ao listar tarefas');
+            report($e);
+
+            return redirect()->back()->with('toast_error', 'Ocorreu um erro, tente novamente mais tarde!');
+        }
     }
 
     /**
      * Show the form for creating a new resource.
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
-        $users = User::with('republic')->where('republic_id', Auth::user()->republic_id)->get();
+        $users = $this->userModel->with('republic')->where('republic_id', Auth::user()->republic_id)->get();
 
         return view('Painel.Assignments.Create', compact('users'));
     }
 
     /**
-     * Store a newly created resource in storage.
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Factory|RedirectResponse|View
      */
     public function store(Request $request)
     {
         try {
             $user = auth()->user();
-//            $republic = Republic::where('id', auth()->user()->republic_id)->with('assignments')->first();
             $republic = $user->republic;
-            $users = User::with('republic')->where('republic_id', Auth::user()->republic_id)->get();
+            $users = $this->userModel->with('republic')->where('republic_id', Auth::user()->republic_id)->get();
 
             $republicAssignmets = $republic->assignmets;
-            $saved = Assignment::create($request->all());
-            return view('Painel.Assignments.Assignment', compact('republic', 'republicAssignmets', 'users'));
+            $saved = $this->assignmentModel->create($request->all());
+
+            if ($saved) {
+                return redirect()->route('painel.assignment.index')->with(compact('republic', 'republicAssignmets', 'users'))->with('toast_success', 'Salvo com sucesso!');
+            } else {
+                return view('Painel.Assignments.Assignment', compact('republic', 'republicAssignmets', 'users'))->with('toast_error', 'Erro ao salvar!');
+            }
+
 
         } catch (Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->back()->with('error', 'Ocorreu um erro, tente novamente mais tardes');
         }
     }
 
     /**
-     * Display the specified resource.
-     * @param \App\Assignment $assignment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Assignment $assignment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param \App\Assignment $assignment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Assignment $assignment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Assignment $assignment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Assignment $assignment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param \App\Assignment $assignment
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return RedirectResponse
      */
     public function destroy($id)
     {
-        $assignment = $this->assignment->find($id);
-        $deleted = $assignment->delete();
-        return redirect()->back();
+        try {
+
+            $assignment = $this->assignmentModel->find($id);
+            $deleted = $assignment->delete();
+            if ($deleted) {
+                return redirect()->back()->with('toast_success', 'Removido com sucesso!');
+            } else {
+                return redirect()->back()->with('toast_error', 'Erro ao deletar tarefa, tente novamente mais tarde!');
+            }
+        } catch (Exception $e) {
+            Log::warning('Erro ao deletar tarefa, tente novamente mais tarde!');
+            report($e);
+
+            return back()->with('toast_error', 'Erro ao deletar tarefa, tente novamente mais tarde!');
+        }
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function conclude(Request $request)
     {
         try {
-            $assignment = $this->assignment->where('id', $request->assignmet_id)->first();
+            $assignment = $this->assignmentModel->find($request->assignmet_id);
             $assignment->situation = $request->situationFlag;
             $assignment->save();
 
-            return redirect()->back();
+            return redirect()->back()->with('toast_success', 'Atualizado com sucesso');
         } catch (Exception $e) {
             report($e);
             Log::error($e->getMessage());
 
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->back()->with('toast_error', $e->getMessage());
         }
     }
 }

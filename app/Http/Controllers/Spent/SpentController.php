@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\DB;
 class SpentController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
      */
     public function index()
     {

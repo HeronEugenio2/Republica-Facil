@@ -70,6 +70,7 @@ class RepublicController extends Controller
         try {
             $dataValidated = $republicRequest->validated();
             $dataValidated['value'] = preg_replace('/\D/', '', $dataValidated['value']);
+            $dataValidated['user_id'] = auth()->user()->id;
             $savedRepublic = Republic::create($dataValidated);
             if ($savedRepublic) {
                 $user = auth()->user();

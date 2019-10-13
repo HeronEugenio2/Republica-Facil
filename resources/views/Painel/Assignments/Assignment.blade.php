@@ -46,16 +46,18 @@
                                     </form>
                                 </td>
                                 <td width="1%">
-                                    <form class="mr-2" method="POST"
-                                          action="{{route('painel.assignment.destroy',$assignmet->id) }}">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <div class="btn-group-vertical">
-                                            <button class='btn btn-danger btn-sm' type="submit"><i
-                                                    class="fas fa-trash-alt"></i> Excluir
-                                            </button>
-                                        </div>
-                                    </form>
+                                    @if(auth()->user()->id == $republic->user_id)
+                                        <form class="mr-2" method="POST"
+                                              action="{{route('painel.assignment.destroy',$assignmet->id) }}">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <div class="btn-group-vertical">
+                                                <button class='btn btn-danger btn-sm' type="submit"><i
+                                                        class="fas fa-trash-alt"></i> Excluir
+                                                </button>
+                                            </div>
+                                        </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -69,9 +71,13 @@
                     </div>
                 @endif
             @endif
-            <a href="{{route('painel.assignment.create')}}" class="btn btn-primary mt-2">
-                <i class="fas fa-plus-circle"></i> Limpar Lista
-            </a>
+            {{--
+                        <a href="{{route('painel.assignment.create')}}" class="btn btn-primary mt-2">
+                            <i class="fas fa-plus-circle"></i> Limpar Lista
+                        </a>
+            --}}
         </div>
     </div>
+    @include('sweetalert::alert')
+
 @endsection

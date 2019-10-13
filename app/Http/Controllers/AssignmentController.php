@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
+/**
+ * Class AssignmentController
+ * @package App\Http\Controllers
+ */
 class AssignmentController extends Controller
 {
     /**

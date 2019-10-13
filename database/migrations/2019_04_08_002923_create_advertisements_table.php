@@ -19,24 +19,23 @@ class CreateAdvertisementsTable extends Migration
             $table->string('description');
             $table->string('image')->default('https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg');
             $table->string('title');
-            $table->float('value');
-//            $table->unsignedInteger('details_id');
+            $table->string('value');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('category_id')->nullable();
             $table->unsignedInteger('image_id')->nullable();
             $table->tinyInteger('active_flag')->nullable()->default(0);
             $table->timestamps();
         });
-        Schema::table('advertisements', function(Blueprint $table) {
+        Schema::table('advertisements', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
 //        Schema::table('advertisements', function(Blueprint $table) {
 //            $table->foreign('republic_id')->references('id')->on('republics');
 //        });
-        Schema::table('advertisements', function(Blueprint $table) {
+        Schema::table('advertisements', function (Blueprint $table) {
             $table->foreign('category_id')->references('id')->on('advertisement_categories');
         });
-        Schema::table('advertisements', function(Blueprint $table) {
+        Schema::table('advertisements', function (Blueprint $table) {
             $table->foreign('image_id')->references('id')->on('advertisement_images');
         });
     }

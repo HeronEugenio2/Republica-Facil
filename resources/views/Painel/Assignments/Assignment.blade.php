@@ -18,6 +18,7 @@
                             <th scope="col">Descrição</th>
                             <th scope="col">Membro</th>
                             <th class="text-center" scope="col">Status</th>
+                            <th class="text-center" scope="col">Informar</th>
                             <th class="text-center" scope="col">Ações</th>
                         </tr>
                         </thead>
@@ -44,6 +45,11 @@
                                             </button>
                                         @endif
                                     </form>
+                                </td>
+                                <td width="1%">
+                                    <a href="https://api.whatsapp.com/send?phone=whatsappphonenumber&text=urlencodedtext"
+                                       class="btn btn-success btn-sm" href="#"><i
+                                            class="fab fa-whatsapp text-white"></i> WhatsApp</a>
                                 </td>
                                 <td width="1%">
                                     <form class="mr-2" method="POST"

@@ -7,7 +7,8 @@
     <title>Alterar Senha</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Custom styles for this template -->
     <link rel="icon" type="image/png" href="{{ asset('/images/favicon.png') }}">
 </head>
@@ -25,6 +26,7 @@
         padding-top: 40px;
         padding-bottom: 40px;
     }
+
     .form-signin {
         width: 100%;
         max-width: 330px;
@@ -33,11 +35,6 @@
     }
 </style>
 <body class="text-center" style='background-color: #F5F5F5'>
-@if (session('status'))
-    <div class="alert alert-success" role="alert">
-        {{ session('status') }}
-    </div>
-@endif
 <form method="POST" action="{{ route('password.email') }}">
     @csrf
     <a href="{{ route('portal.index')}}">
@@ -45,11 +42,19 @@
     </a>
     <div class="form-group ">
         <label for="email" class="">{{ __('E-Mail Address') }}</label>
-        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
+               value="{{ old('email') }}" required>
         @if ($errors->has('email'))
             <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('email') }}</strong>
                 </span>
+        @endif
+    </div>
+    <div class="">
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
         @endif
     </div>
     <div class="form-group mb-1">

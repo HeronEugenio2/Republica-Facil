@@ -4,7 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -44,25 +50,58 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        $dataFormatted = [
+            'name'                  => $data['name-register'],
+            'email'                 => $data['email-register'],
+            'password'              => $data['password-register'],
+            'password_confirmation' => $data['password_confirmation'],
+        ];
+
+        return Validator::make($dataFormatted, [
+            'name'     => ['required', 'string', 'max:255'],
+            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
+        ], [
+                                   'name.required'      => 'O campo nome deve ser preenchido',
+                                   'name.string'        => 'Caracteres inválidos no campo nome',
+                                   'name.max'           => 'O campo nome permite apenas 255 caracteres',
+                                   'email.required'     => 'O campo email deve ser preenchido',
+                                   'email.string'       => 'Caracteres inválidos no campo email',
+                                   'email.email'        => 'O campo email deve ser um email válido',
+                                   'email.max'          => 'O campo email permite apenas 255 caracteres',
+                                   'email.unique'       => 'O email informado já está sendo utilizado',
+                                   'password.required'  => 'O campo senha é obrigatório',
+                                   'password.string'    => 'Caracteres inválidos no campo senha',
+                                   'password.min'       => 'O campo senha é obrigatório ter no minimo 6 caracteres',
+                                   'password.confirmed' => 'O campo senha e o campo confirmação de senha estão incorretos',
+                               ]);
     }
 
     /**
-     * Create a new user instance after a valid registration.
-     * @param array $data
-     * @return \App\User
+     * @param Request $request
+     * @return RedirectResponse|Redirector
      */
-    protected function create(array $data)
+    public function register(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'image' => 'https://republica-facil.s3-sa-east-1.amazonaws.com/uploads/user-default.png',
-            'password' => Hash::make($data['password']),
-        ]);
+        $requestValidate             = $this->validator($request->all())->validate();
+        $requestValidate['image']    = 'https://republica-facil.s3-sa-east-1.amazonaws.com/uploads/user-default.png';
+        $requestValidate['password'] = Hash::make($requestValidate['password']);
+        $user                        = User::create($requestValidate);
+
+        event(new Registered($user));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
+
+    /**
+     * Get the guard to be used during registration.
+     * @return StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard();
     }
 }

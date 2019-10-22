@@ -11,19 +11,15 @@
     <meta name="description" content="">
     <meta name="keyword" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- INICIA CSS -->
     <link rel="icon" type="image/png" href="{{ asset('/images/favicon.png') }}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/argon.css') }}">
-    {{--<link rel="stylesheet" href="{{ asset('/css/style.css') }}">--}}
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{asset('css/imgAreaSelect.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    {{--<link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">--}}
-    {{--    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">--}}
-    {{--    <link href="toastr.css" rel="stylesheet"/>--}}
-    <link rel="stylesheet" href="{{asset('css/imgAreaSelect.css')}}">
-    <script type="text/javascript" src="/public/js/scripts/imgselect.js"></script>
+    <!-- TERMINA CSS -->
     @if(isset($map))
         {!! $map['js'] !!}
 
@@ -37,7 +33,6 @@
             /*border-top: none;*/
         }
     </style>
-
 </head>
 <body class="vsc-initialized">
 @include('layouts.Painel.Menu')
@@ -87,7 +82,8 @@
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"
                                  aria-labelledby="navbarDropdown">
                                 <a href="{{route('painel.user.show', \Vinkla\Hashids\Facades\Hashids::encode(auth()->user()->id))}}"
-                                   class="dropdown-item">Meu Perfil</a>
+                                   class="dropdown-item">Meu Perfil
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">

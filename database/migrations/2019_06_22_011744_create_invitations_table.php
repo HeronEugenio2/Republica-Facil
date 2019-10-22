@@ -8,14 +8,14 @@ class CreateInvitationsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
     {
-        Schema::create('invitations', function (Blueprint $table) {
+        Schema::create('invitations', function(Blueprint $table) {
             $table->unsignedInteger('id', true);
             $table->string('email')->nullable();
+            $table->integer('flag_accepted')->default(0);
             $table->unsignedInteger('republic_id')->nullable()->index();
             $table->unsignedInteger('user_id')->nullable()->index();
             $table->timestamps();
@@ -24,7 +24,6 @@ class CreateInvitationsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()

@@ -17,7 +17,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 @if(isset($map))
     {!! $map['js'] !!}
 
@@ -67,10 +66,12 @@
         {{--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--}}
         {{--<button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>--}}
         {{--</form>--}}
-
-        <a href="{{route('painel.republic.index')}}" class="btn btn-outline-danger ">Anunciar República</a>
-        <i class="fab fa-github text-white fa-2x ml-2"></i>
-
+        <a href="{{route('painel.republic.index')}}" class="btn btn-outline-danger mr-2">Anunciar República</a>
+        {{--        <i class="fab fa-github text-white fa-2x ml-2"></i>--}}
+        @if(auth()->user() != null)
+            <img src='{{asset(auth()->user()->image)}}'
+                 style='width: 38px; height: 38px; top: -2px; left: 10px; border-radius: 50%'>
+        @endif
     </div>
 </nav>
 <div class='container-fluid p-0'>
@@ -92,12 +93,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
-
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-
 <script> window.Laravel = '{!!json_encode(['csrfToken' => csrf_token()])!!}';</script>
 @stack('scripts')
 </body>
-
 </html>

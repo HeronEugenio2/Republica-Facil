@@ -19,7 +19,7 @@ class CreateAdvertisementsTable extends Migration
             $table->string('description');
             $table->string('image')->default('https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg');
             $table->string('title');
-            $table->string('value');
+            $table->float('value');
             $table->string('cep');
             $table->string('address');
             $table->string('street');

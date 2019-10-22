@@ -80,11 +80,11 @@
                         </form>
                     </div>
                 </div>
-                <div class='row justify-content-md-center'>
-                    <a href="#" class="btn btn-light text-secondary btn-lg">Estado</a>
-                    <a href="#" class="btn btn-light text-secondary btn-lg mx-2">Cidade</a>
-                    <a href="#" class="btn btn-light text-secondary btn-lg">Bairro</a>
-                </div>
+{{--                <div class='row justify-content-md-center'>--}}
+{{--                    <a href="#" class="btn btn-light text-secondary btn-lg">Estado</a>--}}
+{{--                    <a href="#" class="btn btn-light text-secondary btn-lg mx-2">Cidade</a>--}}
+{{--                    <a href="#" class="btn btn-light text-secondary btn-lg">Bairro</a>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>

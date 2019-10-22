@@ -15,19 +15,19 @@
         <form method='POST' action='{{route('register')}}'>
             @csrf
             <h1>Criar conta</h1>
-            <input id='name' class='form-control{{$errors->has('name')?'is-invalid':''}}' name='name' value='{{old('name')}}' required autofocus type="text" placeholder="Nome"/>
+            <input id='name' class='form-control{{$errors->has('name')?'is-invalid':''}}' name='name-register' value='{{old('name')}}' required autofocus type="text" placeholder="Nome"/>
             @if($errors->has('name'))
                 <span class='invalid-feedback' role='alert'>
                     <strong>{{$errors->first('name')}}</strong>
                 </span>
             @endif
-            <input type="email" placeholder="Email" id='email' class='form-control{{$errors->has('name')?'is-invalid':''}}' autofocus name='email' value='{{old('email')}}' required/>
+            <input type="email" placeholder="Email" id='email' class='form-control{{$errors->has('name')?'is-invalid':''}}' autofocus name='email-register' value='{{old('email')}}' required/>
             @if($errors->has('email'))
                 <span class='invalid-feedback' role='alert'>
                     <strong>{{$errors->first('email')}}</strong>
                 </span>
             @endif
-            <input type="password" placeholder="Senha" autofocus id='password' class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required/>
+            <input type="password" placeholder="Senha" autofocus id='password' class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password-register" required/>
             @if($errors->has('password'))
                 <span class='invalid-feedback' role='alert'>
                     <strong>{{$errors->first('password')}}</strong>

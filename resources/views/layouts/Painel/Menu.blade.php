@@ -35,8 +35,7 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand p-0" href="{{ route('home') }}">
-            <img src="{{ asset('/images/favicon.png') }}" alt='PerfectPay'>
-            República Fácil
+            <img src="{{ asset('/images/favicon.png') }}" alt='PerfectPay'> República Fácil
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
@@ -92,17 +91,17 @@
                 </div>
             </div>
             <!-- Form -->
-            {{--<form class="mt-4 mb-3 d-md-none">--}}
-                {{--<div class="input-group input-group-rounded input-group-merge">--}}
-                    {{--<input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">--}}
-                    {{--<div class="input-group-prepend">--}}
-                        {{--<div class="input-group-text">--}}
-                            {{--<span class="fa fa-search"></span>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</form>--}}
-            <!-- Navigation -->
+        {{--<form class="mt-4 mb-3 d-md-none">--}}
+        {{--<div class="input-group input-group-rounded input-group-merge">--}}
+        {{--<input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">--}}
+        {{--<div class="input-group-prepend">--}}
+        {{--<div class="input-group-text">--}}
+        {{--<span class="fa fa-search"></span>--}}
+        {{--</div>--}}
+        {{--</div>--}}
+        {{--</div>--}}
+        {{--</form>--}}
+        <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-title"></li>
                 <li class="nav-item">
@@ -116,27 +115,27 @@
                     </a>
                 </li>
                 @if(auth()->user()->republic_id != null)
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('painel.spent.index') }}">
-                        <i class="fas fa-file-invoice-dollar text-gray"></i> Gastos
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('painel.assignment.index') }}">
-                        <i class="fas fa-book text-gray"></i> Tarefas
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('painel.spent.index') }}">
+                            <i class="fas fa-file-invoice-dollar text-gray"></i> Gastos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('painel.assignment.index') }}">
+                            <i class="fas fa-book text-gray"></i> Tarefas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('painel.member.index') }}">
+                            <i class="fas fa-users  text-gray"></i> Membros
+                        </a>
+                    </li>
                 @endif
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('painel.advertisement.index') }}">
                         <i class="fas fa-cart-plus text-gray"></i> Anúncios
                     </a>
                 </li>
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link" href="{{ route('painel.marketing.index') }}">--}}
-{{--                        <i class="fas fa-bullhorn text-gray"></i> Marketing--}}
-{{--                    </a>--}}
-{{--                </li>--}}
                 @if(auth()->user()->email == 'hrs.eugenio@gmail.com')
                     <li class="nav-item">
                         <hr>
@@ -148,7 +147,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('administrative.republics.index')}}">Repúblicas</a>
                             <a class="dropdown-item" href="{{route('administrative.advertisements.index')}}">Anúncios</a>
-{{--                            <a class="dropdown-item" href="{{route('painel.advertisement.index')}}">Comércio</a>--}}
+                            {{--                            <a class="dropdown-item" href="{{route('painel.advertisement.index')}}">Comércio</a>--}}
                         </div>
                     </li>
                 @endif

@@ -30,26 +30,26 @@ Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProv
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(
     [
-        'prefix' => 'administracao',
-        'as' => 'administrative.',
+        'prefix'     => 'administracao',
+        'as'         => 'administrative.',
         'middleware' => ['auth'],
     ],
-    function () {
+    function() {
         //REPUBLIC
         Route::resource('republicas', 'Administrative\RepublicAdmController')
-            ->names('republics');
+             ->names('republics');
         //ADVERTISEMENT
         Route::resource('anuncios', 'Administrative\AdvertisementAdmController')
-            ->names('advertisements');
+             ->names('advertisements');
     }
 );
 Route::group(
     [
-        'prefix' => 'painel',
-        'as' => 'painel.',
+        'prefix'     => 'painel',
+        'as'         => 'painel.',
         'middleware' => ['auth'],
     ],
-    function () {
+    function() {
         // user
         Route::resource('/user', 'UserController')->names('user');
         //painel.republic@
@@ -60,6 +60,8 @@ Route::group(
         Route::resource('/tarefas', 'AssignmentController')->names('assignment');
         //painel.Advertisement@
         Route::resource('/anuncios', 'Painel\AdvertisementController')->names('advertisement');
+        //painel.Members@
+        Route::resource('/membros', 'Painel\MembersController')->names('member');
         //painel.Marketing@
         Route::resource('/marketing', 'Marketing\MarketingController')->names('marketing');
 
@@ -86,9 +88,9 @@ Route::group(
 Route::group(
     [
         'prefix' => 'portal',
-        'as' => 'portal.',
+        'as'     => 'portal.',
     ],
-    function () {
+    function() {
         //ANUNCIOS
         Route::get('/anuncios', 'PortalController@indexAdvertisement')->name('advertisement');
         Route::get('/anuncios/{id}', 'PortalController@showAdvertisement')->name('showAdvertisement');

@@ -17,36 +17,39 @@
                 <form id="logout-form" method="POST"
                       action="{{ route('painel.republic.update', ['republic'=>$republic->id]) }}">
                     {{method_field('PUT')}}
-                    {{--<input type='hidden' name='code' value='{{$republic->id}}'>--}}
                     @else
                         <form id="logout-form" action="{{ route('painel.republic.store') }}" method="POST">
                             @endif
                             @csrf
-                            @if(isset($republic))
-                                <img id='imgSrc' class='mb-2' src='{{$republic->image}}'
-                                     style="width:200px; height:200px;"/>
-                                <br>
-                                <div class="input-group mb-3">
-                                    <input type='text' name='image'
-                                           value="{{isset($republic) ? $republic->image:old('image') ?? ''}}" id='image'
-                                           class="form-control"
-                                           placeholder="Ex: www.facebook.com/user/image.png"
-                                           style='border-top-right-radius: 0;border-bottom-right-radius: 0;max-width: 300px;'>
-                                    <div class="input-group-append">
-                                        <button id='btnCheck' class="btn btn-outline-danger" type="button">Upload
-                                        </button>
+                            <div class='row'>
+                                <div class='form-group col-6'>
+                                    <label for='select_republic_photo' class='form-control-label'>
+                                        Foto República
+                                    </label>
+                                    <br>
+                                    <input name='republic_photo' style='display: none;' type='file' class='form-control input-pad' id='republic_photo'>
+                                    <img src='{{$republic->image ?? 'https://lh3.googleusercontent.com/IB-0PcfCsGe03iguL6EayIpKHbg-eQmxmomjXfl5r3LVVrVYTes2NNY4xxp5c-vW_C5o4A=s113'}}'
+                                         id='previewimage'
+                                         alt='Nenhuma foto cadastrada' style='max-height: 250px; max-width: 350px; cursor: pointer;'>
+                                </div>
+                                <div class='col-6'>
+                                    <div class='form-group'>
+                                        <label for='name-republic' class='form-control-label'>Nome da Republica</label>
+                                        <input type='text' class='form-control w-100' name='name-republic' value='{{$republic->name ?? ''}}'
+                                               placeholder='Adicionae um nome para sua republica' style='width: 100%;' required>
+                                        <small id='nameHelp' class='form-text text-muted'>O nome será mostrado na pesquisa dos usuários</small>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label for='email-republic' class='form-control-label'>E-mail da Repúlica</label>
+                                        <input class='form-control w-100' id='email-republic' value='{{$republic->email ?? ''}}'
+                                               name='email-republic'
+                                               aria-describedby='emailHelp'
+                                               placeholder='republica.estudantes@gmail.com'
+                                               style='width: 100%' required>
+                                        <small id="emailHelp" class="form-text text-muted">Coloque aqui o e-mail para contato com a república.
+                                        </small>
                                     </div>
                                 </div>
-                            @endif
-                            <div class="form-group">
-                                <label for="inputName">Nome</label>
-                                <input name='name' type="text"
-                                       value='{{isset($republic)?$republic->name:old('name')??''}}' class="form-control"
-                                       id="inputName" aria-describedby="nameHelp"
-                                       placeholder="Adicione um nome pra sua republica." style='width: 100%' required>
-                                <small id="nameHelp" class="form-text text-muted">O nome será mostrado na pesquisa dos
-                                    usuários.
-                                </small>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-4 col-lg-4 col-sm-12">
@@ -100,25 +103,10 @@
                                           type="text" class="form-control"
                                           placeholder="Ex: Nossa república possui 4 quartos, sendo 3 ocupados e um com dispoibilidade para até no máximo duas pessoas, 1 banheiro, 1 cozinha com duas geladeiras, um fogão e área de serviço com máquina de lavar."
                                           rows='7' style='width: 100%'></textarea>
-                                <small id="descriptionHelp" class="form-text text-muted">Coloque aqui informações
-                                    importantes que você deseja que as pessoas saibam.
+                                <small id="descriptionHelp" class="form-text text-muted">Coloque aqui informações importantes que você deseja que as pessoas saibam.
                                 </small>
                             </div>
                             <div class='row'>
-                                <div id='email' class="form-group col-md-4 col-lg-4 col-sm-12">
-                                    <div class="form-group">
-                                        <label for="inputEmail">E-mail</label>
-                                        <input id="inputEmail"
-                                               value='{{isset($republic)?$republic->email:old('email')??''}}'
-                                               name='email' type="email" class="form-control"
-                                               aria-describedby="emailHelp" placeholder="Ex: powerG@gmail.com"
-                                               style='width: 100%'
-                                               required>
-                                        <small id="emailHelp" class="form-text text-muted">Coloque aqui o e-mail para
-                                            contato com a república.
-                                        </small>
-                                    </div>
-                                </div>
                                 <div id='member' class="form-group col-md-2 col-lg-2 col-sm-12">
                                     <div class="form-group">
                                         <label for="inputMember">Membros</label>
@@ -127,8 +115,7 @@
                                                name='qtdMembers' type="text" class="form-control"
                                                aria-describedby="memberHelp" placeholder="Ex: 5" style='width: 100%'
                                                required>
-                                        <small id="memberHelp" class="form-text text-muted">Quantidade de membros
-                                            residentes hoje na república.
+                                        <small id="memberHelp" class="form-text text-muted">Quantidade de membros residentes hoje na república.
                                         </small>
                                     </div>
                                 </div>
@@ -140,8 +127,7 @@
                                                name='qtdVacancies' type="text" class="form-control"
                                                aria-describedby="vacancyHelp" placeholder="Ex: 1" style='width: 100%'
                                                required>
-                                        <small id="vacancyHelp" class="form-text text-muted">Quantidade de vagas
-                                            disponíveis hoje na sua república
+                                        <small id="vacancyHelp" class="form-text text-muted">Quantidade de vagas disponíveis hoje na sua república
                                         </small>
                                     </div>
                                 </div>
@@ -166,8 +152,7 @@
                                                name='value' type="text" class="value form-control"
                                                aria-describedby="vacancyHelp" placeholder="R$ 450,00"
                                                style='width: 100%' required>
-                                        <small id="vacancyHelp" class="form-text text-muted">Valor do aluguel da
-                                            república
+                                        <small id="vacancyHelp" class="form-text text-muted">Valor do aluguel da república
                                         </small>
                                     </div>
                                 </div>
@@ -178,6 +163,22 @@
                 </form>
         </div>
     </div>
+    {{--@if(isset($republic))
+                                <img id='imgSrc' class='mb-2' src='{{$republic->image}}'
+                                     style="width:200px; height:200px;"/>
+                                <br>
+                                <div class="input-group mb-3">
+                                    <input type='text' name='image'
+                                           value="{{isset($republic) ? $republic->image:old('image') ?? ''}}" id='image'
+                                           class="form-control"
+                                           placeholder="Ex: www.facebook.com/user/image.png"
+                                           style='border-top-right-radius: 0;border-bottom-right-radius: 0;max-width: 300px;'>
+                                    <div class="input-group-append">
+                                        <button id='btnCheck' class="btn btn-outline-danger" type="button">Upload
+                                        </button>
+                                    </div>
+                                </div>
+                            @endif--}}
 @endsection
 @push('scripts')
     <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>

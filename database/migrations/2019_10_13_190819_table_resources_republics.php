@@ -17,8 +17,12 @@ class TableResourcesRepublics extends Migration
             $table->increments('id');
             $table->integer('anuncio_id')->unsigned();
             $table->integer('resource_id')->unsigned();
+            $table->unsignedInteger('republic_id')->unsigned();
             $table->timestamps();
 
+        });
+        Schema::table('resource_anuncio', function (Blueprint $table) {
+            $table->foreign('republic_id')->references('id')->on('republics');
         });
     }
 

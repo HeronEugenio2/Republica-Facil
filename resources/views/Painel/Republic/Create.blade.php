@@ -23,7 +23,8 @@
                             @csrf
                             <div class='row'>
                                 <div class='form-group col-6'>
-                                    <label for='select_republic_photo' class='form-control-label'>
+                                    <label class='form-control-label' for='select_republic_photo'
+                                           class='form-control-label'>
                                         Foto República
                                     </label>
                                     <br>
@@ -34,15 +35,18 @@
                                 </div>
                                 <div class='col-6'>
                                     <div class='form-group'>
-                                        <label for='name-republic' class='form-control-label'>Nome da Republica</label>
-                                        <input type='text' class='form-control w-100' name='name-republic' value='{{$republic->name ?? ''}}'
+                                        <label class='form-control-label' for='name-republic'
+                                               class='form-control-label'>Nome da Republica</label>
+                                        <input type='text' class='form-control w-100' name='name'
+                                               value='{{$republic->name ?? ''}}'
                                                placeholder='Adicionae um nome para sua republica' style='width: 100%;' required>
                                         <small id='nameHelp' class='form-text text-muted'>O nome será mostrado na pesquisa dos usuários</small>
                                     </div>
                                     <div class='form-group'>
-                                        <label for='email-republic' class='form-control-label'>E-mail da Repúlica</label>
-                                        <input class='form-control w-100' id='email-republic' value='{{$republic->email ?? ''}}'
-                                               name='email-republic'
+                                        <label class='form-control-label' for='email-republic'
+                                               class='form-control-label'>E-mail da Repúlica</label>
+                                        <input class='form-control w-100' id='email' value='{{$republic->email ?? ''}}'
+                                               name='email'
                                                aria-describedby='emailHelp'
                                                placeholder='republica.estudantes@gmail.com'
                                                style='width: 100%' required>
@@ -53,42 +57,42 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-4 col-lg-4 col-sm-12">
-                                    <label>Rua</label>
+                                    <label class='form-control-label'>Rua</label>
                                     <input id="street" name='street'
                                            value='{{isset($republic)?$republic->street:old('street')??''}}' type="text"
                                            class="form-control"
                                            placeholder="Ex: Av. General Affonseca" style='width: 100%'>
                                 </div>
                                 <div class="form-group col-md-1 col-lg-1 col-sm-6">
-                                    <label>Número</label>
+                                    <label class='form-control-label'>Número</label>
                                     <input id="number" name='number'
                                            value='{{isset($republic)?$republic->number:old('number')??''}}'
                                            type="text" class="form-control" placeholder="Ex: 251"
                                            style='width: 100%'>
                                 </div>
                                 <div class="form-group col-md-4 col-lg-4 col-sm-12">
-                                    <label>Bairro</label>
+                                    <label class='form-control-label' class='form-control-label'>Bairro</label>
                                     <input id="district" name='district'
                                            value='{{isset($republic)?$republic->district:old('district')??''}}'
                                            type="text" class="form-control"
                                            placeholder="Ex: Manejo" style='width: 100%'>
                                 </div>
                                 <div class="form-group col-md-3 col-lg-3 col-sm-12">
-                                    <label>Cep</label>
+                                    <label class='form-control-label'>Cep</label>
                                     <input id="cep" name='cep'
                                            value='{{isset($republic)?$republic->cep:old('cep')??''}}' type="text"
                                            class="form-control"
                                            placeholder="Ex: Av. General Affonseca" style='width: 100%'>
                                 </div>
                                 <div class="form-group col-md-8 col-lg-8 col-sm-12">
-                                    <label>Cidade</label>
+                                    <label class='form-control-label'>Cidade</label>
                                     <input id="city" name='city'
                                            value='{{isset($republic)?$republic->city:old('city')??''}}' type="text"
                                            class="form-control" placeholder="Ex: Resende"
                                            style='width: 100%'>
                                 </div>
                                 <div class="form-group col-md-4 col-lg-4 col-sm-12">
-                                    <label>Estado</label>
+                                    <label class='form-control-label'>Estado</label>
                                     <input id="state" name='state'
                                            value='{{isset($republic)?$republic->state:old('district')??''}}' type="text"
                                            class="form-control" placeholder="Ex: Rio de Janeiro"
@@ -97,7 +101,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputDescription">Descrição:</label>
+                                <label class='form-control-label' for="inputDescription">Descrição:</label>
                                 <textarea id="inputDescription" name='description'
                                           value='{{isset($republic)?$republic->description:old('description')??''}}'
                                           type="text" class="form-control"
@@ -109,7 +113,7 @@
                             <div class='row'>
                                 <div id='member' class="form-group col-md-2 col-lg-2 col-sm-12">
                                     <div class="form-group">
-                                        <label for="inputMember">Membros</label>
+                                        <label class='form-control-label' for="inputMember">Membros</label>
                                         <input id="inputMember"
                                                value='{{isset($republic)?$republic->qtdMembers:old('qtdMembers')??''}}'
                                                name='qtdMembers' type="text" class="form-control"
@@ -121,7 +125,7 @@
                                 </div>
                                 <div id='vacancy' class="form-group col-md-2 col-lg-2 col-sm-12">
                                     <div class="form-group">
-                                        <label for="inputVacancy">Vagas</label>
+                                        <label class='form-control-label' for="inputVacancy">Vagas</label>
                                         <input id="inputVacancy"
                                                value='{{isset($republic)?$republic->qtdVacancies:old('qtdVacancies')??''}}'
                                                name='qtdVacancies' type="text" class="form-control"
@@ -132,7 +136,7 @@
                                     </div>
                                 </div>
                                 <div id='type' class="form-group col-md-2 col-lg-2 col-sm-12">
-                                    <label for="inputType">Tipo:</label>
+                                    <label class='form-control-label' for="inputType">Tipo:</label>
                                     @if(isset($types))
                                         <select name='type_id' class='form-control col' id="inputCategory" required>
                                             @foreach($types as $type)
@@ -146,7 +150,7 @@
                                 </div>
                                 <div id='valueDiv' class="form-group col-md-2 col-lg-2 col-sm-12">
                                     <div class="form-group">
-                                        <label for="value">Preço</label>
+                                        <label class='form-control-label' for="value">Preço</label>
                                         <input id="value"
                                                value='{{isset($republic) ? $republic->value : old('value') ?? ''}}'
                                                name='value' type="text" class="value form-control"
@@ -183,7 +187,7 @@
 @push('scripts')
     <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
     <script type='text/javascript'>
-        $('#value').mask('#.##0,00', {reverse: true});
+        $('#value').mask('###0,00', {reverse: true});
 
         $('#btnCheck').click(function () {
             let src = $('#image').val();
@@ -196,7 +200,8 @@
         //trocar virgula
         $('#save').click(function () {
             let rep = $('#value').val();
-            let valuePoint = rep.replace(',', '.');
+            let valuePoint = rep.replace('.', '');
+            valuePoint = rep.replace(',', '.');
             $('#value').val(valuePoint);
         });
     </script>

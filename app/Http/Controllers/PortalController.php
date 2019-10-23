@@ -101,7 +101,7 @@ class PortalController extends Controller
             $advertisements = $this->advertisementModel->where('category_id', $advertisement->category->id)->limit(8)->get();
 
             $config['map_height'] = '500px';
-            $config['map_width'] = '70%';
+            $config['map_width'] = '100%';
             $config['directions'] = true;
             $config['directionsStart'] = "$advertisement->street, $advertisement->city , $advertisement->state  ";
             $config['directionsEnd'] = "$advertisement->street , $advertisement->city , $advertisement->state  ";

@@ -8,40 +8,32 @@
             top: 50%;
             transform: translate(-50%, -50%);
         }
+
+        .img-thumbnail {
+            background-color: rgba(0, 0, 0, 0.5);
+            background-color: #000;
+        }
     </style>
 @endpush
 
 @section('content')
     <div class="container mt-4">
         <div class="row">
-            <div class="col-md-5 my-4">
-                <div class="jumbotron card card-block py-4 text-center shadow justify-content-center"
+            <div class="col-md-5 mt-4">
+                <div class="badge badge-primary w-100 mb-2">
+                    <h2 class="m-0">
+                        <i class="fas fa-money-bill-wave"></i> R$ {{money_format('%.2n', $advertisement->value)}}
+                    </h2>
+                </div>
+                <div class="jumbotron card card-block py-4 text-center shadow justify-content-center mb-2"
                      style="align-items: center;">
                     <img class=" mb-4" src="{{asset($advertisement->image)}}"
                          style="width: 330px;height: auto;">
                     <h2>
                         {{$advertisement->title}}
                     </h2>
-                    <h2>
-                        <i class="fas fa-money-bill"></i> R$ {{money_format('%.2n', $advertisement->value)}}
-                    </h2>
-                    <hr>
-                    <div class="media">
-                        <img class="mr-3" src="{{asset('images/'.$advertisement->user->image)}}"
-                             style="width: 80px;height:80px">
-                        <div class="media-body">
-                            <h5 class="mt-0">{{$advertisement->user->name}}</h5>
-                            {{$advertisement->user->email}}<br>
-                            <strong>{{$republic->name ??''}}</strong>
-                        </div>
-                    </div>
-                    <hr>
-                    <p class="text-center">
-                        <a class="btn btn-success btn-large" href="#"><i class="fab fa-whatsapp text-white"></i> Contato</a>
-                        <a class="btn btn-primary btn-large" href="#"><i class="fas fa-link"></i> Compartilhar</a>
-                    </p>
-                    <hr>
                     <p class="text-center text-secondary mt-4">Irregularidades no anúncio? <a href="#">Denunciar</a></p>
+
                 </div>
             </div>
             <div class="col my-4">
@@ -51,9 +43,28 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 my-4">
+            <div class="col-12 mt-4 ">
                 <div class="card shadow">
                     <div class="card-body">
+                        <div class="jumbotron pb-1">
+                            <div class="media">
+                                <img class="mr-3 mt-2 img-thumbnail rounded-circle"
+                                     src="{{$advertisement->user->image}}"
+                                     style="width: 80px;height:80px">
+                                <div class="media-body text-left">
+                                    <h5 class="mt-0">{{$advertisement->user->name}}</h5>
+                                    {{$advertisement->user->email}}<br>
+                                    <strong>{{$republic->name ??''}}</strong>
+                                </div>
+                            </div>
+                            <hr>
+                            <p class="text-center mt-2">
+                                <a class="btn btn-success btn-large" href="#"><i class="fab fa-whatsapp text-white"></i>
+                                    Contato</a>
+                                <a class="btn btn-primary btn-large" href="#"><i class="fas fa-link"></i>
+                                    Compartilhar</a>
+                            </p>
+                        </div>
                         <h4>Descrição</h4>
                         <hr>
                         {{$advertisement->description}}<br>

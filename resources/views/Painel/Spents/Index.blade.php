@@ -4,7 +4,7 @@
         <div class="card text-dark bg-primary" id='managerSpent' style="height: auto;">
             <div class="card-header bg-nav text-white c-">Gerenciador de gastos</div>
             <div class="card-body">
-                <h4 class="card-text text-center">ST = (ST/QT)-SI</h4>
+                <h4 class="card-text text-center">Total = (S.Gastos/Qtd.Membros)-Cr.Individual</h4>
                 Débito República =
                 <strong class='float-right text-danger'>R${{number_format($spentsTotal, 2, ',', ' ')}}</strong>
                 <br> Crédito Individual =

@@ -3,19 +3,24 @@
 @section('content')
     <div id='advertList' class='card'>
         <div id='advertHeader' class='card-header text-white bg-nav'>Anúncios da República</div>
-        <div id='advertBody' class='card-body '>
-            <a href="{{route('painel.advertisement.create')}}" class="btn btn-success mb-2">
+        <div id='advertBody' class='card-body'>
+            <a href="{{route('painel.advertisement.create')}}" class="btn btn-primary mb-2">
                 <i class="fas fa-plus-circle"></i> Novo Anúncio
             </a>
             <div class='filtro'>
                 <form method="GET" action="{{ route('painel.advertisement.index')}}">
                     @csrf
-                    <div class="input-group mb-3  w-50">
-                        <input type="text" id="name" name="name" class="form-control" placeholder="Palavra Chave"
-                               style='border-bottom-right-radius: unset;border-top-right-radius: unset;'>
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-search mr-2"></i>Buscar
-                            </button>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" id="name" name="name" class="form-control"
+                                       placeholder="Palavra Chave"
+                                       style='border-bottom-right-radius: unset;border-top-right-radius: unset;'>
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-search mr-2"></i>Buscar
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </form>

@@ -25,11 +25,14 @@
         <div class='card-body'>
             <form action='{{route('painel.member.store')}}' method='POST' class='mb-2'>
                 @csrf
-                <label>Para adicionar membros à sua república é preciso que o usuário aceite o convite no e-mail.</label>
+                <label class="form-control-label">Para adicionar membros à sua república é preciso que o usuário aceite
+                    o convite no e-mail.</label>
                 <div class='input-group mb-3'>
-                    <input name='email' type='email' class='form-control' placeholder='Endereço de e-mail do convidado' aria-label="Recipient's username" aria-describedby="basic-addon2" style='border-top-right-radius: initial;border-bottom-right-radius: initial;' required>
+                    <input name='email' type='email' class='form-control' placeholder='Endereço de e-mail do convidado'
+                           aria-label="Recipient's username" aria-describedby="basic-addon2"
+                           style='border-top-right-radius: initial;border-bottom-right-radius: initial;' required>
                     <div class='input-group-append'>
-                        <button type='submit' class='btn btn-secondary'>Enviar Convite</button>
+                        <button type='submit' class='btn btn-primary'>Enviar Convite</button>
                     </div>
                 </div>
             </form>
@@ -37,27 +40,27 @@
                 <div class='table-responsive'>
                     <table class='table table-bordered table-sm table-hover table-striped text-center'>
                         <thead>
-                            <tr>
-                                <th scope='col'>Email</th>
-                                <th scope='col'>Enviada</th>
-                                <th scope='col'>Opções</th>
-                            </tr>
+                        <tr>
+                            <th scope='col'>Email</th>
+                            <th scope='col'>Enviada</th>
+                            <th scope='col'>Opções</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            @foreach($invitations as $invitation)
-                                <tr class='text-center'>
-                                    <td>
-                                        {{$invitation->email}}
-                                    </td>
-                                    <td>
-                                        {{date_format($invitation->created_at, 'd/m/Y')}}
-                                    </td>
-                                    <td>
-                                        <a href='#' class='btn btn-primary btn-sm float-left'>Reenviar</a>
-                                        <a href='#' class='btn btn-danger btn-sm float-right'>Cancelar</a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        @foreach($invitations as $invitation)
+                            <tr class='text-center'>
+                                <td class="align-middle">
+                                    {{$invitation->email}}
+                                </td>
+                                <td class="align-middle">
+                                    {{date_format($invitation->created_at, 'd/m/Y')}}
+                                </td>
+                                <td class="align-middle" width="15%">
+                                    <a href='#' class='btn btn-primary btn-sm my-1 float-left'>Reenviar</a>
+                                    <a href='#' class='btn btn-danger btn-sm my-1 float-left'>Cancelar</a>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -76,23 +79,29 @@
                 <div class='table-responsive'>
                     <table class='table table-bordered table-sm table-hover table-striped text-center'>
                         <thead>
-                            <tr>
-                                <th scope='col'>Nome</th>
-                                <th scope='col'>E-mail</th>
-                            </tr>
+                        <tr>
+                            <th scope='col'>Nome</th>
+                            <th scope='col'>E-mail</th>
+                            <th scope='col'>Ações</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            @foreach($members as $member)
-                                <tr class='text-center'>
-                                    <td>
-                                        <a href='#' class='float-left'>
-                                            <i class='fas fa-user-times text-danger'></i>
-                                        </a>
-                                        {{$member->name}}
-                                    </td>
-                                    <td>{{$member->email}}</td>
-                                </tr>
-                            @endforeach
+                        @foreach($members as $member)
+                            <tr class='text-center'>
+                                <td class="align-middle">
+                                    <img src="{{$member->image}}" class="mr-2"
+                                         style="width: 32px; height: 32px;  top: -2px; left: 10px; border-radius: 50%">
+                                    {{$member->name}}
+                                </td>
+                                <td class="align-middle">{{$member->email}}</td>
+                                <td class="align-middle">
+                                    <a href='#' class='float-left'>
+                                        <i class='fas fa-user-times text-danger mr-2'></i><strong class="text-danger">
+                                            Remover Membro</strong>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

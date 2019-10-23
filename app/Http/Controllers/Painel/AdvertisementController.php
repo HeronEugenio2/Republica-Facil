@@ -55,7 +55,7 @@ class AdvertisementController extends Controller
             $advertisements = $this->advertisementModel->where('user_id', $user->id);
 
             if ($request->has('name') && !empty($request->input('name'))) {
-                $advertisements = $this->advertisementModel->where('title', $request->input('name'));
+                $advertisements = $this->advertisementModel->where('title', 'like', '%' . $request->input('name') . '%');
             }
 
             return view('Painel.Advertisement.Index', ['user' => $user, 'advertisements' => $advertisements->get()]);

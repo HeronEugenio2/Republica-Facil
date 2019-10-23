@@ -49,7 +49,7 @@
 </style>
 @section('content')
     {{--    HEADER BG IMAGE--}}
-    <div class="jumbotron jumbotron-fluid m-0 p-2 bg-header2">
+    <div class="jumbotron jumbotron-fluid m-0 bg-header2">
         <div class="container">
             <div class='row justify-content-md-center'>
                 <div class='col-12 text-center mt-4 mb-2'>

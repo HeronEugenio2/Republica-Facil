@@ -36,7 +36,7 @@
 
                 </div>
             </div>
-            <div class="col my-4">
+            <div class="col mt-4">
                 <div class="card shadow">
                     <div class="card-body">
                         {!! $map['html'] !!}

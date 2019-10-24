@@ -29,7 +29,7 @@
         /*height: 200px;*/
     }
     .bg-anuncios {
-        background-image: linear-gradient(0deg, #dededebd, #f8f9fa) ,url(/images/FotoJet2.png);
+        background-image: linear-gradient(0deg, #dededebd, #f8f9fa), url(/images/FotoJet2.png);
         background-position: center;
     }
     .imgBanner {
@@ -95,7 +95,7 @@
         </div>
     </div>
     {{--    INCLUDE CARDS--}}
-    <div class="jumbotron jumbotron-fluid p-4 mb-0 bg-anuncios" >
+    <div class="jumbotron jumbotron-fluid p-4 mb-0 bg-anuncios">
         @include('Portal.Advertisement.IncludeSearch')
         {{ $advertisementes->links() }}
     </div>
@@ -128,15 +128,15 @@
     {{--        </a>--}}
     {{--    </div>--}}
     {{--    FOOTER--}}
-    <div id='footer' class="jumbotron jumbotron-fluid bg-dark mb-0">
-        <div class="container">
-            <div class='row justify-content-md-center'>
-                <a href='#' class='text-white mx-1'><i class="fas fa-id-badge"></i> Contato</a>
-                <a href='#' class='text-white mx-1'><i class="fab fa-github-alt"></i> GitHub</a>
-                <a href='#' class='text-white mx-1'><i class="fab fa-instagram"></i> Instagram</a>
-            </div>
-        </div>
-    </div>
+    {{--    <div id='footer' class="jumbotron jumbotron-fluid bg-dark mb-0">--}}
+    {{--        <div class="container">--}}
+    {{--            <div class='row justify-content-md-center'>--}}
+    {{--                <a href='#' class='text-white mx-1'><i class="fas fa-id-badge"></i> Contato</a>--}}
+    {{--                <a href='#' class='text-white mx-1'><i class="fab fa-github-alt"></i> GitHub</a>--}}
+    {{--                <a href='#' class='text-white mx-1'><i class="fab fa-instagram"></i> Instagram</a>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
 @endsection
 @push('scripts')
     <script>

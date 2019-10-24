@@ -166,7 +166,7 @@ class PortalController extends Controller
                 ->whereBetween('value', [$value - 99, $value])
                 ->where('active_flag', 1)->take(20)->get();
 
-            return view('Portal.Republic.IncludeSearch', compact('republics', 'value'))->render();
+            return view('Portal.Republic.IncludeSearch', compact('republics', 'value'));
         }
         $republics = $this->republicModel->where('city', 'like', '%' . $valueSearch . '%')
             ->where('active_flag', 1)

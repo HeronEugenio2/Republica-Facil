@@ -41,6 +41,11 @@
                         <h5 class="card-title text-truncate">{{$advertisement->title}}</h5>
                         <p class="card-text text-truncate">{{$advertisement->street}}
                             <br>{{$advertisement->city}} - {{$advertisement->state}}</p>
+                        <a class="btn btn-success btn-large" href="#">
+                            <i class="fab fa-whatsapp text-white"></i> Contato
+                        </a>
+                        <a class="btn btn-primary btn-large" href="#"><i class="fas fa-link"></i> Compartilhar</a>
+
                     </div>
                 </div>
             </div>
@@ -55,24 +60,18 @@
         <div class="mt-4 ">
             <div class="card shadow">
                 <div class="card-body">
-                    <div class="jumbotron pb-1">
+                    <div class="jumbotron">
                         <div class="media">
                             <img class="mr-3 mt-2 img-thumbnail rounded-circle"
                                  src="{{$advertisement->user->image}}"
-                                 style="width: 80px;height:80px">
+                                 style="width: 120px;height:120px">
                             <div class="media-body text-left">
-                                <h5 class="mt-0">{{$advertisement->user->name}}</h5>
-                                {{$advertisement->user->email}}<br> <strong>{{$republic->name ??''}}</strong>
+                                <h2>{{$advertisement->user->name}}</h2>
+                                {{$advertisement->user->email}}<br>
+                                {{$advertisement->user->phone}}<br>
+                                <strong>{{$republic->name ?? 'Sem República'}}</strong>
                             </div>
                         </div>
-                        <hr>
-                        <p class="text-center mt-2">
-                            <a class="btn btn-success btn-large" href="#">
-                                <i class="fab fa-whatsapp text-white"></i> Contato
-                            </a>
-                            <a class="btn btn-primary btn-large" href="#"><i class="fas fa-link"></i> Compartilhar
-                            </a>
-                        </p>
                     </div>
                     <h4>Descrição</h4>
                     <hr>
@@ -88,8 +87,8 @@
                     <div class="row justify-content-center mb-2">
                         @if(isset($advertisements))
                             @foreach($advertisements as $advertisement)
-                                <div class='card m-1 shadow' style='width: 150px;     border-color: #2881da5c;'>
-                                    <img class="card-img-top w-100" style='height: 120px'
+                                <div class='card m-1 shadow' style='width: 250px; border-color: #2881da5c;'>
+                                    <img class="card-img-top w-100" style='height: 250px'
                                          src="{{$advertisement->image}}"
                                          alt="Card image cap">
                                     <div class='card-body p-1 text-center w-100 text-truncate'>

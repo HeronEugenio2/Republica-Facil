@@ -1,5 +1,15 @@
 @extends('layouts.Painel.LayoutFull')
-
+<style>
+    .mydiv {
+        background-image: url(https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg);
+        background-size: auto;
+        /* width: 100%; */
+        height: 300px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
 @section('content')
     <div class='card'>
         <div class='card-header bg-nav text-white'>Criar Anúncio</div>
@@ -7,34 +17,51 @@
             <form id="logout-form" method="POST"
                   action="{{ route('painel.advertisement.store', ['user'=>$user->id]) }}">
                 @csrf
-                {{--<input type='hidden' name='republic_id' value='{{$republic->id}}'>--}}
-                <input type='hidden' name='user_id' value='{{$user->id}}'> <img id='imgSrc' class='mb-2'
-                                                                                src='https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg'
-                                                                                style="width:200px; height:200px;"/>
-                <div class="input-group w-50 mb-3">
-                    <input type='text' name='image' id='image' class="form-control"
-                           placeholder="Ex: www.facebook.com/user/image.png"
-                           style='border-top-right-radius: 0; border-bottom-right-radius: 0;'>
-                    <div class="input-group-append">
-                        <button id='btnCheck' class="btn btn-outline-danger" type="button">Upload</button>
+                <input type='hidden' name='user_id' value='{{$user->id}}'>
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 col-lg-4">
+                        <div class='overflow-hidden'>
+                            <div id="imageA" class="overflow-auto overflow-hidden mb-2 mydiv">
+                            </div>
+                        </div>
+                        {{--                        <img id='imgSrc' class='mb-2 w-100' src='https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg'/>--}}
+                        <div class="input-group w-100 mb-3">
+                            <input type='text' name='image' id='image' class="form-control"
+                                   placeholder="Ex: www.facebook.com/user/image.png"
+                                   style='border-top-right-radius: 0; border-bottom-right-radius: 0;'>
+                            <div class="input-group-append">
+                                <button id='btnCheck' class="btn btn-outline-danger" type="button">Upload</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group col-12 p-0">
-                    <label>Título</label>
-                    <input id="inputTitle" name='title' type="text" class="form-control"
-                           aria-describedby="descriptionHelp" placeholder="Ex: Vaga Masculina " style='width: 100%'
-                           required>
-                    <small id="descriptionHelp" class="form-text text-muted">Insira titulo do anúncio.
-                    </small>
-                </div>
-                <div class="form-group col-12 p-0">
-                    <label>Descrição</label>
-                    <textarea id="inputDescription" name='description' class="form-control w-100" rows='10' required></textarea>
-                    @error('description')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                    <small id="descriptionHelp" class="form-text text-muted">Insira descrição do anúncio.
-                    </small>
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label>Título</label>
+                                <input id="inputTitle" name='title' type="text" class="form-control"
+                                       aria-describedby="descriptionHelp" placeholder="Ex: Vaga Masculina "
+                                       style='width: 100%'
+                                       required>
+                                <small id="descriptionHelp" class="form-text text-muted">Insira titulo do anúncio.
+                                </small>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="inputValue">Valor</label>
+                                <input id="inputValue" name='value' type="text" step='0.01' class="form-control w-100"
+                                       aria-describedby="spentHelp" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group col-12 p-0">
+                            <label>Descrição</label>
+                            <textarea id="inputDescription" name='description' class="form-control w-100" rows='11'
+                                      required></textarea>
+                            @error('description')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <small id="descriptionHelp" class="form-text text-muted">Insira descrição do anúncio.
+                            </small>
+                        </div>
+                    </div>
                 </div>
                 <div class='row'>
                     <div class='col-sm-12 col-md-6 col-lg-6'>
@@ -58,11 +85,6 @@
                             @error('cep')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
-                        </div>
-                        <div class="form-group col-12 p-0">
-                            <label for="inputValue">Valor</label>
-                            <input id="inputValue" name='value' type="text" step='0.01' class="form-control w-100"
-                                   aria-describedby="spentHelp" placeholder="">
                         </div>
                     </div>
                     <div class='col-sm-12 col-md-6 col-lg-6'>
@@ -100,7 +122,7 @@
                                 <div class="checkbox mx-4">
                                     <label class="checkbox-inline">
                                         <input type="checkbox" checked data-toggle="toggle" data-onstyle="success"
-                                              value='{{$resource->id}}' name="{{$resource->name}}"> {{$resource->name}}
+                                               value='{{$resource->id}}' name="{{$resource->name}}"> {{$resource->name}}
                                     </label>
                                 </div>
                             @endforeach
@@ -117,10 +139,14 @@
     <script type='text/javascript'>
         $('#inputValue').mask('#.##0,00', {reverse: true});
         $('#btnCheck').click(function () {
-            let src = $('#image').val();
-            $('#imgSrc').attr("src", src);
-            if ($('#image').val() == '' || $('#image').val() == []) {
-                $('#imgSrc').attr("src", "https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg");
+            let image = 'url(' + $('#image').val() + ')';
+            var original_image = 'url(https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg)';
+            var second_image = image;
+            if (image == 'url()') {
+                $('.mydiv').css('background-image', original_image);
+                $('#image').val('https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg');
+            } else {
+                $('.mydiv').css('background-image', second_image);
             }
         });
     </script>

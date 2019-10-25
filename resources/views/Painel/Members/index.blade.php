@@ -95,10 +95,8 @@
                                 </td>
                                 <td class="align-middle">{{$member->email}}</td>
                                 <td class="align-middle">
-                                    <a href='#' class='float-left'>
-                                        <i class='fas fa-user-times text-danger l col-2'></i><strong
-                                            class="text-danger">
-                                            Remover Membro</strong>
+                                    <a href='#' class='text-center text-danger'>
+                                        <i class='fas fa-user-times'></i><strong> Remover Membro</strong>
                                     </a>
                                 </td>
                             </tr>

@@ -14,30 +14,33 @@
 @section('content')
     <div class="container mt-4">
         <div class="row">
-            <div class="col-md-5 my-4">
-                <div class="jumbotron card card-block py-4 text-center justify-content-center"
-                     style="align-items: center;">
-                    <img class=" mb-4" src="{{$republic->image}}" style="width: 330px;height: auto;">
+            <div class="card shadow mt-4 mx-3 border" style='height: 542px;'>
+                <div class='overflow-hidden'>
+                    <div class="overflow-auto overflow-hidden" style="
+                        background-image: url({{$republic->image}});
+                        background-size: auto;
+                        /* width: 100%; */
+                        height: 300px;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        ">
+                    </div>
+                </div>
+                <div class="card-body text-center">
                     <h2>
                         {{$republic->name}}
                     </h2>
-                    <p class="text-center">
-                        <a class="btn btn-success btn-large" href="#"><i class="fab fa-whatsapp text-white"></i> Contato</a>
-                        <a class="btn btn-primary btn-large" href="www.republicafacil.com.br/portal/republicas/1"><i
+                    <hr>
+                    <p>
+                        <a class="btn btn-success btn-large my-1" href="#"><i class="fab fa-whatsapp text-white"></i>
+                            Contato</a>
+                        <a class="btn btn-primary btn-large my-1"
+                           href="www.republicafacil.com.br/portal/republicas/1"><i
                                 class="fas fa-link"></i> Compartilhar</a>
-                        <a class="btn btn-warning text-white btn-large" href="#" data-toggle="modal"
+                        <a class="btn btn-warning text-white btn-large my-1" href="#" data-toggle="modal"
                            data-target="#modalExemplo"><i class="fas fa-star"></i> Avaliar</a>
                     </p>
-                    <div class="row">
-                        <div class="col-6">
-                            <h3>{{$republic->down}}</h3>
-                            <i class="fas fa-thumbs-down text-danger fa-2x"></i>
-                        </div>
-                        <div class="col-6">
-                            <h3>{{$republic->up}}</h3>
-                            <i class="fas fa-thumbs-up text-success fa-2x"></i>
-                        </div>
-                    </div>
                     <hr>
                     <p class="text-center text-secondary mt-4">Irregularidades no anúncio? <a href="#">Denunciar</a></p>
                     <div class="col-12 mt-2">
@@ -60,68 +63,86 @@
                     </div>
                 </div>
             </div>
-            <div class="col my-4">
-                <div class="card">
+            <div class="col mt-4">
+                <div class="card shadow">
                     <div class="card-body">
-                        <dl>
-                            <dt>
-                                <h2>Descrição</h2>
-                            </dt>
-                            <dd>
-                                {{$republic->description}}
-                            </dd>
-                            <dt>
-                                Mensalidade
-                            </dt>
-                            <dd>
-                                O valor oferecido pela república é de R$ {{money_format('%.2n', $republic->value)}} por
-                                quarto.
-                            </dd>
-                            <dt>
-                                Tipo de moradia
-                            </dt>
-                            <dd>
-                                A república oferece {{$republic->qtdVacancies}}
-                                @if($republic->qtdVacancies == 1)
-                                    vaga
-                                @else
-                                    vagas
-                                @endif do tipo {{$republic->type->title}}.
-                            </dd>
-                            <address class="my-4 text-center">
-                                <i class="fas fa-map-marked-alt fa-2x"></i>
-                                <strong>{{$republic->city}} - {{$republic->state}} </strong>
-                                <br> {{$republic->street}}, {{$republic->number}} <br> {{$republic->district}},
-                                CEP {{$republic->cep}}<br>
-                            </address>
-                            <hr>
-                            <dt>
-                                Membros
-                            </dt>
-                            <dd>
-                                @foreach($republic->user as $user)
-                                    <div class="media my-1">
-                                        <img class="mr-3 img-thumbnail" alt="Bootstrap Media Preview"
-                                             src="{{asset('images/'.$user->image)}}" style="width: 90px;height:70px">
-                                        <div class="media-body">
-                                            <h5 class="mt-0">
-                                                {{$user->name}}
-                                            </h5>
-                                            {{$user->email}}
-                                        </div>
-                                        @if($user->id == $republic->user_id)
-                                            Proprietário
-                                        @endif
-                                    </div>
-                                @endforeach
-                            </dd>
-                        </dl>
+                        {!! $map['html'] !!}
                     </div>
                 </div>
             </div>
         </div>
+        <div class="mt-4">
+            <div class="card">
+                <div class="card-body ">
+                    <dl>
+                        <dt>
+                            <h2>Descrição</h2>
+                        </dt>
+                        <dd>
+                            {{$republic->description}}
+                        </dd>
+                        <dt>
+                            Mensalidade
+                        </dt>
+                        <dd>
+                            O valor oferecido pela república é de R$ {{money_format('%.2n', $republic->value)}} por
+                            quarto.
+                        </dd>
+                        <dt>
+                            Tipo de moradia
+                        </dt>
+                        <dd>
+                            A república oferece {{$republic->qtdVacancies}}
+                            @if($republic->qtdVacancies == 1)
+                                vaga
+                            @else
+                                vagas
+                            @endif do tipo {{$republic->type->title}}.
+                        </dd>
+                        <address class="my-4 text-center">
+                            <i class="fas fa-map-marked-alt fa-2x"></i>
+                            <strong>{{$republic->city}} - {{$republic->state}} </strong>
+                            <br> {{$republic->street}}, {{$republic->number}} <br> {{$republic->district}},
+                            CEP {{$republic->cep}}<br>
+                        </address>
+                        <hr>
+                        <dt>
+                            Membros
+                        </dt>
+                        <dd>
+                            @foreach($republic->user as $user)
+                                <div class="media my-1">
+                                    <img class="mr-3 img-thumbnail" alt="Bootstrap Media Preview"
+                                         src="{{asset('images/'.$user->image)}}" style="width: 90px;height:70px">
+                                    <div class="media-body">
+                                        <h5 class="mt-0">
+                                            {{$user->name}}
+                                        </h5>
+                                        {{$user->email}}
+                                    </div>
+                                    @if($user->id == $republic->user_id)
+                                        Proprietário
+                                    @endif
+                                </div>
+                            @endforeach
+                        </dd>
+                        <div class="row justify-content-center">
+                            <div class="col-2 text-center">
+                                <h3>{{$republic->down}}</h3>
+                                <i class="fas fa-thumbs-down text-secondary fa-2x"></i>
+                            </div>
+                            <div class="col-2 text-center">
+                                <h3>{{$republic->up}}</h3>
+                                <i class="fas fa-thumbs-up text-secondary fa-2x"></i>
+                            </div>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <div id='footer' class="jumbotron jumbotron-fluid bg-dark mb-0">
+    <div id='footer' class="jumbotron jumbotron-fluid bg-dark mb-0 mt-4">
         <div class="container">
             <div class='row justify-content-md-center'>
                 <a href='#' class='text-white mx-1'><i class="fas fa-id-badge"></i> Contato</a>

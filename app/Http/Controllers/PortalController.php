@@ -90,7 +90,15 @@ class PortalController extends Controller
     {
         $user = User::where('republic_id', $id)->first();
         $republic = $this->republicModel->with('user')->where('id', $id)->first();
-        return view('Portal.Republic.Show2', compact('republic', 'user'));
+        $config['map_height'] = '500px';
+        $config['map_width'] = '100%';
+        $config['directions'] = true;
+        $config['directionsStart'] = "$republic->street, $republic->city , $republic->district  ";
+        $config['directionsEnd'] = "$republic->street , $republic->city , $republic->district  ";
+        $config['directionsDivID'] = 'directionsDiv';
+        $this->gmp->initialize($config);
+        $map = $this->gmp->create_map();
+        return view('Portal.Republic.Show2', compact('republic', 'user', 'map'));
     }
 
     public function showAdvertisement($id)

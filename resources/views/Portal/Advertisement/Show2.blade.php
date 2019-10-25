@@ -8,6 +8,7 @@
             top: 50%;
             transform: translate(-50%, -50%);
         }
+
         .img-thumbnail {
             background-color: rgba(0, 0, 0, 0.5);
             background-color: #000;
@@ -33,9 +34,9 @@
                             height: 300px;
                             background-position: center;
                             background-repeat: no-repeat;
+                            background-size: cover;
                             ">
                         </div>
-                        {{--                        <img src="{{asset($advertisement->image)}}" class=" w-100">--}}
                     </div>
                     <div class="card-body">
                         <h5 class="card-title text-truncate">{{$advertisement->title}}</h5>
@@ -95,7 +96,8 @@
                                         <small>{{$advertisement->title}}</small>
                                         <br>
                                         <small>
-                                            <strong><i class="fas fa-money-bill"></i> R$ {{money_format('%.2n', $advertisement->value)}}
+                                            <strong><i class="fas fa-money-bill"></i>
+                                                R$ {{money_format('%.2n', $advertisement->value)}}
                                             </strong>
                                         </small>
                                         <div class='w-100'></div>

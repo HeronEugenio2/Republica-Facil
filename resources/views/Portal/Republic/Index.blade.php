@@ -9,7 +9,7 @@
             <div class='col-sm-12 col-md-3 col-lg-3'>
                 {{--<form action='{{route('portal.republicSearch')}}' method='POST'>--}}
                 <form action=''>
-                    <div class='card mb-2 bg-light'>
+                    <div class='card mb-2 bg-light shadow'>
                         <div class='card-body'>
                             <h3>Moradia para</h3>
                             <div class="form-check">
@@ -29,7 +29,7 @@
                     </div>
                 </form>
                 <form action=''>
-                    <div class='card mb-2 bg-light'>
+                    <div class='card mb-2 bg-light shadow'>
                         <div class='card-body '>
                             <h3>Faixa de preço</h3>
                             <div class="form-check">
@@ -55,12 +55,12 @@
                             </div>
                         </div>
                     </div>
-                    <a href='#' id='btnFiltro' class='btn btn-danger w-100 mb-2'>Filtrar</a>
+                    <a href='#' id='btnFiltro' class='btn btn-danger w-100 mb-2 shadow'>Filtrar</a>
                 </form>
             </div>
 
             <div class='col-sm-12 col-md-9 col-lg-9'>
-                <div class="card">
+                <div class="card shadow">
                     <div class="card-body bg-light pb-0">
                         <div class='form-group'>
                             <form id="logout-form" action="{{ route('portal.republicSearch') }}" method="POST">

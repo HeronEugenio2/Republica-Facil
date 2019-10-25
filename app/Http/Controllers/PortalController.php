@@ -47,8 +47,8 @@ class PortalController extends Controller
      */
     public function index()
     {
-        $republics = $this->republicModel->where('active_flag', 1)->paginate(14);
-        $advertisements = $this->advertisementModel->where('active_flag', 1)->paginate(7);
+        $republics = $this->republicModel->where('active_flag', 1)->paginate(12);
+        $advertisements = $this->advertisementModel->where('active_flag', 1)->paginate(8);
 
         return view('Portal.welcome', compact('republics', 'advertisements'));
     }

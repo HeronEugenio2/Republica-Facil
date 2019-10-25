@@ -94,18 +94,17 @@
             <div class="row justify-content-center mb-2">
                 @if(isset($republics))
                     @foreach($republics as $republic)
-                        <div class='card m-1 border-dark shadow' style='width: 150px; '>
-                            <img class="card-img-top w-100" style='height: 120px' src="{{$republic->image}}"
+                        <div class='card m-1 border-dark shadow' style='width: 270px; '>
+                            <img class="card-img-top w-100" style='height: 270px' src="{{$republic->image}}"
                                  alt="Card image cap">
                             <div class='card-body p-1 text-center w-100'>
                                 <div class='text-truncate'>
-                                    <small>{{$republic->name}}</small>
+                                    <h5>{{$republic->name}}</h5>
                                 </div>
-                                <br>
                                 <div class='font-weight-bold' style='    color: brown;'>
-                                    <strong><i class="fas fa-money-bill"></i>
+                                    <h2><i class="fas fa-money-bill"></i>
                                         R$ {{money_format('%.2n', $republic->value)}}
-                                    </strong></div>
+                                    </h2></div>
                                 <a href='{{route('portal.republics.show', $republic->id)}}'
                                    class='btn btn-sm btn-danger bg-danger2 w-100'>Visualisar</a>
                             </div>
@@ -196,16 +195,15 @@
                 <div class="row justify-content-center mb-2">
                     @if(isset($advertisements))
                         @foreach($advertisements as $advertisement)
-                            <div class='card m-1 shadow' style='width: 150px;     border-color: #2881da5c;'>
-                                <img class="card-img-top w-100" style='height: 120px' src="{{$advertisement->image}}"
+                            <div class='card m-1 shadow' style='width: 270px; border-color: #2881da5c;'>
+                                <img class="card-img-top w-100" style='height: 270px' src="{{$advertisement->image}}"
                                      alt="Card image cap">
                                 <div class='card-body p-1 text-center w-100 text-truncate'>
-                                    <small>{{$advertisement->title}}</small>
-                                    <br>
+                                    <h4>{{$advertisement->title}}</h4>
                                     <small>
-                                        <strong><i class="fas fa-money-bill"></i>
+                                        <h2 class="text-primary"><i class="fas fa-money-bill"></i>
                                             R$ {{money_format('%.2n', $advertisement->value)}}
-                                        </strong>
+                                        </h2>
                                     </small>
                                     <div class='w-100'></div>
                                     <a href='{{route('portal.showAdvertisement', $advertisement->id)}}' href='#'

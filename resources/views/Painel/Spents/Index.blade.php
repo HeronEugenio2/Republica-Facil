@@ -17,8 +17,8 @@
                             R${{number_format($result, 2, ',', ' ')}}</h2>
                     </div>
                 @else
-                    <div class="w-100 bg-danger mt-4 p-2">
-                        <h2 class='text-white display-4 text-center'>DÉBITO
+                    <div class="w-100 bg-danger mt-4 rounded p-2">
+                        <h2 class='text-white display-4 text-center  mb-0'>DÉBITO
                             R${{number_format($result, 2, ',', ' ')}}</h2>
                     </div>
                 @endif
@@ -27,12 +27,13 @@
         <div class='card' id='spentFull'>
             <div id='headerFull' class='card-header bg-nav text-white'>Gastos</div>
             <div id='bodyFull' class='card-body '>
-                <button type="button" class="btn btn-success my-2" data-toggle="modal"
+                <button type="button" class="btn btn-primary btn-sm my-2" data-toggle="modal"
                         data-target="#modalSpent"><i class="fas fa-plus-circle"></i> Novo Gasto
                 </button>
-                <button id="btnExtract" type="button" class="btn btn-primary my-2" data-toggle="modal"
+                <button id="btnExtract" type="button" class="btn btn-sm btn-primary my-2" data-toggle="modal"
                         data-target="#modalExtract"><i class="fas fa-history"></i> Extrato de contas
                 </button>
+                <hr>
                 @if($republic != null)
                     @if(count($spents)>0)
                         <div class='table-responsive'>
@@ -82,10 +83,11 @@
                                 </tbody>
                             </table>
                         </div>
-                        <small class='text-muted'>Aqui estão listados todos os gastos da república.</small><br>
+                        <small class='text-muted'>Aqui estão listados todos os gastos da república.</small>
+                        <hr>
                         <!-- Botão para acionar modal -->
                         <button id="closeMonth" data-result="{{$result}}" data-republic="{{$republic->id}}"
-                                data-user="{{auth()->user()->id}}" type="button" class="btn btn-secondary my-2"
+                                data-user="{{auth()->user()->id}}" type="button" class="btn btn-primary btn-sm my-2"
                                 data-toggle="modal" data-target="#modalSpentResult">
                             <i class="far fa-check-circle"></i> Fechar Mês
                         </button>
@@ -128,6 +130,7 @@
                         </table>
                     </div>
             @endif
+                <hr>
             <!-- Botão para acionar modal -->
                 <button id="newDebit" data-user="{{auth()->user()->id}}" type="button"
                         class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#modalDebit"> Adicionar

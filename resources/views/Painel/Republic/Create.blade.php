@@ -55,6 +55,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <hr>
                             <div class="row">
                                 <div class="form-group col-md-4 col-lg-4 col-sm-12">
                                     <label class='form-control-label'>Rua</label>

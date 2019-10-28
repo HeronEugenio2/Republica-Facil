@@ -22,7 +22,8 @@
         background-color: #e9ebee;
     }
     body {
-        background-image: url("/images/FotoJet3.png");
+        background-color: #d1d5dca1;
+        /*background-image: url("/images/FotoJet3.png");*/
         background-position: top;
         background-repeat: no-repeat;
     }

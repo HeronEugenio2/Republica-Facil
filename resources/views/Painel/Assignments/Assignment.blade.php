@@ -27,7 +27,11 @@
                                 <td>{{$assignmet->start}}</td>
                                 <td>{{$assignmet->end}}</td>
                                 <td>{{$assignmet->description}}</td>
-                                <td>{{$assignmet->user->name}}</td>
+                                <td>
+                                    <img class="mr-2" src="{{$assignmet->user->image}}"
+                                         style="width: 32px; height: 32px; border-radius: 50%">
+                                    {{$assignmet->user->name}}
+                                </td>
                                 <td width="1%">
                                     <form action="{{route('painel.conclude')}}" method="POST">
                                         @csrf

@@ -88,7 +88,7 @@
                         <tbody>
                         @foreach($members as $member)
                             <tr class='text-center'>
-                                <td class="align-middle">
+                                <td class="align-middle text-left">
                                     <img src="{{$member->image}}" class="mr-2"
                                          style="width: 32px; height: 32px;  top: -2px; left: 10px; border-radius: 50%">
                                     {{$member->name}}

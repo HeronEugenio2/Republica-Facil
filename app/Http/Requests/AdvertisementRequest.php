@@ -25,7 +25,7 @@ class AdvertisementRequest extends FormRequest
     {
         return [
             'image' => 'nullable',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string',
             'title' => 'required|string|max:255',
             'value' => 'required',
             'category_id' => 'required|string|max:255',

@@ -7,12 +7,13 @@
             <a href="{{route('painel.advertisement.create')}}" class="btn btn-primary mb-2">
                 <i class="fas fa-plus-circle"></i> Novo Anúncio
             </a>
-            <div class='filtro'>
+            <div class='filtro mt-4'>
                 <form method="GET" action="{{ route('painel.advertisement.index')}}">
                     @csrf
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
-                            <div class="input-group mb-3 w-100">
+                            <label class="form-control-label">Nome do anúncio</label>
+                            <div class="input-group mb-3">
                                 <input type="text" id="name" name="name" class="form-control"
                                        placeholder="Palavra Chave"
                                        style='border-bottom-right-radius: unset;border-top-right-radius: unset;'>
@@ -20,6 +21,16 @@
                                     <button type="submit" class="btn btn-primary"><i class="fas fa-search mr-2"></i>Buscar
                                     </button>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="form-control-label">Status</label>
+                                <select class="form-control w-100" name="status">
+                                    <option value="null">Todos</option>
+                                    <option value="1">Ativo</option>
+                                    <option value="0">Inativo</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -45,10 +56,10 @@
                             @foreach($advertisements as $advertisement)
                                 <tr class='text-center'>
                                     <td class='align-middle'>
-                                        <img src="{{$advertisement->image}}" height="42" width="42">
+                                        <img src="{{$advertisement->image}}" height="60" width="70">
                                     </td>
                                     <td class='align-middle'>{{$advertisement->title}}</td>
-                                    <td class='align-middle'>{{$advertisement->description}}</td>
+                                    <td class='align-middle text-left'>{{$advertisement->description}}</td>
                                     <td class='align-middle'>
                                         R$ {{number_format($advertisement->value,2,",",".")}}</td>
                                     <td class='align-middle'>
@@ -64,7 +75,7 @@
                                             <i class="fas fa-eye fa-2x"></i>
                                         </a>
                                     </td>
-                                    <td>
+                                    <td class="align-middle">
                                         <form action="{{ route('painel.advertisement.destroy', $advertisement->id)}}"
                                               method="post">
                                             @csrf

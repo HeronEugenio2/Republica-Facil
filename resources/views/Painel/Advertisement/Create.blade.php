@@ -114,21 +114,21 @@
                         </div>
                     </div>
                 </div>
-                <div class='form-group col-12 p-0'>
-                    <label for="inputType">Recursos:</label>
-                    <div id='type' class="">
-                        @if(isset($resources))
-                            @foreach($resources as $resource)
-                                <div class="checkbox mx-4">
-                                    <label class="checkbox-inline">
-                                        <input type="checkbox" checked data-toggle="toggle" data-onstyle="success"
-                                               value='{{$resource->id}}' name="{{$resource->name}}"> {{$resource->name}}
-                                    </label>
-                                </div>
-                            @endforeach
-                        @endif
-                    </div>
-                </div>
+                {{--                <div class='form-group col-12 p-0'>--}}
+                {{--                    <label for="inputType">Recursos:</label>--}}
+                {{--                    <div id='type' class="">--}}
+                {{--                        @if(isset($resources))--}}
+                {{--                            @foreach($resources as $resource)--}}
+                {{--                                <div class="checkbox mx-4">--}}
+                {{--                                    <label class="checkbox-inline">--}}
+                {{--                                        <input type="checkbox" checked data-toggle="toggle" data-onstyle="success"--}}
+                {{--                                               value='{{$resource->id}}' name="{{$resource->name}}"> {{$resource->name}}--}}
+                {{--                                    </label>--}}
+                {{--                                </div>--}}
+                {{--                            @endforeach--}}
+                {{--                        @endif--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
                 <button type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Salvar</button>
             </form>
         </div>

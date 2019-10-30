@@ -53,11 +53,17 @@ class AdvertisementController extends Controller
         try {
             $user = Auth::user();
             $advertisements = $this->advertisementModel->where('user_id', $user->id);
-
             if ($request->has('name') && !empty($request->input('name'))) {
-                $advertisements = $this->advertisementModel->where('title', 'like', '%' . $request->input('name') . '%');
+                $advertisements = $advertisements->where('title', 'like', '%' . $request->input('name') . '%');
             }
-
+            if ($request->status != "null") {
+                switch ($request->status) {
+                    case "1":
+                        $query = $advertisements->where('active_flag', 1);
+                    case "0":
+                        $query = $advertisements->where('active_flag', 0);
+                }
+            }
             return view('Painel.Advertisement.Index', ['user' => $user, 'advertisements' => $advertisements->get()]);
         } catch (Exception $e) {
             Log::warning('Ocorreu um erro (index- AdvertisementController)');
@@ -104,10 +110,7 @@ class AdvertisementController extends Controller
                 ]
             );
             $dataSaved = $this->advertisementModel->create($data);
-            $advRequest['anuncio'] = $dataSaved->id;
             if ($dataSaved) {
-//                $response = $this->createResourceAnuncio($advRequest->all());
-
                 return redirect()->route('painel.advertisement.index')->with('toast_success', 'Salvo com sucesso');
             } else {
                 return redirect()->back()->with('toast_error', 'Ocorreu um erro');

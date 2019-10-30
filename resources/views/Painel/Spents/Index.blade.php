@@ -50,17 +50,18 @@
                                 <tbody>
                                 @foreach($spents as $spent)
                                     <tr class='text-center'>
-                                        <td>{{date('d/m/Y', strtotime($spent->dateSpent))}}</td>
-                                        <td>{{$spent->description}}</td>
-                                        <td>R$ {{number_format($spent->value,2,',', '.')}}</td>
-                                        <td>
+                                        <td class="align-middle">{{date('d/m/Y', strtotime($spent->dateSpent))}}</td>
+                                        <td class="align-middle">{{$spent->description}}</td>
+                                        <td class="align-middle">R$ {{number_format($spent->value,2,',', '.')}}</td>
+                                        <td class="align-middle">
                                             @if($spent->user_id!=null)
-                                                {{$spent->user->name}}
+                                                <img class="mr-2" src="{{$spent->user->image}}"
+                                                     style="width: 32px; height: 32px; border-radius: 50%">
                                             @else
                                                 Todos
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="align-middle">
                                             <form method="POST"
                                                   action="{{route('painel.spent.destroy',$spent->id) }}">
                                                 {{ csrf_field() }}

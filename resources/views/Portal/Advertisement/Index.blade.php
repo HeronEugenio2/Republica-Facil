@@ -3,23 +3,28 @@
     .text-grey2 {
         color: #636b6f !important;
     }
+
     .text-grey3 {
         color: rgba(48, 106, 198, 0.96) !important;
     }
+
     .text-grey3-hover {
         color: rgba(48, 106, 198, 0.38) !important;
     }
+
     h10 {
         color: #636b6f !important;
         font-family: unset;
         font-weight: 600;
         font-size: xx-large;
     }
+
     .bg-header {
         background-image: linear-gradient(0deg, rgb(248, 248, 255), rgba(35, 123, 249, 0.07)), url("/images/redeglobo.png");
         background-position: right;
         background-repeat: no-repeat;
     }
+
     .bg-header2 {
         background-image: url("/images/mulher.png");
         background-size: 350px;
@@ -28,19 +33,23 @@
         background-repeat: no-repeat;
         /*height: 200px;*/
     }
+
     .bg-anuncios {
         background-image: linear-gradient(0deg, #dededebd, #f8f9fa), url(/images/FotoJet2.png);
         background-position: center;
     }
+
     .imgBanner {
         width: auto;
         height: 100%;
     }
+
     @media screen and (max-width: 600px) {
         .carrossel {
             display: none;
         }
     }
+
     @media screen and (min-width: 3000px) {
         .carrossel {
             display: none;
@@ -58,7 +67,7 @@
                 <div class='col-md-12 col-lg-12 col-sm-12 text-center align-content-center'
                      style="max-width: 500px">
                     <div style="">
-                        <form id="logout-form" action="#" method="POST">
+                        <form id="logout-form" action="{{route('portal.advertisement')}}" method="POST">
                             @csrf
                             <div class="input-group mb-3">
                                 <input class='form-control' type='text' name='search'
@@ -80,12 +89,13 @@
                         {{--@csrf--}}
                         <div class='row text-center justify-content-center p-0'>
                             @foreach($categories as $category)
-                                <a href='{{route('portal.searchCategory', $category->id)}}'>
+                                {{--                                <a href='{{route('portal.searchCategory', $category->id)}}'>--}}
+                                <button class="btnSearchCategory" data-id="{{$category->id}}">
                                     <div class='icone m-2' data-id='{{$category->id}}'>
                                         <i class="fas fa-{{$category->icon}} text-grey3 fa-2x mx-4"></i><br>
                                         <span class='text-grey3'>{{$category->title}}</span>
                                     </div>
-                                </a>
+                                </button>
                             @endforeach
                         </div>
                         {{--</form>--}}
@@ -95,7 +105,7 @@
         </div>
     </div>
     {{--    INCLUDE CARDS--}}
-    <div class="jumbotron jumbotron-fluid p-4 mb-0 bg-anuncios">
+    <div id="response" class="jumbotron jumbotron-fluid p-4 mb-0 bg-anuncios">
         @include('Portal.Advertisement.IncludeSearch')
         {{ $advertisementes->links() }}
     </div>
@@ -143,6 +153,26 @@
         $(document).ready(function () {
             $(".icone").hover(function () {
                 $(this).children().toggleClass('text-grey3 text-grey3-hover ');
+            });
+
+            $(".btnSearchCategory").click(function () {
+                let category = $(this).data('id');
+                $.ajaxSetup({
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+                    method: 'POST',
+                    url: '{{ route("portal.advertisement") }}'
+                });
+                $.ajax({
+                    data: {
+                        category_id: category
+                    },
+                    success: function (response) {
+                        $("#response").html(response);
+                    },
+                    error: function (data) {
+                        alert('nao veio');
+                    }
+                });
             });
         });
         // $(window).resize(function () {

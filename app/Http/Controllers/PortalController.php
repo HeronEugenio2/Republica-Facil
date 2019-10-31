@@ -70,14 +70,24 @@ class PortalController extends Controller
     /**
      * @return Factory|View
      */
-    public function indexAdvertisement()
+    public function indexAdvertisement(Request $request)
     {
-        $advertisementes = $this->advertisementModel->where('active_flag', 1)->paginate(45);
+
+        $advertisementes = $this->advertisementModel->where('active_flag', 1);
+        if (!$request->search == null) {
+            $advertisementes = $advertisementes->where('title', 'like', '%' . $request->search . '%');
+        }
+
         $sql = "SELECT id, title, icon 
                     FROM advertisement_categories                    
                     ORDER BY title, id, icon";
         $categories = DB::select($sql);
+        $advertisementes = $advertisementes->paginate(45);
 
+        if (!$request->category_id == null) {
+            $advertisementes = $advertisementes->where('category_id', $request->category_id);
+            return view('Portal.Advertisement.IncludeSearch', compact('advertisementes', 'categories'))->render();
+        }
         return view('Portal.Advertisement.Index', compact('advertisementes', 'categories'));
     }
 
@@ -201,7 +211,7 @@ class PortalController extends Controller
                     ORDER BY title, id, icon";
         $categories = DB::select($sql);
 
-        return view('Portal.Advertisement.Index', compact('advertisementes', 'categories'));
+        return view('Portal.Advertisement.IncludeSearch', compact('advertisementes', 'categories'))->render();
     }
 
     /**

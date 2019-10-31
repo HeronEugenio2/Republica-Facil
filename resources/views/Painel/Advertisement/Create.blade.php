@@ -49,6 +49,9 @@
                                 <label for="inputValue">Valor</label>
                                 <input id="inputValue" name='value' type="text" step='0.01' class="form-control w-100"
                                        aria-describedby="spentHelp" placeholder="">
+                                @error('value')
+                                <label class="mt-1 form-control-label text-danger">* {{ $message }}</label>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group col-12 p-0">
@@ -56,7 +59,7 @@
                             <textarea id="inputDescription" name='description' class="form-control w-100" rows='11'
                                       required></textarea>
                             @error('description')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="text-danger form-control-label mt-1">* {{ $message }}</div>
                             @enderror
                             <small id="descriptionHelp" class="form-text text-muted">Insira descrição do anúncio.
                             </small>
@@ -69,21 +72,21 @@
                             <label>Rua:</label>
                             <input id="street" name="street" type="text" class="form-control w-100">
                             @error('street')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="text-danger form-control-label mt-1">* {{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group col-12 p-0">
                             <label>Bairro:</label>
                             <input id="address" name="address" type="text" class="form-control  w-100">
                             @error('address')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="text-danger form-control-label mt-1">* {{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group col-12 p-0">
                             <label>Cep:</label>
                             <input id="cep" name="cep" type="text" class="form-control w-100">
                             @error('cep')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="text-danger form-control-label mt-1">* {{ $message }}</div>
                             @enderror
                         </div>
                     </div>
@@ -92,14 +95,14 @@
                             <label>Estado:</label>
                             <input id="state" name="state" type="text" class="form-control  w-100">
                             @error('state')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="text-danger form-control-label mt-1">* {{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group col-12 p-0">
                             <label>Cidade:</label>
                             <input id="city" name="city" type="text" class="form-control  w-100">
                             @error('city')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="text-danger form-control-label mt-1">* {{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group col-12 p-0">

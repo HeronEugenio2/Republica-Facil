@@ -199,12 +199,12 @@
                                 <img class="card-img-top w-100" style='height: 270px' src="{{$advertisement->image}}"
                                      alt="Card image cap">
                                 <div class='card-body p-1 text-center w-100 text-truncate'>
-                                    <h4>{{$advertisement->title}}</h4>
-                                    <small>
+                                    <h5>{{$advertisement->title}}</h5>
+                                    <strong>
                                         <h2 class="text-primary"><i class="fas fa-money-bill"></i>
                                             R$ {{money_format('%.2n', $advertisement->value)}}
                                         </h2>
-                                    </small>
+                                    </strong>
                                     <div class='w-100'></div>
                                     <a href='{{route('portal.showAdvertisement', $advertisement->id)}}' href='#'
                                        class='btn btn-sm btn-primary w-100'>Visualisar</a>

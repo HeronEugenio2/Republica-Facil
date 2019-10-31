@@ -92,7 +92,7 @@ Route::group(
     ],
     function() {
         //ANUNCIOS
-        Route::get('/anuncios', 'PortalController@indexAdvertisement')->name('advertisement');
+        Route::match(['GET', 'POST'], '/anuncios', 'PortalController@indexAdvertisement')->name('advertisement');
         Route::get('/anuncios/{id}', 'PortalController@showAdvertisement')->name('showAdvertisement');
         Route::get('/anuncios/categoria/{id}', 'PortalController@searchCategory')->name('searchCategory');
         //WELCOME

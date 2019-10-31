@@ -1,5 +1,10 @@
 @extends('Portal.TemplateLaravel')
 <style>
+    .body {
+        color: white;
+    !important;
+    }
+
     .text-grey2 {
         color: #636b6f !important;
     }
@@ -84,30 +89,57 @@
                 <div class='row justify-content-md-center'>
                     {{--<h10>Categorias</h10>--}}
                     <div class='w-100 mb-4'></div>
-                    @if(isset($categories) && count($categories)>0)
-                        {{--<form action='{{route('portal.searchCategory')}}' method="POST">--}}
-                        {{--@csrf--}}
-                        <div class='row text-center justify-content-center p-0'>
-                            @foreach($categories as $category)
-                                {{--                                <a href='{{route('portal.searchCategory', $category->id)}}'>--}}
-                                <button class="btnSearchCategory" data-id="{{$category->id}}">
-                                    <div class='icone m-2' data-id='{{$category->id}}'>
-                                        <i class="fas fa-{{$category->icon}} text-grey3 fa-2x mx-4"></i><br>
-                                        <span class='text-grey3'>{{$category->title}}</span>
-                                    </div>
-                                </button>
-                            @endforeach
-                        </div>
-                        {{--</form>--}}
-                    @endif
+
                 </div>
+
             </div>
         </div>
+    </div>
+    <div>
+
+        @if(isset($categories) && count($categories)>0)
+            <div class='row text-center justify-content-center p-0'>
+                @foreach($categories as $category)
+                    <button class="btnSearchCategory m-3" data-id="{{$category->id}}"
+                            style="background-color: transparent; border-radius: 20%">
+                        <div class='icone m-2' data-id='{{$category->id}}'>
+                            <i class="fas fa-{{$category->icon}} text-grey3 fa-2x mx-4"></i><br>
+                            <span class='text-grey3'>{{$category->title}}</span>
+                        </div>
+                    </button>
+                @endforeach
+            </div>
+        @endif
     </div>
     {{--    INCLUDE CARDS--}}
     <div id="response" class="jumbotron jumbotron-fluid p-4 mb-0 bg-anuncios">
         @include('Portal.Advertisement.IncludeSearch')
         {{ $advertisementes->links() }}
+    </div>
+    <div id="anuncios" class="jumbotron jumbotron-fluid mb-0 bg-anuncio">
+        <div class='row justify-content-md-center m-1'>
+            <div class='col-12 text-center -20'>
+                <img src='/images/Google-Facebook-Instagram.png' style='height: 60px'>
+                <h2>
+                    Anunciar
+                </h2>
+                <div class='row justify-content-center'>
+                    <div class='' style='max-width: 600px;'>
+                        <p class='text-secondary'>
+                            Anuncie gratuitamente agora e deixe o resto com a gente!
+                            Vamos encontrar pessoas confiáveis que estejam interessadas em seus anúncios.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center  mb-4'>
+                <div class='form-group text-center'>
+                    <a type='btn btn-danger' href='{{route('home')}}' class='btn btn-primary w-100 btn-lg px-5'
+                       style="max-width: 300px;">Grátis</a>
+                </div>
+            </div>
+            <div class="w-100"></div>
+        </div>
     </div>
     {{--    CAROUSEL--}}
     {{--    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">--}}
@@ -138,15 +170,15 @@
     {{--        </a>--}}
     {{--    </div>--}}
     {{--    FOOTER--}}
-    {{--    <div id='footer' class="jumbotron jumbotron-fluid bg-dark mb-0">--}}
-    {{--        <div class="container">--}}
-    {{--            <div class='row justify-content-md-center'>--}}
-    {{--                <a href='#' class='text-white mx-1'><i class="fas fa-id-badge"></i> Contato</a>--}}
-    {{--                <a href='#' class='text-white mx-1'><i class="fab fa-github-alt"></i> GitHub</a>--}}
-    {{--                <a href='#' class='text-white mx-1'><i class="fab fa-instagram"></i> Instagram</a>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
+    <div id='footer' class="jumbotron jumbotron-fluid bg-dark mb-0">
+        <div class="container">
+            <div class='row justify-content-md-center'>
+                <a href='#' class='text-white mx-1'><i class="fas fa-id-badge"></i> Contato</a>
+                <a href='#' class='text-white mx-1'><i class="fab fa-github-alt"></i> GitHub</a>
+                <a href='#' class='text-white mx-1'><i class="fab fa-instagram"></i> Instagram</a>
+            </div>
+        </div>
+    </div>
 @endsection
 @push('scripts')
     <script>

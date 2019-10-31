@@ -1,5 +1,5 @@
-<div class="row justify-content-center mb-2">
-    @if(isset($advertisementes))
+<div class="row justify-content-center my-4">
+    @if(isset($advertisementes) && count($advertisementes)>0)
         @foreach($advertisementes as $advertisement)
             <div class='card m-1 shadow' style='width: 150px; border-color: rgba(14,160,255,0.47) '>
                 <img class="card-img-top w-100" style='height: 120px' src="{{$advertisement->image}}" alt="Card image cap">
@@ -15,5 +15,10 @@
                 </div>
             </div>
         @endforeach
+    @else
+        <div class="badge badge-primary p-4">
+            <h2><i class="fas fa-exclamation-triangle"></i> Oops!</h2><strong>Não existem itens pra esse tipo de
+                busca.</strong>
+        </div>
     @endif
 </div>

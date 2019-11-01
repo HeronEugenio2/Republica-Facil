@@ -18,7 +18,9 @@
                             <th scope="col">Descrição</th>
                             <th scope="col">Membro</th>
                             <th class="text-center" scope="col">Status</th>
-                            <th class="text-center" scope="col">Ações</th>
+                            @if(auth()->user()->id == $republic->user_id)
+                                <th class="text-center" scope="col">Ações</th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -49,7 +51,7 @@
                                         @endif
                                     </form>
                                 </td>
-                                <td width="1%">
+                                <td>
                                     @if(auth()->user()->id == $republic->user_id)
                                         <form class="mr-2" method="POST"
                                               action="{{route('painel.assignment.destroy',$assignmet->id) }}">

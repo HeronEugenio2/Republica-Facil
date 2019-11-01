@@ -30,7 +30,7 @@ class RepublicRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'image' => 'nullable',
+//            'image' => 'nullable',
             'email' => 'required|max:255',
             'qtdMembers' => 'required|max:255',
             'qtdVacancies' => 'required|max:255',
@@ -43,6 +43,7 @@ class RepublicRequest extends FormRequest
             'city' => 'required',
             'state' => 'required',
             'number' => '|required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 

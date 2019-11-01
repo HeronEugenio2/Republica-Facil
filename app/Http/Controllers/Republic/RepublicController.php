@@ -18,6 +18,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class RepublicController extends Controller
@@ -126,7 +127,18 @@ class RepublicController extends Controller
         $republicRequestValidate = $republicRequest->validated();
         $republic = Republic::find($id);
         $republicUpdated = $republic->update($republicRequestValidate);
+        if (!empty($republicRequestValidate['image'])) {
+            $url = 'https://' . env('AWS_BUCKET') . '.s3-' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/';
 
+            $file = $republicRequest->file('image');
+
+            $name = time() . $file->getClientOriginalName();
+            $filePath = 'images/' . $name;
+            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $republic->update([
+                "image" => $url . $filePath,
+            ]);
+        }
         if ($republicUpdated) {
             $invitations = Invitation::where('republic_id', $republic->id)->get();
             $members = User::where('republic_id', $republic->id)->get();

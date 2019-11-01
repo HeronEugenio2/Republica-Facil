@@ -15,7 +15,8 @@
             @endif
             @if(isset($republic))
                 <form id="logout-form" method="POST"
-                      action="{{ route('painel.republic.update', ['republic'=>$republic->id]) }}">
+                      action="{{ route('painel.republic.update', ['republic'=>$republic->id]) }}"
+                      enctype="multipart/form-data">
                     {{method_field('PUT')}}
                     @else
                         <form id="logout-form" action="{{ route('painel.republic.store') }}" method="POST">
@@ -23,15 +24,20 @@
                             @csrf
                             <div class='row'>
                                 <div class='form-group col-6'>
-                                    <label class='form-control-label' for='select_republic_photo'
+                                    <label class='form-control-label' for='select_image'
                                            class='form-control-label'>
                                         Foto República
                                     </label>
                                     <br>
-                                    <input name='republic_photo' style='display: none;' type='file' class='form-control input-pad' id='republic_photo'>
-                                    <img src='{{$republic->image ?? 'https://lh3.googleusercontent.com/IB-0PcfCsGe03iguL6EayIpKHbg-eQmxmomjXfl5r3LVVrVYTes2NNY4xxp5c-vW_C5o4A=s113'}}'
-                                         id='previewimage'
-                                         alt='Nenhuma foto cadastrada' style='max-height: 250px; max-width: 350px; cursor: pointer;'>
+                                    <input name='image' style='display: none;' type='file'
+                                           class='form-control input-pad' id='image'>
+                                    <img
+                                        src='{{$republic->image ?? 'https://lh3.googleusercontent.com/IB-0PcfCsGe03iguL6EayIpKHbg-eQmxmomjXfl5r3LVVrVYTes2NNY4xxp5c-vW_C5o4A=s113'}}'
+                                        id='previewimage' accept="image/*"
+                                        alt='Nenhuma foto cadastrada'
+                                        style='max-height: 250px; max-width: 350px; cursor: pointer;'>
+                                    <input type="hidden" name="photo_x1"> <input type="hidden" name="photo_y1">
+                                    <input type="hidden" name="photo_w"> <input type="hidden" name="photo_h">
                                 </div>
                                 <div class='col-6'>
                                     <div class='form-group'>
@@ -39,8 +45,10 @@
                                                class='form-control-label'>Nome da Republica</label>
                                         <input type='text' class='form-control w-100' name='name'
                                                value='{{$republic->name ?? ''}}'
-                                               placeholder='Adicionae um nome para sua republica' style='width: 100%;' required>
-                                        <small id='nameHelp' class='form-text text-muted'>O nome será mostrado na pesquisa dos usuários</small>
+                                               placeholder='Adicionae um nome para sua republica' style='width: 100%;'
+                                               required>
+                                        <small id='nameHelp' class='form-text text-muted'>O nome será mostrado na
+                                            pesquisa dos usuários</small>
                                     </div>
                                     <div class='form-group'>
                                         <label class='form-control-label' for='email-republic'
@@ -50,7 +58,8 @@
                                                aria-describedby='emailHelp'
                                                placeholder='republica.estudantes@gmail.com'
                                                style='width: 100%' required>
-                                        <small id="emailHelp" class="form-text text-muted">Coloque aqui o e-mail para contato com a república.
+                                        <small id="emailHelp" class="form-text text-muted">Coloque aqui o e-mail para
+                                            contato com a república.
                                         </small>
                                     </div>
                                 </div>
@@ -108,7 +117,8 @@
                                           type="text" class="form-control"
                                           placeholder="Ex: Nossa república possui 4 quartos, sendo 3 ocupados e um com dispoibilidade para até no máximo duas pessoas, 1 banheiro, 1 cozinha com duas geladeiras, um fogão e área de serviço com máquina de lavar."
                                           rows='7' style='width: 100%'></textarea>
-                                <small id="descriptionHelp" class="form-text text-muted">Coloque aqui informações importantes que você deseja que as pessoas saibam.
+                                <small id="descriptionHelp" class="form-text text-muted">Coloque aqui informações
+                                    importantes que você deseja que as pessoas saibam.
                                 </small>
                             </div>
                             <div class='row'>
@@ -120,7 +130,8 @@
                                                name='qtdMembers' type="text" class="form-control"
                                                aria-describedby="memberHelp" placeholder="Ex: 5" style='width: 100%'
                                                required>
-                                        <small id="memberHelp" class="form-text text-muted">Quantidade de membros residentes hoje na república.
+                                        <small id="memberHelp" class="form-text text-muted">Quantidade de membros
+                                            residentes hoje na república.
                                         </small>
                                     </div>
                                 </div>
@@ -132,7 +143,8 @@
                                                name='qtdVacancies' type="text" class="form-control"
                                                aria-describedby="vacancyHelp" placeholder="Ex: 1" style='width: 100%'
                                                required>
-                                        <small id="vacancyHelp" class="form-text text-muted">Quantidade de vagas disponíveis hoje na sua república
+                                        <small id="vacancyHelp" class="form-text text-muted">Quantidade de vagas
+                                            disponíveis hoje na sua república
                                         </small>
                                     </div>
                                 </div>
@@ -157,7 +169,8 @@
                                                name='value' type="text" class="value form-control"
                                                aria-describedby="vacancyHelp" placeholder="R$ 450,00"
                                                style='width: 100%' required>
-                                        <small id="vacancyHelp" class="form-text text-muted">Valor do aluguel da república
+                                        <small id="vacancyHelp" class="form-text text-muted">Valor do aluguel da
+                                            república
                                         </small>
                                     </div>
                                 </div>
@@ -186,17 +199,19 @@
                             @endif--}}
 @endsection
 @push('scripts')
+    <script type="text/javascript" src="{{'js/scripts/jquery.imgselect.js'}}"></script>
     <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+
     <script type='text/javascript'>
         $('#value').mask('###0,00', {reverse: true});
 
-        $('#btnCheck').click(function () {
-            let src = $('#image').val();
-            $('#imgSrc').attr("src", src);
-            if ($('#image').val() == '' || $('#image').val() == []) {
-                $('#imgSrc').attr("src", "https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg");
-            }
-        });
+        // $('#btnCheck').click(function () {
+        //     let src = $('#image').val();
+        //     $('#imgSrc').attr("src", src);
+        //     if ($('#image').val() == '' || $('#image').val() == []) {
+        //         $('#imgSrc').attr("src", "https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg");
+        //     }
+        // });
 
         //trocar virgula
         $('#save').click(function () {
@@ -205,5 +220,27 @@
             valuePoint = rep.replace(',', '.');
             $('#value').val(valuePoint);
         });
+
+        //image
+        let p = $("#previewimage");
+        $("#image").on("change", function () {
+            let imageReader = new FileReader();
+            imageReader.readAsDataURL(document.getElementById("image").files[0]);
+
+            imageReader.onload = function (oFREvent) {
+                p.attr('src', oFREvent.target.result).fadeIn();
+            };
+        });
+
+        $("#previewimage").on('click', function () {
+            $("#image").click();
+        });
+
+        @if(!$republic->image)
+
+        $('#previewimage').error(function () {
+            $(this).attr('src', '{{asset('/images/user-default.png')}}');
+        });
+        @endif
     </script>
 @endpush

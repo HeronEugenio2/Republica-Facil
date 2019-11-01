@@ -41,17 +41,26 @@
                         <br>
                         <div class="btn-group btn-group-sm mb-2" role="group" aria-label="...">
                             <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Editar</a>
-                            <a href="{{route('painel.republic.edit', $user->republic->id )}}"
-                               class="btn btn-secondary">Sair</a>
                             <a href='#' class='btn btn-secondary btn-sm'>Fotos</a>
+                            <a href='#' class='btn btn-secondary btn-sm'>Alterar Proprietário</a>
+                            <a href="{{route('painel.republic.edit', $user->republic->id )}}"
+                               class="btn btn-danger">Sair</a>
                         </div>
                         <br>
-                        <h2>{{$republic->name}}</h2><strong>Email:</strong> {{$republic->email}}
-                        <br> <strong>Descrição:</strong> {{$republic->description}}<br>
-                        <strong>Vagas:</strong> {{$republic->qtdVacancies}}<br>
-
-                        <br>
-                        <h2>R$ {{money_format('%.2n' ,$republic->value)}}</h2><br>
+                        <div class="my-2">
+                            <h1>{{$republic->name}}</h1><strong>Email:</strong> {{$republic->email}}
+                        </div>
+                        <hr>
+                        <strong>Descrição:</strong> {{$republic->description}}<br>
+                        <div class="mt-3">
+                            <span class="mr-4">
+                                <strong><i class="fas fa-bed"></i> Vagas:</strong> {{$republic->qtdVacancies}}
+                            </span>
+                            <strong><i class="fas fa-users"></i> Membros:</strong> {{$republic->qtdMembers}}
+                        </div>
+                    </div>
+                    <div class="card-footer bg-secondary p-3 m-0 text-center"><h2 class="text-white m-0 display-3">
+                            R$ {{money_format('%.2n' ,$republic->value)}}</h2>
                     </div>
                 </div>
             </div>

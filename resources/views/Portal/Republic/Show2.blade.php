@@ -46,7 +46,7 @@
                     <div class="col-12 mt-2">
                         @if(count($errors) > 0)
                             <div class="row">
-                                <div class="col-12 col-md-offset-4 error alert-danger p-4">
+                                <div class="col-12 col-md-offset-4 error alert-danger p-4" style="max-width: 350px">
                                     @foreach($errors->all() as $error)
                                         {{$error}}<br>
                                     @endforeach
@@ -133,6 +133,7 @@
                                             {{$user->email}}
                                         </div>
                                     </div>
+                                    <hr>
                                 @endforeach
                             </dd>
                         </dl>

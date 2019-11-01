@@ -33,7 +33,7 @@ class VoteRequest extends FormRequest
     {
         return [
             'cpf.required' => 'Por favor informe seu CPF',
-            'optionVote.required' => 'Para que sou voto seja adicionado você precisa escolher entre "Sim" ou "Não" na hora de votar.',
+            'optionVote.required' => 'Para que seu voto seja adicionado você precisa escolher entre "Sim" ou "Não" na hora de votar.',
         ];
     }
 }

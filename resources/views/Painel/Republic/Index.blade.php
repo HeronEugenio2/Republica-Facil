@@ -114,7 +114,7 @@
                                 <tr>
                                     <th scope="col">Foto</th>
                                     <th scope="col">Nome</th>
-                                    <th scope="col">Escolher</th>
+                                    <th scope="col">Proprietário</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -127,7 +127,7 @@
                                                      style="width: 32px; height: 32px;border-radius: 50%">
                                             </td>
                                             <td class="align-middle text-center">{{$member->name}}</td>
-                                            <td class="align-middle text-center">
+                                            <td class="text-center">
                                                 <input class="form-check-input" type="radio" name="member_id"
                                                        value="{{$member->id}}" checked>
                                             </td>

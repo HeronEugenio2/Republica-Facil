@@ -40,14 +40,17 @@ class RepublicController extends Controller
         $user = auth()->user();
         $republic = $user->republic;
         $invitations = [];
+        if (isset($republic->user_id) && $republic->user_id != null) {
+            $owner = User::find($republic->user_id);
+        }
         if (!empty($republic = $user->republic)) {
             $invitations = Invitation::where('republic_id', $user->republic->id)->get();
         }
         if ($republic != null) {
             $members = User::where('republic_id', $republic->id)->get();
-            return view('Painel.Republic.Index', compact('republic', 'user', 'invitations', 'members'));
+            return view('Painel.Republic.Index', compact('republic', 'user', 'invitations', 'members', 'owner'));
         }
-        return view('Painel.Republic.Index', compact('republic', 'user', 'invitations'));
+        return view('Painel.Republic.Index', compact('republic', 'user', 'invitations', 'owner'));
     }
 
     /**
@@ -237,6 +240,15 @@ class RepublicController extends Controller
         $user = '<div>' . $request->user . '</div>';
 
         return $user;
+    }
+
+    public function alterOwner(Request $request)
+    {
+        $republic = Republic::find($request->republic_id);
+        $republic->user_id = $request->member_id;
+        $republic->save();
+        return redirect()->back()->with('toast_success', 'Prorpietário alterado com sucesso!');
+
     }
 
 

@@ -39,10 +39,14 @@
                     <div class="card-body text-center">
                         <img id='imgSrc' class='mb-2' src='{{$republic->image}}' style="width:200px; height:200px;"/>
                         <br>
+
                         <div class="btn-group btn-group-sm mb-2" role="group" aria-label="...">
-                            <a href="{{route('painel.republic.edit', $user->republic->id )}}" class="btn btn-secondary">Editar</a>
+                            <a href="{{route('painel.republic.edit', $user->republic->id )}}"
+                               class="btn btn-secondary">Editar</a>
                             <a href='#' class='btn btn-secondary btn-sm'>Fotos</a>
-                            <a href='#' class='btn btn-secondary btn-sm'>Alterar Proprietário</a>
+                            <button data-toggle="modal" data-target="#modalExemplo" href='#'
+                                    class='btn btn-secondary btn-sm'>Alterar Proprietário
+                            </button>
                             <a href="{{route('painel.republic.edit', $user->republic->id )}}"
                                class="btn btn-danger">Sair</a>
                         </div>
@@ -50,6 +54,9 @@
                         <div class="my-2">
                             <h1>{{$republic->name}}</h1><strong>Email:</strong> {{$republic->email}}
                         </div>
+                        @if(isset($owner))
+                            <h3>Proprietário: {{$owner->name}}</h3>
+                        @endif
                         <hr>
                         <strong>Descrição:</strong> {{$republic->description}}<br>
                         <div class="mt-3">
@@ -87,6 +94,57 @@
             <a href="{{route('painel.republic.create')}}" class="btn btn-primary">Cadastrar República</a>
         </div>
     @endif
+    <!-- Modal -->
+    <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Membros</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('painel.alterOwner')}}" method="POST">
+                        @csrf
+                        <div class='table-responsive'>
+                            <table class="table table-bordered table-hover table-sm table-striped text-center">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Foto</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Escolher</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <div class="form-check">
+                                    @foreach($members as $member)
+                                        <input type="hidden" value="{{$republic->id}}" name="republic_id">
+                                        <tr class='text-center'>
+                                            <td class="align-middle text-center">
+                                                <img src="{{$member->image}}"
+                                                     style="width: 32px; height: 32px;border-radius: 50%">
+                                            </td>
+                                            <td class="align-middle text-center">{{$member->name}}</td>
+                                            <td class="align-middle text-center">
+                                                <input class="form-check-input" type="radio" name="member_id"
+                                                       value="{{$member->id}}" checked>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </div>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Salvar mudanças</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 @endsection
 @push('scripts')
     <script type='text/javascript'>

@@ -95,7 +95,8 @@
                                 </td>
                                 <td class="align-middle">{{$member->email}}</td>
                                 <td class="align-middle">
-                                    <a href='#' class='text-center text-danger'>
+                                    <a href='{{route('painel.removeMember', $member->id)}}'
+                                       class='text-center text-danger'>
                                         <i class='fas fa-user-times'></i><strong> Remover Membro</strong>
                                     </a>
                                 </td>

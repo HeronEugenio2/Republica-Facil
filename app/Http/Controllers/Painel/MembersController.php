@@ -31,7 +31,7 @@ class MembersController extends Controller
     public function __construct(Invitation $invitation, User $user)
     {
         $this->invitationMember = $invitation;
-        $this->userModel        = $user;
+        $this->userModel = $user;
     }
 
     /**
@@ -40,7 +40,7 @@ class MembersController extends Controller
     public function index()
     {
         try {
-            $republic    = auth()->user()->republic;
+            $republic = auth()->user()->republic;
             $invitations = [];
             if (!empty($republic)) {
                 $invitations = $this->invitationMember->where('republic_id', $republic->id)->get();
@@ -78,38 +78,38 @@ class MembersController extends Controller
         try {
             if (!empty($request->input('email'))) {
                 $user = $this->userModel->where('email', $request->input('email'))->whereNotNull('republic_id')
-                                        ->first();
+                    ->first();
                 if (!$user) {
                     $verifyEmail = $this->invitationMember->where('email', $request->input('email'))->first();
 
                     if (!$verifyEmail) {
 
                         $invitationSaved = $this->invitationMember->create([
-                                                                               'email'       => $request->input('email'),
-                                                                               'user_id'     => auth()->user()->id,
-                                                                               'republic_id' => auth()->user()->republic_id,
-                                                                           ]);
+                            'email' => $request->input('email'),
+                            'user_id' => auth()->user()->id,
+                            'republic_id' => auth()->user()->republic_id,
+                        ]);
 
                         if ($invitationSaved) {
                             $data = [
-                                'userName'     => auth()->user()->name,
+                                'userName' => auth()->user()->name,
                                 'republicName' => auth()->user()->republic->name,
                             ];
                             Notification::route('mail', $invitationSaved->email)
-                                        ->notify(new RequestInvitation($data));
+                                ->notify(new RequestInvitation($data));
 
                             return redirect()->route('painel.member.index')
-                                             ->with('success', 'Convite enviado com sucesso');
+                                ->with('success', 'Convite enviado com sucesso');
                         } else {
                             return redirect()->route('painel.member.index')->with('error', 'Erro ao enviar convite');
                         }
                     } else {
                         return redirect()->route('painel.member.index')
-                                         ->with('error', 'Já existe um convite para esse email');
+                            ->with('error', 'Já existe um convite para esse email');
                     }
                 } else {
                     return redirect()->route('painel.member.index')
-                                     ->with('error', 'Este usuário já é  membro de uma república');
+                        ->with('error', 'Este usuário já é  membro de uma república');
                 }
             } else {
                 return redirect()->route('painel.member.index')->with('error', 'Erro ao enviar convite');
@@ -160,6 +160,15 @@ class MembersController extends Controller
      */
     public function destroy(Invitation $invitation)
     {
-        //
+        dd($invitation);
+    }
+
+    public function removeMember($memberId)
+    {
+
+        $member = User::where('id', $memberId)->update(['republic_id' => null]);
+        return redirect()->back()->with('toast_success', 'Removido com sucesso!');
+
+
     }
 }

@@ -30,26 +30,26 @@ Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProv
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(
     [
-        'prefix'     => 'administracao',
-        'as'         => 'administrative.',
+        'prefix' => 'administracao',
+        'as' => 'administrative.',
         'middleware' => ['auth'],
     ],
-    function() {
+    function () {
         //REPUBLIC
         Route::resource('republicas', 'Administrative\RepublicAdmController')
-             ->names('republics');
+            ->names('republics');
         //ADVERTISEMENT
         Route::resource('anuncios', 'Administrative\AdvertisementAdmController')
-             ->names('advertisements');
+            ->names('advertisements');
     }
 );
 Route::group(
     [
-        'prefix'     => 'painel',
-        'as'         => 'painel.',
+        'prefix' => 'painel',
+        'as' => 'painel.',
         'middleware' => ['auth'],
     ],
-    function() {
+    function () {
         // user
         Route::resource('/user', 'UserController')->names('user');
         //painel.republic@
@@ -83,26 +83,33 @@ Route::group(
         Route::post('/republica/{id}/apagar', 'RepublicController@invitationDeny')->name('invitationDeny');
         //painel.conclude
         Route::post('/tarefa/concluir', 'AssignmentController@conclude')->name('conclude');
+        //painel.removeMember
+        Route::get('/remove/member/{id}', 'Painel\MembersController@removeMember')->name('removeMember');
+        //painel.alterOwner
+        Route::post('/proprietario', 'RepublicController@alterOwner')->name('alterOwner');
     }
 );
 Route::group(
     [
         'prefix' => 'portal',
-        'as'     => 'portal.',
+        'as' => 'portal . ',
     ],
-    function() {
+    function () {
         //ANUNCIOS
-        Route::match(['GET', 'POST'], '/anuncios', 'PortalController@indexAdvertisement')->name('advertisement');
-        Route::get('/anuncios/{id}', 'PortalController@showAdvertisement')->name('showAdvertisement');
-        Route::get('/anuncios/categoria/{id}', 'PortalController@searchCategory')->name('searchCategory');
+        Route::match(['GET', 'POST'], ' / anuncios', 'PortalController@indexAdvertisement')->name('advertisement');
+        Route::get(' / anuncios /{
+            id}', 'PortalController@showAdvertisement')->name('showAdvertisement');
+        Route::get(' / anuncios / categoria /{
+            id}', 'PortalController@searchCategory')->name('searchCategory');
         //WELCOME
-        Route::resource('/republicas', 'PortalController')->names('republics');
+        Route::resource(' / republicas', 'PortalController')->names('republics');
         //PROCURAR
-        Route::get('/busca', 'PortalController@indexRepublics')->name('search');
-        Route::post('/busca/cidade', 'PortalController@search')->name('republicSearch');
+        Route::get(' / busca', 'PortalController@indexRepublics')->name('search');
+        Route::post(' / busca / cidade', 'PortalController@search')->name('republicSearch');
         //portal.ajaxSearch
-        Route::post('/busca/cidade/filtrada', 'PortalController@ajaxSearch')->name('ajaxSearch');
+        Route::post(' / busca / cidade / filtrada', 'PortalController@ajaxSearch')->name('ajaxSearch');
         //portal.vote
-        Route::post('/votar/{id}', 'PortalController@vote')->name('vote');
+        Route::post(' / votar /{
+            id}', 'PortalController@vote')->name('vote');
     }
 );

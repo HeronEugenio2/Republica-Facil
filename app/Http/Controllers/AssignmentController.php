@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
+use App\Models\Republic;
 use App\Models\User;
 use Exception;
 use Illuminate\Contracts\View\Factory;
@@ -97,7 +98,6 @@ class AssignmentController extends Controller
     public function destroy($id)
     {
         try {
-
             $assignment = $this->assignmentModel->find($id);
             $deleted = $assignment->delete();
             if ($deleted) {
@@ -130,6 +130,20 @@ class AssignmentController extends Controller
             Log::error($e->getMessage());
 
             return redirect()->back()->with('toast_error', $e->getMessage());
+        }
+    }
+
+    public function clear($id)
+    {
+        try {
+            $republic = Republic::with('assignmets')->find($id);
+            foreach ($republic->assignmets as $assignmet) {
+                $assignmet->delete();
+            }
+            return back()->with('toast_success', 'Tarefas excluídas!!');
+        } catch (Exception $e) {
+            report($e);
+            return back()->with('toast_error', 'Erro ao deletar tarefas, tente novamente mais tarde!');
         }
     }
 }

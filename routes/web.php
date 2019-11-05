@@ -71,6 +71,8 @@ Route::group(
         Route::post('/email', 'RepublicController@invitation')->name('invitation');
         //painel.invitationAccept
         Route::get('/republica/{id}/aceitar', 'RepublicController@invitationAccept')->name('invitationAccept');
+        //painel.clear
+        Route::get('/republica/{id}/gastos/limpar', 'AssignmentController@clear')->name('clear');
         //painel.debitStore
         Route::post('/debito', 'RepublicController@debitStore')->name('debitStore');
         //painel.spentHistoryStore
@@ -104,8 +106,8 @@ Route::group(
         //WELCOME
         Route::resource(' / republicas', 'PortalController')->names('republics');
         //PROCURAR
-        Route::get(' / busca', 'PortalController@indexRepublics')->name('search');
-        Route::post(' / busca / cidade', 'PortalController@search')->name('republicSearch');
+        Route::get(' /busca', 'PortalController@indexRepublics')->name('search');
+        Route::post(' /busca/cidade', 'PortalController@search')->name('republicSearch');
         //portal.ajaxSearch
         Route::post(' / busca / cidade / filtrada', 'PortalController@ajaxSearch')->name('ajaxSearch');
         //portal.vote

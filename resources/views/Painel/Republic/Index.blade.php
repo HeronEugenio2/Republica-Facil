@@ -25,12 +25,12 @@
                 <div class='card shadow'>
                     <div class="card-header bg-nav text-white">Sua República
                         @if($republic->active_flag == 0)
-                            <h2 class='float-right'>
-                                <span class="badge badge-warning px-4"
-                                      value='{{$republic->active_flag}}'>Em Análise</span>
+                            <h2 class='float-right m-0'>
+                                <span class="text-warning"
+                                      value='{{$republic->active_flag}}'><i class="far fa-clock"></i> Em Análise</span>
                             </h2>
                         @else
-                            <h2 class='float-right'>
+                            <h2 class='float-right m-0'>
                             <span class="text-success" value='{{$republic->active_flag}}'>Ativa <i
                                     class="fas fa-check"></i></span>
                             </h2>

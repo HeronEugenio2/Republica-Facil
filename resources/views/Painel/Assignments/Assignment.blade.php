@@ -4,7 +4,7 @@
     <div class='card'>
         <div class='card-header bg-nav text-white'>Tarefas</div>
         <div class='card-body'>
-            <a href="{{route('painel.assignment.create')}}" class="btn btn-success mb-2">
+            <a href="{{route('painel.assignment.create')}}" class="btn btn-primary mb-2">
                 <i class="fas fa-plus-circle"></i> Nova Tarefa
             </a>
             <hr>
@@ -51,7 +51,7 @@
                                         @endif
                                     </form>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     @if(auth()->user()->id == $republic->user_id)
                                         <form class="mr-2" method="POST"
                                               action="{{route('painel.assignment.destroy',$assignmet->id) }}">
@@ -69,6 +69,11 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <div class="float-right">
+                        <a href="{{route('painel.clear', $republic->id)}}" class="btn btn-primary my-2 btn-sm">
+                            Limpar Quadro
+                        </a>
+                    </div>
                 </div>
             @else
                 @if(isset($republicAssignmets))

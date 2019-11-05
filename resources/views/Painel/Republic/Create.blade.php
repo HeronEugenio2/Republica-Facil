@@ -113,10 +113,11 @@
                             <div class="form-group">
                                 <label class='form-control-label' for="inputDescription">Descrição:</label>
                                 <textarea id="inputDescription" name='description'
-                                          value='{{isset($republic)?$republic->description:old('description')??''}}'
+                                          value='{{isset($republic) ?$republic->description:old('description')??''}}'
                                           type="text" class="form-control"
                                           placeholder="Ex: Nossa república possui 4 quartos, sendo 3 ocupados e um com dispoibilidade para até no máximo duas pessoas, 1 banheiro, 1 cozinha com duas geladeiras, um fogão e área de serviço com máquina de lavar."
-                                          rows='7' style='width: 100%'></textarea>
+                                          rows='7'
+                                          style='width: 100%'>{{isset($republic) ?$republic->description:old('description')??''}}</textarea>
                                 <small id="descriptionHelp" class="form-text text-muted">Coloque aqui informações
                                     importantes que você deseja que as pessoas saibam.
                                 </small>

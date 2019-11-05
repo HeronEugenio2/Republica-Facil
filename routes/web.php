@@ -5,9 +5,9 @@
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where you can register web routes for your application.These
 | routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| contains the "web" middleware group.Now create something great!
 |
 */
 
@@ -50,7 +50,7 @@ Route::group(
         'middleware' => ['auth'],
     ],
     function () {
-        // user
+        //user
         Route::resource('/user', 'UserController')->names('user');
         //painel.republic@
         Route::resource('/republica', 'RepublicController')->names('republic');
@@ -94,24 +94,24 @@ Route::group(
 Route::group(
     [
         'prefix' => 'portal',
-        'as' => 'portal . ',
+        'as' => 'portal.',
     ],
     function () {
         //ANUNCIOS
-        Route::match(['GET', 'POST'], ' / anuncios', 'PortalController@indexAdvertisement')->name('advertisement');
-        Route::get(' / anuncios /{
+        Route::match(['GET', 'POST'], '/anuncios', 'PortalController@indexAdvertisement')->name('advertisement');
+        Route::get('/anuncios/{
             id}', 'PortalController@showAdvertisement')->name('showAdvertisement');
-        Route::get(' / anuncios / categoria /{
+        Route::get('/anuncios/categoria/{
             id}', 'PortalController@searchCategory')->name('searchCategory');
         //WELCOME
-        Route::resource(' / republicas', 'PortalController')->names('republics');
+        Route::resource('/republicas', 'PortalController')->names('republics');
         //PROCURAR
-        Route::get(' /busca', 'PortalController@indexRepublics')->name('search');
-        Route::post(' /busca/cidade', 'PortalController@search')->name('republicSearch');
+        Route::get('/busca', 'PortalController@indexRepublics')->name('search');
+        Route::post('/busca/cidade', 'PortalController@search')->name('republicSearch');
         //portal.ajaxSearch
-        Route::post(' / busca / cidade / filtrada', 'PortalController@ajaxSearch')->name('ajaxSearch');
+        Route::post('/busca/cidade/filtrada', 'PortalController@ajaxSearch')->name('ajaxSearch');
         //portal.vote
-        Route::post(' / votar /{
+        Route::post('/votar/{
             id}', 'PortalController@vote')->name('vote');
     }
 );

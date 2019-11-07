@@ -13,6 +13,17 @@
                 </div>
                 <div class='my-2'>
                     <div class='card-colunms'>
+                        @foreach($advert->images as $photo)
+                            <input name="image" type="file" class="form-control input-pad" id="image"
+                                   style="display: none;">
+                            <div style="margin: 20px 0 0 30px;">
+                                <img src='{{$photo->url}}' class="rounded-circle"
+                                     {{--                                    src="{{asset($user->image != null ? $user->image :'/user-default.png') }}"--}}
+                                     id="previewimage"
+                                     alt="Nenhuma foto cadastrada" accept="image/*"
+                                     style="max-height: 250px; max-width: 350px; cursor: pointer;">
+                            </div>
+                        @endforeach
                         <img class='my-1' src='http://inyogo.com/img/image_not_available.png' style='width: 100px; height: 100px' alt=''>
                         <img class='my-1' src='http://inyogo.com/img/image_not_available.png' style='width: 100px; height: 100px' alt=''>
                         <img class='my-1' src='http://inyogo.com/img/image_not_available.png' style='width: 100px; height: 100px' alt=''>

@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required|string',
             'phone' => 'required|string',
-            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 

@@ -19,7 +19,6 @@
         </div>
     @endif
     @if(isset($user->republic))
-
         <div class='row'>
             <div class="col col-sm-12 col-md-6 col-lg-6">
                 <div class='card shadow'>
@@ -39,7 +38,6 @@
                     <div class="card-body text-center">
                         <img id='imgSrc' class='mb-2' src='{{$republic->image}}' style="width:200px; height:200px;"/>
                         <br>
-
                         <div class="btn-group btn-group-sm mb-2" role="group" aria-label="...">
                             <a href="{{route('painel.republic.edit', $user->republic->id )}}"
                                class="btn btn-secondary">Editar</a>

@@ -15,7 +15,7 @@ class Advertisement extends Model
         'republic_id',
         'category_id',
         'user_id',
-        'image_id',
+//        'image_id',
         'active',
         'cep',
         'address',
@@ -44,7 +44,7 @@ class Advertisement extends Model
 
     public function images()
     {
-        return $this->belongsTo(AdvertisementImage::class, 'image_id', 'id');
+        return $this->hasMany(AdvertisementImage::class, 'image_id', 'id');
     }
 
     public function category()

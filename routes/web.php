@@ -99,10 +99,8 @@ Route::group(
     function () {
         //ANUNCIOS
         Route::match(['GET', 'POST'], '/anuncios', 'PortalController@indexAdvertisement')->name('advertisement');
-        Route::get('/anuncios/{
-            id}', 'PortalController@showAdvertisement')->name('showAdvertisement');
-        Route::get('/anuncios/categoria/{
-            id}', 'PortalController@searchCategory')->name('searchCategory');
+        Route::get('/anuncios/{id}', 'PortalController@showAdvertisement')->name('showAdvertisement');
+        Route::get('/anuncios/categoria/{id}', 'PortalController@searchCategory')->name('searchCategory');
         //WELCOME
         Route::resource('/republicas', 'PortalController')->names('republics');
         //PROCURAR

@@ -20,9 +20,9 @@
                     @endif
                     <div class="row">
                         <div class="form group col-6">
-                            <label for="select_profile_photo" class="form-control-label">Foto de perfil</label>
+                            <label for="select_image" class="form-control-label">Foto de perfil</label>
                             <br>
-                            <input name="profile_photo" type="file" class="form-control input-pad" id="profile_photo"
+                            <input name="image" type="file" class="form-control input-pad" id="image"
                                    style="display: none;">
                             <div style="margin: 20px 0 0 30px;">
                                 <img src='{{$user->image}}' class="rounded-circle"
@@ -65,9 +65,9 @@
         });
 
         let p = $("#previewimage");
-        $("#profile_photo").on("change", function () {
+        $("#image").on("change", function () {
             let imageReader = new FileReader();
-            imageReader.readAsDataURL(document.getElementById("profile_photo").files[0]);
+            imageReader.readAsDataURL(document.getElementById("image").files[0]);
 
             imageReader.onload = function (oFREvent) {
                 p.attr('src', oFREvent.target.result).fadeIn();
@@ -75,7 +75,7 @@
         });
 
         $("#previewimage").on('click', function () {
-            $("#profile_photo").click();
+            $("#image").click();
         });
 
         @if(!$user->image)

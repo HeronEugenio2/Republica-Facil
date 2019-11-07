@@ -15,7 +15,8 @@ class CreateAdvertisementImagesTable extends Migration
     {
         Schema::create('advertisement_images', function (Blueprint $table) {
             $table->unsignedInteger('id', true);
-            $table->string('url');
+            $table->string('url')->default('https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg');
+            $table->unsignedInteger('advertissement_id');
             $table->timestamps();
         });
     }

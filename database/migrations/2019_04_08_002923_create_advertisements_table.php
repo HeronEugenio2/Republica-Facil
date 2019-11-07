@@ -27,7 +27,7 @@ class CreateAdvertisementsTable extends Migration
             $table->string('state');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('category_id')->nullable();
-            $table->unsignedInteger('image_id')->nullable();
+//            $table->unsignedInteger('image_id')->nullable();
             $table->tinyInteger('active_flag')->nullable()->default(0);
             $table->timestamps();
         });
@@ -40,8 +40,8 @@ class CreateAdvertisementsTable extends Migration
         Schema::table('advertisements', function (Blueprint $table) {
             $table->foreign('category_id')->references('id')->on('advertisement_categories');
         });
-        Schema::table('advertisements', function (Blueprint $table) {
-            $table->foreign('image_id')->references('id')->on('advertisement_images');
+        Schema::table('advertisement_images', function (Blueprint $table) {
+            $table->foreign('advertissement_id')->references('id')->on('advertisements');
         });
     }
 
@@ -55,3 +55,4 @@ class CreateAdvertisementsTable extends Migration
         Schema::dropIfExists('advertisements');
     }
 }
+

@@ -10,6 +10,7 @@ use App\Models\Resource;
 use App\Models\Type;
 use App\Models\User;
 use App\Notifications\RequestInvitation;
+use App\Services\Service;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -18,16 +19,20 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class RepublicController extends Controller
 {
     private $republic;
+    /**
+     * @var Service
+     */
+    private $service;
 
-    public function __construct(Republic $republic)
+    public function __construct(Republic $republic, Service $service)
     {
         $this->republic = $republic;
+        $this->service = $service;
     }
 
     /**
@@ -131,20 +136,12 @@ class RepublicController extends Controller
         $republic = Republic::find($id);
         $republicUpdated = $republic->update($republicRequestValidate);
         if (!empty($republicRequestValidate['image'])) {
-            $url = 'https://' . env('AWS_BUCKET') . '.s3-' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/';
-
-            $file = $republicRequest->file('image');
-
-            $name = time() . $file->getClientOriginalName();
-            $filePath = 'images/' . $name;
-            Storage::disk('s3')->put($filePath, file_get_contents($file));
-            $republic->update([
-                "image" => $url . $filePath,
-            ]);
+            $this->service->saveImg($republicRequest, $republic);
         }
         if ($republicUpdated) {
             $invitations = Invitation::where('republic_id', $republic->id)->get();
             $members = User::where('republic_id', $republic->id)->get();
+
             return redirect()->route('painel.republic.index', ['republic' => $republic, 'invitations' => $invitations, 'members' => $members])
                 ->with('toast_success', 'Republica atualizada com sucesso!');
         } else {
@@ -152,7 +149,6 @@ class RepublicController extends Controller
         }
 
     }
-
     /**
      * @param $id
      * @return Factory|View

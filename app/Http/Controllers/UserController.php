@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Services\Service;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Vinkla\Hashids\Facades\Hashids;
 
@@ -19,13 +19,18 @@ use Vinkla\Hashids\Facades\Hashids;
 class UserController extends Controller
 {
     private $s3;
+    /**
+     * @var Service
+     */
+    private $service;
 
     /**
      * UserController constructor.
      */
-    public function __construct()
+    public function __construct(Service $service)
     {
         $this->s3 = App::make('aws')->createClient('s3');
+        $this->service = $service;
     }
 
     /**
@@ -69,16 +74,9 @@ class UserController extends Controller
 
             if (!empty($id) && $user->id == $id) {
                 $phone = preg_replace('/[^0-9]/', '', $requestValidate['phone']);
-                if (!empty($requestValidate['profile_photo'])) {
-                    $url = 'https://' . env('AWS_BUCKET') . '.s3-' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/';
+                if (!empty($requestValidate['image'])) {
 
-                    $file = $request->file('profile_photo');
-                    $name = time() . $file->getClientOriginalName();
-                    $filePath = 'images/' . $name;
-                    Storage::disk('s3')->put($filePath, file_get_contents($file));
-                    $user->update([
-                        "image" => $url . $filePath,
-                    ]);
+                    $this->service->saveImg($request, $user);
                 }
 
                 $userUpdate = $user->update([

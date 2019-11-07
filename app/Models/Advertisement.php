@@ -44,7 +44,7 @@ class Advertisement extends Model
 
     public function images()
     {
-        return $this->hasMany(AdvertisementImage::class, 'image_id', 'id');
+        return $this->hasMany(AdvertisementImage::class, 'advertissement_id', 'id');
     }
 
     public function category()

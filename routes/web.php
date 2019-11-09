@@ -109,7 +109,6 @@ Route::group(
         //portal.ajaxSearch
         Route::post('/busca/cidade/filtrada', 'PortalController@ajaxSearch')->name('ajaxSearch');
         //portal.vote
-        Route::post('/votar/{
-            id}', 'PortalController@vote')->name('vote');
+        Route::post('/votar/{id}', 'PortalController@vote')->name('vote');
     }
 );

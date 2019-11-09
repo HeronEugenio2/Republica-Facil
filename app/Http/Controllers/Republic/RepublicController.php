@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RepublicRequest;
 use App\Http\Requests\RepublicStoreRequest;
+use App\Http\Requests\RepublicUpdateRequest;
 use App\Models\Invitations\Invitation;
 use App\Models\Republic;
 use App\Models\Resource;
@@ -76,11 +77,10 @@ class RepublicController extends Controller
      * @return RedirectResponse
      * @author Heron Eugenio
      */
-    public function store(Request $republicRequest)
+    public function store(RepublicUpdateRequest $republicRequest)
     {
         try {
             $dataValidated = $republicRequest->validated();
-            dd($dataValidated);
             $republicRequest->value = str_replace('.', '', $republicRequest->value);
             $republicRequest->value = str_replace(',', '.', $republicRequest->value);
             $dataValidated['user_id'] = auth()->user()->id;
@@ -131,7 +131,7 @@ class RepublicController extends Controller
      * @return Response
      * @author Heron Eugenio
      */
-    public function update(RepublicRequest $republicRequest, $id)
+    public function update(RepublicUpdateRequest $republicRequest, $id)
     {
         $republicRequestValidate = $republicRequest->validated();
         $republic = Republic::find($id);

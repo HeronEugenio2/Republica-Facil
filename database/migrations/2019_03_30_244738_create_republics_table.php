@@ -18,7 +18,7 @@ class CreateRepublicsTable extends Migration
     {
         Schema::create('republics', function(Blueprint $table) {
             $table->unsignedInteger('id', true);
-            $table->string('image')->nullable()->default('http://semantic-ui.com/images/wireframe/image.png');
+            $table->string('image')->nullable()->default('https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg');
             $table->string('name');
             $table->string('email');
             $table->text('description')->nullable();

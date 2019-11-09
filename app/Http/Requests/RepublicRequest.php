@@ -37,14 +37,13 @@ class RepublicRequest extends FormRequest
             'value' => 'required',
             'type_id' => 'required|numeric',
             'description' => 'nullable',
-            'phone' => 'nullable',
+            'photo' => 'nullable',
             'street' => 'required',
             'district' => 'required',
             'cep' => 'required',
             'city' => 'required',
             'state' => 'required',
             'number' => '|required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 

@@ -56,7 +56,7 @@
                             <h3>Proprietário: {{$owner->name}}</h3>
                         @endif
                         @if(isset($owner))
-                            <div><h3>Contato: {{$republic->phone}}</h3></div>
+                            <div><h3>Contato: {{$republic->phone ?? 'adicione telefone pra contato.'}}</h3></div>
                         @endif
                         <hr>
                         <strong>Descrição:</strong> {{$republic->description}}<br>

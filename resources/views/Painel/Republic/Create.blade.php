@@ -19,26 +19,27 @@
                       enctype="multipart/form-data">
                     {{method_field('PUT')}}
                     @else
-                        <form id="logout-form" action="{{ route('painel.republic.store') }}" method="POST">
+                        <form id="logout-form" action="{{ route('painel.republic.store') }}" method="POST"
+                              enctype="multipart/form-data">
                             @endif
                             @csrf
                             <div class='row'>
-                                <div class='form-group col-6'>
-                                    <label class='form-control-label' for='select_image'
-                                           class='form-control-label'>
-                                        Foto República
-                                    </label>
-                                    <br>
-                                    <input name='image' style='display: none;' type='file'
-                                           class='form-control input-pad' id='image'>
-                                    <img
-                                        src='{{isset($republic)? $republic->image : 'https://lh3.googleusercontent.com/IB-0PcfCsGe03iguL6EayIpKHbg-eQmxmomjXfl5r3LVVrVYTes2NNY4xxp5c-vW_C5o4A=s113'}}'
-                                        id='previewimage' accept="image/*"
-                                        alt='Nenhuma foto cadastrada'
-                                        style='max-height: 250px; max-width: 350px; cursor: pointer;'>
-                                    <input type="hidden" name="photo_x1"> <input type="hidden" name="photo_y1">
-                                    <input type="hidden" name="photo_w"> <input type="hidden" name="photo_h">
-                                </div>
+                                @if(isset($republic))
+                                    <div class='form-group col-6'>
+                                        <label class='form-control-label' for='select_image'
+                                               class='form-control-label'>
+                                            Foto República
+                                        </label>
+                                        <br>
+                                        <input name='image' style='display: none;' type='file'
+                                               class='form-control input-pad' id='image'>
+                                        <img
+                                            src='{{isset($republic->image)? $republic->image : 'https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg'}}'
+                                            id='previewimage' accept="image/*"
+                                            alt='Nenhuma foto cadastrada'
+                                            style='max-height: 250px; max-width: 350px; cursor: pointer;'>
+                                    </div>
+                                @endif
                                 <div class='col-6'>
                                     <div class='form-group'>
                                         <label class='form-control-label' for='name-republic'
@@ -70,7 +71,7 @@
                                                value='{{isset($republic)? $republic->phone : ''}}'
                                                name='phone'
                                                aria-describedby='emailHelp'
-                                               placeholder='republica.estudantes@gmail.com'
+                                               placeholder='24992482156'
                                                style='width: 100%' required>
                                         <small id="emailHelp" class="form-text text-muted">WhatsApp para contato.
                                         </small>
@@ -253,7 +254,7 @@
         @if(!isset($republic->image))
 
         $('#previewimage').error(function () {
-            $(this).attr('src', '{{asset('/images/user-default.png')}}');
+            $(this).attr('src', '{{'https://www.nato-pa.int/sites/default/files/default_images/default-image.jpg'}}');
         });
         @endif
     </script>

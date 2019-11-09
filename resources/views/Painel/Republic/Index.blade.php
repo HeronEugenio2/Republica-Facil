@@ -55,6 +55,9 @@
                         @if(isset($owner))
                             <h3>Proprietário: {{$owner->name}}</h3>
                         @endif
+                        @if(isset($owner))
+                            <div><h3>Contato: {{$republic->phone}}</h3></div>
+                        @endif
                         <hr>
                         <strong>Descrição:</strong> {{$republic->description}}<br>
                         <div class="mt-3">
@@ -117,20 +120,22 @@
                                 </thead>
                                 <tbody>
                                 <div class="form-check">
-                                    @foreach($members as $member)
-                                        <input type="hidden" value="{{$republic->id}}" name="republic_id">
-                                        <tr class='text-center'>
-                                            <td class="align-middle text-center">
-                                                <img src="{{$member->image}}"
-                                                     style="width: 32px; height: 32px;border-radius: 50%">
-                                            </td>
-                                            <td class="align-middle text-center">{{$member->name}}</td>
-                                            <td class="text-center">
-                                                <input class="form-check-input" type="radio" name="member_id"
-                                                       value="{{$member->id}}" checked>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    @if(isset($members))
+                                        @foreach($members as $member)
+                                            <input type="hidden" value="{{$republic->id}}" name="republic_id">
+                                            <tr class='text-center'>
+                                                <td class="align-middle text-center">
+                                                    <img src="{{$member->image}}"
+                                                         style="width: 32px; height: 32px;border-radius: 50%">
+                                                </td>
+                                                <td class="align-middle text-center">{{$member->name}}</td>
+                                                <td class="text-center">
+                                                    <input class="form-check-input" type="radio" name="member_id"
+                                                           value="{{$member->id}}" checked>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                 </div>
                                 </tbody>
                             </table>

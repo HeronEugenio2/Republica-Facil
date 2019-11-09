@@ -88,6 +88,51 @@
             </div>
         </div>
     </div>
+    <div id='informacaoAleatoria' class="jumbotron jumbotron-fluid mb-0" style="background-color: #e2e3e5">
+        <div class="container">
+            <div class='row justify-content-md-center'>
+                <div class='col-12 text-center'>
+                    {{--<h1>Como Funciona</h1>--}}
+                    {{--<hr class='bg-danger'>--}}
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="text-secondary">Como funciona ?</h2>
+                            <hr>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="text-danger fas fa-search-location fa-3x mb-2"></i>
+                            <h5 class='text-danger'>Encontre lugares para morar</h5>
+                            <p class='text-muted'>
+                                Use nossa busca para encontrar excelentes apartamentos para dividir aluguel e quartos
+                                para alugar em todas as regiões do Brasil
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="text-danger fas fa-mobile-alt fa-3x mb-2"></i>
+                            <h5 class='text-danger'>
+                                Negocie diretamente com o anunciante
+                            </h5>
+                            <p class='text-muted'>
+                                Utilize nossa plataforma para trocar mensagens e conhecer melhor a pessoa que irá
+                                dividir moradia com você.
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="text-danger fas fa-key fa-3x mb-2"></i>
+                            <h5 class='text-danger'>
+                                Mude-se para um novo lar
+                            </h5>
+                            <p class='text-muted'>
+                                Faça sua mudança com a tranquilidade de ter escolhido um bom lugar para morar, dividindo
+                                o aluguel com pessoas que combinam com você.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id='republicas' class="jumbotron jumbotron-fluid m-0 "
          style="background-image: linear-gradient(0deg, #dededebd, #f8f9fa) ,url(/images/FotoJet2.png);background-position: center;">
         <div class="container">
@@ -128,52 +173,12 @@
             </div>
         </div>
     </div>
-    <div id='informacaoAleatoria' class="jumbotron jumbotron-fluid mb-0" style="background-color: #e2e3e5">
-        <div class="container">
-            <div class='row justify-content-md-center'>
-                <div class='col-12 text-center'>
-                    {{--<h1>Como Funciona</h1>--}}
-                    {{--<hr class='bg-danger'>--}}
-                    <div class="row">
-                        <div class="col-md-4">
-                            <i class="text-danger fas fa-search-location fa-3x mb-2"></i>
-                            <h5 class='text-danger'>Encontre lugares para morar</h5>
-                            <p class='text-muted'>
-                                Use nossa busca para encontrar excelentes apartamentos para dividir aluguel e quartos
-                                para alugar em todas as regiões do Brasil
-                            </p>
-                        </div>
-                        <div class="col-md-4">
-                            <i class="text-danger fas fa-mobile-alt fa-3x mb-2"></i>
-                            <h5 class='text-danger'>
-                                Negocie diretamente com o anunciante
-                            </h5>
-                            <p class='text-muted'>
-                                Utilize nossa plataforma para trocar mensagens e conhecer melhor a pessoa que irá
-                                dividir moradia com você.
-                            </p>
-                        </div>
-                        <div class="col-md-4">
-                            <i class="text-danger fas fa-key fa-3x mb-2"></i>
-                            <h5 class='text-danger'>
-                                Mude-se para um novo lar
-                            </h5>
-                            <p class='text-muted'>
-                                Faça sua mudança com a tranquilidade de ter escolhido um bom lugar para morar, dividindo
-                                o aluguel com pessoas que combinam com você.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div id="anuncios" class="jumbotron jumbotron-fluid mb-0 bg-anuncio">
         <div class='row justify-content-md-center m-1'>
             <div class='col-12 text-center -20'>
                 <img src='/images/Google-Facebook-Instagram.png' style='height: 60px'>
                 <h2>
-                    Anúncio
+                    Anúncios Diversos
                 </h2>
                 <div class='row justify-content-center'>
                     <div class='' style='max-width: 600px;'>

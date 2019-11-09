@@ -28,7 +28,7 @@ class CreateRepublicsTable extends Migration
             $table->integer('down')->default(0);
             $table->float('value')->nullable()->default(0);
             $table->string('street')->nullable();
-//            $table->string('neighborhood')->nullable();
+            $table->string('phone')->nullable();
             $table->string('district')->nullable();
             $table->string('cep')->nullable();
             $table->string('city')->nullable();

@@ -76,10 +76,11 @@ class RepublicController extends Controller
      * @return RedirectResponse
      * @author Heron Eugenio
      */
-    public function store(RepublicStoreRequest $republicRequest)
+    public function store(Request $republicRequest)
     {
         try {
             $dataValidated = $republicRequest->validated();
+            dd($dataValidated);
             $republicRequest->value = str_replace('.', '', $republicRequest->value);
             $republicRequest->value = str_replace(',', '.', $republicRequest->value);
             $dataValidated['user_id'] = auth()->user()->id;
@@ -135,6 +136,8 @@ class RepublicController extends Controller
         $republicRequestValidate = $republicRequest->validated();
         $republic = Republic::find($id);
         $republicUpdated = $republic->update($republicRequestValidate);
+        $republic->phone = $republicRequestValidate['phone'];
+        $republic->save();
         if (!empty($republicRequestValidate['image'])) {
             $this->service->saveImg($republicRequest, $republic);
         }

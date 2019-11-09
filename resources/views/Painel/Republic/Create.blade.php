@@ -32,7 +32,7 @@
                                     <input name='image' style='display: none;' type='file'
                                            class='form-control input-pad' id='image'>
                                     <img
-                                        src='{{$republic->image ?? 'https://lh3.googleusercontent.com/IB-0PcfCsGe03iguL6EayIpKHbg-eQmxmomjXfl5r3LVVrVYTes2NNY4xxp5c-vW_C5o4A=s113'}}'
+                                        src='{{isset($republic)? $republic->image : 'https://lh3.googleusercontent.com/IB-0PcfCsGe03iguL6EayIpKHbg-eQmxmomjXfl5r3LVVrVYTes2NNY4xxp5c-vW_C5o4A=s113'}}'
                                         id='previewimage' accept="image/*"
                                         alt='Nenhuma foto cadastrada'
                                         style='max-height: 250px; max-width: 350px; cursor: pointer;'>
@@ -44,7 +44,7 @@
                                         <label class='form-control-label' for='name-republic'
                                                class='form-control-label'>Nome da Republica</label>
                                         <input type='text' class='form-control w-100' name='name'
-                                               value='{{$republic->name ?? ''}}'
+                                               value='{{isset($republic)? $republic->name : ''}}'
                                                placeholder='Adicionae um nome para sua republica' style='width: 100%;'
                                                required>
                                         <small id='nameHelp' class='form-text text-muted'>O nome será mostrado na
@@ -53,13 +53,26 @@
                                     <div class='form-group'>
                                         <label class='form-control-label' for='email-republic'
                                                class='form-control-label'>E-mail da Repúlica</label>
-                                        <input class='form-control w-100' id='email' value='{{$republic->email ?? ''}}'
+                                        <input class='form-control w-100' id='email'
+                                               value='{{isset($republic)? $republic->email : ''}}'
                                                name='email'
                                                aria-describedby='emailHelp'
                                                placeholder='republica.estudantes@gmail.com'
                                                style='width: 100%' required>
                                         <small id="emailHelp" class="form-text text-muted">Coloque aqui o e-mail para
                                             contato com a república.
+                                        </small>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label class='form-control-label' for='email-republic'
+                                               class='form-control-label'>WhatsApp da Repúlica</label>
+                                        <input class='form-control w-100' id='phone'
+                                               value='{{isset($republic)? $republic->phone : ''}}'
+                                               name='phone'
+                                               aria-describedby='emailHelp'
+                                               placeholder='republica.estudantes@gmail.com'
+                                               style='width: 100%' required>
+                                        <small id="emailHelp" class="form-text text-muted">WhatsApp para contato.
                                         </small>
                                     </div>
                                 </div>
@@ -237,7 +250,7 @@
             $("#image").click();
         });
 
-        @if(!$republic->image)
+        @if(!isset($republic->image))
 
         $('#previewimage').error(function () {
             $(this).attr('src', '{{asset('/images/user-default.png')}}');

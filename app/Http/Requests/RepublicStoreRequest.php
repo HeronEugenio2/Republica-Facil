@@ -26,6 +26,7 @@ class RepublicStoreRequest extends FormRequest
         return [
             'name' => 'required|string',
             'email' => 'required|string',
+            'phone' => 'nullable',
             'qtdMembers' => 'nullable|string',
             'qtdVacancies' => 'nullable|string',
             'value' => 'required|string',

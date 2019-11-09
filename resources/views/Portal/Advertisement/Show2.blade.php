@@ -42,7 +42,8 @@
                         <h5 class="card-title text-truncate">{{$advertisement->title}}</h5>
                         <p class="card-text text-truncate">{{$advertisement->street}}
                             <br>{{$advertisement->city}} - {{$advertisement->state}}</p>
-                        <a class="btn btn-success btn-large" href="#">
+                        <a class="btn btn-success btn-large"
+                           href="https://api.whatsapp.com/send?phone=+55{{$advertisement->user->phone}}&text=Olá {{$advertisement->user->name}}! Tenho interesse no seu anúncio: {{$advertisement->title}}, gostaria de saber se ainda está disponível, e quais as formas de pagamento. Obrigado!&source=&data=sadasdsadsa">
                             <i class="fab fa-whatsapp text-white"></i> Contato
                         </a>
                         <a class="btn btn-primary btn-large" href="#"><i class="fas fa-link"></i> Compartilhar</a>
@@ -53,7 +54,7 @@
             <div class="col mt-4">
                 <div class="card shadow">
                     <div class="card-body">
-                        {!! $map['html'] !!}
+                        {{--                        {!! $map['html'] !!}--}}
                     </div>
                 </div>
             </div>
@@ -116,7 +117,7 @@
     <div id='footer' class="jumbotron jumbotron-fluid bg-dark mb-0 col">
         <div class="container">
             <div class='row justify-content-md-center'>
-                <a href='#' class='text-white mx-1'><i class="fas fa-id-badge"></i> Contato</a>
+                <a href="#" class='text-white mx-1'><i class="fas fa-id-badge"></i> Contato</a>
                 <a href='#' class='text-white mx-1'><i class="fab fa-github-alt"></i> GitHub</a>
                 <a href='#' class='text-white mx-1'><i class="fab fa-instagram"></i> Instagram</a>
             </div>

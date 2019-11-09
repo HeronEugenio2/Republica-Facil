@@ -33,7 +33,9 @@
                     </h2>
                     <hr>
                     <p>
-                        <a class="btn btn-success btn-large my-1" href="#"><i class="fab fa-whatsapp text-white"></i>
+                        <a class="btn btn-success btn-large my-1"
+                           href="https://api.whatsapp.com/send?phone=55{{$republic->phone}}&text=Olá {{$republic->name}}! Tenho interesse em um quarto na república, gostaria de saber se ainda existem vagas disponíveis. Obrigado!&source=&data=sadasdsadsa"><i
+                                class="fab fa-whatsapp text-white"></i>
                             Contato</a>
                         <a class="btn btn-primary btn-large my-1"
                            href="www.republicafacil.com.br/portal/republicas/1"><i
@@ -66,7 +68,7 @@
             <div class="col mt-4">
                 <div class="card shadow">
                     <div class="card-body">
-                        {!! $map['html'] !!}
+                        {{--                        {!! $map['html'] !!}--}}
                     </div>
                 </div>
             </div>

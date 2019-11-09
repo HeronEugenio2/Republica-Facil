@@ -80,7 +80,7 @@ class AdvertisementController extends Controller
      */
     public function show($id)
     {
-        $advert = $this->advertisementModel->find($id);
+        $advert = $this->advertisementModel->with('images')->find($id);
 
         return view('Painel.Advertisement.Show', compact('advert'));
     }

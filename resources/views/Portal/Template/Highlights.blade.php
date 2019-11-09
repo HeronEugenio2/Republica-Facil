@@ -14,7 +14,7 @@
                             <h3>{{$republic->name}}</h3>
                         </header>
                         <p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-                        <a href="{{route('advertisement.index')}}" class="button primary fit small">Visualizar</a>
+                        <a href="{{route('advertisement.index')}}" class="button primary fit small">Ver Detalhes</a>
                     </div>
                 </section>
             @endforeach

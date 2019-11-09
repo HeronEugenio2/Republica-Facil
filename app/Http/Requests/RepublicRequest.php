@@ -37,6 +37,7 @@ class RepublicRequest extends FormRequest
             'value' => 'required',
             'type_id' => 'required|numeric',
             'description' => 'nullable',
+            'phone' => 'nullable',
             'street' => 'required',
             'district' => 'required',
             'cep' => 'required',

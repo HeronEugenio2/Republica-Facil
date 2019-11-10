@@ -2,15 +2,38 @@
 
 @section('content')
     <div id='advertList' class='card'>
-        <div id='advertHeader' class='card-header text-white bg-nav'>Anúncios da República</div>
+        {{--        <div id='advertHeader' class='card-header text-white bg-nav'>Anúncios da República</div>--}}
         <div id='advertBody' class='card-body'>
-            <a href="{{route('painel.advertisement.create')}}" class="btn btn-primary mb-2">
-                <i class="fas fa-plus-circle"></i> Novo Anúncio
-            </a>
+            <div class="p-4 mb-2 alert alert-primary w-100">
+                <h1>ANUNCIAR GRÁTIS</h1>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 col-md-6">
+                        <h3>você não precisa ser membro de repúblicas para fazer seus anúncios</h3>
+                        <a href="{{route('painel.advertisement.create')}}" class="btn btn-primary mb-2">
+                            Novo Anúncio <i class="fas fa-angle-double-right"></i>
+                        </a>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 col-md-6">
+                        <img
+                            src="https://www.vendotudo.net.br/wp-content/uploads/layerslider/opal/opal-layer-01-image.png"
+                            class="img-fluid">
+                    </div>
+                </div>
+            </div>
             <div class='filtro mt-4'>
                 <form method="GET" action="{{ route('painel.advertisement.index')}}">
                     @csrf
                     <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="form-control-label">Status</label>
+                                <select class="form-control w-100" name="status">
+                                    <option value="null">Todos</option>
+                                    <option value="1">Ativo</option>
+                                    <option value="0">Inativo</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <label class="form-control-label">Nome do anúncio</label>
                             <div class="input-group mb-3">
@@ -23,80 +46,57 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-6 col-sm-12">
-                            <div class="form-group">
-                                <label class="form-control-label">Status</label>
-                                <select class="form-control w-100" name="status">
-                                    <option value="null">Todos</option>
-                                    <option value="1">Ativo</option>
-                                    <option value="0">Inativo</option>
-                                </select>
-                            </div>
-                        </div>
                     </div>
                 </form>
             </div>
-            <hr>
-            @if(count($advertisements)>0)
-                @if(isset($advertisements))
-                    <div class='table-responsive'>
-                        <table class="table table-bordered table-hover table-striped  table-sm text-center">
-                            <thead>
-                            <tr>
-                                <th scope="col" class='bg-nav text-white' width='10%'>Imagem</th>
-                                <th scope="col" class='bg-nav text-white'>Título</th>
-                                <th scope="col" class='bg-nav text-white'>Descrição</th>
-                                <th scope="col" class='bg-nav text-white'>Valor</th>
-                                <th scope="col" class='bg-nav text-white'>Ativo</th>
-                                <th scope="col" class='bg-nav text-white'>Detalhes</th>
-                                <th scope="col" class='bg-nav text-white'>Deletar</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($advertisements as $advertisement)
-                                <tr class='text-center'>
-                                    <td class='align-middle'>
-                                        <img src="{{$advertisement->image}}" height="60" width="70">
-                                    </td>
-                                    <td class='align-middle'>{{$advertisement->title}}</td>
-                                    <td class='align-middle text-left'>{{$advertisement->description}}</td>
-                                    <td class='align-middle'>
-                                        R$ {{number_format($advertisement->value,2,",",".")}}</td>
-                                    <td class='align-middle'>
+            @if(isset($advertisements) && count($advertisements)>0 )
+                <div class="row p-2 justify-content-center">
+                    @foreach($advertisements as $advertisement)
+                        <div class="card border border-light img-thumbnail m-2" style="width: 290px">
+                            <div class='overflow-hidden'>
+                                <div class="overflow-auto overflow-hidden" style="
+                                    background-image: url({{asset($advertisement->image)}});
+                                    background-size: auto;
+                                    /* width: 100%; */
+                                    height: 200px;
+                                    background-position: center;
+                                    background-repeat: no-repeat;
+                                    background-size: cover;
+                                    ">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title text-truncate">{{$advertisement->title}}</h3>
+                                <p class="card-text text-truncate">{{$advertisement->street}}
+                                    <br>{{$advertisement->city}} - {{$advertisement->state}}</p>
+                                <p>
+                                    R$ {{number_format($advertisement->value,2,",",".")}}
+                                    <span class="float-right">
                                         @if($advertisement->active_flag==1)
-                                            <i class="fas fa-thumbs-up fa-2x text-success"></i>
+                                            <span class="text-success"><i class="fas fa-check"></i> Anúncio Ativo</span>
                                         @else
-                                            <i class="fas fa-thumbs-down fa-2x text-danger"></i>
+                                            <span class="text-warning"><i class="far fa-clock"></i> Em Análise</span>
                                         @endif
-                                    </td>
-                                    <td class='align-middle'>
-                                        <a href="{{route('painel.advertisement.show',$advertisement->id )}}"
-                                           class="btn btn-sm text-gray mb-2 p-0 px-1">
-                                            <i class="fas fa-eye fa-2x"></i>
-                                        </a>
-                                    </td>
-                                    <td class="align-middle">
-                                        <form action="{{ route('painel.advertisement.destroy', $advertisement->id)}}"
-                                              method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger btn-sm mb-2" type="submit">
-                                                <i class="fas fa-trash"></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @else
-                    <div class='alert alert-primary'>
-                        Não possui anúncios!
-                    </div>
-                @endif
+                                    </span>
+                                </p>
+                                <form action="{{ route('painel.advertisement.destroy', $advertisement->id)}}"
+                                      method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{route('painel.advertisement.show',$advertisement->id )}}"
+                                       class="btn btn-primary w-100">Ver Detalhes
+                                    </a>
+                                    <button class="btn btn-light btn-sm w-100 mt-2" type="submit">
+                                        Excluir Anúncio
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             @else
                 <div class='alert alert-primary'>
-                    Não possui anúncios!
+                    você ainda não possui anúncios.
                 </div>
             @endif
         </div>

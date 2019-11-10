@@ -54,7 +54,7 @@
             <div class="col mt-4">
                 <div class="card shadow">
                     <div class="card-body">
-                        {!! $map['html'] !!}
+                        {{--                        {!! $map['html'] !!}--}}
                     </div>
                 </div>
             </div>

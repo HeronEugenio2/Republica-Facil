@@ -47,11 +47,11 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="{{ route('login') }}" class="nav-link">Entrar</a>
+                        <a href="{{ route('login') }}" class="nav-link">Login</a>
                     </li>
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="nav-link">Criar conta</a>
-                    @endif
+                    {{--                    @if (Route::has('register'))--}}
+                    {{--                        <a href="{{ route('register') }}" class="nav-link">Criar conta</a>--}}
+                    {{--                    @endif--}}
                 @endauth
             @endif
             {{--<li class="nav-item">--}}

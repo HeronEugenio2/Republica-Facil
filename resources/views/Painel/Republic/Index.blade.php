@@ -90,9 +90,9 @@
     @else
         <div class="alert alert-primary">
             <h2><i class="fas fa-exclamation-triangle"></i> Olá {{ Auth::user()->name }} !</h2>
-            Para cadastrar sua primeira república clique no botão abaixo.
+            Você ainda não pertence a nenhuma república, para registrar uma nove uma república clique no botão abaixo.
             <hr>
-            <a href="{{route('painel.republic.create')}}" class="btn btn-primary">Cadastrar República</a>
+            <a href="{{route('painel.republic.create')}}" class="btn btn-primary">Criar República</a>
         </div>
     @endif
     <!-- Modal -->

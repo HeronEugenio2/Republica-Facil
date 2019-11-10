@@ -70,7 +70,9 @@
                                 <p class="card-text text-truncate">{{$advertisement->street}}
                                     <br>{{$advertisement->city}} - {{$advertisement->state}}</p>
                                 <p>
-                                    R$ {{number_format($advertisement->value,2,",",".")}}
+                                    <span>
+                                        R$ {{number_format($advertisement->value,2,",",".")}}
+                                    </span>
                                     <span class="float-right">
                                         @if($advertisement->active_flag==1)
                                             <span class="text-success"><i class="fas fa-check"></i> Anúncio Ativo</span>

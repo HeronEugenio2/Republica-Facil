@@ -59,7 +59,10 @@ class AssignmentController extends Controller
      */
     public function create()
     {
-        $users = $this->userModel->with('republic')->where('republic_id', Auth::user()->republic_id)->get();
+        $users = $this->userModel->with('republic')
+            ->where('republic_id', Auth::user()->republic_id)
+            ->orderByDesc('created_at')
+            ->get();
 
         return view('Painel.Assignments.Create', compact('users'));
     }

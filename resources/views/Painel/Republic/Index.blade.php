@@ -8,7 +8,6 @@
             <strong>{{ $message }}</strong>
         </div>
     @endif
-
     @if (count($errors) > 0)
         <div class="alert alert-danger">
             <ul>
@@ -18,81 +17,134 @@
             </ul>
         </div>
     @endif
-    @if(isset($user->republic))
-        <div class='row'>
-            <div class="col col-sm-12 col-md-6 col-lg-6">
-                <div class='card shadow'>
-                    <div class="card-header bg-nav text-white">Sua República
-                        @if($republic->active_flag == 0)
-                            <h2 class='float-right m-0'>
-                                <span class="text-warning"
-                                      value='{{$republic->active_flag}}'><i class="far fa-clock"></i> Em Análise</span>
-                            </h2>
-                        @else
-                            <h2 class='float-right m-0'>
-                            <span class="text-success" value='{{$republic->active_flag}}'>Ativa <i
-                                    class="fas fa-check"></i></span>
-                            </h2>
-                        @endif
-                    </div>
-                    <div class="card-body text-center">
-                        <img id='imgSrc' class='mb-2' src='{{$republic->image}}' style="width:200px; height:200px;"/>
-                        <br>
-                        <div class="btn-group btn-group-sm mb-2" role="group" aria-label="...">
+    @if(!isset($user->republic))
+        <div class="card">
+            <div class="card-body">
+                <div class="p-4 mb-2 bg-lighter w-100">
+                    <h1>{{strtoupper($republic->name)}}</h1>
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-7 col-md-7">
+                            <p>{{$republic->description}}</p>
+
+                            <div class="my-4">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3><i class="fab fa-whatsapp"></i> {{$republic->phone}}</h3>
+                                        <h3><i class="far fa-envelope"></i> {{$republic->email}}</h3>
+                                        <h3><i class="fas fa-angle-double-right"></i> {{$republic->type->title}}</h3>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3>
+                                            <i class="fas fa-users"></i> {{$republic->qtdMembers}} membros
+                                        </h3>
+                                        <h3>
+                                            <i class="fas fa-bed"></i>
+                                            {{$republic->qtdVacancies}}
+                                            @if($republic->qtdVacancies==1)
+                                                vaga
+                                            @else
+                                                vagas
+                                            @endif
+                                        </h3>
+                                        <h3>
+                                            R$ {{money_format('%.2n' ,$republic->value)}}
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <address class="my-4">
+                                <i class="fas fa-map-marked-alt fa-2x"></i>
+                                <strong class="display-4">{{$republic->city}} - {{$republic->state}} </strong>
+                                <p class="mb-0">{{$republic->street}}, {{$republic->number}}</p>
+                                <p>{{$republic->district}},
+                                    CEP {{$republic->cep}}</p>
+                            </address>
+
+                            <div class="mb-4">
+                                <h3>
+                                    <img src="{{$owner->image}}" style="width: 40px; height: 40px;border-radius: 50%">
+                                    Proprietário {{$owner->name}}
+                                </h3>
+                            </div>
+
+
                             <a href="{{route('painel.republic.edit', $user->republic->id )}}"
-                               class="btn btn-secondary">Editar</a>
-                            <a href='#' class='btn btn-secondary btn-sm'>Fotos</a>
-                            <button data-toggle="modal" data-target="#modalExemplo" href='#'
-                                    class='btn btn-secondary btn-sm'>Alterar Proprietário
-                            </button>
+                               class="btn btn-outline-dark mb-2">
+                                Editar Informações <i class="fas fa-angle-double-right"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline-dark mb-2"
+                               data-toggle="modal" data-target="#modalExemplo">
+                                Alterar Proprietário <i class="fas fa-angle-double-right"></i>
+                            </a>
+
                             <a href="{{route('painel.republic.edit', $user->republic->id )}}"
-                               class="btn btn-danger">Sair</a>
+                               class="btn btn-outline-danger mb-2">
+                                Deixar República <i class="fas fa-angle-double-right"></i>
+                            </a>
+
+
                         </div>
-                        <br>
-                        <div class="my-2">
-                            <h1>{{$republic->name}}</h1><strong>Email:</strong> {{$republic->email}}
+                        <div class="col-sm-12 col-lg-5 col-md-5 text-center">
+                            <div class='overflow-hidden'>
+                                <div class="overflow-auto overflow-hidden rounded" style="
+                                    background-image: url({{$republic->image}});
+                                    background-size: auto;
+                                    /* width: 100%; */
+                                    height: 350px;
+                                    background-position: center;
+                                    background-repeat: no-repeat;
+                                    background-size: cover;
+                                    ">
+                                </div>
+                                <div class="mt-4">
+                                    @if($republic->active_flag == 0)
+                                        <h2 class='text-warning display-4'>
+                                            <i class="far fa-clock"></i> Em Análise
+                                            {{--<span value='{{$republic->active_flag}}'>
+                                                <i class="far fa-clock"></i> Em Análise
+                                            </span>--}}
+                                        </h2>
+                                    @else
+                                        <h2 class="text-success display-4">
+                                            <i class="fas fa-check"></i> Ativa
+
+                                            {{-- <span value='{{$republic->active_flag}}'>
+                                                 <i class="fas fa-check"></i> Ativa
+                                             </span>--}}
+                                        </h2>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
-                        @if(isset($owner))
-                            <h3>Proprietário: {{$owner->name}}</h3>
-                        @endif
-                        @if(isset($owner))
-                            <div><h3>Contato: {{$republic->phone ?? 'adicione telefone pra contato.'}}</h3></div>
-                        @endif
-                        <hr>
-                        <strong>Descrição:</strong> {{$republic->description}}<br>
-                        <div class="mt-3">
-                            <span class="mr-4">
-                                <strong><i class="fas fa-bed"></i> Vagas:</strong> {{$republic->qtdVacancies}}
-                            </span>
-                            <strong><i class="fas fa-users"></i> Membros:</strong> {{$republic->qtdMembers}}
-                        </div>
-                    </div>
-                    <div class="card-footer bg-secondary p-3 m-0 text-center"><h2 class="text-white m-0 display-3">
-                            R$ {{money_format('%.2n' ,$republic->value)}}</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col col-sm-12 col-md-6 col-lg-6">
-                <div class='card shadow'>
-                    <div class='card-header bg-nav text-white'>Endereço</div>
-                    <div class='card-body'>
-                        <strong>Endereço:</strong> {{$republic->street}}, {{$republic->number}}<br>
-                        <strong>Bairro:</strong> {{$republic->district}}<br> <strong>Cep:</strong> {{$republic->cep}}
-                        <br> <strong>Cidade:</strong> {{$republic->city}}<br>
-                        <strong>Estado: </strong>{{$republic->state}}
-                        <br> <strong>Gênero:</strong> {{$republic->type->title}}<br> <br>
-                        <a href="{{route('painel.republic.edit', $user->republic->id )}}"
-                           class="btn btn-secondary">Editar</a>
                     </div>
                 </div>
             </div>
         </div>
     @else
-        <div class="alert alert-primary">
-            <h2><i class="fas fa-exclamation-triangle"></i> Olá {{ Auth::user()->name }} !</h2>
-            Você ainda não pertence a nenhuma república, para registrar uma nove uma república clique no botão abaixo.
-            <hr>
-            <a href="{{route('painel.republic.create')}}" class="btn btn-primary">Criar República</a>
+        <div class="card">
+            <div class="card-body">
+                <div class="p-4 mb-2 alert alert-primary w-100">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-6 col-md-6">
+                            <h1><i class="fas fa-exclamation-triangle"></i> Olá {{ Auth::user()->name }} !</h1>
+                            <h3>Você ainda não pertence a nenhuma república, para registrar uma nova república clique no
+                                botão abaixo. Caso seja membro de alguma república entre em contato com o proprietário e
+                                solicite seu convite de membro.</h3>
+                            <p>Você pode visualizar seus convites na página inicial do painel.</p>
+                            <a href="{{route('painel.republic.create')}}" class="btn btn-primary mb-2">
+                                Criar República <i class="fas fa-angle-double-right"></i>
+                            </a>
+                        </div>
+                        <div class="col-sm-12 col-lg-6 col-md-6 text-center my-4">
+                            <img
+                                src="https://interactive.planningportal.co.uk/images/icons/main/detached-house.png"
+                                class="img-fluid"
+                                style="height: 250px">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     @endif
     <!-- Modal -->

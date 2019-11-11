@@ -111,7 +111,7 @@ class SpentController extends Controller
                         break;
                     case 11:
                         $mes = 'novembro';
-                        $value11 += $history->value;
+                        $value11 = $result * -1;
                         break;
                     case 12:
                         $mes = 'dezembro';

@@ -1,150 +1,174 @@
 @extends('layouts.Painel.LayoutFull')
 @section('content')
-    <div class='card-columns'>
-        <div class="card text-dark bg-primary" id='managerSpent' style="height: auto;">
-            <div class="card-header bg-nav text-white c-">Gerenciador de gastos</div>
-            <div class="card-body">
-                <h4 class="card-text text-center">Total = (S.Gastos/Qtd.Membros)-Cr.Individual</h4>
-                Débito República =
-                <strong class='float-right text-danger'>R${{number_format($spentsTotal, 2, ',', ' ')}}</strong>
-                <br> Crédito Individual =
-                <strong class='float-right text-success'>R${{number_format($spentsIndividual, 2, ',', ' ')}}</strong>
-                <br> $media = <strong class='float-right '>R${{number_format($media, 2, ',', ' ')}}</strong>
-                <br> Valor dividído entre = <strong class='float-right '>{{$republic->qtdMembers}} membros</strong>
-                @if($result>0)
-                    <div class="w-100 bg-success mt-4 p-2">
-                        <h2 class='text-white display-4 text-center'>CRÉDITO
-                            R${{number_format($result, 2, ',', ' ')}}</h2>
-                    </div>
-                @else
-                    <div class="w-100 bg-danger mt-4 rounded p-2">
-                        <h2 class='text-white display-4 text-center  mb-0'>DÉBITO
-                            R${{number_format($result, 2, ',', ' ')}}</h2>
-                    </div>
-                @endif
-            </div>
-        </div>
-        <div class='card' id='spentFull'>
-            <div id='headerFull' class='card-header bg-nav text-white'>Gastos</div>
-            <div id='bodyFull' class='card-body '>
-                <button type="button" class="btn btn-primary btn-sm my-2" data-toggle="modal"
-                        data-target="#modalSpent"><i class="fas fa-plus-circle"></i> Novo Gasto
-                </button>
-                <button id="btnExtract" type="button" class="btn btn-sm btn-primary my-2" data-toggle="modal"
-                        data-target="#modalExtract"><i class="fas fa-history"></i> Extrato de contas
-                </button>
-                <hr>
-                @if($republic != null)
-                    @if(count($spents)>0)
-                        <div class='table-responsive'>
-                            <table class="table table-bordered table-hover table-sm table-striped text-center">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Data</th>
-                                    <th scope="col">Descrição</th>
-                                    <th scope="col">Valor</th>
-                                    <th scope="col">Membro</th>
-                                    <th scope="col">Ações</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($spents as $spent)
-                                    <tr class='text-center'>
-                                        <td class="align-middle">{{date('d/m/Y', strtotime($spent->dateSpent))}}</td>
-                                        <td class="align-middle">{{$spent->description}}</td>
-                                        <td class="align-middle">R$ {{number_format($spent->value,2,',', '.')}}</td>
-                                        <td class="align-middle">
-                                            @if($spent->user_id!=null)
-                                                <img class="mr-2" src="{{$spent->user->image}}"
-                                                     style="width: 32px; height: 32px; border-radius: 50%">
-                                            @else
-                                                Todos
-                                            @endif
-                                        </td>
-                                        <td class="align-middle">
-                                            <form method="POST"
-                                                  action="{{route('painel.spent.destroy',$spent->id) }}">
-                                                {{ csrf_field() }}
-                                                {{ method_field('DELETE') }}
-                                                <div class="btn-group-vertical">
-                                                    @if($spent->user_id == auth()->user()->id || $spent->user_id == null)
-                                                        <button class='btn btn-danger btn-sm' type="submit"><i
-                                                                class="fas fa-trash-alt"></i></button>
-                                                    @else
-                                                        <button class='btn btn-danger btn-sm' type="submit" disabled><i
-                                                                class="fas fa-trash-alt"></i></button>
-                                                    @endif
-                                                </div>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                <td colspan='3'><strong>Total</strong></td>
-                                <td colspan='2'><strong>R$ {{number_format($spentsTotal,2,',', '.')}}</strong></td>
-                                </tbody>
-                            </table>
-                        </div>
-                        <small class='text-muted'>Aqui estão listados todos os gastos da república.</small>
-                        <hr>
+    <div class="card">
+        <div class="card-body">
+            <div class="p-4 mb-2 alert alert-primary w-100">
+                <h1>CONTROLE DE DESPESAS</h1>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 col-md-6 mb-4">
+                        <h3>gaste de forma mais consciente, investindo menos em trivialidades e mais no que realmente
+                            importa para você.</h3>
+                        <button type="button" class="btn btn-primary mb-2" data-toggle="modal"
+                                data-target="#modalSpent">Adicionar Gasto <i class="fas fa-angle-double-right"></i>
+                        </button>
+                        <button id="btnExtract" type="button" class="btn btn-primary mb-2" data-toggle="modal"
+                                data-target="#modalExtract"><i class="fas fa-history"></i> Extrato de contas
+                        </button>
                         <!-- Botão para acionar modal -->
                         <button id="closeMonth" data-result="{{$result}}" data-republic="{{$republic->id}}"
-                                data-user="{{auth()->user()->id}}" type="button" class="btn btn-primary btn-sm my-2"
+                                data-user="{{auth()->user()->id}}" type="button" class="btn btn-primary mb-2"
                                 data-toggle="modal" data-target="#modalSpentResult">
                             <i class="far fa-check-circle"></i> Fechar Mês
                         </button>
-                    @else
-                        <div class='alert alert-primary'>
-                            Não possui gastos!
+                        @if($result>0)
+                            <div class="w-100 bg-success mt-4 p-2 rounded ">
+                                <h2 class='text-white display-4 text-center mb-0'>À Receber
+                                    R${{number_format($result, 2, ',', ' ')}}</h2>
+                            </div>
+                        @else
+                            <div class="w-100 bg-danger mt-4 rounded p-2">
+                                <h2 class='text-white display-4 text-center  mb-0'>À Pagar
+                                    R${{number_format($result, 2, ',', ' ')}}</h2>
+                            </div>
+                        @endif
+                        <div class="mt-4 mb-4">
+                            <strong class='float-right display-3 '>Despesa total:
+                                R${{number_format($spentsTotal, 2, ',', ' ')}}</strong>
                         </div>
-                    @endif
-                @else
-                    <div class='alert alert-primary'>
-                        Você ainda não participa de nenhuma República!
                     </div>
-                @endif
+                    <div class="col-sm-12 col-lg-6 col-md-6 text-center">
+                        <img
+                            src="https://cloud.google.com/images/pricing/calculator.png?hl=pt-br"
+                            class="img-fluid">
+                    </div>
+
+
+                    <div class="col-sm-12 col-lg-12 col-md-12 text-center">
+
+                        <div class="my-2">
+                            <canvas id="myChart" width="100%" height='31px'></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class='card'>
-            <div class='card-header bg-success'>Crédito</div>
-            <div class='card-body' style="border-color: #20b790">
-                <small class='text-muted'>Adicione compras feitas por você que devem ser divididas entre todos.</small>
-                <br>
-                @if(count($myDebits)>0)
-                    <div class='table-responsive'>
+            @if($republic != null)
+                @if(count($spents)>0)
+                    <div class='table-responsive my-2 rounded'>
                         <table class="table table-bordered table-hover table-sm table-striped text-center">
                             <thead>
                             <tr>
                                 <th scope="col">Data</th>
                                 <th scope="col">Descrição</th>
                                 <th scope="col">Valor</th>
+                                <th scope="col">Membro</th>
+                                <th scope="col">Ações</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($myDebits as $myDebit)
+                            @foreach($spents as $spent)
                                 <tr class='text-center'>
-                                    <td>{{$myDebit->month}}/{{$myDebit->year}}</td>
-                                    <td>{{$myDebit->description}}</td>
-                                    <td>R$ {{number_format($myDebit->value,2,',', '.')}}</td>
+                                    <td class="align-middle">{{date('d/m/Y', strtotime($spent->dateSpent))}}</td>
+                                    <td class="align-middle">{{$spent->description}}</td>
+                                    <td class="align-middle">R$ {{number_format($spent->value,2,',', '.')}}</td>
+                                    <td class="align-middle">
+                                        @if($spent->user_id!=null)
+                                            <img class="mr-2" src="{{$spent->user->image}}"
+                                                 style="width: 32px; height: 32px; border-radius: 50%">
+                                        @else
+                                            Todos
+                                        @endif
+                                    </td>
+                                    <td class="align-middle">
+                                        <form method="POST"
+                                              action="{{route('painel.spent.destroy',$spent->id) }}">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <div class="btn-group-vertical">
+                                                @if($spent->user_id == auth()->user()->id || $spent->user_id == null)
+                                                    <button class='btn btn-danger btn-sm' type="submit"><i
+                                                            class="fas fa-trash-alt"></i></button>
+                                                @else
+                                                    <button class='btn btn-danger btn-sm' type="submit" disabled><i
+                                                            class="fas fa-trash-alt"></i></button>
+                                                @endif
+                                            </div>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
+                            <td colspan='3'><strong>Total</strong></td>
+                            <td colspan='2'><strong>R$ {{number_format($spentsTotal,2,',', '.')}}</strong></td>
                             </tbody>
                         </table>
                     </div>
+                @else
+                    <div class='alert alert-primary'>
+                        Não possui gastos!
+                    </div>
+                @endif
+            @else
+                <div class='alert alert-primary'>
+                    Você ainda não participa de nenhuma República!
+                </div>
             @endif
-                <hr>
-            <!-- Botão para acionar modal -->
-                <button id="newDebit" data-user="{{auth()->user()->id}}" type="button"
-                        class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#modalDebit"> Adicionar
-                </button>
-            </div>
-        </div>
-        <div class='card'>
-            <div class='card-body'>
-                {{--<div id="chart_div" style="width: 100%; height: 300px;"></div>--}}
-                <canvas id="myChart" width="100%" height='31px'></canvas>
-            </div>
         </div>
     </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="p-4 mb-2 alert bg-green w-100">
+                <h1 class="text-white">CRÉDITO PESSOAL NA REPÚBLICA</h1>
+                <div class="row mb-4">
+                    <div class="col-sm-12 col-lg-6 col-md-6 mb-4">
+                        <h3 class="text-white">Adicione compras feitas por você que devem ser divididas entre
+                            todos.</h3>
+
+                        <!-- Botão para acionar modal -->
+                        <button id="newDebit" data-user="{{auth()->user()->id}}" type="button"
+                                class="btn btn-outline-white btn-lg mt-2" data-toggle="modal" data-target="#modalDebit">
+                            Adicionar Crédito <i class="fas fa-angle-double-right"></i>
+                        </button>
+                        <div class="text-white">
+                            <h2 class='float-right text-white display-3'>
+                                R$ {{number_format($spentsIndividual, 2, ',', ' ')}}</h2>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 col-md-6 text-center">
+                        <img
+                            src="https://cdn.pixabay.com/photo/2016/09/16/09/21/money-1673582_960_720.png"
+                            class="img-fluid"
+                            style="width: 200px;">
+                    </div>
+                </div>
+                <div class="my-2">
+                    @if(count($myDebits)>0)
+                        <div class='table-responsive rounded'>
+                            <table class="table table-bordered bg-gradient-white table-hover table-sm text-center">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Data</th>
+                                    <th scope="col">Descrição</th>
+                                    <th scope="col">Valor</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($myDebits as $myDebit)
+                                    <tr class='text-center'>
+                                        <td>{{$myDebit->month}}/{{$myDebit->year}}</td>
+                                        <td>{{$myDebit->description}}</td>
+                                        <td>R$ {{number_format($myDebit->value,2,',', '.')}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
     <!-- Modal -->
     <div class="modal fade" id="modalDebit" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
          aria-hidden="true">

@@ -17,7 +17,7 @@
             </ul>
         </div>
     @endif
-    @if(!isset($user->republic))
+    @if(isset($user->republic))
         <div class="card">
             <div class="card-body">
                 <div class="p-4 mb-2 bg-lighter w-100">

@@ -28,12 +28,12 @@
 
                             <div class="my-4">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <h3><i class="fab fa-whatsapp"></i> {{$republic->phone}}</h3>
                                         <h3><i class="far fa-envelope"></i> {{$republic->email}}</h3>
                                         <h3><i class="fas fa-angle-double-right"></i> {{$republic->type->title}}</h3>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <h3>
                                             <i class="fas fa-users"></i> {{$republic->qtdMembers}} membros
                                         </h3>
@@ -52,7 +52,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <hr>
                             <address class="my-4">
                                 <i class="fas fa-map-marked-alt fa-2x"></i>
                                 <strong class="display-4">{{$republic->city}} - {{$republic->state}} </strong>
@@ -70,16 +70,16 @@
 
 
                             <a href="{{route('painel.republic.edit', $user->republic->id )}}"
-                               class="btn btn-outline-dark mb-2">
+                               class="btn btn-outline-dark mb-4">
                                 Editar Informações <i class="fas fa-angle-double-right"></i>
                             </a>
-                            <a href="#" class="btn btn-outline-dark mb-2"
+                            <a href="#" class="btn btn-outline-dark mb-4"
                                data-toggle="modal" data-target="#modalExemplo">
                                 Alterar Proprietário <i class="fas fa-angle-double-right"></i>
                             </a>
 
                             <a href="{{route('painel.republic.edit', $user->republic->id )}}"
-                               class="btn btn-outline-danger mb-2">
+                               class="btn btn-outline-danger mb-4">
                                 Deixar República <i class="fas fa-angle-double-right"></i>
                             </a>
 
@@ -99,20 +99,20 @@
                                 </div>
                                 <div class="mt-4">
                                     @if($republic->active_flag == 0)
-                                        <h2 class='text-warning display-4'>
-                                            <i class="far fa-clock"></i> Em Análise
-                                            {{--<span value='{{$republic->active_flag}}'>
-                                                <i class="far fa-clock"></i> Em Análise
-                                            </span>--}}
-                                        </h2>
-                                    @else
-                                        <h2 class="text-success display-4">
-                                            <i class="fas fa-check"></i> Ativa
 
-                                            {{-- <span value='{{$republic->active_flag}}'>
-                                                 <i class="fas fa-check"></i> Ativa
-                                             </span>--}}
-                                        </h2>
+                                        <div class="alert bg-warning w-100 p-1">
+                                            <span class="display-4"><i class="far fa-clock"></i> Em Análise</span>
+                                        </div>
+                                        {{--<span value='{{$republic->active_flag}}'>
+                                            <i class="far fa-clock"></i> Em Análise
+                                        </span>--}}
+                                    @else
+                                        <div class="alert bg-success w-100 p-1">
+                                            <span class="display-4"><i class="fas fa-check"></i> Ativa</span>
+                                        </div>
+                                        {{-- <span value='{{$republic->active_flag}}'>
+                                             <i class="fas fa-check"></i> Ativa
+                                         </span>--}}
                                     @endif
                                 </div>
                             </div>

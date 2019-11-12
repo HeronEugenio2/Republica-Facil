@@ -77,12 +77,17 @@
                                data-toggle="modal" data-target="#modalExemplo">
                                 Alterar Proprietário <i class="fas fa-angle-double-right"></i>
                             </a>
-
-                            <a href="{{route('painel.republic.edit', $user->republic->id )}}"
-                               class="btn btn-outline-danger mb-4">
-                                Deixar República <i class="fas fa-angle-double-right"></i>
-                            </a>
-
+                            @if($republic->user_id != Auth::id())
+                                <a href="{{route('painel.removeOwner',Auth::id() )}}"
+                                   class="btn btn-outline-danger mb-4">
+                                    Deixar República <i class="fas fa-angle-double-right"></i>
+                                </a>
+                            @else
+                                <a href="{{route('painel.desactive', $republic->id )}}"
+                                   class="btn btn-outline-danger mb-4">
+                                    Desativar República <i class="fas fa-angle-double-right"></i>
+                                </a>
+                            @endif
 
                         </div>
                         <div class="col-sm-12 col-lg-5 col-md-5 text-center">
@@ -138,7 +143,7 @@
                         </div>
                         <div class="col-sm-12 col-lg-6 col-md-6 text-center my-4">
                             <img
-                                src="https://interactive.planningportal.co.uk/images/icons/main/detached-house.png"
+                                src="{{asset('/images/cadastrar-republic.png')}}"
                                 class="img-fluid"
                                 style="height: 250px">
                         </div>

@@ -67,6 +67,10 @@ Route::group(
 
         //painel.spendingResult
         Route::post('/sangria', 'SpentController@spendingResult')->name('spendingResult');
+        //painel.desactive
+        Route::get('/republic/{id}/desactive', 'RepublicController@desactive')->name('desactive');
+        //painel.removeOwner
+        Route::get('/remove/membro/{id}', 'RepublicController@removeOwner')->name('removeOwner');
         //painel.Invitation
         Route::post('/email', 'RepublicController@invitation')->name('invitation');
         //painel.invitationAccept

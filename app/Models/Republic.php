@@ -95,4 +95,9 @@ class Republic extends Model
     {
         return $this->hasMany(Resource::class);
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

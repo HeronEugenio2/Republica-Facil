@@ -152,6 +152,7 @@ class RepublicController extends Controller
         }
 
     }
+
     /**
      * @param $id
      * @return Factory|View
@@ -250,5 +251,24 @@ class RepublicController extends Controller
 
     }
 
+    public function removeOwner($userID)
+    {
+        $user = User::find($userID);
+        $user->republic_id = null;
+        $user->save();
+        return redirect()->back();
+    }
+
+    public function desactive($republicID)
+    {
+        $republic = Republic::with('users')->find($republicID);
+        foreach ($republic->users as $user) {
+            $user->republic_id = null;
+            $user->save();
+        }
+        $republic->active_flag = 0;
+        $republic->save();
+        return redirect()->back();
+    }
 
 }

@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-sm-12 col-lg-6 col-md-6 text-center">
                         <img
-                            src="https://cloud.google.com/images/pricing/calculator.png?hl=pt-br"
+                            src="{{asset('/images/gastos-create.png')}}"
                             class="img-fluid">
                     </div>
 

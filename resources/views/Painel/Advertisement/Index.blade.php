@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-sm-12 col-lg-6 col-md-6">
                         <img
-                            src="https://www.vendotudo.net.br/wp-content/uploads/layerslider/opal/opal-layer-01-image.png"
+                            src="{{asset('/images/anuncio-create.png')}}"
                             class="img-fluid">
                     </div>
                 </div>

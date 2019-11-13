@@ -11,12 +11,12 @@
                         <button type="button" class="btn btn-primary mb-2" data-toggle="modal"
                                 data-target="#modalSpent">Adicionar Gasto <i class="fas fa-angle-double-right"></i>
                         </button>
-                        <button id="btnExtract" type="button" class="btn btn-primary mb-2" data-toggle="modal"
+                        <button id="btnExtract" type="button" class="btn btn-outline-default mb-2" data-toggle="modal"
                                 data-target="#modalExtract"><i class="fas fa-history"></i> Extrato de contas
                         </button>
                         <!-- Botão para acionar modal -->
                         <button id="closeMonth" data-result="{{$result}}" data-republic="{{$republic->id}}"
-                                data-user="{{auth()->user()->id}}" type="button" class="btn btn-primary mb-2"
+                                data-user="{{auth()->user()->id}}" type="button" class="btn btn-outline-default mb-2"
                                 data-toggle="modal" data-target="#modalSpentResult">
                             <i class="far fa-check-circle"></i> Fechar Mês
                         </button>
@@ -70,10 +70,11 @@
                                     <td class="align-middle">{{date('d/m/Y', strtotime($spent->dateSpent))}}</td>
                                     <td class="align-middle">{{$spent->description}}</td>
                                     <td class="align-middle">R$ {{number_format($spent->value,2,',', '.')}}</td>
-                                    <td class="align-middle">
+                                    <td class="align-middle text-left">
                                         @if($spent->user_id!=null)
                                             <img class="mr-2" src="{{$spent->user->image}}"
                                                  style="width: 32px; height: 32px; border-radius: 50%">
+                                            {{$spent->user->name}}
                                         @else
                                             Todos
                                         @endif
@@ -86,10 +87,12 @@
                                             <div class="btn-group-vertical">
                                                 @if($spent->user_id == auth()->user()->id || $spent->user_id == null)
                                                     <button class='btn btn-danger btn-sm' type="submit"><i
-                                                            class="fas fa-trash-alt"></i></button>
+                                                            class="fas fa-trash-alt"></i> Remover Gasto
+                                                    </button>
                                                 @else
                                                     <button class='btn btn-danger btn-sm' type="submit" disabled><i
-                                                            class="fas fa-trash-alt"></i></button>
+                                                            class="fas fa-trash-alt"></i> Remover Gasto
+                                                    </button>
                                                 @endif
                                             </div>
                                         </form>

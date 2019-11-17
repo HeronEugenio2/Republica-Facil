@@ -54,19 +54,9 @@ class SpentController extends Controller
         }
         //GRAFICO
         if (isset($histories)) {
-            $value1 = 0;
-            $value2 = 0;
-            $value3 = 0;
-            $value4 = 0;
-            $value5 = 0;
-            $value6 = 0;
-            $value7 = 0;
-            $value8 = 0;
-            $value9 = 0;
-            $value10 = 0;
-            $value11 = 0;
-            $value12 = 0;
+            $value1 = $value2 = $value3 = $value4 = $value5 = $value6 = $value7 = $value8 = $value9 = $value10 = $value11 = $value12 = 0;
             foreach ($histories as $key => $history) {
+                $a = [];
                 switch ($history->month) {
                     case 1:
                         $mes = 'janeiro';
@@ -86,7 +76,7 @@ class SpentController extends Controller
                         break;
                     case 5:
                         $mes = 'maio';
-                        $value5 = $media;
+                        $value5 += $history->value;
                         //                        $value5 = $media;
                         break;
                     case 6:
@@ -111,7 +101,8 @@ class SpentController extends Controller
                         break;
                     case 11:
                         $mes = 'novembro';
-                        $value11 = $result * -1;
+//                        $value11 = $history->value;
+                        $value11 = $spentsTotal;
                         break;
                     case 12:
                         $mes = 'dezembro';

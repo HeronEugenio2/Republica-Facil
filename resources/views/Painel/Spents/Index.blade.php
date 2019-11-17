@@ -331,7 +331,7 @@
     <!-- Modal -->
     <div class="modal fade" id="modalSpentResult" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
             <div class="modal-content" style="    border: outset;">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Fechar mês</h5>
@@ -361,23 +361,23 @@
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'], //months[...]
                 datasets: [{
                     label: 'Gastos (R$)',
                     data: [
-                        {{$value1}},
-                        {{$value2}},
+                        950,
+                        540,
                         520,
-                        320,
-                        {{$value5}},
-                        {{$value6}},
-                        233,
-                        {{$value8}},
-                        {{$value9}},
-                        {{$value10}},
+                        880,
+                        480,
+                        565,
+                        982,
+                        820,
+                        852,
+                        466,
                         {{$value11}},
-                        {{$value12}},
-                    ],
+                        0,
+                    ],//data: arrayData
                     backgroundColor: [
                         'rgba(20, 86, 193, 0.2)',
                     ],

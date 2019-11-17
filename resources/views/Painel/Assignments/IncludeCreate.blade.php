@@ -20,15 +20,15 @@
                   rows='7' style='width: 100%'></textarea>
     </div>
     <div class='row'>
-        <div class="form-group col-md-4 col-lg-4 col-sm-12">
+        <div class="form-group col-md-6 col-lg-6 col-sm-12">
             <label>Data Início</label>
             <input type="date" name="start" class="form-control" style='width: 100%' required>
         </div>
-        <div class="form-group col-md-4 col-lg-4 col-sm-12">
+        <div class="form-group col-md-6 col-lg-6 col-sm-12">
             <label>Data Fim</label>
             <input type="date" name="end" class="form-control" style='width: 100%' required>
         </div>
-        <div class="form-group col-md-4 col-lg-4 col-sm-12">
+        <div class="form-group col-md-12 col-lg-12 col-sm-12">
             <label>Membro</label>
             <select class="form-control" name="user_id" style='width: 100%' required>
                 <option>Selelcione</option>

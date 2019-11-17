@@ -139,19 +139,36 @@
             <div class="row justify-content-center mb-2">
                 @if(isset($republics))
                     @foreach($republics as $republic)
-                        <div class='card m-1 border-dark shadow' style='width: 270px; '>
-                            <img class="card-img-top w-100" style='height: 270px' src="{{$republic->image}}"
-                                 alt="Card image cap">
-                            <div class='card-body p-1 text-center w-100'>
-                                <div class='text-truncate'>
-                                    <h5>{{$republic->name}}</h5>
+                        <div class="card border border-dark img-thumbnail m-2 shadow " style="width: 290px">
+                            <div class='overflow-hidden'>
+                                <div class="overflow-auto overflow-hidden" style="
+                                    background-image: url({{asset($republic->image)}});
+                                    background-size: auto;
+                                    /* width: 100%; */
+                                    height: 200px;
+                                    background-position: center;
+                                    background-repeat: no-repeat;
+                                    background-size: cover;
+                                    ">
                                 </div>
-                                <div class='font-weight-bold' style='    color: brown;'>
-                                    <h2><i class="fas fa-money-bill"></i>
-                                        R$ {{money_format('%.2n', $republic->value)}}
-                                    </h2></div>
-                                <a href='{{route('portal.republics.show', $republic->id)}}'
-                                   class='btn btn-sm btn-danger bg-danger2 w-100'>Visualisar</a>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title text-truncate">{{$republic->title}}</h3>
+                                <p class="card-text text-truncate">{{$republic->street}}
+                                    <br>{{$republic->city}} - {{$republic->state}}</p>
+                                <p>
+                                    <span>
+                                       <i class="fas fa-money-bill"></i> R$ {{number_format($republic->value,2,",",".")}}
+                                    </span>
+                                </p>
+                                <form class="mb-0" action="{{ route('painel.advertisement.destroy', $republic->id)}}"
+                                      method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{route('portal.republics.show', $republic->id)}}"
+                                       class="btn btn-danger w-100">Ver Detalhes
+                                    </a>
+                                </form>
                             </div>
                         </div>
                     @endforeach
@@ -200,19 +217,40 @@
                 <div class="row justify-content-center mb-2">
                     @if(isset($advertisements))
                         @foreach($advertisements as $advertisement)
-                            <div class='card m-1 shadow' style='width: 270px; border-color: #2881da5c;'>
-                                <img class="card-img-top w-100" style='height: 270px' src="{{$advertisement->image}}"
-                                     alt="Card image cap">
-                                <div class='card-body p-1 text-center w-100 text-truncate'>
-                                    <h5>{{$advertisement->title}}</h5>
-                                    <strong>
-                                        <h2 class="text-primary"><i class="fas fa-money-bill"></i>
-                                            R$ {{money_format('%.2n', $advertisement->value)}}
-                                        </h2>
-                                    </strong>
-                                    <div class='w-100'></div>
-                                    <a href='{{route('portal.showAdvertisement', $advertisement->id)}}' href='#'
-                                       class='btn btn-sm btn-primary w-100'>Visualisar</a>
+                            <div class="card border border-light img-thumbnail m-2 shadow" style="width: 290px">
+                                <div class='overflow-hidden'>
+                                    <div class="overflow-auto overflow-hidden" style="
+                                        background-image: url({{asset($advertisement->image)}});
+                                        background-size: auto;
+                                        /* width: 100%; */
+                                        height: 200px;
+                                        background-position: center;
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+                                        ">
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-title text-truncate">{{$advertisement->title}}</h3>
+                                    <p class="card-text text-truncate">{{$advertisement->street}}
+                                        <br>{{$advertisement->city}} - {{$advertisement->state}}</p>
+                                    <p>
+                                    <span>
+                                       <i class="fas fa-money-bill"></i> R$ {{number_format($advertisement->value,2,",",".")}}
+                                    </span>
+                                        <span class="float-right">
+                                       {{$advertisement->user->name}}
+                                    </span>
+                                    </p>
+                                    <form class="mb-0"
+                                          action="{{ route('painel.advertisement.destroy', $advertisement->id)}}"
+                                          method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="{{route('portal.showAdvertisement', $advertisement->id)}}"
+                                           class="btn btn-primary w-100">Ver Detalhes
+                                        </a>
+                                    </form>
                                 </div>
                             </div>
                         @endforeach

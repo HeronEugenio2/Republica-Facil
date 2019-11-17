@@ -24,6 +24,10 @@
     </div>
     <div class='card'>
         <div class='card-body'>
+            <div class="text-center">
+                <h1>Quadro de Tarefas</h1>
+                <hr>
+            </div>
             <div class="row m-2 justify-content-center">
                 @foreach($republicAssignmets as $assignmet )
                     <div class="card shadow border-light border m-2" style="width: 290px">
@@ -99,10 +103,6 @@
             <div class="modal-content">
                 <div class="modal-body">
                     @include('Painel.Assignments.IncludeCreate')
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Salvar mudanças</button>
                 </div>
             </div>
         </div>

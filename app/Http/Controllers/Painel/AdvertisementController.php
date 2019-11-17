@@ -53,17 +53,23 @@ class AdvertisementController extends Controller
         try {
             $user = Auth::user();
             $advertisements = $this->advertisementModel->where('user_id', $user->id);
+            /**
+             * filtro
+             */
             if ($request->has('name') && !empty($request->input('name'))) {
                 $advertisements = $advertisements->where('title', 'like', '%' . $request->input('name') . '%');
             }
             if ($request->status != "null") {
                 switch ($request->status) {
                     case "1":
-                        $query = $advertisements->where('active_flag', 1);
+                        $advertisements = $advertisements->where('active_flag', 1);
+                        break;
                     case "0":
-                        $query = $advertisements->where('active_flag', 0);
+                        $advertisements = $advertisements->where('active_flag', 0);
+                        break;
                 }
             }
+
             return view('Painel.Advertisement.Index', ['user' => $user, 'advertisements' => $advertisements->get()]);
         } catch (Exception $e) {
             Log::warning('Ocorreu um erro (index- AdvertisementController)');

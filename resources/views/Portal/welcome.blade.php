@@ -62,7 +62,7 @@
             <div class="container text-white inner">
                 <div class='row justify-content-md-center'>
                     <div class='col-12 text-center'>
-                        <img src='{{ asset('/images/favicon.png') }}' style='width: 60px'>
+                        <img src='{{ asset('/images/favicon.png') }}' style='width: 115px'>
                         <h1 class="font-weight-bold">Bem-vindo ao mundo das Repúblicas!</h1>
                         <p class="font-italic">"Encontre quartos para alugar em repúblicas ou cadastre a sua."</p>
                     </div>

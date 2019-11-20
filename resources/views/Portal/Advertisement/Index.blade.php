@@ -96,23 +96,28 @@
         </div>
     </div>
     <div>
+        <div class="">
+            @if(isset($categories) && count($categories)>0)
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class=" navbar-collapse justify-content-center" id="navbarNav">
+                        <ul class="navbar-nav">
+                            @foreach($categories as $category)
+                                <li class="nav-item">
+                                    <a class="nav-link btnSearchCategory" data-id="{{$category->id}}"
+                                       href="#">{{$category->title}}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </nav>
+            @endif
+        </div>
 
-        @if(isset($categories) && count($categories)>0)
-            <div class='row text-center justify-content-center p-0'>
-                @foreach($categories as $category)
-                    <button class="btnSearchCategory m-3" data-id="{{$category->id}}"
-                            style="background-color: transparent; border-radius: 20%">
-                        <div class='icone m-2' data-id='{{$category->id}}'>
-                            <i class="fas fa-{{$category->icon}} text-grey3 fa-2x mx-4"></i><br>
-                            <span class='text-grey3'>{{$category->title}}</span>
-                        </div>
-                    </button>
-                @endforeach
-            </div>
-        @endif
+
     </div>
     {{--    INCLUDE CARDS--}}
-    <div id="response" class="jumbotron jumbotron-fluid p-4 mb-0 bg-anuncios">
+    <div id="response" class="jumbotron jumbotron-fluid p-4 mb-0 ">
         @include('Portal.Advertisement.IncludeSearch')
         {{ $advertisementes->links() }}
     </div>

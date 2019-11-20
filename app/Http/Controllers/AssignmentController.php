@@ -77,7 +77,6 @@ class AssignmentController extends Controller
             $user = auth()->user();
             $republic = $user->republic;
             $users = $this->userModel->with('republic')->where('republic_id', Auth::user()->republic_id)->get();
-
             $republicAssignmets = $republic->assignmets;
             $saved = $this->assignmentModel->create($request->all());
 

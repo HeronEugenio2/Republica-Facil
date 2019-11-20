@@ -3,17 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SpentRequest;
-use App\Http\Service\Service;
 use App\Models\Republic;
 use App\Models\Spent;
 use App\Models\SpentHistory;
 use App\Models\User;
+use App\Services\Service;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class SpentController extends Controller
 {
+    /**
+     * @var Service
+     */
+    private $service;
+
+    public function __construct(Service $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Exception
@@ -45,6 +55,16 @@ class SpentController extends Controller
                 ORDER BY h.month";
         $myDebits = DB::select($sql);
 
+        $sql = "SELECT MONTH(s.dateSpent) as 'month', SUM(s.value) as total
+                FROM spents s
+                WHERE s.republic_id = $republic->id 
+                AND s.deleted_at is NULL
+                GROUP BY MONTH(s.dateSpent)
+                ORDER BY MONTH(s.dateSpent) ASC";
+
+        $historySpents = DB::select($sql);
+        $valuesMap = $this->service->dataMap($historySpents);
+
         if ($spents) {
             $result = $this->calcSpent($republic->id, $user->id);
             $spentsTotal = $result['total'];
@@ -52,70 +72,10 @@ class SpentController extends Controller
             $media = $result['media'];
             $result = $result['result'];
         }
-        //GRAFICO
-        if (isset($histories)) {
-            $value1 = $value2 = $value3 = $value4 = $value5 = $value6 = $value7 = $value8 = $value9 = $value10 = $value11 = $value12 = 0;
-            foreach ($histories as $key => $history) {
-                $a = [];
-                switch ($history->month) {
-                    case 1:
-                        $mes = 'janeiro';
-                        $value1 += $history->value;
-                        break;
-                    case 2:
-                        $mes = 'fevereiro';
-                        $value2 += $history->value;
-                        break;
-                    case 3:
-                        $mes = 'março';
-                        $value3 += $history->value;
-                        break;
-                    case 4:
-                        $mes = 'abril';
-                        $value4 += $history->value;
-                        break;
-                    case 5:
-                        $mes = 'maio';
-                        $value5 += $history->value;
-                        //                        $value5 = $media;
-                        break;
-                    case 6:
-                        $mes = 'junho';
-                        $value6 += $history->value;
-                        break;
-                    case 7:
-                        $mes = 'julho';
-                        $value7 += $history->value;
-                        break;
-                    case 8:
-                        $mes = 'agosto';
-                        $value8 += $history->value;
-                        break;
-                    case 9:
-                        $mes = 'setembro';
-                        $value9 += $history->value;
-                        break;
-                    case 10:
-                        $mes = 'outubro';
-                        $value10 += $history->value;
-                        break;
-                    case 11:
-                        $mes = 'novembro';
-//                        $value11 = $history->value;
-                        $value11 = $spentsTotal;
-                        break;
-                    case 12:
-                        $mes = 'dezembro';
-                        $value12 += $history->value;
-                        break;
-                }
-            }
-        }
 
         return view('Painel.Spents.Index',
             compact('republic', 'spents', 'republic', 'spentsTotal', 'media', 'spentsIndividual', 'result',
-                'dataSpents', 'histories', 'value1', 'value2', 'value3', 'value4', 'value5', 'value6',
-                'value7', 'value8', 'value9', 'value10', 'value11', 'value12', 'myDebits'
+                'dataSpents', 'histories', 'myDebits', 'valuesMap'
             )
         );
     }
@@ -230,12 +190,13 @@ class SpentController extends Controller
      */
     public function destroy($id)
     {
-        $spent = Spent::find($id);
-        $deleted = $spent->delete();
-        if ($deleted) {
-            $spentHistory = SpentHistory::where('spent_id', $id)->first();
+
+        $spent = Spent::with('history')->find($id);
+        $spentHistory = $spent->history->first();
+        if (isset($spent->history)) {
             $spentHistory->delete();
         }
+        $spent->delete();
 
         return redirect()->route('painel.spent.index');
     }

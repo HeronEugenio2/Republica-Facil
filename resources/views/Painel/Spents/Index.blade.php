@@ -81,7 +81,7 @@
                                     </td>
                                     <td class="align-middle">
                                         <form method="POST"
-                                              action="{{route('painel.spent.destroy',$spent->id) }}">
+                                              action="{{route('painel.spent.destroy', $spent->id) }}">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                             <div class="btn-group-vertical">
@@ -365,19 +365,8 @@
                 datasets: [{
                     label: 'Gastos (R$)',
                     data: [
-                        950,
-                        540,
-                        520,
-                        880,
-                        480,
-                        565,
-                        982,
-                        820,
-                        852,
-                        466,
-                        {{$value11}},
-                        0,
-                    ],//data: arrayData
+                        {{$valuesMap}}
+                    ],
                     backgroundColor: [
                         'rgba(20, 86, 193, 0.2)',
                     ],

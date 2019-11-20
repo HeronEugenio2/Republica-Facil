@@ -45,10 +45,10 @@
                     <i class="fa fa-bell"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Só disponível na versão 2.0v</a>
+                    {{--<a class="dropdown-item" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Something else here</a>--}}
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -61,7 +61,8 @@
                     <div class=" dropdown-header noti-title">
                         <h6 class="text-overflow m-0">Bem vindo(a)!</h6>
                     </div>
-                    <a href="./examples/profile.html" class="dropdown-item">
+                    <a href="{{route('painel.user.show', \Vinkla\Hashids\Facades\Hashids::encode(auth()->user()->id))}}"
+                       class="dropdown-item">
                         <i class="fa fa-user-cog"></i>
                         <span>Meu perfil</span>
                     </a>

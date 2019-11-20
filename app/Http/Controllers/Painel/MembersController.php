@@ -47,7 +47,7 @@ class MembersController extends Controller
 
                 $members = $this->userModel->where('republic_id', $republic->id)->get();
 
-                return view('Painel.Members.index', compact('invitations', 'members'));
+                return view('Painel.Members.index', compact('invitations', 'members', 'republic'));
             } else {
                 return view('Painel.Members.index');
             }

@@ -37,9 +37,9 @@
                             </div>
                             <div class="mt-3">
                                 <div class="text-muted mb-2">
-                                    <span>{{$assignmet->start}}</span>
+                                    <span>{{$newDate = date("d/M/Y", strtotime($assignmet->start))}}</span>
                                     <span> até </span>
-                                    <span>{{$assignmet->end}}</span>
+                                    <span>{{$newDate = date("d/M/Y", strtotime($assignmet->end))}}</span>
                                 </div>
 
                             </div>

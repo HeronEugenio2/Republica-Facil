@@ -73,10 +73,12 @@
                                class="btn btn-outline-dark mb-4">
                                 Editar Informações <i class="fas fa-angle-double-right"></i>
                             </a>
-                            <a href="#" class="btn btn-outline-dark mb-4"
-                               data-toggle="modal" data-target="#modalExemplo">
-                                Alterar Proprietário <i class="fas fa-angle-double-right"></i>
-                            </a>
+                            @if($republic->user_id == \Illuminate\Support\Facades\Auth::user()->id)
+                                <a href="#" class="btn btn-outline-dark mb-4"
+                                   data-toggle="modal" data-target="#modalExemplo">
+                                    Alterar Proprietário <i class="fas fa-angle-double-right"></i>
+                                </a>
+                            @endif
                             @if($republic->user_id != Auth::id())
                                 <a href="{{route('painel.removeOwner',Auth::id() )}}"
                                    class="btn btn-outline-danger mb-4">

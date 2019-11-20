@@ -95,10 +95,12 @@
                                             <h2>{{$member->name}}</h2>
                                             {{$member->email}}<br>
                                             <br>
-                                            <a href='{{route('painel.removeMember', $member->id)}}'
-                                               class='btn btn-outline-danger'>
-                                                <i class='fas fa-user-times'></i><strong> Remover Membro</strong>
-                                            </a>
+                                            @if($republic->user_id == \Illuminate\Support\Facades\Auth::user()->id)
+                                                <a href='{{route('painel.removeMember', $member->id)}}'
+                                                   class='btn btn-outline-danger'>
+                                                    <i class='fas fa-user-times'></i><strong> Remover Membro</strong>
+                                                </a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

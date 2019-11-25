@@ -1,9 +1,45 @@
 @extends('Portal.TemplateLaravel')
-@push('css')
+<style>
+    .img-house {
+        background-image: url("https://images.vexels.com/media/users/3/137219/isolated/preview/c7957303cdaa0425052932035df8b1f1-casa-da-cidade-de-constru----o-by-vexels.png");
+        /* background-size: 350px; */
+        /* background-image: linear-gradient(0deg, rgb(248, 248, 255), rgba(35, 123, 249, 0.07)), url(/images/mulher.png); */
+        background-position: top;
+        background-repeat: no-repeat;
+        /* height: 200px; */
+        padding: 153px;
+    }
 
-@endpush
+    .img-house {
+        background-image: url({{asset('/images/index-republic-portal.png')}});
+        /* background-size: 350px; */
+        /* background-image: linear-gradient(0deg, rgb(248, 248, 255), rgba(35, 123, 249, 0.07)), url(/images/mulher.png); */
+        background-position: top;
+        background-repeat: no-repeat;
+        /* height: 200px; */
+        padding: 153px;
+    }
+</style>
 @section('content')
-    <div class="jumbotron jumbotron-fluid p-4 mb-0" style="background-color: ghostwhite">
+    <div class="img-house">
+
+    </div>
+    <div class="container-fluid" style="max-width: 800px">
+        <div class='form-group'>
+            <form id="logout-form" action="{{ route('portal.republicSearch') }}" method="POST">
+                @csrf
+                <div class="input-group mb-2">
+                    <input class='form-control' id='valueSearch' value='{{$value}}' type='text'
+                           name='search'
+                           placeholder='Digite o nome da cidade onde você procura um lugar para alugar'>
+                    <div class="input-group-append">
+                        <button type='submit' class='btn btn-danger'>Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="jumbotron jumbotron-fluid p-4 mb-0">
         <div class='row'>
             {{--    filtros--}}
             <div class='col-sm-12 col-md-3 col-lg-3'>
@@ -62,25 +98,7 @@
             <div class='col-sm-12 col-md-9 col-lg-9'>
                 <div class="card shadow">
                     <div class="card-body bg-light pb-0">
-                        <div class='form-group'>
-                            <form id="logout-form" action="{{ route('portal.republicSearch') }}" method="POST">
-                                @csrf
-                                <div class="input-group mb-2">
-                                    <input class='form-control' id='valueSearch' value='{{$value}}' type='text'
-                                           name='search'
-                                           placeholder='Digite o nome da cidade onde você procura um lugar para alugar'>
-                                    <div class="input-group-append">
-                                        <button type='submit' class='btn btn-danger'>Buscar</button>
-                                    </div>
-                                </div>
-                            </form>
-                            <div class="d-flex justify-content-end">
-                                <a href='' class='btn-sm btn btn-danger right mr-1'>
-                                    <i class="fas fa-sort-amount-up"></i></a>
-                                <a href='' class='btn-sm btn btn-danger right'><i class="fas fa-sort-amount-down"></i>
-                                </a>
-                            </div>
-                        </div>
+
                         <div class="album py-2">
                             @include('Portal.Republic.IncludeSearch')
                         </div>

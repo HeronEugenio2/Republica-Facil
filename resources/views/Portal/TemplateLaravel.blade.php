@@ -23,12 +23,12 @@
 @endif
 
 <!-- Styles -->
-    <style type='text/css'>
-        body {
-            background-image: linear-gradient(0deg, #dededebd, #f8f9fa), url(/images/FotoJet2.png);
-            background-repeat: no-repeat;
-        }
-    </style>
+    {{--    <style type='text/css'>--}}
+    {{--        body {--}}
+    {{--            background-image: linear-gradient(0deg, #dededebd, #f8f9fa), url(/images/FotoJet2.png);--}}
+    {{--            background-repeat: no-repeat;--}}
+    {{--        }--}}
+    {{--    </style>--}}
 </head>
 <body style='background-color: ghostwhite'>
 <nav class="navbar navbar-expand-lg navbar navbar-dark" style="background-color: rgb(24,25,27,1)">

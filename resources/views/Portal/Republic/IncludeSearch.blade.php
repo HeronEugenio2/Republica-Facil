@@ -1,5 +1,5 @@
 <div class="row justify-content-center mb-2">
-    @if(isset($republics))
+    @if(isset($republics) && count($republics)>0)
         @foreach($republics as $republic)
             <div class='card m-1 border-danger'>
                 <img class="card-img-top" style='width: 260px; height: 180px' src="{{$republic->image}}"
@@ -47,6 +47,18 @@
                    class='btn btn-sm btn-danger m-2'>Visualisar</a>
             </div>
         @endforeach
+    @else
+        <div class="text-center text-monospace text-muted">
+            <h4>Desculpa não encontramos nenhum anúncio!</h4>
+        </div>
+        <div class="w-100"></div>
+        <div class="">
+            <img src="{{asset('images/dogs.png')}}"
+                 alt="">
+        </div>
+        <div class="w-100"></div>
+        <div class=" mt-4 text-center text-monospace text-muted">
+            <h4>Seja o primeiro a anunciar</h4>
+        </div>
     @endif
 </div>
-{{--    {{ $republics->links() }}--}}

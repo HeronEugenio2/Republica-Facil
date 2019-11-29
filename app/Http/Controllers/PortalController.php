@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
 
 /**
@@ -224,37 +225,39 @@ class PortalController extends Controller
      */
     public function vote(VoteRequest $request, $republic_id, Vote $vote)
     {
-        $data = array_filter(
-            [
-                'cpf' => $request->cpf,
-                'type_vote' => $request->optionVote,
-            ]
-        );
-        $validateCpf = $this->validaCPF($data['cpf']);
-        if (!$validateCpf) {
-            $message = 'Cpf inválido!';
-            return redirect()->back()->with($message);
-        }
-        $data = [
-            'cpf' => $validateCpf,
-            'value' => 1,
-            'republic_id' => intval($republic_id),
-            'type_vote' => $data['type_vote'],
-        ];
-        $voteCreated = $vote->updateOrCreate($data);
 
-        if ($voteCreated) {
-            $republic = $this->republicModel->find($republic_id);
-            if ($data['type_vote'] == "up") {
-                $republic->up = $vote->where('republic_id', intval($republic_id))->where('type_vote', 'up')->sum('value');
-                $republic->save();
-            } elseif ($data['type_vote'] == "down") {
-                $republic->down = $vote->where('republic_id', intval($republic_id))->where('type_vote', 'down')->sum('value');
-                $republic->save();
+        if (!auth()->check()) {
+
+            return redirect()->back()->with('toast_error', 'Você precisa estar logado!');
+        } else {
+            $data = array_filter(
+                [
+                    'cpf' => '123123321',
+                    'type_vote' => $request->optionVote,
+                ]
+            );
+
+            $data = [
+                'cpf' => '1123123',
+                'value' => 1,
+                'republic_id' => intval($republic_id),
+                'type_vote' => $data['type_vote'],
+            ];
+            $voteCreated = $vote->updateOrCreate($data);
+            if ($voteCreated) {
+                $republic = $this->republicModel->find($republic_id);
+                if ($data['type_vote'] == "up") {
+                    $republic->up = $vote->where('republic_id', intval($republic_id))->where('type_vote', 'up')->sum('value');
+                    $republic->save();
+                } elseif ($data['type_vote'] == "down") {
+                    $republic->down = $vote->where('republic_id', intval($republic_id))->where('type_vote', 'down')->sum('value');
+                    $republic->save();
+                }
             }
+
+            return redirect()->back()->withSuccess('Voto realizado com sucesso!');
         }
 
-        return redirect()->back();
     }
 
     /**

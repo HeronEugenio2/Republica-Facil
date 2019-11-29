@@ -17,10 +17,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-@if(isset($map))
-    {!! $map['js'] !!}
+    @if(isset($map))
+        {!! $map['js'] !!}
 
-@endif
+    @endif
+
+
 
 <!-- Styles -->
     {{--    <style type='text/css'>--}}
@@ -32,6 +34,7 @@
 </head>
 <body style='background-color: ghostwhite'>
 <nav class="navbar navbar-expand-lg navbar navbar-dark" style="background-color: rgb(24,25,27,1)">
+
     <img src="{{ asset('/images/favicon.png') }}" style='width: 30px' class="d-inline-block align-top mr-2" alt="">
     <a class="navbar-brand" href="{{ route('portal.index') }}">RepublicaFácil</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -77,6 +80,8 @@
 <div class='container-fluid p-0'>
     @yield('content')
 </div>
+@include('sweetalert::alert')
+
 <!-- Scripts -->
 {{--<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>--}}
 {{--<script type="text/javascript" src="{{ asset('js/bootstrap.bundle.js') }}"></script>--}}
@@ -95,6 +100,7 @@
 <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script> window.Laravel = '{!!json_encode(['csrfToken' => csrf_token()])!!}';</script>
+
 @stack('scripts')
 </body>
 </html>

@@ -37,14 +37,14 @@
                            href="https://api.whatsapp.com/send?phone=55{{$republic->phone}}&text=Olá {{$republic->name}}! Tenho interesse em um quarto na república, gostaria de saber se ainda existem vagas disponíveis. Obrigado!&source=&data=sadasdsadsa"><i
                                 class="fab fa-whatsapp text-white"></i>
                             Contato</a>
-                        <a class="btn btn-primary btn-large my-1"
-                           href="www.republicafacil.com.br/portal/republicas/1"><i
-                                class="fas fa-link"></i> Compartilhar</a>
+{{--                        <a class="btn btn-primary btn-large my-1"--}}
+{{--                           href="www.republicafacil.com.br/portal/republicas/1"><i--}}
+{{--                                class="fas fa-link"></i> Compartilhar</a>--}}
                         <a class="btn btn-warning text-white btn-large my-1" href="#" data-toggle="modal"
                            data-target="#modalExemplo"><i class="fas fa-star"></i> Avaliar</a>
                     </p>
                     <hr>
-                    <p class="text-center text-secondary mt-4">Irregularidades no anúncio? <a href="#">Denunciar</a></p>
+{{--                    <p class="text-center text-secondary mt-4">Irregularidades no anúncio? <a href="#">Denunciar</a></p>--}}
                     <div class="col-12 mt-2">
                         @if(count($errors) > 0)
                             <div class="row">

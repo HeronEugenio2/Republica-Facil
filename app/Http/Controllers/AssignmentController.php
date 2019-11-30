@@ -140,7 +140,8 @@ class AssignmentController extends Controller
         try {
             $republic = Republic::with('assignmets')->find($id);
             foreach ($republic->assignmets as $assignmet) {
-                $assignmet->delete();
+                dd($assignmet);
+//                $assignmet->delete();
             }
             return back()->with('toast_success', 'Tarefas excluídas!!');
         } catch (Exception $e) {

@@ -137,7 +137,7 @@
                     </div>
                     <div class="col-sm-12 col-lg-6 col-md-6 text-center">
                         <img
-                            src="https://cdn.pixabay.com/photo/2016/09/16/09/21/money-1673582_960_720.png"
+                            src="{{asset('images/money.webp')}}"
                             class="img-fluid"
                             style="width: 200px;">
                     </div>

@@ -86,6 +86,10 @@
                                                     class="fas fa-trash-alt"></i> Excluir
                                             </button>
                                         </form>
+                                        @else
+                                        <button class='btn btn-light w-100 btn-sm' type="submit" disabled><i
+                                                class="fas fa-trash-alt"></i> Excluir
+                                        </button>
                                     @endif
                                 </div>
                             </div>
@@ -95,7 +99,6 @@
             </div>
         </div>
     </div>
-
     <!-- Modal -->
     <div class="modal fade" id="ModalLongoExemplo" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo"
          aria-hidden="true">

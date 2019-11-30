@@ -24,12 +24,12 @@
                                      style="max-height: 250px; max-width: 350px; cursor: pointer;">
                             </div>
                         @endforeach
-                        <img class='my-1' src='http://inyogo.com/img/image_not_available.png' style='width: 100px; height: 100px' alt=''>
-                        <img class='my-1' src='http://inyogo.com/img/image_not_available.png' style='width: 100px; height: 100px' alt=''>
-                        <img class='my-1' src='http://inyogo.com/img/image_not_available.png' style='width: 100px; height: 100px' alt=''>
-                        <img class='my-1' src='http://inyogo.com/img/image_not_available.png' style='width: 100px; height: 100px' alt=''>
-                        <img class='my-1' src='http://inyogo.com/img/image_not_available.png' style='width: 100px; height: 100px' alt=''>
-                        <img class='my-1' src='http://inyogo.com/img/image_not_available.png' style='width: 100px; height: 100px' alt=''>
+{{--                        <img class='my-1' src='http://inyogo.com/img/image_not_available.png' style='width: 100px; height: 100px' alt=''>--}}
+{{--                        <img class='my-1' src='http://inyogo.com/img/image_not_available.png' style='width: 100px; height: 100px' alt=''>--}}
+{{--                        <img class='my-1' src='http://inyogo.com/img/image_not_available.png' style='width: 100px; height: 100px' alt=''>--}}
+{{--                        <img class='my-1' src='http://inyogo.com/img/image_not_available.png' style='width: 100px; height: 100px' alt=''>--}}
+{{--                        <img class='my-1' src='http://inyogo.com/img/image_not_available.png' style='width: 100px; height: 100px' alt=''>--}}
+{{--                        <img class='my-1' src='http://inyogo.com/img/image_not_available.png' style='width: 100px; height: 100px' alt=''>--}}
                     </div>
                 </div>
                 <div class='border my-2 p-4'>

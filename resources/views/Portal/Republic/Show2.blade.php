@@ -19,7 +19,7 @@
                     <div class="overflow-auto overflow-hidden" style="
                         background-image: url({{$republic->image}});
                         background-size: auto;
-                        /* width: 100%; */
+                        width: 450px;
                         height: 300px;
                         background-position: center;
                         background-repeat: no-repeat;
@@ -34,17 +34,19 @@
                     <hr>
                     <p>
                         <a class="btn btn-success btn-large my-1"
-                           href="https://api.whatsapp.com/send?phone=55{{$republic->phone}}&text=Olá {{$republic->name}}! Tenho interesse em um quarto na república, gostaria de saber se ainda existem vagas disponíveis. Obrigado!&source=&data=sadasdsadsa"><i
-                                class="fab fa-whatsapp text-white"></i>
-                            Contato</a>
-{{--                        <a class="btn btn-primary btn-large my-1"--}}
-{{--                           href="www.republicafacil.com.br/portal/republicas/1"><i--}}
-{{--                                class="fas fa-link"></i> Compartilhar</a>--}}
+                           href="https://api.whatsapp.com/send?phone=55{{$republic->phone}}&text=Olá {{$republic->name}}! Tenho interesse em um quarto na república, gostaria de saber se ainda existem vagas disponíveis. Obrigado!&source=&data=sadasdsadsa">
+                            <i
+                                class="fab fa-whatsapp text-white"></i> Contato
+                        </a>
+                        {{--                        <a class="btn btn-primary btn-large my-1"--}}
+                        {{--                           href="www.republicafacil.com.br/portal/republicas/1"><i--}}
+                        {{--                                class="fas fa-link"></i> Compartilhar</a>--}}
                         <a class="btn btn-warning text-white btn-large my-1" href="#" data-toggle="modal"
-                           data-target="#modalExemplo"><i class="fas fa-star"></i> Avaliar</a>
+                           data-target="#modalExemplo"><i class="fas fa-star"></i> Avaliar
+                        </a>
                     </p>
                     <hr>
-{{--                    <p class="text-center text-secondary mt-4">Irregularidades no anúncio? <a href="#">Denunciar</a></p>--}}
+                    {{--                    <p class="text-center text-secondary mt-4">Irregularidades no anúncio? <a href="#">Denunciar</a></p>--}}
                     <div class="col-12 mt-2">
                         @if(count($errors) > 0)
                             <div class="row">
@@ -68,7 +70,7 @@
             <div class="col mt-4">
                 <div class="card shadow">
                     <div class="card-body">
-                        {{--                                                {!! $map['html'] !!}--}}
+                        {!! $map['html'] !!}
                     </div>
                 </div>
             </div>
@@ -89,8 +91,7 @@
                                 Mensalidade
                             </dt>
                             <dd>
-                                O valor oferecido pela república é de R$ {{money_format('%.2n', $republic->value)}} por
-                                quarto.
+                                O valor oferecido pela república é de R$ {{money_format('%.2n', $republic->value)}} por quarto.
                             </dd>
                             <dt>
                                 Tipo de moradia
@@ -107,8 +108,8 @@
                             <address class="my-4 text-center">
                                 <i class="fas fa-map-marked-alt fa-2x"></i>
                                 <strong>{{$republic->city}} - {{$republic->state}} </strong>
-                                <br> {{$republic->street}}, {{$republic->number}} <br> {{$republic->district}},
-                                CEP {{$republic->cep}}<br>
+                                <br> {{$republic->street}}, {{$republic->number}}
+                                <br> {{$republic->district}}, CEP {{$republic->cep}}<br>
                             </address>
                         </dl>
                     </div>
@@ -183,18 +184,19 @@
                     <form action="{{route('portal.vote', $republic->id)}}" method="post">
                         @csrf
                         <div class="form-group">
-
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="optionVote" id="inlineRadio1"
                                        value="up">
                                 <label class="form-check-label" for="inlineRadio1"><i
-                                        class="fas fa-thumbs-up text-success"></i> Sim</label>
+                                        class="fas fa-thumbs-up text-success"></i> Sim
+                                </label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="optionVote" id="inlineRadio2"
                                        value="down">
                                 <label class="form-check-label" for="inlineRadio2"><i
-                                        class="fas fa-thumbs-up text-danger"></i> Não</label>
+                                        class="fas fa-thumbs-up text-danger"></i> Não
+                                </label>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary float-right">Enviar</button>
@@ -245,7 +247,6 @@
                 let checkout_code = $('#whatsapp-checkout-code').val();
                 window.open('https://api.whatsapp.com/send?phone=55' + tel + '&text=' + encodeURI(message));
             })
-
 
         });
     </script>

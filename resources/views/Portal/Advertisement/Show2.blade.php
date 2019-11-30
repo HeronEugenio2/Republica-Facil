@@ -71,7 +71,6 @@
                                 <h2>{{$advertisement->user->name}}</h2>
                                 {{$advertisement->user->email}}<br>
                                 {{$advertisement->user->phone}}<br>
-                                <strong>{{$republic->name ?? 'Sem República'}}</strong>
                             </div>
                         </div>
                     </div>

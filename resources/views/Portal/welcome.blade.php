@@ -136,6 +136,11 @@
     <div id='republicas' class="jumbotron jumbotron-fluid m-0 "
          style="background-image: linear-gradient(0deg, #dededebd, #f8f9fa) ,url(/images/FotoJet2.png);background-position: center;">
         <div class="container">
+            <div class='text-center'>
+                <h1 class='text-danger my-2'>REPÚBLICAS</h1>
+                <hr>
+            </div>
+
             <div class="row justify-content-center mb-2">
                 @if(isset($republics))
                     @foreach($republics as $republic)

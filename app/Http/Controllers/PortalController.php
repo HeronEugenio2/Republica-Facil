@@ -48,8 +48,8 @@ class PortalController extends Controller
      */
     public function index()
     {
-        $republics = $this->republicModel->where('active_flag', 1)->paginate(12);
-        $advertisements = $this->advertisementModel->where('active_flag', 1)->paginate(9);
+        $republics = $this->republicModel->where('active_flag', 1)->paginate(6);
+        $advertisements = $this->advertisementModel->where('active_flag', 1)->paginate(6);
 
         return view('Portal.welcome', compact('republics', 'advertisements'));
     }
@@ -117,7 +117,7 @@ class PortalController extends Controller
         try {
 
             $advertisement = $this->advertisementModel->with('category', 'user.republic')->find($id);
-            $advertisements = $this->advertisementModel->where('category_id', $advertisement->category->id)->get();
+            $advertisements = $this->advertisementModel->where('category_id', $advertisement->category->id)->limit(4)->get();
 
             $config['map_height'] = '500px';
             $config['map_width'] = '100%';
@@ -243,7 +243,7 @@ class PortalController extends Controller
                 'republic_id' => intval($republic_id),
                 'type_vote' => $data['type_vote'],
             ];
-            $voteCreated = $vote->updateOrCreate($data);
+            $voteCreated = $vote->create($data);
             if ($voteCreated) {
                 $republic = $this->republicModel->find($republic_id);
                 if ($data['type_vote'] == "up") {

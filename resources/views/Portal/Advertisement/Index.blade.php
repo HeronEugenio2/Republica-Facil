@@ -106,7 +106,7 @@
         </div>
         <div class='col-md-4 col-lg-4 col-sm-12 text-center align-content-center'>
             <div class='form-group text-center'>
-                <a href='{{route('home')}}' class='btn btn-outline-dark w-100 btn-lg px-5'
+                <a href='{{route('painel.advertisement.index')}}' class='btn btn-outline-dark w-100 btn-lg px-5'
                    style="max-width: 300px;">Grátis</a>
             </div>
         </div>

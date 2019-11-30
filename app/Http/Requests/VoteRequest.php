@@ -24,7 +24,7 @@ class VoteRequest extends FormRequest
     public function rules()
     {
         return [
-            'cpf' => 'required',
+//            'cpf' => 'required',
             'optionVote' => 'required',
         ];
     }

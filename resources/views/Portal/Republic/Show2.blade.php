@@ -37,14 +37,14 @@
                            href="https://api.whatsapp.com/send?phone=55{{$republic->phone}}&text=Olá {{$republic->name}}! Tenho interesse em um quarto na república, gostaria de saber se ainda existem vagas disponíveis. Obrigado!&source=&data=sadasdsadsa"><i
                                 class="fab fa-whatsapp text-white"></i>
                             Contato</a>
-                        <a class="btn btn-primary btn-large my-1"
-                           href="www.republicafacil.com.br/portal/republicas/1"><i
-                                class="fas fa-link"></i> Compartilhar</a>
+{{--                        <a class="btn btn-primary btn-large my-1"--}}
+{{--                           href="www.republicafacil.com.br/portal/republicas/1"><i--}}
+{{--                                class="fas fa-link"></i> Compartilhar</a>--}}
                         <a class="btn btn-warning text-white btn-large my-1" href="#" data-toggle="modal"
                            data-target="#modalExemplo"><i class="fas fa-star"></i> Avaliar</a>
                     </p>
                     <hr>
-                    <p class="text-center text-secondary mt-4">Irregularidades no anúncio? <a href="#">Denunciar</a></p>
+{{--                    <p class="text-center text-secondary mt-4">Irregularidades no anúncio? <a href="#">Denunciar</a></p>--}}
                     <div class="col-12 mt-2">
                         @if(count($errors) > 0)
                             <div class="row">
@@ -183,12 +183,7 @@
                     <form action="{{route('portal.vote', $republic->id)}}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Cpf</label>
-                            <input type="text" id="cpf" class="form-control" name="cpf"
-                                   placeholder="Digite apenas números" maxlength="14" required>
-                            <small id="emailHelp" class="form-text text-muted">Seus dados não serão divulgados.</small>
-                            <label class="mt-4">Sua avaliação sobre a república é positiva?</label>
-                            <br>
+
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="optionVote" id="inlineRadio1"
                                        value="up">
@@ -208,6 +203,8 @@
             </div>
         </div>
     </div>
+    @include('sweetalert::alert')
+
 @endsection
 
 @push('scripts')

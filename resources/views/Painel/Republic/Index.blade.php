@@ -60,14 +60,15 @@
                                 <p>{{$republic->district}},
                                     CEP {{$republic->cep}}</p>
                             </address>
-
-                            <div class="mb-4">
-                                <h3>
-                                    <img src="{{$owner->image}}" style="width: 40px; height: 40px;border-radius: 50%">
-                                    Proprietário {{$owner->name}}
-                                </h3>
-                            </div>
-
+                            @if(isset($republic->user_id))
+                                <div class="mb-4">
+                                    <h3>
+                                        <img src="{{$owner->image}}"
+                                             style="width: 40px; height: 40px;border-radius: 50%">
+                                        Proprietário {{$owner->name}}
+                                    </h3>
+                                </div>
+                            @endif
 
                             <a href="{{route('painel.republic.edit', $user->republic->id )}}"
                                class="btn btn-outline-dark mb-4">
@@ -79,7 +80,7 @@
                                     Alterar Proprietário <i class="fas fa-angle-double-right"></i>
                                 </a>
                             @endif
-                            @if($republic->user_id != Auth::id())
+                            @if($republic->user_id != Auth::id() && isset($republic->user_id))
                                 <a href="{{route('painel.removeOwner',Auth::id() )}}"
                                    class="btn btn-outline-danger mb-4">
                                     Deixar República <i class="fas fa-angle-double-right"></i>

@@ -48,7 +48,7 @@ class PortalController extends Controller
     public function index()
     {
         $republics = $this->republicModel->where('active_flag', 1)->paginate(12);
-        $advertisements = $this->advertisementModel->where('active_flag', 1)->paginate(8);
+        $advertisements = $this->advertisementModel->where('active_flag', 1)->paginate(9);
 
         return view('Portal.welcome', compact('republics', 'advertisements'));
     }
@@ -78,8 +78,8 @@ class PortalController extends Controller
             $advertisementes = $advertisementes->where('title', 'like', '%' . $request->search . '%');
         }
 
-        $sql = "SELECT id, title, icon 
-                    FROM advertisement_categories                    
+        $sql = "SELECT id, title, icon
+                    FROM advertisement_categories
                     ORDER BY title, id, icon";
         $categories = DB::select($sql);
         $advertisementes = $advertisementes->paginate(45);
@@ -116,7 +116,7 @@ class PortalController extends Controller
         try {
 
             $advertisement = $this->advertisementModel->with('category', 'user.republic')->find($id);
-            $advertisements = $this->advertisementModel->where('category_id', $advertisement->category->id)->limit(8)->get();
+            $advertisements = $this->advertisementModel->where('category_id', $advertisement->category->id)->get();
 
             $config['map_height'] = '500px';
             $config['map_width'] = '100%';
@@ -206,8 +206,8 @@ class PortalController extends Controller
             ->where('category_id', $id)
             ->where('active_flag', 1)
             ->paginate(25);
-        $sql = "SELECT id, title, icon 
-                    FROM advertisement_categories                    
+        $sql = "SELECT id, title, icon
+                    FROM advertisement_categories
                     ORDER BY title, id, icon";
         $categories = DB::select($sql);
 

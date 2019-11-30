@@ -111,7 +111,8 @@
 @push('scripts')
     <script>
         $(document).ready(function () {
-            $("#btnFiltro").click(function () {
+            $("#btnFiltro").click(function (e) {
+                e.preventDefault();
                 let type = $('.chkType:checked').val();
                 let value = $('.chkValue:checked').val();
                 let valueSearch = $('#valueSearch').val();
@@ -134,30 +135,6 @@
                 });
 
             });
-
-            {{--$(".vote").on('click', (function (e) {--}}
-            {{--        let vote = $(this).data('value');--}}
-            {{--    let republic_id =  $('#btnView{{$republic->id}}').data('republic');--}}
-            {{--    alert(republic_id);--}}
-            {{--    e.preventDefault();--}}
-            {{--        $.ajax({--}}
-            {{--            headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},--}}
-            {{--            method: 'POST',--}}
-            {{--            url: 'https://support.perfectpay.com.br/vote/faq',--}}
-            {{--            data: {--}}
-            {{--                vote: vote,--}}
-            {{--                slug_id: republic_id,--}}
-            {{--            },--}}
-            {{--            success: function (response) {--}}
-            {{--                $('.answer').replaceWith('<h5 class="py-4 text-muted">' + response.message + '</h5>');--}}
-            {{--            },--}}
-            {{--            error: function (response) {--}}
-            {{--                $('.answer').replaceWith('<h5 class="py-4 text-muted">' + response.message + '</h5>');--}}
-
-            {{--            }--}}
-            {{--        });--}}
-            {{--    })--}}
-            {{--);--}}
         });
     </script>
 @endpush

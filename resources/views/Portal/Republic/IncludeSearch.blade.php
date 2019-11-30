@@ -16,13 +16,13 @@
                     <div class='row justify-content-md-center text-center '>
                         <div class='col-4'>
                             @if($republic->type_id == 1)
-                                <i class="fas fa-male"></i><br>
+                                <i class="fas fa-male mb-2"></i><br>
                                 <small>Homens</small>
                             @elseif($republic->type_id == 2)
-                                <i class="fas fa-female"></i><br>
+                                <i class="fas fa-female mb-2"></i><br>
                                 <small>Mulheres</small>
                             @else
-                                <i class="fas fa-male"></i><i class="fas fa-female"></i></i>
+                                <i class="fas fa-male mb-2"></i><i class="fas fa-female mb-2"></i>
                                 <br>
                                 <small>Mista</small>
                             @endif

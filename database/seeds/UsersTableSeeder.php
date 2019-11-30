@@ -22,6 +22,7 @@ class UsersTableSeeder extends Seeder
         if (!$userHeron) {
             DB::table('users')->insert([
                 'name' => 'Heron Eugênio',
+                'republic_id' => 1,
                 'email' => 'hrs.eugenio@gmail.com',
                 'password' => bcrypt('123123'),
             ]);
